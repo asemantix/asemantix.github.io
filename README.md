@@ -1,6 +1,6 @@
 # ASEMANTIX™ Website
 
-Official website for ASEMANTIX — The First Asemantic Communication Protocol.
+Official website for ASEMANTIX — The First Asemantic, offline Communication Protocol.
 
 🌐 **Live Site:** [https://asemantix.tech](https://asemantix.tech)
 
