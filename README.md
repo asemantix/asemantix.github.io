@@ -1,6 +1,6 @@
 # ASEMANTIX™ Website
 
-Official website for ASEMANTIX — The First Asemantic, Offline Communication Protocol.
+Official website for ASEMANTIX — The First Network-Free, Asemantic Protocol
 
 🌐 **Live Site:** [https://asemantix.tech](https://asemantix.tech)
 
@@ -8,7 +8,7 @@ Official website for ASEMANTIX — The First Asemantic, Offline Communication Pr
 
 ## 🔐 What is ASEMANTIX?
 
-ASEMANTIX is a revolutionary **asemantic transport protocol** where transmitted data is mathematically indistinguishable from random noise.
+ASEMANTIX is a revolutionary asemantic transport protocol where transmitted data is mathematically indistinguishable from random noise — with zero metadata, on raw heterogeneous channels.
 
 **8 Patents | 139 Claims | Patents Pending | PCT Extensions in Progress**
 
