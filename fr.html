@@ -1,2 +1,1315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASEMANTIX™ | Quand hors-ligne veut dire en ligne</title>
+    <meta name="description" content="Le premier protocole asémantique où vos données sont mathématiquement indiscernables du bruit aléatoire — sans métadonnées, sur canaux bruts hétérogènes. 8 brevets, 139 revendications.">
+    
+    <meta property="og:title" content="ASEMANTIX™ | Pourquoi révéler au monde ce qui est confidentiel ?">
+    <meta property="og:description" content="Internet hors service. Vous communiquez toujours. Aucun réseau. Aucun opérateur. Aucune trace.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://asemantix.tech">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230a0a0a' width='100' height='100'/><text y='.9em' font-size='90' fill='%23d4af37'>A</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #fafafa;
+            --gold: #d4af37;
+            --gold-dark: #b8960c;
+            --red: #dc2626;
+            --green: #22c55e;
+            --blue: #3b82f6;
+            --purple: #8b5cf6;
+            --cyan: #06b6d4;
+            --orange: #f97316;
+            --pink: #ec4899;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --gray-700: #2a2a2a;
+            --gray-600: #3a3a3a;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 50%);
+            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        .lang-switch {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--gray-600);
+            background: transparent;
+            color: var(--gray-400);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.7rem 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            background: radial-gradient(ellipse at center bottom, rgba(212,175,55,0.08) 0%, transparent 60%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease both;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 800;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-title .highlight { color: var(--gold); }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--gray-300);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .stat { text-align: center; }
+
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease 0.8s both;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(212,175,55,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            border: 2px solid var(--gray-600);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sections */
+        section { padding: 6rem 4rem; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--gray-800);
+            color: var(--gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--gray-400);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Manifesto */
+        .manifesto {
+            background: linear-gradient(180deg, var(--black) 0%, var(--gray-900) 100%);
+        }
+
+        .manifesto-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .manifesto-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            color: var(--gray-300);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .manifesto-quote .highlight {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .manifesto-text {
+            font-size: 1.2rem;
+            color: var(--gray-400);
+            line-height: 1.8;
+        }
+
+        .manifesto-text strong { color: var(--gold); }
+
+        .invisible-highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .manifesto-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .comparison-card {
+            padding: 2rem;
+            border: 1px solid var(--gray-700);
+            text-align: left;
+        }
+
+        .comparison-card.old {
+            background: linear-gradient(135deg, rgba(220,38,38,0.1) 0%, transparent 100%);
+            border-color: rgba(220,38,38,0.5);
+        }
+
+        .comparison-card.new {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+            border-color: rgba(212,175,55,0.5);
+        }
+
+        .comparison-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-card.old h3 { color: var(--red); }
+        .comparison-card.new h3 { color: var(--gold); }
+
+        .comparison-card ul { list-style: none; }
+
+        .comparison-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-300);
+        }
+
+        .comparison-card.old li::before { content: '✗'; color: var(--red); }
+        .comparison-card.new li::before { content: '✓'; color: var(--gold); }
+
+        /* Patents */
+        .patents { background: var(--gray-900); }
+
+        .patents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .patent-card {
+            background: var(--gray-800);
+            border: 1px solid var(--gray-700);
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .patent-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--accent, var(--gold));
+        }
+
+        .patent-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent, var(--gold));
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .patent-card[data-patent="asemantix"] { --accent: #d4af37; }
+        .patent-card[data-patent="orchestrator"] { --accent: #3b82f6; }
+        .patent-card[data-patent="anchors"] { --accent: #22c55e; }
+        .patent-card[data-patent="vch"] { --accent: #8b5cf6; }
+        .patent-card[data-patent="rpag"] { --accent: #f97316; }
+        .patent-card[data-patent="blackbox"] { --accent: #06b6d4; }
+        .patent-card[data-patent="sentinel"] { --accent: #ef4444; }
+        .patent-card[data-patent="chronos"] { --accent: #ec4899; }
+
+        .patent-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent, var(--gold));
+            opacity: 0.3;
+            position: absolute;
+            top: 1rem; right: 1.5rem;
+        }
+
+        .patent-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent, var(--gold));
+        }
+
+        .patent-tagline {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .patent-claims {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255,255,255,0.05);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent, var(--gold));
+            margin-bottom: 1rem;
+        }
+
+        .patent-description {
+            color: var(--gray-300);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .patent-click-hint {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .patent-targets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .target-tag {
+            padding: 0.3rem 0.6rem;
+            background: var(--gray-700);
+            font-size: 0.7rem;
+            color: var(--gray-300);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 200;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active { display: flex; justify-content: center; align-items: flex-start; }
+
+        .modal-content {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-700);
+            max-width: 800px;
+            width: 100%;
+            padding: 3rem;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover { color: var(--gold); }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            color: var(--gray-400);
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .modal-section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin: 2rem 0 1rem;
+        }
+
+        .modal-text {
+            color: var(--gray-300);
+            line-height: 1.8;
+        }
+
+        .modal-cta {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-700);
+            text-align: center;
+        }
+
+        /* CTA Final */
+        .cta-final {
+            background: linear-gradient(180deg, var(--gray-900) 0%, var(--black) 50%, var(--gray-900) 100%);
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .cta-final h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-final p {
+            color: var(--gray-400);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Contact Form */
+        .contact { background: var(--black); }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .form-group.full { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            background: var(--gray-800);
+            border: 1px solid var(--gray-700);
+            padding: 1rem;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-textarea { min-height: 150px; resize: vertical; }
+
+        .form-submit {
+            background: var(--gold);
+            color: var(--black);
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-submit:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Ecosystem */
+        .ecosystem {
+            background: linear-gradient(180deg, var(--gray-900) 0%, var(--black) 100%);
+            text-align: center;
+        }
+
+        .ecosystem-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .ecosystem-link {
+            padding: 2rem 3rem;
+            border: 1px solid var(--gray-700);
+            background: var(--gray-800);
+            text-decoration: none;
+            transition: all 0.3s;
+            min-width: 250px;
+        }
+
+        .ecosystem-link:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+        }
+
+        .ecosystem-link h4 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ecosystem-link p {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        .ecosystem-link .coming {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--gray-700);
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            border-top: 1px solid var(--gray-800);
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-legal {
+            color: var(--gray-600);
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            section { padding: 4rem 1.5rem; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .hero-stats { gap: 2rem; flex-wrap: wrap; }
+            .stat-number { font-size: 2rem; }
+            .patents-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .modal-content { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">ASEMANTIX™</a>
+        <ul class="nav-links">
+            <li><a href="#manifesto">Manifeste</a></li>
+            <li><a href="#patents">Brevets</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="en.html" class="lang-switch">English</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Nous contacter</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">Portefeuille de brevets disponible pour la cession de licences</div>
+        
+        <h1 class="hero-title">
+            Quand hors-ligne <span class="highlight">veut dire en ligne.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            <strong>Aucun réseau. Aucun opérateur. Aucune trace.</strong><br><br>
+            De la Terre à Mars — 4 à 24 minutes.<br>
+            Des profondeurs océaniques à la surface.<br><br>
+            <span style="color: var(--gold); font-size: 1.1em;">Votre message voyage à la vitesse de la lumière, invisible, et sans connexion.</span>
+        </p>
+        
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Brevets</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">139</div>
+                <div class="stat-label">Revendications</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Métadonnées</div>
+            </div>
+        </div>
+        
+        <div class="hero-cta">
+            <a href="#patents" class="btn-primary">Explorer les brevets</a>
+            <a href="#contact" class="btn-secondary">Demander une licence</a>
+            <a href="https://github.com/asemantix/asemantix-poc" class="btn-secondary" target="_blank">GitHub PoC →</a>
+        </div>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="manifesto" id="manifesto">
+        <div class="manifesto-content">
+            <p class="manifesto-quote">
+                "Vos données parlent. <span class="highlight">Même quand vous vous taisez.</span>"
+            </p>
+            
+            <p class="manifesto-text">
+                TLS protège vos données. Signal chiffre vos messages. Blockchain sécurise vos transactions.<br><br>
+                Mais tous révèlent <strong>que</strong> vous communiquez, <strong>où</strong>, <strong>quand</strong>, <strong>combien</strong>, et <strong>avec qui</strong>.<br><br>
+                <span style="font-size: 1.4em; color: var(--white); font-weight: 500;">ASEMANTIX ne protège pas seulement vos données — il les rend <span class="invisible-highlight">invisibles</span>.</span><br><br>
+                <strong>Transport asémantique :</strong> ce que vous transmettez est mathématiquement indiscernable du bruit aléatoire.<br>
+                <span style="display: block; margin-top: 1rem; font-size: 1.2em; color: var(--gold); letter-spacing: 1px;">Aucune métadonnée. Aucun motif. Aucune trace. Invisible.</span>
+            </p>
+            
+            <div class="manifesto-comparison">
+                <div class="comparison-card old">
+                    <h3>L'ANCIEN MONDE</h3>
+                    <ul>
+                        <li>Horodatages dans chaque paquet</li>
+                        <li>Compteurs de séquence visibles</li>
+                        <li>En-têtes de protocole</li>
+                        <li>Dépendance au réseau</li>
+                        <li>Métadonnées exploitables</li>
+                    </ul>
+                </div>
+                <div class="comparison-card new">
+                    <h3>ASEMANTIX</h3>
+                    <ul>
+                        <li>Zéro horodatage transmis</li>
+                        <li>Zéro compteur visible</li>
+                        <li>Zéro en-tête de protocole</li>
+                        <li>Fonctionne 100% hors-ligne</li>
+                        <li>Indiscernable du bruit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cas d'usage -->
+    <section class="use-cases" id="use-cases" style="padding: 6rem 4rem; background: var(--gray-900);">
+        <div class="section-header">
+            <div class="section-tag" style="color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 1rem;">APPLICATIONS</div>
+            <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 1rem;">Là où ASEMANTIX fait la différence</h2>
+            <p class="section-subtitle" style="color: var(--gray-400); max-width: 600px; margin: 0 auto 3rem;">Environnements extrêmes où les protocoles traditionnels échouent</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Espace -->
+            <div style="background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 8px; padding: 2rem; transition: border-color 0.3s;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌍↔️🔴</div>
+                <h3 style="color: var(--gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Espace (Terre-Mars)</h3>
+                <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1rem;"><strong style="color: var(--white);">Défi :</strong> Latence 4-24 min, sans GPS</p>
+                <p style="color: var(--green); font-size: 0.9rem;"><strong>Solution :</strong> CHRONOS temps thermodynamique</p>
+            </div>
+            
+            <!-- Sous-marin -->
+            <div style="background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 8px; padding: 2rem; transition: border-color 0.3s;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌊</div>
+                <h3 style="color: var(--gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Sous-marin</h3>
+                <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1rem;"><strong style="color: var(--white);">Défi :</strong> Pas de signal radio, acoustique uniquement</p>
+                <p style="color: var(--green); font-size: 0.9rem;"><strong>Solution :</strong> Transport sur canal brut</p>
+            </div>
+            
+            <!-- Champ de bataille -->
+            <div style="background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 8px; padding: 2rem; transition: border-color 0.3s;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚔️</div>
+                <h3 style="color: var(--gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Champ de bataille</h3>
+                <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1rem;"><strong style="color: var(--white);">Défi :</strong> Réseaux détruits, brouillage</p>
+                <p style="color: var(--green); font-size: 0.9rem;"><strong>Solution :</strong> Maillage polymorphe RPAG</p>
+            </div>
+            
+            <!-- Satellite -->
+            <div style="background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 8px; padding: 2rem; transition: border-color 0.3s;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛰️</div>
+                <h3 style="color: var(--gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Satellite</h3>
+                <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1rem;"><strong style="color: var(--white);">Défi :</strong> Latence élevée, risque d'interception</p>
+                <p style="color: var(--green); font-size: 0.9rem;"><strong>Solution :</strong> Fragments invisibles</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Patents -->
+    <section class="patents" id="patents">
+        <div class="section-header">
+            <div class="section-tag">Portefeuille</div>
+            <h2 class="section-title">8 Brevets. 139 Revendications.<br>Une révolution.</h2>
+            <p class="section-subtitle">Cliquez sur un brevet pour voir le résumé. Documentation complète disponible sous NDA.</p>
+        </div>
+        
+        <div class="patents-grid">
+            
+            <!-- ASEMANTIX -->
+            <div class="patent-card" data-patent="asemantix" onclick="openModal('asemantix')">
+                <div class="patent-number">01</div>
+                <h3 class="patent-title">ASEMANTIX</h3>
+                <p class="patent-tagline">Le protocole asémantique fondateur — Là où seul le bruit existe</p>
+                <div class="patent-claims">25 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Asemantic transport by self-contained fragments on raw heterogeneous channels. 
+                    Fragments pass NIST SP 800-22 randomness tests. Local validation via strict equality. Zero transmitted metadata.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">Chip Vendors</span>
+                    <span class="target-tag">IoT</span>
+                    <span class="target-tag">Defense</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+            <!-- ORCHESTRATOR -->
+            <div class="patent-card" data-patent="orchestrator" onclick="openModal('orchestrator')">
+                <div class="patent-number">02</div>
+                <h3 class="patent-title">ORCHESTRATOR</h3>
+                <p class="patent-tagline">Transport multi-chemins adaptatif — Plus rapide, toujours invisible</p>
+                <div class="patent-claims">26 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Adaptive orchestration of asemantic transport on raw heterogeneous channels under joint latency and energy constraints.
+                    EVOL windows, thermodynamic time τ(t), cryptographic audit.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">Telecom</span>
+                    <span class="target-tag">5G/6G</span>
+                    <span class="target-tag">CDN</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+            <!-- ANCHORS -->
+            <div class="patent-card" data-patent="anchors" onclick="openModal('anchors')">
+                <div class="patent-number">03</div>
+                <h3 class="patent-title">ANCHORS</h3>
+                <p class="patent-tagline">Resynchronisation — Ne jamais perdre le fil</p>
+                <div class="patent-claims">14 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Resynchronisation after disconnection via short anchors (≥128 bits). 
+                    Bounded local search. No transmitted counters.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">LPWAN</span>
+                    <span class="target-tag">LoRa</span>
+                    <span class="target-tag">Satellite</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+            <!-- VCH -->
+            <div class="patent-card" data-patent="vch" onclick="openModal('vch')">
+                <div class="patent-number">04</div>
+                <h3 class="patent-title">VCH</h3>
+                <p class="patent-tagline">Chaîne d'historique vérifiable — La blockchain sans blockchain</p>
+                <div class="patent-claims">13 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Local cryptographic accumulator. Anti-replay and anti-rollback 100% offline. 
+                    No distributed infrastructure required.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">Defense</span>
+                    <span class="target-tag">Aerospace</span>
+                    <span class="target-tag">SCADA</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+            <!-- RPAG -->
+            <div class="patent-card" data-patent="rpag" onclick="openModal('rpag')">
+                <div class="patent-number">05</div>
+                <h3 class="patent-title">RPAG</h3>
+                <p class="patent-tagline">Réseau polymorphique — Infrastructure caméléon</p>
+                <div class="patent-claims">14 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Self-organizing mesh. Routing without revealing topology. 
+                    Ephemeral routes, self-healing, censorship resistance.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">CDN</span>
+                    <span class="target-tag">Anti-Censorship</span>
+                    <span class="target-tag">Mesh</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+            <!-- BLACK BOX -->
+            <div class="patent-card" data-patent="blackbox" onclick="openModal('blackbox')">
+                <div class="patent-number">06</div>
+                <h3 class="patent-title">BLACK BOX</h3>
+                <p class="patent-tagline">Contrôle d'accès — Vos données, vos règles, pour toujours</p>
+                <div class="patent-claims">8 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Self-enforcing containers. Access policies cryptographically bound to data. 
+                    No third-party servers.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">Santé</span>
+                    <span class="target-tag">GDPR</span>
+                    <span class="target-tag">Data Vaults</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+            <!-- SENTINEL -->
+            <div class="patent-card" data-patent="sentinel" onclick="openModal('sentinel')">
+                <div class="patent-number">07</div>
+                <h3 class="patent-title">SENTINEL</h3>
+                <p class="patent-tagline">Détection d'intrusion et neutralisation — Trouver les métadonnées cachées</p>
+                <div class="patent-claims">17 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Asemantic intrusion detection and neutralization on fragment streams. NIST + χ² + Kolmogorov-Smirnov test portfolio. 
+                    Benjamini-Hochberg FDR control. Constant time.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">IDS/IPS</span>
+                    <span class="target-tag">SIEM</span>
+                    <span class="target-tag">Air-Gapped</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+            <!-- CHRONOS -->
+            <div class="patent-card" data-patent="chronos" onclick="openModal('chronos')">
+                <div class="patent-number">08</div>
+                <h3 class="patent-title">CHRONOS</h3>
+                <p class="patent-tagline">Pouls thermodynamique sans horloge — Le temps sans horloges</p>
+                <div class="patent-claims">22 REVENDICATIONS</div>
+                <p class="patent-description">
+                    Clockless synchronization via thermodynamic time (τ = E/P). 
+                    Anti-replay via energy monotonicity. EVOL window integration.
+                </p>
+                <div class="patent-targets">
+                    <span class="target-tag">Space</span>
+                    <span class="target-tag">IoT</span>
+                    <span class="target-tag">Smart Grid</span>
+                </div>
+                <p class="patent-click-hint">Voir le résumé →</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final">
+        <h2>Prêt à devenir <span style="color: var(--gold);">invisible</span> ?</h2>
+        <p>
+            Discutons de comment ASEMANTIX peut transformer votre approche de la sécurité.
+        </p>
+        
+        <!-- USP Box -->
+        <div style="background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; padding: 2rem; max-width: 700px; margin: 2rem auto; text-align: left;">
+            <h3 style="color: var(--gold); margin-bottom: 1rem; font-size: 1.3rem; text-align: center;">Trois avantages uniques</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.5rem 0; color: var(--gray-400);"><span style="color: var(--gold); font-weight: bold;">✓</span> <strong style="color: var(--white);">Invisible :</strong> Vos données sont indiscernables du bruit (NIST SP 800-22 : 100% pass)</li>
+                <li style="padding: 0.5rem 0; color: var(--gray-400);"><span style="color: var(--gold); font-weight: bold;">✓</span> <strong style="color: var(--white);">Indépendant des réseaux :</strong> Fonctionne sans infrastructure, sur canaux hétérogènes (optique, radio, acoustique)</li>
+                <li style="padding: 0.5rem 0; color: var(--gray-400);"><span style="color: var(--gold); font-weight: bold;">✓</span> <strong style="color: var(--white);">Validation locale :</strong> Aucune sémantique en transit — fragments auto-porteurs</li>
+            </ul>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center;">
+                <p style="color: var(--gray-400); font-size: 0.85rem; margin-bottom: 0.5rem;">Proof of Concept validé</p>
+                <p style="color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">>20 000 fragments/s | Latence <50µs | NIST SP 800-22 ✓</p>
+            </div>
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="#contact" class="btn-primary">Nous contacter</a>
+            <a href="#patents" class="btn-secondary">Voir les brevets</a>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <div class="section-tag">Licence</div>
+            <h2 class="section-title">Nous contacter</h2>
+            <p class="section-subtitle">Parlez-nous de votre organisation et de vos besoins. Nous répondons sous 48 heures.</p>
+        </div>
+        
+        <div class="contact-container">
+            <form class="contact-form" name="licensing" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="licensing">
+                <p style="display:none;"><input name="bot-field"></p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Prénom *</label>
+                        <input type="text" name="firstname" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nom *</label>
+                        <input type="text" name="lastname" class="form-input" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Email *</label>
+                        <input type="email" name="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Téléphone</label>
+                        <input type="tel" name="phone" class="form-input">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Entreprise *</label>
+                        <input type="text" name="company" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fonction</label>
+                        <input type="text" name="jobtitle" class="form-input">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Pays *</label>
+                        <input type="text" name="country" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Taille de l'entreprise</label>
+                        <select name="companysize" class="form-select">
+                            <option value="">Sélectionnez...</option>
+                            <option value="1-10">1-10 employés</option>
+                            <option value="11-50">11-50 employés</option>
+                            <option value="51-200">51-200 employés</option>
+                            <option value="201-1000">201-1000 employés</option>
+                            <option value="1000+">1000+ employés</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group full">
+                    <label class="form-label">Secteur d'activité</label>
+                    <select name="industry" class="form-select">
+                        <option value="">Sélectionnez...</option>
+                        <option value="defense">Défense / Gouvernement</option>
+                        <option value="telecom">Télécommunications</option>
+                        <option value="finance">Finance / Banque</option>
+                        <option value="healthcare">Santé</option>
+                        <option value="automotive">Automobile</option>
+                        <option value="aerospace">Aérospatial / Spatial</option>
+                        <option value="iot">IoT / Embarqué</option>
+                        <option value="cybersecurity">Cybersécurité</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full">
+                    <label class="form-label">Quels brevets vous intéressent ?</label>
+                    <select name="patents" class="form-select">
+                        <option value="">Sélectionnez...</option>
+                        <option value="all">Portefeuille complet (8 brevets)</option>
+                        <option value="asemantix">ASEMANTIX (Protocole cœur)</option>
+                        <option value="orchestrator">ORCHESTRATOR (Transport adaptatif)</option>
+                        <option value="anchors">ANCHORS (Resynchronisation)</option>
+                        <option value="vch">VCH (Chaînage d'historique)</option>
+                        <option value="rpag">RPAG (Réseau polymorphique)</option>
+                        <option value="blackbox">BLACK BOX (Contrôle d'accès)</option>
+                        <option value="sentinel">SENTINEL (Détection d'intrusions)</option>
+                        <option value="chronos">CHRONOS (Temps thermodynamique)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full">
+                    <label class="form-label">Décrivez votre cas d'usage et motivation *</label>
+                    <textarea name="message" class="form-textarea" required placeholder="Décrivez votre projet, vos défis, et comment vous envisagez d'utiliser la technologie ASEMANTIX..."></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit">Envoyer la demande</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Ecosystem -->
+    <section class="ecosystem" id="ecosystem">
+        <div class="section-header">
+            <div class="section-tag">Écosystème</div>
+            <h2 class="section-title">Au-delà du protocole</h2>
+            <p class="section-subtitle">ASEMANTIX fait partie d'une vision plus large</p>
+        </div>
+        
+        <div class="ecosystem-links">
+            <a href="#" class="ecosystem-link">
+                <h4>TUTE</h4>
+                <p>Théorie Unifiée du Temps Énergétique</p>
+                <span class="coming">Bientôt disponible</span>
+            </a>
+            <a href="#" class="ecosystem-link">
+                <h4>CTU</h4>
+                <p>Ni espace, ni temps, ni matière — rien que l'Energeia</p>
+                <span class="coming">Bientôt disponible</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">ASEMANTIX™</div>
+        <div class="footer-links">
+            <a href="#manifesto">Manifeste</a>
+            <a href="#patents">Brevets</a>
+            <a href="#contact">Contact</a>
+            <a href="/cdn-cgi/l/email-protection#69283a2c2428273d203129191b061d060747040c"><span class="__cf_email__" data-cfemail="de9f8d9b939f908a97869eaeacb1aab1b0f0b3bb">[email&#160;protected]</span></a>
+        </div>
+        <p class="footer-legal">
+            © 2025 ASEMANTIX. Tous droits réservés.<br>
+            8 Brevets | 139 Revendications | Brevets en instance. Extensions PCT en cours.<br><br>
+            <em>Ce site est à titre informatif uniquement et ne constitue pas une cession de licence.</em>
+        </p>
+    </footer>
+
+    <!-- Modal for Patent Details -->
+    <div class="modal-overlay" id="patentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Titre du brevet</h2>
+            <p class="modal-subtitle" id="modalSubtitle">Description</p>
+            
+            <h3 class="modal-section-title">TITRE DE L'INVENTION</h3>
+            <p class="modal-text" id="modalInventionTitle"></p>
+            
+            <h3 class="modal-section-title">RÉSUMÉ</h3>
+            <p class="modal-text" id="modalAbstract"></p>
+            
+            <div class="modal-cta">
+                <p style="color: var(--gray-400); margin-bottom: 1rem;">Documentation complète disponible sous NDA</p>
+                <a href="#contact" class="btn-primary" onclick="closeModal()">Demander l'accès</a>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const patentData = {
+            asemantix: {
+                title: "ASEMANTIX",
+                subtitle: "Le protocole asémantique fondateur — Là où seul le bruit existe",
+                inventionTitle: "Procédé et système de transport asémantique par fragments auto-porteurs sur canaux bruts hétérogènes",
+                abstract: "L'invention concerne un protocole de transport asémantique où les fragments de données sont mathématiquement indiscernables du bruit aléatoire. Chaque fragment est auto-porteur et validé localement par égalité stricte d'empreintes cryptographiques dans une fenêtre bornée. Le protocole ne transmet aucun horodatage, compteur de séquence ou indice de synchronisation dans les en-têtes de transport. Les fragments passent les tests de hasard statistique NIST SP 800-22. Le système fonctionne sur des canaux bruts hétérogènes (optique, radio, acoustique, filaire) sans dépendance réseau."
+            },
+            orchestrator: {
+                title: "ORCHESTRATEUR",
+                subtitle: "Transport multi-chemins adaptatif — Plus rapide, toujours invisible",
+                inventionTitle: "Procédé et système d'orchestration adaptative de transport asémantique multi-chemins sur canaux bruts hétérogènes sous contraintes conjointes de latence et d'énergie",
+                abstract: "L'invention concerne une couche d'orchestration adaptative au-dessus d'un protocole de transport asémantique. L'orchestrateur observe des métriques locales incluant les quantiles de latence (P95, P99), l'énergie par bit E_bit(t), et la divergence statistique D_KL(t). Un temps thermodynamique local τ(t) = f(E_bit(t), P_loc(t)) pilote la posture de décision. L'orchestrateur contrôle dynamiquement le rythme, la redondance (FEC, codage réseau) et la coordination multi-canaux sans transmettre d'horodatages ni de compteurs."
+            },
+            anchors: {
+                title: "ANCHORS",
+                subtitle: "Resynchronisation — Ne jamais perdre le fil",
+                inventionTitle: "Procédé de resynchronisation de transport asémantique via ancres cryptographiques courtes",
+                abstract: "L'invention fournit un mécanisme de resynchronisation pour le transport asémantique après perte de connexion. Des ancres courtes (≥128 bits) dérivées du secret partagé et des paramètres EVOL permettent une recherche locale bornée pour récupérer l'état de synchronisation. Aucun compteur de séquence ni horodatage n'est transmis. Le mécanisme fonctionne avec une mémoire O(1) et une complexité de recherche bornée."
+            },
+            vch: {
+                title: "VCH",
+                subtitle: "Chaîne d'historique vérifiable — La blockchain sans blockchain",
+                inventionTitle: "Procédé d'accumulation cryptographique locale fournissant des garanties anti-rejeu et anti-rollback sans infrastructure distribuée",
+                abstract: "L'invention implémente des garanties équivalentes à la blockchain (anti-rejeu, anti-rollback, vérification d'intégrité) en utilisant uniquement des accumulateurs cryptographiques locaux. Une chaîne de hachage h_t = H(h_{t-1} || SER(e_t) || SER(d_t)) enregistre toutes les décisions. La vérification et l'audit sont possibles ex post sans connectivité réseau. Le système ne nécessite aucun consensus distribué, aucun minage, et aucune infrastructure externe."
+            },
+            rpag: {
+                title: "RPAG",
+                subtitle: "Réseau polymorphique — Infrastructure caméléon",
+                inventionTitle: "Procédé de routage polymorphique auto-organisé sans divulgation de topologie",
+                abstract: "L'invention permet un maillage réseau où les décisions de routage sont prises sans révéler la topologie du réseau. Les routes sont éphémères, auto-réparantes et résistantes à la censure. La nature polymorphique signifie que le comportement du réseau apparaît différent à chaque observateur, empêchant l'analyse de trafic. Adapté aux applications anti-censure et aux réseaux maillés tactiques."
+            },
+            blackbox: {
+                title: "BOÎTE NOIRE",
+                subtitle: "Contrôle d'accès — Vos données, vos règles, pour toujours",
+                inventionTitle: "Procédé pour conteneurs de données auto-exécutants avec politiques d'accès liées cryptographiquement",
+                abstract: "L'invention crée des conteneurs de données où les politiques d'accès sont cryptographiquement inséparables des données elles-mêmes. Les politiques sont appliquées sans tiers de confiance — les données elles-mêmes décident qui peut y accéder et dans quelles conditions. Adapté à la conformité RGPD, à la souveraineté des données de santé et aux coffres-forts de données personnelles."
+            },
+            sentinel: {
+                title: "SENTINEL",
+                subtitle: "Détection d'intrusion et neutralisation — Trouver les métadonnées cachées",
+                inventionTitle: "Procédé de détection et neutralisation d'intrusions asémantiques sur flux de fragments sans accès aux clés",
+                abstract: "L'invention détecte et neutralise les canaux cachés et métadonnées dissimulées dans les flux de fragments asémantiques. Un portefeuille de tests statistiques (NIST SP 800-22, χ², Kolmogorov-Smirnov) est appliqué avec contrôle FDR Benjamini-Hochberg pour identifier les anomalies. La détection opère en temps constant sans accès aux clés cryptographiques ou à l'état applicatif."
+            },
+            chronos: {
+                title: "CHRONOS",
+                subtitle: "Pouls thermodynamique sans horloge — Le temps sans horloges",
+                inventionTitle: "Procédé de synchronisation sans horloge via temps thermodynamique sur canaux asémantiques",
+                abstract: "L'invention permet la synchronisation sans horodatages transmis en définissant un temps thermodynamique local τ(t) = f(E_bit(t), P_loc(t)). Le temps s'écoule au rythme de la consommation d'énergie, pas des cycles d'horloge. L'anti-rejeu est garanti par la monotonicité énergétique. Le système s'intègre aux fenêtres EVOL et ne nécessite aucune référence temporelle externe (GPS, NTP). Adapté aux communications spatiales (latence 4-24 min)."
+            }
+        };
+
+        function openModal(patentId) {
+            const data = patentData[patentId];
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalSubtitle').textContent = data.subtitle;
+            document.getElementById('modalInventionTitle').textContent = data.inventionTitle;
+            document.getElementById('modalAbstract').textContent = data.abstract;
+            document.getElementById('patentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('patentModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('patentModal').addEventListener('click', function(e) {
         
