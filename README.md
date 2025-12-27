@@ -1,4 +1,4 @@
-[GITHUB_README.md](https://github.com/user-attachments/files/24356272/GITHUB_README.md)
+
 # ASEMANTIX™
 
 ### The First Asemantic Communication Protocol
