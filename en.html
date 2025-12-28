@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AION ASEMANTIX™ | The Invisible is What Constitutes the Visible</title>
+    <meta name="description" content="AION ASEMANTIX - The invisible is what constitutes the visible. Zero metadata. Zero trace. Zero boundary. The first interplanetary invisible protocol.">
+    <meta name="keywords" content="AION, ASEMANTIX, asemantic protocol, invisible communication, interplanetary, cryptography, zero metadata, patents">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AION ASEMANTIX™ | The Dawn of Invisible Communication">
+    <meta property="og:description" content="The invisible is what constitutes the visible. Zero metadata. Zero trace. Zero boundary.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://asemantix.tech">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gold: #d4af37;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --green: #10b981;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+        
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-800);
+            padding: 1.2rem 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .nav-logo { font-size: 1.6rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .nav-logo .aion { color: var(--gray-400); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.15rem; margin-right: 0.5rem; }
+        .nav-logo .tm { color: var(--gold); }
+        
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        
+        .lang-switch {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; text-decoration: none;
+        }
+        .lang-switch:hover { background: var(--gold); color: var(--black); }
+        
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 7rem 2rem 4rem;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, var(--black) 70%);
+        }
+        
+        .hero-content { max-width: 950px; }
+        .hero-dots { font-size: 2.5rem; color: var(--gold); letter-spacing: 1.5rem; margin-bottom: 1.5rem; }
+        .hero-aion { font-size: 1.2rem; font-weight: 400; color: var(--gray-400); letter-spacing: 0.5rem; margin-bottom: 0.3rem; }
+        .hero-title { font-size: 4.5rem; font-weight: 700; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.3rem; }
+        .hero-title span { color: var(--gold); }
+        .hero-philosophy { font-size: 1.6rem; color: var(--white); font-style: italic; margin-bottom: 0.5rem; font-weight: 300; }
+        .hero-dawn { font-size: 1.3rem; color: var(--gold); margin-bottom: 2rem; letter-spacing: 0.1rem; }
+        .hero-logo-svg { margin: 2.5rem auto; }
+        .hero-zero { font-size: 1.35rem; color: #d1d5db; margin-bottom: 1.5rem; letter-spacing: 0.05rem; }
+        .hero-beyond { font-size: 1.4rem; color: var(--gold); margin-bottom: 2.5rem; }
+        
+        .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .btn-primary { background: var(--gold); color: var(--black); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; transition: all 0.3s; }
+        .btn-primary:hover { background: #e5c349; transform: translateY(-2px); }
+        .btn-secondary { background: transparent; color: var(--gold); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; border: 1px solid var(--gold); transition: all 0.3s; }
+        .btn-secondary:hover { background: var(--gold); color: var(--black); }
+        
+        .hero-footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+        .hero-footer-main { color: var(--gold); font-size: 1.3rem; font-weight: 600; }
+        
+        .usp-box { background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; padding: 2.5rem; max-width: 750px; margin: 2rem auto; text-align: left; }
+        .usp-intro { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center; line-height: 1.7; }
+        .usp-intro strong { color: var(--white); }
+        .usp-title { color: var(--gold); margin-bottom: 1.2rem; font-size: 1.5rem; text-align: center; }
+        .usp-list { list-style: none; padding: 0; }
+        .usp-list li { padding: 0.6rem 0; color: var(--gray-400); font-size: 1.1rem; }
+        .usp-list li span { color: var(--gold); font-weight: bold; }
+        .usp-list li strong { color: var(--white); }
+        
+        /* TUTE Section */
+        .tute-section {
+            padding: 5rem 4rem;
+            background: var(--gray-900);
+            text-align: center;
+        }
+        
+        .tute-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .tute-card {
+            background: var(--gray-800);
+            border: 1px solid var(--gray-700);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        
+        .tute-card h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .tute-card p {
+            color: var(--gray-400);
+            font-size: 1.2rem;
+        }
+        
+        .patents { padding: 6rem 4rem; background: var(--black); }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag { color: var(--gold); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 1rem; }
+        .section-title { font-size: 2.8rem; margin-bottom: 1rem; }
+        .section-subtitle { color: var(--gray-400); max-width: 650px; margin: 0 auto; font-size: 1.15rem; }
+        
+        .patents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1400px; margin: 0 auto; }
+        .patent-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 8px; padding: 1.8rem; cursor: pointer; transition: all 0.3s; }
+        .patent-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+        .patent-number { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .patent-title { color: var(--white); font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .patent-tagline { color: var(--gray-400); font-size: 1rem; margin-bottom: 1rem; }
+        .patent-claims { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem; font-weight: 600; }
+        .patent-description { color: var(--gray-400); font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+        .patent-targets { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .target-tag { background: var(--gray-800); color: var(--gray-400); padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.85rem; }
+        .patent-click-hint { color: var(--gold); font-size: 0.95rem; margin-top: 1rem; opacity: 0.7; }
+        
+        .use-cases { padding: 6rem 4rem; background: var(--gray-900); }
+        .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1200px; margin: 0 auto; }
+        .use-case-card { background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 8px; padding: 2.2rem; transition: border-color 0.3s; }
+        .use-case-card:hover { border-color: var(--gold); }
+        .use-case-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .use-case-title { color: var(--gold); font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .use-case-challenge { color: var(--gray-400); font-size: 1.05rem; margin-bottom: 1rem; }
+        .use-case-solution { color: var(--green); font-size: 1.05rem; }
+        
+        .contact { padding: 6rem 4rem; background: var(--black); text-align: center; }
+        .contact-title { font-size: 2.2rem; margin-bottom: 1rem; font-style: italic; }
+        .contact-subtitle { color: var(--gray-400); margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .contact-philosophy { color: var(--gold); font-style: italic; margin-bottom: 2rem; font-size: 1.2rem; }
+        .contact-email { color: var(--gold); font-size: 1.5rem; text-decoration: none; }
+        .contact-email:hover { text-decoration: underline; }
+        
+        footer { padding: 2.5rem; background: var(--gray-900); text-align: center; border-top: 1px solid var(--gray-800); }
+        .footer-text { color: var(--gray-500); font-size: 1rem; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; overflow-y: auto; }
+        .modal-content { max-width: 800px; margin: 4rem auto; padding: 2.5rem; background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 8px; }
+        .modal-close { float: right; font-size: 2.5rem; color: var(--gray-400); cursor: pointer; line-height: 1; }
+        .modal-close:hover { color: var(--gold); }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.8rem; }
+            .hero-philosophy { font-size: 1.3rem; }
+            .nav-links { display: none; }
+            .patents, .use-cases, .contact { padding: 4rem 1.5rem; }
+            .tute-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="nav-logo"><span class="aion">AION</span> ASEMANTIX<span class="tm">™</span></a>
+        <div class="nav-links">
+            <a href="#tute">Technology</a>
+            <a href="#patents">Patents</a>
+            <a href="#use-cases">Use Cases</a>
+            <a href="https://github.com/asemantix/asemantic-protocol" target="_blank">GitHub</a>
+            <a href="#contact">Contact</a>
+            <a href="fr.html" class="lang-switch">FR</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-dots">◉ ◉ ◉</div>
+            <p class="hero-aion">AION</p>
+            <h1 class="hero-title">ASEMANTIX<span>™</span></h1>
+            <p class="hero-philosophy">"The invisible is what constitutes the visible."</p>
+            <p class="hero-dawn">The dawn of invisible communication.</p>
+            
+            <div class="hero-logo-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="140" height="140">
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.8"/>
+                    <circle cx="100" cy="100" r="25" fill="none" stroke="#d4af37" stroke-width="2"/>
+                    <circle cx="100" cy="100" r="6" fill="#d4af37"/>
+                </svg>
+            </div>
+            
+            <p class="hero-zero">Zero metadata. Zero trace. Zero boundary.</p>
+            <p class="hero-beyond">From Earth to Mars — and beyond.</p>
+            
+            <div class="usp-box">
+                <p class="usp-intro">
+                    A data transmission method: off-network, metadata-free, based on self-contained fragments.<br>
+                    <strong>Validation is local: nothing transits on the channel.</strong>
+                </p>
+                <h3 class="usp-title">Three unique advantages</h3>
+                <ul class="usp-list">
+                    <li><span>✓</span> <strong>Invisible:</strong> Your data is indistinguishable from noise (NIST SP 800-22: 100% pass)</li>
+                    <li><span>✓</span> <strong>Network-independent:</strong> Works without infrastructure, on heterogeneous channels (optical, radio, acoustic)</li>
+                    <li><span>✓</span> <strong>Local validation:</strong> No semantics in transit — self-contained fragments</li>
+                </ul>
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center;">
+                    <p style="color: var(--gray-400); font-size: 1rem; margin-bottom: 0.5rem;">Validated Proof of Concept</p>
+                    <p style="color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 1.05rem;">>20,000 fragments/s | Latency <50µs | NIST SP 800-22 ✓</p>
+                </div>
+                <div style="margin: 1.5rem 0 0; text-align: center;">
+                    <a href="https://github.com/asemantix/asemantic-protocol" target="_blank" style="display: inline-block; background: var(--gold); color: var(--black); padding: 0.9rem 1.8rem; font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 1.05rem;">🧪 Try the Proof of Concept on GitHub</a>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#use-cases" class="btn-primary">Discover Use Cases</a>
+                <a href="#contact" class="btn-secondary">Contact Us</a>
+            </div>
+            
+            <div class="hero-footer">
+                <p class="hero-footer-main">The First Interplanetary Invisible Protocol</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TUTE Section -->
+    <section class="tute-section" id="tute">
+        <div class="section-header">
+            <div class="section-tag">TECHNOLOGY UNDER THE EXCLUSIVE</div>
+            <h2 class="section-title">Protected Innovation</h2>
+        </div>
+        <div class="tute-grid">
+            <div class="tute-card">
+                <h3>8</h3>
+                <p>Patents Filed</p>
+            </div>
+            <div class="tute-card">
+                <h3>139</h3>
+                <p>Claims Protected</p>
+            </div>
+            <div class="tute-card">
+                <h3>100%</h3>
+                <p>NIST SP 800-22 Pass</p>
+            </div>
+            <div class="tute-card">
+                <h3>>20K</h3>
+                <p>Fragments / Second</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="patents" id="patents">
+        <div class="section-header">
+            <div class="section-tag">INTELLECTUAL PROPERTY</div>
+            <h2 class="section-title">Patent Portfolio</h2>
+            <p class="section-subtitle">A complete ecosystem protecting every aspect of invisible interplanetary communication</p>
+        </div>
+        
+        <div class="patents-grid">
+            <div class="patent-card" onclick="openModal('asemantix')">
+                <div class="patent-number">01</div>
+                <h3 class="patent-title">ASEMANTIX</h3>
+                <p class="patent-tagline">Core protocol — Invisible by design</p>
+                <div class="patent-claims">25 CLAIMS</div>
+                <p class="patent-description">Asemantic transport by self-contained fragments on raw heterogeneous channels. Fragments pass NIST SP 800-22 randomness tests. Local validation via strict equality. Zero transmitted metadata.</p>
+                <div class="patent-targets"><span class="target-tag">Defense</span><span class="target-tag">Space</span><span class="target-tag">Critical Infra</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+            
+            <div class="patent-card" onclick="openModal('orchestrator')">
+                <div class="patent-number">02</div>
+                <h3 class="patent-title">ORCHESTRATOR</h3>
+                <p class="patent-tagline">Adaptive multi-path transport — Faster, always invisible</p>
+                <div class="patent-claims">26 CLAIMS</div>
+                <p class="patent-description">Adaptive orchestration of asemantic transport on raw heterogeneous channels under joint latency and energy constraints. EVOL windows, thermodynamic time τ(t), cryptographic audit.</p>
+                <div class="patent-targets"><span class="target-tag">Telecom</span><span class="target-tag">5G/6G</span><span class="target-tag">CDN</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+            
+            <div class="patent-card" onclick="openModal('anchors')">
+                <div class="patent-number">03</div>
+                <h3 class="patent-title">ANCHORS</h3>
+                <p class="patent-tagline">Cryptographic resynchronization — Never lose sync</p>
+                <div class="patent-claims">14 CLAIMS</div>
+                <p class="patent-description">Resynchronization via short cryptographic anchors after desynchronization. Monotonic window, logarithmic bisection, forward secrecy preserved.</p>
+                <div class="patent-targets"><span class="target-tag">IoT</span><span class="target-tag">Satellite</span><span class="target-tag">Submarine</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+            
+            <div class="patent-card" onclick="openModal('vch')">
+                <div class="patent-number">04</div>
+                <h3 class="patent-title">VCH</h3>
+                <p class="patent-tagline">Verifiable Chain of History — Proof without blockchain</p>
+                <div class="patent-claims">13 CLAIMS</div>
+                <p class="patent-description">Verifiable Chain of History — cryptographic proof without distributed consensus. Hash chain H_i, Merkle proofs, anti-repudiation without blockchain.</p>
+                <div class="patent-targets"><span class="target-tag">Legal</span><span class="target-tag">Audit</span><span class="target-tag">Compliance</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+            
+            <div class="patent-card" onclick="openModal('rpag')">
+                <div class="patent-number">05</div>
+                <h3 class="patent-title">RPAG</h3>
+                <p class="patent-tagline">Polymorphic mesh — Untraceable routing</p>
+                <div class="patent-claims">14 CLAIMS</div>
+                <p class="patent-description">Polymorphic self-organizing mesh routing for asemantic transport. Dynamic topology, fragment dispersion, route obfuscation.</p>
+                <div class="patent-targets"><span class="target-tag">Military</span><span class="target-tag">Emergency</span><span class="target-tag">Mesh</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+            
+            <div class="patent-card" onclick="openModal('blackbox')">
+                <div class="patent-number">06</div>
+                <h3 class="patent-title">BLACK BOX</h3>
+                <p class="patent-tagline">Self-enforcing containers — Data with built-in rules</p>
+                <div class="patent-claims">8 CLAIMS</div>
+                <p class="patent-description">Self-enforcing data containers with cryptographically bound access policies. Time-lock, geo-lock, biometric conditions, dead-man switch.</p>
+                <div class="patent-targets"><span class="target-tag">Enterprise</span><span class="target-tag">Inheritance</span><span class="target-tag">Secrets</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+            
+            <div class="patent-card" onclick="openModal('sentinel')">
+                <div class="patent-number">07</div>
+                <h3 class="patent-title">SENTINEL</h3>
+                <p class="patent-tagline">Intrusion detection — Silent guardian</p>
+                <div class="patent-claims">17 CLAIMS</div>
+                <p class="patent-description">Intrusion detection and neutralization on asemantic fragment streams. Anomaly detection, automatic isolation, cryptographic traps.</p>
+                <div class="patent-targets"><span class="target-tag">Security</span><span class="target-tag">SOC</span><span class="target-tag">SIEM</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+            
+            <div class="patent-card" onclick="openModal('chronos')">
+                <div class="patent-number">08</div>
+                <h3 class="patent-title">CHRONOS</h3>
+                <p class="patent-tagline">Thermodynamic time — Sync without clocks</p>
+                <div class="patent-claims">22 CLAIMS</div>
+                <p class="patent-description">Clockless synchronization via thermodynamic time τ = E/P. No GPS, no NTP, no external reference. Synchronization emerges from physics.</p>
+                <div class="patent-targets"><span class="target-tag">Space</span><span class="target-tag">Quantum</span><span class="target-tag">Deep Sea</span></div>
+                <p class="patent-click-hint">View summary →</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases" id="use-cases">
+        <div class="section-header">
+            <div class="section-tag">APPLICATIONS</div>
+            <h2 class="section-title">Where ASEMANTIX makes the difference</h2>
+            <p class="section-subtitle">Extreme environments where traditional protocols fail</p>
+        </div>
+        
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <div class="use-case-icon">🌍↔️🔴</div>
+                <h3 class="use-case-title">Space (Earth-Mars)</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Latency 4-24 min, no GPS</p>
+                <p class="use-case-solution"><strong>Solution:</strong> ASEMANTIX + ORCHESTRATOR + CHRONOS + ANCHORS</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">🌊🔽</div>
+                <h3 class="use-case-title">Submarine</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Acoustic only, extreme packet loss</p>
+                <p class="use-case-solution"><strong>Solution:</strong> ASEMANTIX + ANCHORS</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">⚔️📡</div>
+                <h3 class="use-case-title">Battlefield</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Jamming, interception, compromised nodes</p>
+                <p class="use-case-solution"><strong>Solution:</strong> ASEMANTIX + RPAG + SENTINEL</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">🛰️🌐</div>
+                <h3 class="use-case-title">Satellite</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Orbital interception, traffic analysis</p>
+                <p class="use-case-solution"><strong>Solution:</strong> ASEMANTIX + ORCHESTRATOR</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">🏦</div>
+                <h3 class="use-case-title">Finance & Trading</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Front-running, order interception, audit trail</p>
+                <p class="use-case-solution"><strong>Solution:</strong> ASEMANTIX + VCH + BLACK BOX</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">🏥</div>
+                <h3 class="use-case-title">Healthcare</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Patient privacy, HIPAA/GDPR, access control</p>
+                <p class="use-case-solution"><strong>Solution:</strong> ASEMANTIX + BLACK BOX + VCH</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">🏛️</div>
+                <h3 class="use-case-title">Government & Defense</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Sovereignty, network independence, intrusion</p>
+                <p class="use-case-solution"><strong>Solution:</strong> Full ASEMANTIX stack</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">⚖️</div>
+                <h3 class="use-case-title">Legal & Notary</h3>
+                <p class="use-case-challenge"><strong>Challenge:</strong> Proof of existence, non-repudiation, digital will</p>
+                <p class="use-case-solution"><strong>Solution:</strong> VCH + BLACK BOX</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-tag">CONTACT</div>
+        <h2 class="contact-title">"The invisible is what constitutes the visible."</h2>
+        <p class="contact-subtitle">AION ASEMANTIX™</p>
+        <p class="contact-philosophy">The dawn of invisible communication.</p>
+        <a href="mailto:ASEMANTIX@proton.me" class="contact-email">ASEMANTIX@proton.me</a>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 AION ASEMANTIX™ — All rights reserved.</p>
+        <p class="footer-text" style="margin-top: 0.5rem; color: var(--gold);">From Earth to Mars — and beyond.</p>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const patentDetails = {
+            asemantix: { title: "ASEMANTIX — Core Protocol", claims: 25, abstract: "Method for exclusively local validation of self-contained asemantic fragments, with bounded window and monotonic anchor.", keyPoints: ["Fragments indistinguishable from random noise (NIST SP 800-22)", "Zero transmitted metadata (no index, no timestamp, no header)", "Local validation via strict equality on [t, t+ν]", "Monotonic anchor prevents replay attacks", "Forward secrecy via KDF seed evolution"] },
+            orchestrator: { title: "ORCHESTRATOR — Multi-path Transport", claims: 26, abstract: "Adaptive orchestration of asemantic transport under joint latency and energy constraints.", keyPoints: ["EVOL adaptive windows", "Thermodynamic time τ(t) integration", "Multi-path fragment dispersion", "Energy-aware routing", "Cryptographic audit trail"] },
+            anchors: { title: "ANCHORS — Resynchronization", claims: 14, abstract: "Cryptographic resynchronization after desynchronization via short anchors.", keyPoints: ["Logarithmic bisection search", "Monotonic window preservation", "Forward secrecy maintained", "Minimal bandwidth overhead", "Works on lossy channels"] },
+            vch: { title: "VCH — Verifiable Chain of History", claims: 13, abstract: "Cryptographic proof of history without distributed consensus.", keyPoints: ["Hash chain H_i construction", "Merkle proof generation", "Anti-repudiation without blockchain", "Compact audit proofs", "Legal-grade timestamping"] },
+            rpag: { title: "RPAG — Polymorphic Mesh", claims: 14, abstract: "Self-organizing polymorphic mesh routing for asemantic transport.", keyPoints: ["Dynamic topology adaptation", "Fragment dispersion across paths", "Route obfuscation", "Resilience to node compromise", "Zero central coordination"] },
+            blackbox: { title: "BLACK BOX — Self-enforcing Containers", claims: 8, abstract: "Data containers with cryptographically bound access policies.", keyPoints: ["Time-lock encryption", "Geo-lock conditions", "Biometric binding", "Dead-man switch", "Policy-bound inheritance"] },
+            sentinel: { title: "SENTINEL — Intrusion Detection", claims: 17, abstract: "Intrusion detection and neutralization on asemantic fragment streams.", keyPoints: ["Anomaly detection on fragment patterns", "Automatic isolation of compromised nodes", "Cryptographic trap deployment", "Silent alerting", "Forensic evidence preservation"] },
+            chronos: { title: "CHRONOS — Thermodynamic Time", claims: 22, abstract: "Clockless synchronization via thermodynamic time τ = E/P.", keyPoints: ["No GPS dependency", "No NTP requirement", "Physics-based synchronization", "Works in deep space", "Quantum-resistant timing"] }
+        };
+        function openModal(patentId) {
+            const patent = patentDetails[patentId];
+            document.getElementById('modal-body').innerHTML = `<h2 style="color: var(--gold); margin-bottom: 1rem; font-size: 1.8rem;">${patent.title}</h2><p style="color: var(--gold); margin-bottom: 1.5rem; font-size: 1.2rem;">${patent.claims} Claims</p><p style="color: var(--gray-400); margin-bottom: 2rem; font-style: italic; font-size: 1.1rem;">${patent.abstract}</p><h3 style="color: var(--white); margin-bottom: 1rem; font-size: 1.3rem;">Key Points</h3><ul style="color: var(--gray-400); padding-left: 1.5rem; font-size: 1.1rem;">${patent.keyPoints.map(p => `<li style="margin-bottom: 0.5rem;">${p}</li>`).join('')}</ul>`;
+            document.getElementById('modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        window.onclick = function(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+    </script>
+</body>
+</html>
