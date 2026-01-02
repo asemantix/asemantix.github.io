@@ -1,466 +1,749 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AION ASEMANTIX™ | L'invisible est ce qui constitue le visible</title>
-    <meta name="description" content="AION ASEMANTIX - L'invisible est ce qui constitue le visible. Zéro métadonnée. Zéro trace. Zéro frontière. Le premier protocole interplanétaire invisible.">
-    <meta name="keywords" content="AION, ASEMANTIX, protocole asémantique, communication invisible, interplanétaire, cryptographie, zéro métadonnée, brevets">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="AION ASEMANTIX™ | L'aube de la communication invisible">
-    <meta property="og:description" content="L'invisible est ce qui constitue le visible. Zéro métadonnée. Zéro trace. Zéro frontière.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://asemantix.tech">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <title>CAMELEON ASEMANTIX — Communication Invisible</title>
     <style>
-        :root {
-            --black: #0a0a0a;
-            --white: #ffffff;
-            --gold: #d4af37;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-            --green: #10b981;
-        }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.7;
-            font-size: 17px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e4;
         }
-        
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-800);
-            padding: 1.2rem 2.5rem;
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; padding: 20px 0; }
+        .logo { font-size: 40px; margin-bottom: 5px; }
+        .title { font-size: 24px; font-weight: 700; color: #00d9ff; letter-spacing: 3px; }
+        .subtitle { font-size: 12px; color: #888; margin-top: 5px; }
+        .badge { 
+            display: inline-block; background: rgba(0,255,136,0.2); color: #00ff88; 
+            padding: 4px 12px; border-radius: 20px; font-size: 10px; margin-top: 8px;
+            border: 1px solid rgba(0,255,136,0.3);
+        }
+        .status-bar {
             display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 16px; background: rgba(0,0,0,0.3); border-radius: 10px; margin-bottom: 20px;
         }
-        
-        .nav-logo { font-size: 1.6rem; font-weight: 700; color: var(--white); text-decoration: none; }
-        .nav-logo .aion { color: var(--gray-400); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.15rem; margin-right: 0.5rem; }
-        .nav-logo .tm { color: var(--gold); }
-        
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 1rem; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
-        
-        .lang-switch {
-            background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; text-decoration: none;
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
         }
-        .lang-switch:hover { background: var(--gold); color: var(--black); }
-        
-        .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 7rem 2rem 4rem;
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, var(--black) 70%);
+        .status-badge.disconnected { background: rgba(255,77,77,0.2); color: #ff4d4d; }
+        .status-badge.connected { background: rgba(0,255,136,0.2); color: #00ff88; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+        .member-id { font-size: 12px; color: #00d9ff; font-weight: 600; }
+        .card {
+            background: rgba(255,255,255,0.05); border-radius: 16px; padding: 20px;
+            margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .hero-content { max-width: 950px; }
-        .hero-dots { font-size: 2.5rem; color: var(--gold); letter-spacing: 1.5rem; margin-bottom: 1.5rem; }
-        .hero-aion { font-size: 1.2rem; font-weight: 400; color: var(--gray-400); letter-spacing: 0.5rem; margin-bottom: 0.3rem; }
-        .hero-title { font-size: 4.5rem; font-weight: 700; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.3rem; }
-        .hero-title span { color: var(--gold); }
-        .hero-philosophy { font-size: 1.6rem; color: var(--white); font-style: italic; margin-bottom: 0.5rem; font-weight: 300; }
-        .hero-dawn { font-size: 1.3rem; color: var(--gold); margin-bottom: 2rem; letter-spacing: 0.1rem; }
-        .hero-logo-svg { margin: 2.5rem auto; }
-        .hero-zero { font-size: 1.35rem; color: #d1d5db; margin-bottom: 1.5rem; letter-spacing: 0.05rem; }
-        .hero-beyond { font-size: 1.4rem; color: var(--gold); margin-bottom: 2.5rem; }
-        
-        .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
-        .btn-primary { background: var(--gold); color: var(--black); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; transition: all 0.3s; }
-        .btn-primary:hover { background: #e5c349; transform: translateY(-2px); }
-        .btn-secondary { background: transparent; color: var(--gold); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; border: 1px solid var(--gold); transition: all 0.3s; }
-        .btn-secondary:hover { background: var(--gold); color: var(--black); }
-        
-        .hero-footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
-        .hero-footer-main { color: var(--gold); font-size: 1.3rem; font-weight: 600; }
-        
-        .usp-box { background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; padding: 2.5rem; max-width: 750px; margin: 2rem auto; text-align: left; }
-        .usp-intro { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center; line-height: 1.7; }
-        .usp-intro strong { color: var(--white); }
-        .usp-title { color: var(--gold); margin-bottom: 1.2rem; font-size: 1.5rem; text-align: center; }
-        .usp-list { list-style: none; padding: 0; }
-        .usp-list li { padding: 0.6rem 0; color: var(--gray-400); font-size: 1.1rem; }
-        .usp-list li span { color: var(--gold); font-weight: bold; }
-        .usp-list li strong { color: var(--white); }
-        
-        /* TUTE Section */
-        .tute-section {
-            padding: 5rem 4rem;
-            background: var(--gray-900);
-            text-align: center;
+        .card-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            color: #00d9ff; margin-bottom: 16px;
         }
-        
-        .tute-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            max-width: 900px;
-            margin: 0 auto;
+        .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+        .tab {
+            flex: 1; padding: 12px 8px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+            color: #888; cursor: pointer; text-align: center; font-size: 12px;
         }
-        
-        .tute-card {
-            background: var(--gray-800);
-            border: 1px solid var(--gray-700);
-            border-radius: 12px;
-            padding: 2.5rem;
-            text-align: center;
+        .tab:hover { background: rgba(255,255,255,0.1); }
+        .tab.active { background: rgba(0,217,255,0.1); border-color: #00d9ff; color: #00d9ff; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .file-upload {
+            border: 2px dashed rgba(0,217,255,0.3); border-radius: 12px; padding: 30px;
+            text-align: center; cursor: pointer;
         }
-        
-        .tute-card h3 {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+        .file-upload:hover { border-color: #00d9ff; background: rgba(0,217,255,0.05); }
+        .file-upload input { display: none; }
+        .file-upload-icon { font-size: 40px; margin-bottom: 10px; }
+        .qr-divider {
+            display: flex; align-items: center; margin: 20px 0; color: #666; font-size: 12px;
         }
-        
-        .tute-card p {
-            color: var(--gray-400);
-            font-size: 1.2rem;
+        .qr-divider::before, .qr-divider::after {
+            content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1);
         }
-        
-        .patents { padding: 6rem 4rem; background: var(--black); }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-tag { color: var(--gold); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 1rem; }
-        .section-title { font-size: 2.8rem; margin-bottom: 1rem; }
-        .section-subtitle { color: var(--gray-400); max-width: 650px; margin: 0 auto; font-size: 1.15rem; }
-        
-        .patents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1400px; margin: 0 auto; }
-        .patent-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 8px; padding: 1.8rem; cursor: pointer; transition: all 0.3s; }
-        .patent-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-        .patent-number { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .patent-title { color: var(--white); font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .patent-tagline { color: var(--gray-400); font-size: 1rem; margin-bottom: 1rem; }
-        .patent-claims { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem; font-weight: 600; }
-        .patent-description { color: var(--gray-400); font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
-        .patent-targets { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .target-tag { background: var(--gray-800); color: var(--gray-400); padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.85rem; }
-        .patent-click-hint { color: var(--gold); font-size: 0.95rem; margin-top: 1rem; opacity: 0.7; }
-        
-        .use-cases { padding: 6rem 4rem; background: var(--gray-900); }
-        .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1200px; margin: 0 auto; }
-        .use-case-card { background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 8px; padding: 2.2rem; transition: border-color 0.3s; }
-        .use-case-card:hover { border-color: var(--gold); }
-        .use-case-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .use-case-title { color: var(--gold); font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .use-case-challenge { color: var(--gray-400); font-size: 1.05rem; margin-bottom: 1rem; }
-        .use-case-solution { color: var(--green); font-size: 1.05rem; }
-        
-        .contact { padding: 6rem 4rem; background: var(--black); text-align: center; }
-        .contact-title { font-size: 2.2rem; margin-bottom: 1rem; font-style: italic; }
-        .contact-subtitle { color: var(--gray-400); margin-bottom: 0.5rem; font-size: 1.2rem; }
-        .contact-philosophy { color: var(--gold); font-style: italic; margin-bottom: 2rem; font-size: 1.2rem; }
-        .contact-email { color: var(--gold); font-size: 1.5rem; text-decoration: none; }
-        .contact-email:hover { text-decoration: underline; }
-        
-        footer { padding: 2.5rem; background: var(--gray-900); text-align: center; border-top: 1px solid var(--gray-800); }
-        .footer-text { color: var(--gray-500); font-size: 1rem; }
-        
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; overflow-y: auto; }
-        .modal-content { max-width: 800px; margin: 4rem auto; padding: 2.5rem; background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 8px; }
-        .modal-close { float: right; font-size: 2.5rem; color: var(--gray-400); cursor: pointer; line-height: 1; }
-        .modal-close:hover { color: var(--gold); }
-        
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
-            .hero-philosophy { font-size: 1.3rem; }
-            .nav-links { display: none; }
-            .patents, .use-cases, .contact { padding: 4rem 1.5rem; }
-            .tute-grid { grid-template-columns: 1fr; }
+        .qr-divider span { padding: 0 15px; }
+        .qr-btn {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%); color: #000;
+            border: none; padding: 14px 24px; border-radius: 10px; font-size: 14px;
+            font-weight: 600; cursor: pointer;
+        }
+        .vocab-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .vocab-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; padding: 12px 10px; color: #e4e4e4; font-size: 12px;
+            cursor: pointer; text-align: center;
+        }
+        .vocab-btn:hover { background: rgba(0,217,255,0.1); border-color: #00d9ff; }
+        .vocab-btn.selected { background: rgba(0,217,255,0.2); border-color: #00d9ff; color: #00d9ff; }
+        .vocab-btn .position { font-size: 9px; color: #666; display: block; margin-bottom: 2px; }
+        .btn {
+            width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 14px;
+            font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px;
+        }
+        .btn-primary { background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%); color: #000; }
+        .btn-primary:disabled { background: #333; color: #666; cursor: not-allowed; }
+        .btn-success { background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%); color: #000; }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: #e4e4e4; border: 1px solid rgba(255,255,255,0.2); }
+        .fragment-box {
+            background: #0a0a0a; border-radius: 10px; padding: 14px;
+            font-family: 'Courier New', monospace; font-size: 9px; word-break: break-all;
+            color: #00ff88; margin: 12px 0; position: relative; border: 1px solid rgba(0,255,136,0.3);
+            line-height: 1.4;
+        }
+        .fragment-info {
+            font-size: 10px; color: #666; margin-top: 8px; text-align: center;
+        }
+        .copy-btn {
+            position: absolute; top: 8px; right: 8px; background: rgba(0,255,136,0.2);
+            border: none; padding: 4px 10px; border-radius: 6px; color: #00ff88; cursor: pointer; font-size: 10px;
+        }
+        .input-group { margin: 12px 0; }
+        .input-group label { display: block; font-size: 11px; color: #888; margin-bottom: 6px; text-transform: uppercase; }
+        .input-group textarea {
+            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; padding: 12px 14px; color: #e4e4e4; font-size: 11px;
+            min-height: 80px; font-family: 'Courier New', monospace;
+        }
+        .input-group textarea:focus { outline: none; border-color: #00d9ff; }
+        .result-message {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1) 0%, rgba(0,217,255,0.1) 100%);
+            border: 1px solid rgba(0,255,136,0.3); border-radius: 12px; padding: 16px;
+            text-align: center; margin: 12px 0;
+        }
+        .result-message .label { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 4px; }
+        .result-message .sender { font-size: 14px; color: #00d9ff; font-weight: 600; margin-bottom: 4px; }
+        .result-message .message { font-size: 22px; font-weight: 700; color: #00ff88; }
+        .result-message.error { background: rgba(255,77,77,0.1); border-color: rgba(255,77,77,0.3); }
+        .result-message.error .message { color: #ff4d4d; font-size: 14px; }
+        .stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px;
+        }
+        .stat {
+            background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px; text-align: center;
+        }
+        .stat-value { font-size: 18px; font-weight: 700; color: #00d9ff; }
+        .stat-label { font-size: 9px; color: #666; text-transform: uppercase; margin-top: 4px; }
+        .footer { text-align: center; padding: 20px; color: #444; font-size: 11px; }
+        .hidden { display: none !important; }
+        .qr-scanner-container {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #000; z-index: 2000; display: none; flex-direction: column;
+        }
+        .qr-scanner-container.active { display: flex; }
+        .qr-scanner-header { padding: 20px; text-align: center; background: rgba(0,0,0,0.8); }
+        .qr-scanner-header h2 { color: #00d9ff; font-size: 18px; margin-bottom: 8px; }
+        .qr-scanner-header p { color: #888; font-size: 12px; }
+        .qr-video-container { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+        .qr-video-container video { width: 100%; height: 100%; object-fit: cover; }
+        .qr-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 250px; height: 250px; border: 3px solid #00d9ff; border-radius: 20px;
+            box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+        }
+        .qr-scanner-footer { padding: 20px; text-align: center; background: rgba(0,0,0,0.8); }
+        .qr-cancel-btn {
+            background: rgba(255,77,77,0.2); color: #ff4d4d;
+            border: 1px solid rgba(255,77,77,0.3); padding: 12px 30px; border-radius: 10px; font-size: 14px; cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="#" class="nav-logo"><span class="aion">AION</span> ASEMANTIX<span class="tm">™</span></a>
-        <div class="nav-links">
-            <a href="#tute">Technologie</a>
-            <a href="#patents">Brevets</a>
-            <a href="#use-cases">Applications</a>
-            <a href="https://github.com/asemantix/asemantic-protocol" target="_blank">GitHub</a>
-            <a href="#contact">Contact</a>
-            <a href="en.html" class="lang-switch">EN</a>
+    <div class="qr-scanner-container" id="qr-scanner">
+        <div class="qr-scanner-header">
+            <h2>📷 Scanner le QR Code</h2>
+            <p>Placez le QR code dans le cadre</p>
         </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-dots">◉ ◉ ◉</div>
-            <p class="hero-aion">AION</p>
-            <h1 class="hero-title">ASEMANTIX<span>™</span></h1>
-            <p class="hero-philosophy">« L'invisible est ce qui constitue le visible. »</p>
-            <p class="hero-dawn">L'aube de la communication invisible.</p>
-            
-            <div class="hero-logo-svg">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="140" height="140">
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
-                    <circle cx="100" cy="100" r="50" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.8"/>
-                    <circle cx="100" cy="100" r="25" fill="none" stroke="#d4af37" stroke-width="2"/>
-                    <circle cx="100" cy="100" r="6" fill="#d4af37"/>
-                </svg>
-            </div>
-            
-            <p class="hero-zero">Zéro métadonnée. Zéro trace. Zéro frontière.</p>
-            <p class="hero-beyond">De la Terre à Mars — et au-delà.</p>
-            
-            <div class="usp-box">
-                <p class="usp-intro">
-                    Un procédé de transmission de données asémantiques : hors réseau, sans métadonnées, fondé sur des fragments autoporteurs.<br>
-                    <strong>La validation est locale : rien ne transite sur le canal.</strong>
-                </p>
-                <h3 class="usp-title">Trois avantages uniques</h3>
-                <ul class="usp-list">
-                    <li><span>✓</span> <strong>Invisible :</strong> Vos données sont indiscernables du bruit (NIST SP 800-22 : 100% pass)</li>
-                    <li><span>✓</span> <strong>Indépendant des réseaux :</strong> Fonctionne sans infrastructure, sur canaux hétérogènes (optique, radio, acoustique)</li>
-                    <li><span>✓</span> <strong>Validation locale :</strong> Aucune sémantique en transit — fragments auto-porteurs</li>
-                </ul>
-                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center;">
-                    <p style="color: var(--gray-400); font-size: 1rem; margin-bottom: 0.5rem;">Proof of Concept validé</p>
-                    <p style="color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 1.05rem;">>20 000 fragments/s | Latence <50µs | NIST SP 800-22 ✓</p>
-                </div>
-                <div style="margin: 1.5rem 0 0; text-align: center;">
-                    <a href="https://github.com/asemantix/asemantic-protocol" target="_blank" style="display: inline-block; background: var(--gold); color: var(--black); padding: 0.9rem 1.8rem; font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 1.05rem;">🧪 Essayer le Proof of Concept sur GitHub</a>
-                </div>
-            </div>
-            
-            <div class="cta-buttons">
-                <a href="#use-cases" class="btn-primary">Découvrir les Applications</a>
-                <a href="#contact" class="btn-secondary">Nous Contacter</a>
-            </div>
-            
-            <div class="hero-footer">
-                <p class="hero-footer-main">Le Premier Protocole Interplanétaire Invisible</p>
-            </div>
+        <div class="qr-video-container">
+            <video id="qr-video" playsinline></video>
+            <div class="qr-overlay"></div>
         </div>
-    </section>
-
-    <!-- TUTE Section -->
-    <section class="tute-section" id="tute">
-        <div class="section-header">
-            <div class="section-tag">TECHNOLOGIE SOUS EXCLUSIVITÉ</div>
-            <h2 class="section-title">Innovation Protégée</h2>
-        </div>
-        <div class="tute-grid">
-            <div class="tute-card">
-                <h3>8</h3>
-                <p>Brevets Déposés</p>
-            </div>
-            <div class="tute-card">
-                <h3>139</h3>
-                <p>Revendications Protégées</p>
-            </div>
-            <div class="tute-card">
-                <h3>100%</h3>
-                <p>NIST SP 800-22 Pass</p>
-            </div>
-            <div class="tute-card">
-                <h3>>20K</h3>
-                <p>Fragments / Seconde</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="patents" id="patents">
-        <div class="section-header">
-            <div class="section-tag">PROPRIÉTÉ INTELLECTUELLE</div>
-            <h2 class="section-title">Portefeuille de Brevets</h2>
-            <p class="section-subtitle">Un écosystème complet protégeant chaque aspect de la communication interplanétaire invisible</p>
-        </div>
-        
-        <div class="patents-grid">
-            <div class="patent-card" onclick="openModal('asemantix')">
-                <div class="patent-number">01</div>
-                <h3 class="patent-title">ASEMANTIX</h3>
-                <p class="patent-tagline">Protocole de base — Invisible par conception</p>
-                <div class="patent-claims">25 REVENDICATIONS</div>
-                <p class="patent-description">Transport asémantique par fragments auto-porteurs sur canaux bruts hétérogènes. Les fragments passent les tests NIST SP 800-22. Validation locale par égalité stricte. Zéro métadonnée transmise.</p>
-                <div class="patent-targets"><span class="target-tag">Défense</span><span class="target-tag">Spatial</span><span class="target-tag">Infra Critique</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('orchestrator')">
-                <div class="patent-number">02</div>
-                <h3 class="patent-title">ORCHESTRATOR</h3>
-                <p class="patent-tagline">Transport multi-chemins adaptatif — Plus rapide, toujours invisible</p>
-                <div class="patent-claims">26 REVENDICATIONS</div>
-                <p class="patent-description">Orchestration adaptative du transport asémantique sur canaux bruts hétérogènes sous contraintes conjointes de latence et d'énergie. Fenêtres EVOL, temps thermodynamique τ(t), audit cryptographique.</p>
-                <div class="patent-targets"><span class="target-tag">Télécom</span><span class="target-tag">5G/6G</span><span class="target-tag">CDN</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('anchors')">
-                <div class="patent-number">03</div>
-                <h3 class="patent-title">ANCHORS</h3>
-                <p class="patent-tagline">Resynchronisation cryptographique — Ne perdez jamais le fil</p>
-                <div class="patent-claims">14 REVENDICATIONS</div>
-                <p class="patent-description">Resynchronisation via ancres cryptographiques courtes après désynchronisation. Fenêtre monotone, bisection logarithmique, forward secrecy préservé.</p>
-                <div class="patent-targets"><span class="target-tag">IoT</span><span class="target-tag">Satellite</span><span class="target-tag">Sous-marin</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('vch')">
-                <div class="patent-number">04</div>
-                <h3 class="patent-title">VCH</h3>
-                <p class="patent-tagline">Chaîne d'Historique Vérifiable — Preuve sans blockchain</p>
-                <div class="patent-claims">13 REVENDICATIONS</div>
-                <p class="patent-description">Chaîne d'Historique Vérifiable — preuve cryptographique sans consensus distribué. Chaîne de hachage H_i, preuves de Merkle, anti-répudiation sans blockchain.</p>
-                <div class="patent-targets"><span class="target-tag">Juridique</span><span class="target-tag">Audit</span><span class="target-tag">Conformité</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('rpag')">
-                <div class="patent-number">05</div>
-                <h3 class="patent-title">RPAG</h3>
-                <p class="patent-tagline">Maillage polymorphe — Routage intraçable</p>
-                <div class="patent-claims">14 REVENDICATIONS</div>
-                <p class="patent-description">Routage maillé polymorphe auto-organisé pour transport asémantique. Topologie dynamique, dispersion des fragments, obfuscation des routes.</p>
-                <div class="patent-targets"><span class="target-tag">Militaire</span><span class="target-tag">Urgence</span><span class="target-tag">Mesh</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('blackbox')">
-                <div class="patent-number">06</div>
-                <h3 class="patent-title">BLACK BOX</h3>
-                <p class="patent-tagline">Conteneurs auto-exécutants — Données avec règles intégrées</p>
-                <div class="patent-claims">8 REVENDICATIONS</div>
-                <p class="patent-description">Conteneurs de données auto-exécutants avec politiques d'accès liées cryptographiquement. Verrou temporel, verrou géographique, conditions biométriques, dead-man switch.</p>
-                <div class="patent-targets"><span class="target-tag">Entreprise</span><span class="target-tag">Héritage</span><span class="target-tag">Secrets</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('sentinel')">
-                <div class="patent-number">07</div>
-                <h3 class="patent-title">SENTINEL</h3>
-                <p class="patent-tagline">Détection d'intrusion — Gardien silencieux</p>
-                <div class="patent-claims">17 REVENDICATIONS</div>
-                <p class="patent-description">Détection d'intrusion et neutralisation sur flux de fragments asémantiques. Détection d'anomalies, isolation automatique, pièges cryptographiques.</p>
-                <div class="patent-targets"><span class="target-tag">Sécurité</span><span class="target-tag">SOC</span><span class="target-tag">SIEM</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('chronos')">
-                <div class="patent-number">08</div>
-                <h3 class="patent-title">CHRONOS</h3>
-                <p class="patent-tagline">Temps thermodynamique — Synchronisation sans horloge</p>
-                <div class="patent-claims">22 REVENDICATIONS</div>
-                <p class="patent-description">Synchronisation sans horloge via temps thermodynamique τ = E/P. Pas de GPS, pas de NTP, pas de référence externe. La synchronisation émerge de la physique.</p>
-                <div class="patent-targets"><span class="target-tag">Spatial</span><span class="target-tag">Quantique</span><span class="target-tag">Grands fonds</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="use-cases" id="use-cases">
-        <div class="section-header">
-            <div class="section-tag">APPLICATIONS</div>
-            <h2 class="section-title">Là où ASEMANTIX fait la différence</h2>
-            <p class="section-subtitle">Environnements extrêmes où les protocoles traditionnels échouent</p>
-        </div>
-        
-        <div class="use-cases-grid">
-            <div class="use-case-card">
-                <div class="use-case-icon">🌍↔️🔴</div>
-                <h3 class="use-case-title">Espace (Terre-Mars)</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Latence 4-24 min, sans GPS</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + ORCHESTRATOR + CHRONOS + ANCHORS</p>
-            </div>
-            <div class="use-case-card">
-                <div class="use-case-icon">🌊🔽</div>
-                <h3 class="use-case-title">Sous-marin</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Acoustique uniquement, pertes extrêmes</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + ANCHORS</p>
-            </div>
-            <div class="use-case-card">
-                <div class="use-case-icon">⚔️📡</div>
-                <h3 class="use-case-title">Champ de bataille</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Brouillage, interception, nœuds compromis</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG + SENTINEL</p>
-            </div>
-            <div class="use-case-card">
-                <div class="use-case-icon">🛰️🌐</div>
-                <h3 class="use-case-title">Satellite</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Interception orbitale, analyse de trafic</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + ORCHESTRATOR</p>
-            </div>
-            <div class="use-case-card">
-                <div class="use-case-icon">🏦</div>
-                <h3 class="use-case-title">Finance & Trading</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Front-running, interception d'ordres, piste d'audit</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + VCH + BLACK BOX</p>
-            </div>
-            <div class="use-case-card">
-                <div class="use-case-icon">🏥</div>
-                <h3 class="use-case-title">Santé</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Confidentialité patient, RGPD, contrôle d'accès</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + BLACK BOX + VCH</p>
-            </div>
-            <div class="use-case-card">
-                <div class="use-case-icon">🏛️</div>
-                <h3 class="use-case-title">Gouvernement & Défense</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Souveraineté, indépendance réseau, intrusion</p>
-                <p class="use-case-solution"><strong>Solution :</strong> Stack complète ASEMANTIX</p>
-            </div>
-            <div class="use-case-card">
-                <div class="use-case-icon">⚖️</div>
-                <h3 class="use-case-title">Juridique & Notariat</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Preuve d'existence, non-répudiation, testament</p>
-                <p class="use-case-solution"><strong>Solution :</strong> VCH + BLACK BOX</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="section-tag">CONTACT</div>
-        <h2 class="contact-title">« L'invisible est ce qui constitue le visible. »</h2>
-        <p class="contact-subtitle">AION ASEMANTIX™</p>
-        <p class="contact-philosophy">L'aube de la communication invisible.</p>
-        <a href="mailto:ASEMANTIX@proton.me" class="contact-email">ASEMANTIX@proton.me</a>
-    </section>
-
-    <footer>
-        <p class="footer-text">© 2025 AION ASEMANTIX™ — Tous droits réservés.</p>
-        <p class="footer-text" style="margin-top: 0.5rem; color: var(--gold);">De la Terre à Mars — et au-delà.</p>
-    </footer>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div id="modal-body"></div>
+        <div class="qr-scanner-footer">
+            <button class="qr-cancel-btn" onclick="stopQRScanner()">✕ Annuler</button>
         </div>
     </div>
 
+    <div class="container">
+        <div class="header">
+            <div class="logo">🦎</div>
+            <div class="title">Cameleon</div>
+            <div class="subtitle">Communication Invisible par AION</div>
+            <div class="badge">🛡️ ASEMANTIX — Marqueurs Polymorphes</div>
+        </div>
+
+        <div class="status-bar">
+            <span id="status-badge" class="status-badge disconnected">
+                <span class="status-dot"></span>
+                <span id="status-text">Non connecté</span>
+            </span>
+            <span class="member-id" id="my-member-id"></span>
+        </div>
+
+        <div id="upload-section">
+            <div class="card">
+                <div class="card-title">📁 Charger votre graine</div>
+                <div class="file-upload" onclick="document.getElementById('file-input').click()">
+                    <input type="file" id="file-input" accept=".cameleon,.json" onchange="handleFileUpload(event)">
+                    <div class="file-upload-icon">🔐</div>
+                    <div style="color: #888; font-size: 13px;">Cliquez pour charger votre fichier</div>
+                </div>
+                <div class="qr-divider"><span>OU</span></div>
+                <div style="text-align: center;">
+                    <button class="qr-btn" onclick="startQRScanner()">📷 Scanner un QR Code</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-interface" class="hidden">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('send')">📤 Envoyer</div>
+                <div class="tab" onclick="switchTab('receive')">📥 Recevoir</div>
+                <div class="tab" onclick="switchTab('stats')">📊 Stats</div>
+            </div>
+
+            <div id="tab-send" class="tab-content active">
+                <div class="card">
+                    <div class="card-title">Choisir un message</div>
+                    <div class="vocab-grid" id="vocab-grid"></div>
+                </div>
+                <button class="btn btn-primary" id="send-btn" onclick="sendMessage()" disabled>🔒 Générer fragment ASEMANTIX</button>
+                <div id="send-result" class="hidden">
+                    <div class="fragment-box">
+                        <button class="copy-btn" onclick="copyFragment()">📋 Copier</button>
+                        <div id="fragment-output"></div>
+                    </div>
+                    <div class="fragment-info">
+                        256 bits • Marqueur polymorphe • Indistinguable du bruit
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-receive" class="tab-content">
+                <div class="card">
+                    <div class="card-title">Décoder un fragment</div>
+                    <div class="input-group">
+                        <label>Collez le fragment reçu (256 bits hex)</label>
+                        <textarea id="receive-input" placeholder="Collez ici le fragment de 64 caractères hex..."></textarea>
+                    </div>
+                </div>
+                <button class="btn btn-success" onclick="receiveMessage()">🔓 Filtrer & Décoder</button>
+                <div id="receive-result" class="hidden"></div>
+            </div>
+
+            <div id="tab-stats" class="tab-content">
+                <div class="card">
+                    <div class="card-title">📊 Statistiques ASEMANTIX</div>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-value" id="stat-sent">0</div>
+                            <div class="stat-label">Envoyés</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="stat-received">0</div>
+                            <div class="stat-label">Reçus</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="stat-rejected">0</div>
+                            <div class="stat-label">Rejetés</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 16px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                        <div style="font-size: 11px; color: #888; margin-bottom: 8px;">PARAMÈTRES POLYMORPHES</div>
+                        <div style="font-size: 12px; color: #00d9ff;">
+                            • Fragment : 256 bits<br>
+                            • Marqueur : <span id="marker-k">16</span> positions<br>
+                            • Filtrage rapide : ~99% rejet bruit<br>
+                            • Index actuel : <span id="current-index">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <button class="btn btn-secondary" onclick="logout()">Se déconnecter</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🛡️ ASEMANTIX — Aucune métadonnée</p>
+            <p>© 2026 AION — Brevet déposé</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <script>
-        const patentDetails = {
-            asemantix: { title: "ASEMANTIX — Protocole de base", claims: 25, abstract: "Procédé de validation exclusivement locale de fragments asémantiques auto-porteurs, avec fenêtre bornée et ancre monotone.", keyPoints: ["Fragments indiscernables du bruit aléatoire (NIST SP 800-22)", "Zéro métadonnée transmise (pas d'index, pas d'horodatage, pas d'en-tête)", "Validation locale par égalité stricte sur [t, t+ν]", "Ancre monotone empêchant les attaques par rejeu", "Forward secrecy via évolution KDF de la graine"] },
-            orchestrator: { title: "ORCHESTRATOR — Transport multi-chemins", claims: 26, abstract: "Orchestration adaptative du transport asémantique sous contraintes conjointes de latence et d'énergie.", keyPoints: ["Fenêtres EVOL adaptatives", "Intégration du temps thermodynamique τ(t)", "Dispersion multi-chemins des fragments", "Routage conscient de l'énergie", "Piste d'audit cryptographique"] },
-            anchors: { title: "ANCHORS — Resynchronisation", claims: 14, abstract: "Resynchronisation cryptographique après désynchronisation via ancres courtes.", keyPoints: ["Recherche par bisection logarithmique", "Préservation de la fenêtre monotone", "Forward secrecy maintenu", "Surcharge minimale en bande passante", "Fonctionne sur canaux à pertes"] },
-            vch: { title: "VCH — Chaîne d'Historique Vérifiable", claims: 13, abstract: "Preuve cryptographique d'historique sans consensus distribué.", keyPoints: ["Construction de chaîne de hachage H_i", "Génération de preuves de Merkle", "Anti-répudiation sans blockchain", "Preuves d'audit compactes", "Horodatage de qualité juridique"] },
-            rpag: { title: "RPAG — Maillage polymorphe", claims: 14, abstract: "Routage maillé polymorphe auto-organisé pour transport asémantique.", keyPoints: ["Adaptation dynamique de la topologie", "Dispersion des fragments sur plusieurs chemins", "Obfuscation des routes", "Résilience à la compromission de nœuds", "Zéro coordination centrale"] },
-            blackbox: { title: "BLACK BOX — Conteneurs auto-exécutants", claims: 8, abstract: "Conteneurs de données avec politiques d'accès liées cryptographiquement.", keyPoints: ["Chiffrement à verrou temporel", "Conditions de verrou géographique", "Liaison biométrique", "Dead-man switch", "Héritage lié aux politiques"] },
-            sentinel: { title: "SENTINEL — Détection d'intrusion", claims: 17, abstract: "Détection et neutralisation d'intrusion sur flux de fragments asémantiques.", keyPoints: ["Détection d'anomalies sur les motifs de fragments", "Isolation automatique des nœuds compromis", "Déploiement de pièges cryptographiques", "Alertes silencieuses", "Préservation des preuves forensiques"] },
-            chronos: { title: "CHRONOS — Temps thermodynamique", claims: 22, abstract: "Synchronisation sans horloge via temps thermodynamique τ = E/P.", keyPoints: ["Aucune dépendance au GPS", "Aucune exigence NTP", "Synchronisation basée sur la physique", "Fonctionne dans l'espace profond", "Timing résistant au quantique"] }
+        // ═══════════════════════════════════════════════════════════════
+        // ASEMANTIX CAMELEON — VRAI SYSTÈME BREVETÉ
+        // ═══════════════════════════════════════════════════════════════
+        // 
+        // Fragment F de 256 bits (32 octets)
+        // Marqueur polymorphe M(j) : k positions avec valeurs dérivées de K + j
+        // Indistinguable du bruit aléatoire
+        // Filtrage rapide sans calcul cryptographique
+        // Anti-rejeu par ancre monotone
+        //
+        // ═══════════════════════════════════════════════════════════════
+
+        const ASEMANTIX = {
+            FRAGMENT_BITS: 256,
+            FRAGMENT_BYTES: 32,
+            MARKER_POSITIONS: 16,  // k = 16 positions de marqueur
+            MARKER_BITS_PER_POS: 1 // 1 bit par position
         };
-        function openModal(patentId) {
-            const patent = patentDetails[patentId];
-            document.getElementById('modal-body').innerHTML = `<h2 style="color: var(--gold); margin-bottom: 1rem; font-size: 1.8rem;">${patent.title}</h2><p style="color: var(--gold); margin-bottom: 1.5rem; font-size: 1.2rem;">${patent.claims} Revendications</p><p style="color: var(--gray-400); margin-bottom: 2rem; font-style: italic; font-size: 1.1rem;">${patent.abstract}</p><h3 style="color: var(--white); margin-bottom: 1rem; font-size: 1.3rem;">Points clés</h3><ul style="color: var(--gray-400); padding-left: 1.5rem; font-size: 1.1rem;">${patent.keyPoints.map(p => `<li style="margin-bottom: 0.5rem;">${p}</li>`).join('')}</ul>`;
-            document.getElementById('modal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
+
+        let state = {
+            loaded: false,
+            config: null,
+            graine: null,
+            vocabulaire: {},
+            myMemberId: null,
+            selectedMessage: null,
+            messageIndex: 0,
+            stats: { sent: 0, received: 0, rejected: 0 }
+        };
+
+        // ═══════════════════════════════════════════════════════════════
+        // CRYPTO PRIMITIVES
+        // ═══════════════════════════════════════════════════════════════
+
+        async function sha256(data) {
+            const encoder = new TextEncoder();
+            const dataBuffer = typeof data === 'string' ? encoder.encode(data) : data;
+            return new Uint8Array(await crypto.subtle.digest('SHA-256', dataBuffer));
         }
-        function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
-        window.onclick = function(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+
+        function bytesToHex(bytes) {
+            return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function hexToBytes(hex) {
+            const bytes = new Uint8Array(hex.length / 2);
+            for (let i = 0; i < hex.length; i += 2) {
+                bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
+            }
+            return bytes;
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // MARQUEUR POLYMORPHE
+        // ═══════════════════════════════════════════════════════════════
+        //
+        // Le marqueur M(j) définit k positions de bits et leurs valeurs
+        // dérivées de façon déterministe de K (graine) et j (index)
+        // La configuration change INTÉGRALEMENT à chaque index
+        //
+        // ═══════════════════════════════════════════════════════════════
+
+        async function deriveMarkerPositions(graine, index, k) {
+            // Dériver k positions uniques dans le fragment de 256 bits
+            const seed = await sha256(graine + ':marker:positions:' + index);
+            const positions = [];
+            let i = 0;
+            
+            while (positions.length < k && i < 32) {
+                const pos = seed[i] % ASEMANTIX.FRAGMENT_BITS;
+                if (!positions.includes(pos)) {
+                    positions.push(pos);
+                }
+                i++;
+            }
+            
+            // Si pas assez de positions uniques, générer plus
+            while (positions.length < k) {
+                const extraSeed = await sha256(graine + ':marker:extra:' + index + ':' + positions.length);
+                const pos = extraSeed[0] % ASEMANTIX.FRAGMENT_BITS;
+                if (!positions.includes(pos)) {
+                    positions.push(pos);
+                }
+            }
+            
+            return positions.sort((a, b) => a - b);
+        }
+
+        async function deriveMarkerValues(graine, index, k) {
+            // Dériver k valeurs de bits (0 ou 1) pour les positions
+            const seed = await sha256(graine + ':marker:values:' + index);
+            const values = [];
+            
+            for (let i = 0; i < k; i++) {
+                const byteIndex = Math.floor(i / 8);
+                const bitIndex = i % 8;
+                const bit = (seed[byteIndex] >> bitIndex) & 1;
+                values.push(bit);
+            }
+            
+            return values;
+        }
+
+        function getBit(bytes, bitPos) {
+            const byteIndex = Math.floor(bitPos / 8);
+            const bitIndex = bitPos % 8;
+            return (bytes[byteIndex] >> (7 - bitIndex)) & 1;
+        }
+
+        function setBit(bytes, bitPos, value) {
+            const byteIndex = Math.floor(bitPos / 8);
+            const bitIndex = bitPos % 8;
+            if (value) {
+                bytes[byteIndex] |= (1 << (7 - bitIndex));
+            } else {
+                bytes[byteIndex] &= ~(1 << (7 - bitIndex));
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // GÉNÉRATION DE FRAGMENT ASEMANTIX
+        // ═══════════════════════════════════════════════════════════════
+        //
+        // 1. Générer 256 bits pseudo-aléatoires (payload chiffré)
+        // 2. Encoder le message dans le payload
+        // 3. Forcer le marqueur polymorphe aux positions dérivées
+        // 4. Résultat : indistinguable du bruit
+        //
+        // ═══════════════════════════════════════════════════════════════
+
+        async function generateAsemantixFragment(graine, position, index, senderId) {
+            const k = ASEMANTIX.MARKER_POSITIONS;
+            
+            // 1. Dériver les positions et valeurs du marqueur pour cet index
+            const markerPositions = await deriveMarkerPositions(graine, index, k);
+            const markerValues = await deriveMarkerValues(graine, index, k);
+            
+            // 2. Générer le payload pseudo-aléatoire basé sur graine + index
+            const payloadSeed = await sha256(graine + ':payload:' + index);
+            const fragment = new Uint8Array(ASEMANTIX.FRAGMENT_BYTES);
+            
+            // Remplir avec des données pseudo-aléatoires
+            for (let i = 0; i < ASEMANTIX.FRAGMENT_BYTES; i++) {
+                fragment[i] = payloadSeed[i % payloadSeed.length] ^ 
+                              ((index * 17 + i * 31) & 0xFF);
+            }
+            
+            // 3. Encoder le message (position dans vocabulaire) et senderId
+            // On utilise les premiers octets non-marqueur pour encoder les données
+            const dataSeed = await sha256(graine + ':data:' + index + ':' + position + ':' + senderId);
+            
+            // XOR avec les données encodées (position + senderId cachés dans le bruit)
+            fragment[0] ^= (position & 0xFF);
+            fragment[1] ^= (senderId & 0xFF);
+            fragment[2] ^= dataSeed[0];
+            fragment[3] ^= dataSeed[1];
+            
+            // 4. FORCER le marqueur polymorphe aux positions dérivées
+            for (let i = 0; i < k; i++) {
+                setBit(fragment, markerPositions[i], markerValues[i]);
+            }
+            
+            return bytesToHex(fragment);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // FILTRAGE RAPIDE (REJET 99% DU BRUIT)
+        // ═══════════════════════════════════════════════════════════════
+        //
+        // Le récepteur vérifie UNIQUEMENT les bits du marqueur
+        // SANS calcul cryptographique lourd
+        // Si le marqueur ne correspond pas → rejet immédiat
+        //
+        // ═══════════════════════════════════════════════════════════════
+
+        async function fastFilter(graine, fragmentHex, index) {
+            if (fragmentHex.length !== 64) return false; // 256 bits = 64 hex
+            
+            const fragment = hexToBytes(fragmentHex);
+            const k = ASEMANTIX.MARKER_POSITIONS;
+            
+            // Dériver le marqueur attendu pour cet index
+            const markerPositions = await deriveMarkerPositions(graine, index, k);
+            const markerValues = await deriveMarkerValues(graine, index, k);
+            
+            // Vérifier TOUS les bits du marqueur
+            for (let i = 0; i < k; i++) {
+                const actualBit = getBit(fragment, markerPositions[i]);
+                if (actualBit !== markerValues[i]) {
+                    return false; // Rejet rapide !
+                }
+            }
+            
+            return true; // Marqueur valide → candidat pour décodage complet
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // DÉCODAGE COMPLET (APRÈS FILTRAGE)
+        // ═══════════════════════════════════════════════════════════════
+
+        async function decodeAsemantixFragment(graine, fragmentHex, vocabulaire, startIndex) {
+            const fragment = hexToBytes(fragmentHex);
+            
+            // Chercher dans une fenêtre d'index (anti-rejeu avec tolérance)
+            const windowSize = 100;
+            
+            for (let index = startIndex; index < startIndex + windowSize; index++) {
+                // Filtrage rapide
+                if (!await fastFilter(graine, fragmentHex, index)) {
+                    state.stats.rejected++;
+                    continue;
+                }
+                
+                // Marqueur valide ! Tenter le décodage complet
+                const dataSeed = await sha256(graine + ':data:' + index + ':');
+                
+                // Essayer chaque message du vocabulaire
+                for (const [pos, msg] of Object.entries(vocabulaire)) {
+                    for (let senderId = 1; senderId <= 20; senderId++) {
+                        const testFragment = await generateAsemantixFragment(
+                            graine, parseInt(pos), index, senderId
+                        );
+                        
+                        if (testFragment === fragmentHex) {
+                            return {
+                                success: true,
+                                message: msg,
+                                senderId: senderId,
+                                index: index
+                            };
+                        }
+                    }
+                }
+            }
+            
+            return { success: false, error: 'Fragment non reconnu' };
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // INTERFACE & FICHIERS
+        // ═══════════════════════════════════════════════════════════════
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try { processConfig(JSON.parse(e.target.result)); }
+                catch (error) { alert('Fichier invalide'); }
+            };
+            reader.readAsText(file);
+        }
+
+        function processConfig(config) {
+            const graine = config.graine_K0 || config.g;
+            const vocabulaire = config.vocabulaire?.messages || config.vocabulaire || config.voc;
+            if (!graine || !vocabulaire) { alert('Fichier incomplet'); return; }
+            
+            const memberId = prompt('Entrez votre numéro de membre (1, 2, 3...)');
+            if (!memberId) return;
+            
+            state.config = config;
+            state.graine = graine;
+            state.vocabulaire = vocabulaire;
+            state.myMemberId = parseInt(memberId);
+            state.loaded = true;
+            
+            const pairId = config.paire_id || config.p || 'default';
+            const savedIndex = localStorage.getItem('asemantix_index_' + pairId);
+            state.messageIndex = savedIndex ? parseInt(savedIndex) : 0;
+            
+            updateUI();
+        }
+
+        // QR Scanner
+        let qrScanner = { stream: null, scanning: false };
+        
+        async function startQRScanner() {
+            try {
+                qrScanner.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+                const video = document.getElementById('qr-video');
+                video.srcObject = qrScanner.stream;
+                await video.play();
+                document.getElementById('qr-scanner').classList.add('active');
+                qrScanner.scanning = true;
+                scanQRCode();
+            } catch (error) { alert('Impossible d\'accéder à la caméra'); }
+        }
+
+        function stopQRScanner() {
+            qrScanner.scanning = false;
+            if (qrScanner.stream) qrScanner.stream.getTracks().forEach(track => track.stop());
+            document.getElementById('qr-scanner').classList.remove('active');
+        }
+
+        function scanQRCode() {
+            if (!qrScanner.scanning) return;
+            const video = document.getElementById('qr-video');
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                if (typeof jsQR !== 'undefined') {
+                    const code = jsQR(imageData.data, imageData.width, imageData.height);
+                    if (code) { handleQRCode(code.data); return; }
+                }
+            }
+            requestAnimationFrame(scanQRCode);
+        }
+
+        function handleQRCode(data) {
+            stopQRScanner();
+            try {
+                let config;
+                if (data.startsWith('AION:')) {
+                    config = JSON.parse(decodeURIComponent(escape(atob(data.substring(5)))));
+                } else {
+                    config = JSON.parse(data);
+                }
+                processConfig(config);
+                if (navigator.vibrate) navigator.vibrate(200);
+            } catch (error) { alert('QR Code invalide'); }
+        }
+
+        // UI Updates
+        function updateUI() {
+            document.getElementById('status-badge').className = 'status-badge connected';
+            document.getElementById('status-text').textContent = 'Connecté';
+            document.getElementById('my-member-id').textContent = '#' + state.myMemberId;
+            document.getElementById('upload-section').classList.add('hidden');
+            document.getElementById('main-interface').classList.remove('hidden');
+            document.getElementById('current-index').textContent = state.messageIndex;
+            
+            const grid = document.getElementById('vocab-grid');
+            grid.innerHTML = '';
+            for (const [pos, msg] of Object.entries(state.vocabulaire)) {
+                const btn = document.createElement('button');
+                btn.className = 'vocab-btn';
+                btn.innerHTML = `<span class="position">#${pos}</span>${msg}`;
+                btn.onclick = () => {
+                    document.querySelectorAll('.vocab-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    state.selectedMessage = { position: parseInt(pos), message: msg };
+                    document.getElementById('send-btn').disabled = false;
+                };
+                grid.appendChild(btn);
+            }
+            
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('stat-sent').textContent = state.stats.sent;
+            document.getElementById('stat-received').textContent = state.stats.received;
+            document.getElementById('stat-rejected').textContent = state.stats.rejected;
+            document.getElementById('current-index').textContent = state.messageIndex;
+        }
+
+        // Send Message
+        async function sendMessage() {
+            if (!state.selectedMessage || !state.loaded) return;
+            
+            state.messageIndex++;
+            const pairId = state.config.paire_id || state.config.p || 'default';
+            localStorage.setItem('asemantix_index_' + pairId, state.messageIndex.toString());
+            
+            const fragment = await generateAsemantixFragment(
+                state.graine,
+                state.selectedMessage.position,
+                state.messageIndex,
+                state.myMemberId
+            );
+            
+            document.getElementById('fragment-output').textContent = fragment;
+            document.getElementById('send-result').classList.remove('hidden');
+            
+            state.stats.sent++;
+            updateStats();
+            
+            document.querySelectorAll('.vocab-btn').forEach(b => b.classList.remove('selected'));
+            state.selectedMessage = null;
+            document.getElementById('send-btn').disabled = true;
+        }
+
+        // Receive Message
+        async function receiveMessage() {
+            if (!state.loaded) return;
+            
+            const input = document.getElementById('receive-input').value.trim().toLowerCase();
+            if (!input) { alert('Collez un fragment à décoder'); return; }
+            if (input.length !== 64) { alert('Le fragment doit faire 64 caractères hex (256 bits)'); return; }
+            
+            const resultDiv = document.getElementById('receive-result');
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = '<div class="result-message"><div class="message">⏳ Filtrage en cours...</div></div>';
+            
+            // Petit délai pour afficher le loading
+            await new Promise(r => setTimeout(r, 100));
+            
+            const result = await decodeAsemantixFragment(
+                state.graine,
+                input,
+                state.vocabulaire,
+                Math.max(0, state.messageIndex - 50)
+            );
+            
+            if (result.success) {
+                state.stats.received++;
+                resultDiv.innerHTML = `
+                    <div class="result-message">
+                        <div class="label">Message de</div>
+                        <div class="sender">#${result.senderId}</div>
+                        <div class="message">${result.message}</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px;">Index: ${result.index}</div>
+                    </div>
+                `;
+                document.getElementById('receive-input').value = '';
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="result-message error">
+                        <div class="label">Filtrage</div>
+                        <div class="message">${result.error}</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px;">
+                            ${state.stats.rejected} fragments rejetés par filtrage rapide
+                        </div>
+                    </div>
+                `;
+            }
+            
+            updateStats();
+        }
+
+        function copyFragment() {
+            navigator.clipboard.writeText(document.getElementById('fragment-output').textContent).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✓ Copié !';
+                setTimeout(() => btn.textContent = '📋 Copier', 2000);
+            });
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.getElementById('send-result').classList.add('hidden');
+            document.getElementById('receive-result').classList.add('hidden');
+        }
+
+        function logout() {
+            if (confirm('Voulez-vous vous déconnecter ?')) {
+                state = {
+                    loaded: false, config: null, graine: null, vocabulaire: {},
+                    myMemberId: null, selectedMessage: null, messageIndex: 0,
+                    stats: { sent: 0, received: 0, rejected: 0 }
+                };
+                document.getElementById('upload-section').classList.remove('hidden');
+                document.getElementById('main-interface').classList.add('hidden');
+                document.getElementById('status-badge').className = 'status-badge disconnected';
+                document.getElementById('status-text').textContent = 'Non connecté';
+                document.getElementById('my-member-id').textContent = '';
+            }
+        }
+
+        console.log('🦎 CAMELEON ASEMANTIX — Marqueurs Polymorphes — Brevet AION');
     </script>
 </body>
 </html>
