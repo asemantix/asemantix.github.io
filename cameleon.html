@@ -1,800 +1,153 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMELEON — Communication Invisible ASEMANTIX</title>
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
-            min-height: 100vh;
-            color: #fff;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(16, 185, 129, 0.3);
-            margin-bottom: 30px;
-        }
-        
-        .logo { font-size: 3rem; margin-bottom: 10px; }
-        .title { font-size: 2rem; color: #10b981; letter-spacing: 0.3rem; }
-        .subtitle { color: #888; margin-top: 5px; }
-        .badge {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
-            border: 1px solid #10b981;
-            border-radius: 20px;
-            padding: 5px 15px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: #10b981;
-        }
-        
-        /* Status Bar */
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-        }
-        
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .status-badge.connected {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-        }
-        
-        .status-badge.disconnected {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-        
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        .status-dot.connected { background: #10b981; }
-        .status-dot.disconnected { background: #ef4444; }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .member-id {
-            background: rgba(212, 175, 55, 0.2);
-            color: #d4af37;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-        
-        /* Seed Section */
-        .seed-section {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .section-title {
-            color: #10b981;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .seed-input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .seed-input-group input {
-            flex: 1;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            padding: 12px 15px;
-            color: #fff;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-        }
-        
-        .seed-input-group input:focus {
-            outline: none;
-            border-color: #10b981;
-        }
-        
-        .btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: #fff;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
-        }
-        
-        .btn-secondary {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .seed-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 8px;
-            color: #10b981;
-            font-size: 0.9rem;
-        }
-        
-        .seed-status.not-loaded {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-        }
-        
-        /* Chat Section */
-        .chat-section {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .messages-container {
-            height: 300px;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .message {
-            margin-bottom: 15px;
-            padding: 12px 15px;
-            border-radius: 10px;
-            max-width: 80%;
-        }
-        
-        .message.sent {
-            background: linear-gradient(135deg, #10b981, #059669);
-            margin-left: auto;
-            text-align: right;
-        }
-        
-        .message.received {
-            background: rgba(212, 175, 55, 0.2);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        .message-header {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            margin-bottom: 5px;
-        }
-        
-        .message-content {
-            word-wrap: break-word;
-        }
-        
-        .message-fragment {
-            font-family: 'Courier New', monospace;
-            font-size: 0.7rem;
-            opacity: 0.5;
-            margin-top: 8px;
-            word-break: break-all;
-        }
-        
-        .no-messages {
-            text-align: center;
-            color: #666;
-            padding: 50px;
-        }
-        
-        /* Input Section */
-        .input-section {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .message-input {
-            flex: 1;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 10px;
-            padding: 15px;
-            color: #fff;
-            font-size: 1rem;
-            resize: none;
-        }
-        
-        .message-input:focus {
-            outline: none;
-            border-color: #10b981;
-        }
-        
-        .message-input:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .send-btn {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .send-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
-        }
-        
-        .send-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        /* Stats Section */
-        .stats-section {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-        }
-        
-        .stat-item {
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #10b981;
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 5px;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #666;
-            font-size: 0.85rem;
-        }
-        
-        .footer a {
-            color: #10b981;
-            text-decoration: none;
-        }
-        
-        /* Hidden file input */
-        #seedFileInput { display: none; }
-        
-        /* Responsive */
-        @media (max-width: 600px) {
-            .status-bar { flex-direction: column; gap: 10px; }
-            .seed-input-group { flex-direction: column; }
-            .input-section { flex-direction: column; }
-            .message { max-width: 95%; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">🦎</div>
-            <div class="title">CAMELEON</div>
-            <div class="subtitle">Communication Invisible par AION</div>
-            <div class="badge">🔐 ASEMANTIX — Marqueurs Polymorphes</div>
-        </div>
-        
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <div id="statusBadge" class="status-badge disconnected">
-                <span class="status-dot disconnected"></span>
-                <span id="statusText">Déconnecté</span>
-            </div>
-            <div class="member-id">Membre <span id="memberId">#?</span></div>
-        </div>
-        
-        <!-- Seed Section -->
-        <div class="seed-section">
-            <div class="section-title">🔑 Graine Partagée</div>
-            <div class="seed-input-group">
-                <input type="text" id="seedInput" placeholder="Entrez la graine ou chargez un fichier .cameleon" readonly>
-                <input type="file" id="seedFileInput" accept=".cameleon,.txt,.json">
-                <button class="btn btn-secondary" onclick="document.getElementById('seedFileInput').click()">
-                    📁 Charger
-                </button>
-            </div>
-            <div id="seedStatus" class="seed-status not-loaded">
-                ⚠️ Aucune graine chargée — Communication impossible
-            </div>
-        </div>
-        
-        <!-- Chat Section -->
-        <div class="chat-section">
-            <div class="section-title">💬 Messages</div>
-            <div class="messages-container" id="messagesContainer">
-                <div class="no-messages">
-                    Chargez une graine pour commencer à communiquer de façon invisible
-                </div>
-            </div>
-            <div class="input-section">
-                <textarea 
-                    id="messageInput" 
-                    class="message-input" 
-                    placeholder="Tapez votre message..."
-                    rows="2"
-                    disabled
-                ></textarea>
-                <button id="sendBtn" class="send-btn" onclick="sendMessage()" disabled>
-                    📤 Envoyer
-                </button>
-            </div>
-        </div>
-        
-        <!-- Stats Section -->
-        <div class="stats-section">
-            <div class="section-title">📊 Statistiques</div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-value" id="statSent">0</div>
-                    <div class="stat-label">Messages envoyés</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="statReceived">0</div>
-                    <div class="stat-label">Messages reçus</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="statFragments">0</div>
-                    <div class="stat-label">Fragments générés</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="statIndex">0</div>
-                    <div class="stat-label">Index actuel</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <a href="index.html">← Retour au site ASEMANTIX</a>
-            <p style="margin-top: 10px;">© 2025 AION ASEMANTIX™ — L'invisible est ce qui constitue le visible</p>
-        </div>
-    </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <!-- Gradient for body -->
+    <radialGradient id="bodyGradient" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:#9b4dca"/>
+      <stop offset="100%" style="stop-color:#5a1d8a"/>
+    </radialGradient>
     
-    <script>
-        // ═══════════════════════════════════════════════════════════════
-        // CONFIGURATION
-        // ═══════════════════════════════════════════════════════════════
-        const SERVER_URL = 'https://cameleon-server-production.up.railway.app';
-        
-        // ═══════════════════════════════════════════════════════════════
-        // STATE
-        // ═══════════════════════════════════════════════════════════════
-        let socket = null;
-        let seed = null;
-        let memberId = null;
-        let messageIndex = 1;
-        let pairId = null;
-        let stats = { sent: 0, received: 0, fragments: 0 };
-        
-        // ═══════════════════════════════════════════════════════════════
-        // CRYPTO FUNCTIONS (SHA256)
-        // ═══════════════════════════════════════════════════════════════
-        async function sha256(message) {
-            const msgBuffer = new TextEncoder().encode(message);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-        
-        async function deriveMarkerPositions(seedHex, index) {
-            const hash = await sha256(seedHex + ':marker:positions:' + index);
-            const positions = [];
-            for (let i = 0; i < 16; i++) {
-                const byte = parseInt(hash.substr(i * 2, 2), 16);
-                positions.push(byte % 256);
-            }
-            return [...new Set(positions)].sort((a, b) => a - b).slice(0, 16);
-        }
-        
-        async function deriveMarkerValues(seedHex, index) {
-            const hash = await sha256(seedHex + ':marker:values:' + index);
-            const values = [];
-            for (let i = 0; i < 16; i++) {
-                const byte = parseInt(hash.substr(i * 2, 2), 16);
-                values.push(byte % 2);
-            }
-            return values;
-        }
-        
-        function generateRandomBits(length) {
-            const bytes = new Uint8Array(Math.ceil(length / 8));
-            crypto.getRandomValues(bytes);
-            let bits = '';
-            for (const byte of bytes) {
-                bits += byte.toString(2).padStart(8, '0');
-            }
-            return bits.substring(0, length);
-        }
-        
-        function bitsToHex(bits) {
-            let hex = '';
-            for (let i = 0; i < bits.length; i += 4) {
-                const nibble = bits.substr(i, 4);
-                hex += parseInt(nibble, 2).toString(16);
-            }
-            return hex;
-        }
-        
-        function hexToBits(hex) {
-            let bits = '';
-            for (const char of hex) {
-                bits += parseInt(char, 16).toString(2).padStart(4, '0');
-            }
-            return bits;
-        }
-        
-        // ═══════════════════════════════════════════════════════════════
-        // ASEMANTIX PROTOCOL
-        // ═══════════════════════════════════════════════════════════════
-        async function encodeMessage(message, index) {
-            // Get marker positions and values
-            const positions = await deriveMarkerPositions(seed, index);
-            const values = await deriveMarkerValues(seed, index);
-            
-            // Encode message to binary
-            const encoder = new TextEncoder();
-            const messageBytes = encoder.encode(message);
-            let messageBits = '';
-            for (const byte of messageBytes) {
-                messageBits += byte.toString(2).padStart(8, '0');
-            }
-            
-            // Add length prefix (16 bits)
-            const lengthBits = messageBytes.length.toString(2).padStart(16, '0');
-            
-            // Generate random base fragment
-            let fragmentBits = generateRandomBits(256);
-            let fragmentArray = fragmentBits.split('');
-            
-            // Place markers
-            for (let i = 0; i < positions.length && i < values.length; i++) {
-                if (positions[i] < 256) {
-                    fragmentArray[positions[i]] = values[i].toString();
-                }
-            }
-            
-            // Embed message (after markers)
-            const payload = lengthBits + messageBits;
-            let payloadIndex = 0;
-            for (let i = 0; i < 256 && payloadIndex < payload.length; i++) {
-                if (!positions.includes(i)) {
-                    fragmentArray[i] = payload[payloadIndex];
-                    payloadIndex++;
-                }
-            }
-            
-            fragmentBits = fragmentArray.join('');
-            return bitsToHex(fragmentBits);
-        }
-        
-        async function decodeFragment(fragmentHex, index) {
-            const positions = await deriveMarkerPositions(seed, index);
-            const values = await deriveMarkerValues(seed, index);
-            const fragmentBits = hexToBits(fragmentHex);
-            
-            // Verify markers
-            let markersValid = 0;
-            for (let i = 0; i < positions.length && i < values.length; i++) {
-                if (positions[i] < 256) {
-                    if (parseInt(fragmentBits[positions[i]]) === values[i]) {
-                        markersValid++;
-                    }
-                }
-            }
-            
-            if (markersValid < positions.length * 0.8) {
-                return null; // Invalid markers
-            }
-            
-            // Extract payload
-            let payload = '';
-            for (let i = 0; i < 256; i++) {
-                if (!positions.includes(i)) {
-                    payload += fragmentBits[i];
-                }
-            }
-            
-            // Get message length
-            const length = parseInt(payload.substring(0, 16), 2);
-            if (length <= 0 || length > 100) return null;
-            
-            // Extract message
-            const messageBits = payload.substring(16, 16 + length * 8);
-            let message = '';
-            for (let i = 0; i < messageBits.length; i += 8) {
-                const byte = parseInt(messageBits.substr(i, 8), 2);
-                if (byte > 0) message += String.fromCharCode(byte);
-            }
-            
-            return message;
-        }
-        
-        // ═══════════════════════════════════════════════════════════════
-        // SOCKET CONNECTION
-        // ═══════════════════════════════════════════════════════════════
-        function connectToServer() {
-            socket = io(SERVER_URL, {
-                transports: ['websocket', 'polling']
-            });
-            
-            socket.on('connect', () => {
-                console.log('Connected to server');
-                updateStatus(true);
-                
-                if (pairId) {
-                    socket.emit('join', pairId);
-                }
-            });
-            
-            socket.on('disconnect', () => {
-                console.log('Disconnected from server');
-                updateStatus(false);
-            });
-            
-            socket.on('receive_fragment', async (data) => {
-                console.log('Received fragment:', data);
-                await handleReceivedFragment(data.fragment, data.senderId);
-            });
-            
-            socket.on('pending_fragments', async (fragments) => {
-                console.log('Pending fragments:', fragments.length);
-                for (const f of fragments) {
-                    if (f.senderId !== memberId) {
-                        await handleReceivedFragment(f.fragment, f.senderId);
-                    }
-                }
-            });
-            
-            socket.on('member_joined', (count) => {
-                console.log('Members in channel:', count);
-            });
-        }
-        
-        async function handleReceivedFragment(fragment, senderId) {
-            // Try to decode with various indices
-            for (let tryIndex = Math.max(1, messageIndex - 10); tryIndex <= messageIndex + 10; tryIndex++) {
-                const message = await decodeFragment(fragment, tryIndex);
-                if (message) {
-                    displayMessage(message, fragment, senderId, false);
-                    stats.received++;
-                    updateStats();
-                    return;
-                }
-            }
-            console.log('Could not decode fragment');
-        }
-        
-        function updateStatus(connected) {
-            const badge = document.getElementById('statusBadge');
-            const text = document.getElementById('statusText');
-            const dot = badge.querySelector('.status-dot');
-            
-            if (connected) {
-                badge.className = 'status-badge connected';
-                dot.className = 'status-dot connected';
-                text.textContent = 'Connecté';
-            } else {
-                badge.className = 'status-badge disconnected';
-                dot.className = 'status-dot disconnected';
-                text.textContent = 'Déconnecté';
-            }
-        }
-        
-        // ═══════════════════════════════════════════════════════════════
-        // SEED MANAGEMENT
-        // ═══════════════════════════════════════════════════════════════
-        document.getElementById('seedFileInput').addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            const text = await file.text();
-            let data;
-            
-            try {
-                data = JSON.parse(text);
-            } catch {
-                // Plain text seed
-                data = { seed: text.trim() };
-            }
-            
-            if (data.seed || data.K0 || data.graine) {
-                seed = data.seed || data.K0 || data.graine;
-                memberId = data.member_id || data.memberId || Math.floor(Math.random() * 100) + 1;
-                pairId = data.pair_id || data.pairId || await sha256(seed).then(h => h.substring(0, 16));
-                
-                document.getElementById('seedInput').value = seed.substring(0, 20) + '...' + seed.substring(seed.length - 10);
-                document.getElementById('memberId').textContent = '#' + memberId;
-                
-                document.getElementById('seedStatus').className = 'seed-status';
-                document.getElementById('seedStatus').innerHTML = '✅ Graine chargée — Communication sécurisée activée';
-                
-                document.getElementById('messageInput').disabled = false;
-                document.getElementById('sendBtn').disabled = false;
-                
-                // Connect and join channel
-                if (!socket) {
-                    connectToServer();
-                }
-                setTimeout(() => {
-                    if (socket && socket.connected) {
-                        socket.emit('join', pairId);
-                    }
-                }, 500);
-                
-                // Clear messages
-                document.getElementById('messagesContainer').innerHTML = '';
-            }
-        });
-        
-        // ═══════════════════════════════════════════════════════════════
-        // MESSAGING
-        // ═══════════════════════════════════════════════════════════════
-        async function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (!message || !seed) return;
-            
-            // Encode message
-            const fragment = await encodeMessage(message, messageIndex);
-            
-            // Send to server
-            if (socket && socket.connected) {
-                socket.emit('send_fragment', {
-                    pairId: pairId,
-                    fragment: fragment,
-                    senderId: memberId
-                });
-            }
-            
-            // Display locally
-            displayMessage(message, fragment, memberId, true);
-            
-            // Update stats
-            stats.sent++;
-            stats.fragments++;
-            messageIndex++;
-            updateStats();
-            
-            // Clear input
-            input.value = '';
-        }
-        
-        function displayMessage(message, fragment, senderId, isSent) {
-            const container = document.getElementById('messagesContainer');
-            
-            // Remove "no messages" placeholder
-            const placeholder = container.querySelector('.no-messages');
-            if (placeholder) placeholder.remove();
-            
-            const div = document.createElement('div');
-            div.className = 'message ' + (isSent ? 'sent' : 'received');
-            
-            const time = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-            
-            div.innerHTML = `
-                <div class="message-header">
-                    ${isSent ? 'Vous' : 'Membre #' + senderId} — ${time}
-                </div>
-                <div class="message-content">${escapeHtml(message)}</div>
-                <div class="message-fragment">Fragment: ${fragment.substring(0, 32)}...</div>
-            `;
-            
-            container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
-        }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        function updateStats() {
-            document.getElementById('statSent').textContent = stats.sent;
-            document.getElementById('statReceived').textContent = stats.received;
-            document.getElementById('statFragments').textContent = stats.fragments;
-            document.getElementById('statIndex').textContent = messageIndex;
-        }
-        
-        // Enter key to send
-        document.getElementById('messageInput').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
-        });
-        
-        // Initialize
-        connectToServer();
-    </script>
-</body>
-</html>
+    <!-- Gradient for tentacles -->
+    <linearGradient id="tentacleGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8a2be2"/>
+      <stop offset="100%" style="stop-color:#4a0080"/>
+    </linearGradient>
+    
+    <linearGradient id="tentacleGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9932cc"/>
+      <stop offset="100%" style="stop-color:#3d0066"/>
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Shadow -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  
+  <!-- Background circle (optional, for contrast) -->
+  <circle cx="200" cy="200" r="195" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.3"/>
+  
+  <!-- TENTACLES - Long and expressive -->
+  
+  <!-- Tentacle 1 - Bottom left, very long -->
+  <path d="M160,220 
+           Q80,280 30,350 
+           Q20,380 40,390
+           Q60,385 70,360
+           Q90,300 150,250" 
+        fill="url(#tentacleGradient1)" filter="url(#shadow)"/>
+  <ellipse cx="45" cy="385" rx="12" ry="8" fill="#6a1bb2"/>
+  <ellipse cx="55" cy="365" rx="8" ry="6" fill="#6a1bb2"/>
+  <ellipse cx="70" cy="340" rx="7" ry="5" fill="#6a1bb2"/>
+  <ellipse cx="90" cy="310" rx="6" ry="4" fill="#6a1bb2"/>
+  
+  <!-- Tentacle 2 - Bottom, reaching down -->
+  <path d="M180,230 
+           Q170,300 160,370
+           Q155,400 180,395
+           Q200,390 195,360
+           Q200,290 200,240" 
+        fill="url(#tentacleGradient2)" filter="url(#shadow)"/>
+  <ellipse cx="170" cy="390" rx="10" ry="7" fill="#6a1bb2"/>
+  <ellipse cx="165" cy="365" rx="7" ry="5" fill="#6a1bb2"/>
+  <ellipse cx="168" cy="340" rx="6" ry="4" fill="#6a1bb2"/>
+  
+  <!-- Tentacle 3 - Bottom right, very long -->
+  <path d="M240,220 
+           Q320,280 370,350 
+           Q380,380 360,390
+           Q340,385 330,360
+           Q310,300 250,250" 
+        fill="url(#tentacleGradient1)" filter="url(#shadow)"/>
+  <ellipse cx="355" cy="385" rx="12" ry="8" fill="#6a1bb2"/>
+  <ellipse cx="345" cy="365" rx="8" ry="6" fill="#6a1bb2"/>
+  <ellipse cx="330" cy="340" rx="7" ry="5" fill="#6a1bb2"/>
+  <ellipse cx="310" cy="310" rx="6" ry="4" fill="#6a1bb2"/>
+  
+  <!-- Tentacle 4 - Left side, horizontal -->
+  <path d="M140,180 
+           Q60,170 20,200
+           Q5,210 10,230
+           Q20,245 50,235
+           Q100,210 145,200" 
+        fill="url(#tentacleGradient2)" filter="url(#shadow)"/>
+  <ellipse cx="15" cy="220" rx="10" ry="12" fill="#6a1bb2"/>
+  <ellipse cx="35" cy="225" rx="7" ry="8" fill="#6a1bb2"/>
+  <ellipse cx="60" cy="220" rx="6" ry="7" fill="#6a1bb2"/>
+  
+  <!-- Tentacle 5 - Right side, horizontal -->
+  <path d="M260,180 
+           Q340,170 380,200
+           Q395,210 390,230
+           Q380,245 350,235
+           Q300,210 255,200" 
+        fill="url(#tentacleGradient2)" filter="url(#shadow)"/>
+  <ellipse cx="385" cy="220" rx="10" ry="12" fill="#6a1bb2"/>
+  <ellipse cx="365" cy="225" rx="7" ry="8" fill="#6a1bb2"/>
+  <ellipse cx="340" cy="220" rx="6" ry="7" fill="#6a1bb2"/>
+  
+  <!-- Tentacle 6 - Top left -->
+  <path d="M150,150 
+           Q100,100 60,60
+           Q40,40 50,25
+           Q65,15 85,35
+           Q130,80 160,140" 
+        fill="url(#tentacleGradient1)" filter="url(#shadow)"/>
+  <ellipse cx="52" cy="30" rx="10" ry="8" fill="#6a1bb2"/>
+  <ellipse cx="68" cy="45" rx="7" ry="6" fill="#6a1bb2"/>
+  <ellipse cx="88" cy="65" rx="6" ry="5" fill="#6a1bb2"/>
+  
+  <!-- Tentacle 7 - Top right -->
+  <path d="M250,150 
+           Q300,100 340,60
+           Q360,40 350,25
+           Q335,15 315,35
+           Q270,80 240,140" 
+        fill="url(#tentacleGradient1)" filter="url(#shadow)"/>
+  <ellipse cx="348" cy="30" rx="10" ry="8" fill="#6a1bb2"/>
+  <ellipse cx="332" cy="45" rx="7" ry="6" fill="#6a1bb2"/>
+  <ellipse cx="312" cy="65" rx="6" ry="5" fill="#6a1bb2"/>
+  
+  <!-- Tentacle 8 - Top center -->
+  <path d="M200,130 
+           Q200,80 200,40
+           Q200,15 215,10
+           Q235,10 230,35
+           Q225,70 215,130" 
+        fill="url(#tentacleGradient2)" filter="url(#shadow)"/>
+  <ellipse cx="218" cy="15" rx="12" ry="8" fill="#6a1bb2"/>
+  <ellipse cx="222" cy="35" rx="8" ry="6" fill="#6a1bb2"/>
+  
+  <!-- MAIN BODY -->
+  <ellipse cx="200" cy="180" rx="80" ry="70" fill="url(#bodyGradient)" filter="url(#glow)"/>
+  
+  <!-- Head dome -->
+  <ellipse cx="200" cy="150" rx="60" ry="50" fill="url(#bodyGradient)"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="170" cy="165" rx="20" ry="25" fill="#1a0a2e"/>
+  <ellipse cx="230" cy="165" rx="20" ry="25" fill="#1a0a2e"/>
+  
+  <!-- Eye shine -->
+  <ellipse cx="175" cy="158" rx="8" ry="10" fill="#fff" opacity="0.8"/>
+  <ellipse cx="235" cy="158" rx="8" ry="10" fill="#fff" opacity="0.8"/>
+  
+  <!-- Pupils -->
+  <ellipse cx="172" cy="168" rx="6" ry="8" fill="#8a2be2"/>
+  <ellipse cx="232" cy="168" rx="6" ry="8" fill="#8a2be2"/>
+  
+  <!-- Subtle pattern on body -->
+  <circle cx="180" cy="200" r="8" fill="#6a1bb2" opacity="0.4"/>
+  <circle cx="220" cy="200" r="8" fill="#6a1bb2" opacity="0.4"/>
+  <circle cx="200" cy="215" r="6" fill="#6a1bb2" opacity="0.4"/>
+  
+</svg>
