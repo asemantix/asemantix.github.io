@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,6 +85,50 @@
         .btn-primary:hover { background: #e5c349; transform: translateY(-2px); }
         .btn-secondary { background: transparent; color: var(--gold); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; border: 1px solid var(--gold); transition: all 0.3s; }
         .btn-secondary:hover { background: var(--gold); color: var(--black); }
+        
+        /* CAMELEON Button */
+        .btn-cameleon {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: var(--white);
+            padding: 1.1rem 2.2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: pulse-glow 2s infinite;
+        }
+        .btn-cameleon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
+        }
+        
+        /* CAMELEON Promo Box */
+        .cameleon-promo {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 750px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .cameleon-promo-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .cameleon-promo-title { color: #10b981; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .cameleon-promo-subtitle { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .cameleon-promo-features {
+            display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .cameleon-promo-feature { color: var(--gray-400); font-size: 0.95rem; }
+        .cameleon-promo-feature strong { color: #10b981; }
         
         .hero-footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
         .hero-footer-main { color: var(--gold); font-size: 1.3rem; font-weight: 600; }
@@ -180,6 +225,7 @@
             .nav-links { display: none; }
             .patents, .use-cases, .contact { padding: 4rem 1.5rem; }
             .tute-grid { grid-template-columns: 1fr; }
+            .cameleon-promo-features { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -190,6 +236,7 @@
             <a href="#tute">Technology</a>
             <a href="#patents">Patents</a>
             <a href="#use-cases">Use Cases</a>
+            <a href="cameleon.html" style="color: #10b981; font-weight: 600;">🦎 CAMELEON</a>
             <a href="https://github.com/asemantix/asemantic-protocol" target="_blank">GitHub</a>
             <a href="#contact">Contact</a>
             <a href="fr.html" class="lang-switch">FR</a>
@@ -215,6 +262,19 @@
             
             <p class="hero-zero">Zero metadata. Zero trace. Zero boundary.</p>
             <p class="hero-beyond">From Earth to Mars — and beyond.</p>
+            
+            <!-- CAMELEON Promo Box -->
+            <div class="cameleon-promo">
+                <div class="cameleon-promo-icon">🦎</div>
+                <h3 class="cameleon-promo-title">CAMELEON — Live Demo</h3>
+                <p class="cameleon-promo-subtitle">Test invisible communication in real time</p>
+                <div class="cameleon-promo-features">
+                    <span class="cameleon-promo-feature"><strong>256 bits</strong> indistinguishable from noise</span>
+                    <span class="cameleon-promo-feature"><strong>Polymorphic markers</strong></span>
+                    <span class="cameleon-promo-feature"><strong>Zero metadata</strong></span>
+                </div>
+                <a href="cameleon.html" class="btn-cameleon">🦎 Try CAMELEON</a>
+            </div>
             
             <div class="usp-box">
                 <p class="usp-intro">
@@ -427,7 +487,7 @@
         <h2 class="contact-title">"The invisible is what constitutes the visible."</h2>
         <p class="contact-subtitle">AION ASEMANTIX™</p>
         <p class="contact-philosophy">The dawn of invisible communication.</p>
-        <a href="mailto:ASEMANTIX@proton.me" class="contact-email">ASEMANTIX@proton.me</a>
+        <a href="/cdn-cgi/l/email-protection#c8899b8d8589869c819088b8baa7bca7a6e6a5ad" class="contact-email"><span class="__cf_email__" data-cfemail="c9889a8c8488879d809189b9bba6bda6a7e7a4ac">[email&#160;protected]</span></a>
     </section>
 
     <footer>
@@ -442,7 +502,7 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const patentDetails = {
             asemantix: { title: "ASEMANTIX — Core Protocol", claims: 25, abstract: "Method for exclusively local validation of self-contained asemantic fragments, with bounded window and monotonic anchor.", keyPoints: ["Fragments indistinguishable from random noise (NIST SP 800-22)", "Zero transmitted metadata (no index, no timestamp, no header)", "Local validation via strict equality on [t, t+ν]", "Monotonic anchor prevents replay attacks", "Forward secrecy via KDF seed evolution"] },
             orchestrator: { title: "ORCHESTRATOR — Multi-path Transport", claims: 26, abstract: "Adaptive orchestration of asemantic transport under joint latency and energy constraints.", keyPoints: ["EVOL adaptive windows", "Thermodynamic time τ(t) integration", "Multi-path fragment dispersion", "Energy-aware routing", "Cryptographic audit trail"] },
@@ -459,8 +519,4 @@
             document.getElementById('modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-        function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
-        window.onclick = function(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-    </script>
-</body>
-</html>
+        function closeM
