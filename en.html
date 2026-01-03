@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
             --gray-700: #374151;
             --gray-800: #1f2937;
             --gray-900: #111827;
-            --green: #10b981;
+            --green: #a855f7;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -86,9 +87,9 @@
         .btn-secondary { background: transparent; color: var(--gold); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; border: 1px solid var(--gold); transition: all 0.3s; }
         .btn-secondary:hover { background: var(--gold); color: var(--black); }
         
-        /* CAMELEON Button */
-        .btn-cameleon {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        /* OCTOPUS Button */
+        .btn-octopus {
+            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
             color: var(--white);
             padding: 1.1rem 2.2rem;
             text-decoration: none;
@@ -101,7 +102,7 @@
             gap: 0.5rem;
             animation: pulse-glow 2s infinite;
         }
-        .btn-cameleon:hover {
+        .btn-octopus:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
         }
@@ -110,8 +111,8 @@
             50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
         }
         
-        /* CAMELEON Promo Box */
-        .cameleon-promo {
+        /* OCTOPUS Promo Box */
+        .octopus-promo {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
             border: 1px solid rgba(16, 185, 129, 0.4);
             border-radius: 8px;
@@ -120,15 +121,15 @@
             margin: 2rem auto;
             text-align: center;
         }
-        .cameleon-promo-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .cameleon-promo-title { color: #10b981; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .cameleon-promo-subtitle { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 1.5rem; }
-        .cameleon-promo-features {
+        .octopus-promo-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .octopus-promo-title { color: #a855f7; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .octopus-promo-subtitle { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .octopus-promo-features {
             display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
             margin-bottom: 1.5rem;
         }
-        .cameleon-promo-feature { color: var(--gray-400); font-size: 0.95rem; }
-        .cameleon-promo-feature strong { color: #10b981; }
+        .octopus-promo-feature { color: var(--gray-400); font-size: 0.95rem; }
+        .octopus-promo-feature strong { color: #a855f7; }
         
         .hero-footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
         .hero-footer-main { color: var(--gold); font-size: 1.3rem; font-weight: 600; }
@@ -225,7 +226,7 @@
             .nav-links { display: none; }
             .patents, .use-cases, .contact { padding: 4rem 1.5rem; }
             .tute-grid { grid-template-columns: 1fr; }
-            .cameleon-promo-features { flex-direction: column; gap: 0.5rem; }
+            .octopus-promo-features { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -236,7 +237,7 @@
             <a href="#tute">Technology</a>
             <a href="#patents">Patents</a>
             <a href="#use-cases">Use Cases</a>
-            <a href="cameleon.html" style="color: #10b981; font-weight: 600;">🦎 CAMELEON</a>
+            <a href="octopus.html" style="color: #a855f7; font-weight: 600;">OCTOPUS</a>
             <a href="https://github.com/asemantix/asemantic-protocol" target="_blank">GitHub</a>
             <a href="#contact">Contact</a>
             <a href="fr.html" class="lang-switch">FR</a>
@@ -263,17 +264,17 @@
             <p class="hero-zero">Zero metadata. Zero trace. Zero boundary.</p>
             <p class="hero-beyond">From Earth to Mars — and beyond.</p>
             
-            <!-- CAMELEON Promo Box -->
-            <div class="cameleon-promo">
-                <div class="cameleon-promo-icon">🦎</div>
-                <h3 class="cameleon-promo-title">CAMELEON — Live Demo</h3>
-                <p class="cameleon-promo-subtitle">Test invisible communication in real time</p>
-                <div class="cameleon-promo-features">
-                    <span class="cameleon-promo-feature"><strong>256 bits</strong> indistinguishable from noise</span>
-                    <span class="cameleon-promo-feature"><strong>Polymorphic markers</strong></span>
-                    <span class="cameleon-promo-feature"><strong>Zero metadata</strong></span>
+            <!-- OCTOPUS Promo Box -->
+            <div class="octopus-promo">
+                <div class="octopus-promo-icon"><svg viewBox="0 0 400 400" width="80" height="80" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg1" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient><linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a855f7"/><stop offset="50%" stop-color="#9333ea"/><stop offset="100%" stop-color="#6b21a8"/></linearGradient></defs><path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="url(#tg1)" stroke-width="22" stroke-linecap="round"/><path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="url(#tg1)" stroke-width="20" stroke-linecap="round"/><path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="url(#tg1)" stroke-width="18" stroke-linecap="round"/><path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round"/><path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round"/><ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bg1)"/><ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bg1)"/><ellipse cx="175" cy="175" rx="18" ry="22" fill="#1a1a2e"/><ellipse cx="225" cy="175" rx="18" ry="22" fill="#1a1a2e"/><ellipse cx="178" cy="172" rx="7" ry="9" fill="#c084fc"/><ellipse cx="228" cy="172" rx="7" ry="9" fill="#c084fc"/><circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/><circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/></svg></div>
+                <h3 class="octopus-promo-title">OCTOPUS — Live Demo</h3>
+                <p class="octopus-promo-subtitle">Test invisible communication in real time</p>
+                <div class="octopus-promo-features">
+                    <span class="octopus-promo-feature"><strong>256 bits</strong> indistinguishable from noise</span>
+                    <span class="octopus-promo-feature"><strong>Polymorphic markers</strong></span>
+                    <span class="octopus-promo-feature"><strong>Zero metadata</strong></span>
                 </div>
-                <a href="cameleon.html" class="btn-cameleon">🦎 Try CAMELEON</a>
+                <a href="octopus.html" class="btn-octopus">Try OCTOPUS</a>
             </div>
             
             <div class="usp-box">
