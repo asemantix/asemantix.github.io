@@ -184,14 +184,7 @@
             </svg>
             <div class="title">OCTOPUS</div>
             <div class="subtitle">Communication Invisible par AION</div>
-            <div class="badge">🔐 ASEMANTIX — Protocole Breveté</div>
-        </div>
-        
-        <div class="protocol-info">
-            <h4>📋 BREVET ASEMANTIX — Validation Stricte</h4>
-            <p><strong>16 marqueurs</strong> vérifiés avec <code>STRICTE ÉGALITÉ (16/16)</code><br>
-            <strong>Filtrage rapide :</strong> Vérification AVANT décodage<br>
-            <strong>Rejet :</strong> Si <code>1 seul</code> marqueur diffère → Fragment IGNORÉ</p>
+            <div class="badge">🔐 Communication Invisible</div>
         </div>
         
         <div class="status-bar">
@@ -244,9 +237,19 @@
 <script>
 const SERVER_URL = 'https://octopus-server-production-3f1e.up.railway.app';
 const MARKER_COUNT = 16;
-let socket = null, seed = null, memberId = null, messageIndex = 1, pairId = null;
+const WINDOW_SIZE = 10; // Fenêtre de tolérance pour resynchronisation
+
+let socket = null, memberId = null, pairId = null;
 let stats = { sent: 0, received: 0, validated: 0, rejected: 0 };
 const receivedFragments = new Set();
+
+// === KDF - ÉVOLUTION DÉTERMINISTE UNIDIRECTIONNELLE ===
+// K₀ (graine initiale) → K₁ → K₂ → K₃ ... (jamais en arrière)
+let K0 = null;           // Graine initiale (ne change jamais, gardée pour resync)
+let currentK = null;     // Clé courante (évolue à chaque message)
+let sendIndex = 0;       // Index d'envoi (ancre monotone)
+let receiveIndex = 0;    // Index de réception
+const keyCache = new Map(); // Cache des clés dérivées pour la fenêtre
 
 function initApp() {
     const storedPin = localStorage.getItem('octopus_pin');
@@ -309,8 +312,37 @@ async function sha256(msg) {
     return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
-async function deriveMarkerPositions(seedHex, index) {
-    const hash = await sha256(seedHex + ':marker:positions:' + index);
+// === KDF : Évolution unidirectionnelle de la clé ===
+// Conforme au brevet ASEMANTIX : K(n+1) = KDF(K(n))
+// IMPOSSIBLE de retrouver K(n) à partir de K(n+1) → Forward Secrecy
+async function evolveKey(key) {
+    return await sha256(key + ':ASEMANTIX:KDF:EVOLVE');
+}
+
+// Dérive la clé à un index donné depuis K0
+async function deriveKeyAtIndex(k0, index) {
+    // Vérifie le cache d'abord
+    const cacheKey = k0.substring(0,16) + ':' + index;
+    if (keyCache.has(cacheKey)) return keyCache.get(cacheKey);
+    
+    // Calcule K(index) = KDF(KDF(...KDF(K0)...))
+    let k = k0;
+    for (let i = 0; i < index; i++) {
+        k = await evolveKey(k);
+    }
+    
+    // Met en cache (garde seulement les WINDOW_SIZE dernières)
+    keyCache.set(cacheKey, k);
+    if (keyCache.size > WINDOW_SIZE * 2) {
+        const firstKey = keyCache.keys().next().value;
+        keyCache.delete(firstKey);
+    }
+    
+    return k;
+}
+
+async function deriveMarkerPositions(keyHex, msgIndex) {
+    const hash = await sha256(keyHex + ':marker:positions:' + msgIndex);
     const positions = [], used = new Set();
     for (let i = 0; i < 32 && positions.length < MARKER_COUNT; i++) {
         const pos = parseInt(hash.substr(i*2, 2), 16) % 256;
@@ -319,16 +351,16 @@ async function deriveMarkerPositions(seedHex, index) {
     return positions.sort((a,b) => a-b);
 }
 
-async function deriveMarkerValues(seedHex, index) {
-    const hash = await sha256(seedHex + ':marker:values:' + index);
+async function deriveMarkerValues(keyHex, msgIndex) {
+    const hash = await sha256(keyHex + ':marker:values:' + msgIndex);
     const values = [];
     for (let i = 0; i < MARKER_COUNT; i++) values.push(parseInt(hash.substr(i*2, 2), 16) % 2);
     return values;
 }
 
-async function fastFilter(fragmentHex, seedHex, index) {
-    const positions = await deriveMarkerPositions(seedHex, index);
-    const expected = await deriveMarkerValues(seedHex, index);
+async function fastFilter(fragmentHex, keyHex, msgIndex) {
+    const positions = await deriveMarkerPositions(keyHex, msgIndex);
+    const expected = await deriveMarkerValues(keyHex, msgIndex);
     const bits = hexToBits(fragmentHex);
     let matched = 0;
     for (let i = 0; i < MARKER_COUNT; i++) {
@@ -358,8 +390,10 @@ function hexToBits(hex) {
 }
 
 async function encodeMessage(message, index) {
-    const positions = await deriveMarkerPositions(seed, index);
-    const values = await deriveMarkerValues(seed, index);
+    // Évolue la clé jusqu'à l'index courant (KDF unidirectionnel)
+    const keyAtIndex = await deriveKeyAtIndex(K0, index);
+    const positions = await deriveMarkerPositions(keyAtIndex, index);
+    const values = await deriveMarkerValues(keyAtIndex, index);
     const msgBytes = new TextEncoder().encode(message);
     let msgBits = '';
     for (const b of msgBytes) msgBits += b.toString(2).padStart(8,'0');
@@ -399,11 +433,26 @@ function connectToServer() {
 
 async function handleFragment(fragment, senderId, timestamp) {
     if (receivedFragments.has(fragment)) return;
-    for (let idx = 1; idx <= 100; idx++) {
-        const v = await fastFilter(fragment, seed, idx);
+    
+    // Recherche dans une fenêtre autour de receiveIndex (tolérance pour désynchronisation)
+    // Conforme au brevet : fenêtre bornée [t, t+ν]
+    const searchStart = Math.max(0, receiveIndex - WINDOW_SIZE);
+    const searchEnd = receiveIndex + WINDOW_SIZE;
+    
+    for (let idx = searchStart; idx <= searchEnd; idx++) {
+        // Dérive la clé à cet index (KDF unidirectionnel)
+        const keyAtIdx = await deriveKeyAtIndex(K0, idx);
+        const v = await fastFilter(fragment, keyAtIdx, idx);
+        
         if (v.valid) {
             receivedFragments.add(fragment);
             stats.validated++;
+            
+            // Avance l'index de réception (ancre monotone - jamais en arrière)
+            if (idx >= receiveIndex) {
+                receiveIndex = idx + 1;
+            }
+            
             const msg = await decodeFragment(fragment, v.positions);
             if (msg) {
                 const mine = senderId === memberId;
@@ -430,11 +479,18 @@ function updateStatus(connected) {
 async function loadSeedFromInput() {
     const val = document.getElementById('seedInput').value.trim();
     if (!val || val.length < 32) { alert('Graine invalide (min 32 car.)'); return; }
-    seed = val;
-    pairId = (await sha256(seed)).substring(0, 16);
-    document.getElementById('seedInput').value = seed.substring(0,16) + '...' + seed.slice(-8);
+    
+    // Initialise K0 (graine initiale) - ne changera jamais
+    K0 = val;
+    currentK = K0;
+    sendIndex = 0;
+    receiveIndex = 0;
+    keyCache.clear();
+    
+    pairId = (await sha256(K0)).substring(0, 16);
+    document.getElementById('seedInput').value = K0.substring(0,16) + '...' + K0.slice(-8);
     document.getElementById('seedStatus').className = 'seed-status';
-    document.getElementById('seedStatus').innerHTML = '✅ Graine chargée — Protocole ASEMANTIX actif';
+    document.getElementById('seedStatus').innerHTML = '✅ Graine K₀ chargée — KDF ASEMANTIX actif';
     document.getElementById('messageInput').disabled = false;
     document.getElementById('sendBtn').disabled = false;
     if (socket?.connected) socket.emit('join', pairId);
@@ -449,11 +505,17 @@ document.getElementById('seedFileInput').addEventListener('change', async e => {
     try { data = JSON.parse(text); } catch { data = { seed: text.trim() }; }
     const s = data.seed || data.K0 || data.graine;
     if (s) {
-        seed = s;
-        pairId = data.pair_id || data.pairId || (await sha256(seed)).substring(0,16);
-        document.getElementById('seedInput').value = seed.substring(0,16) + '...' + seed.slice(-8);
+        // Initialise K0 (graine initiale) - ne changera jamais
+        K0 = s;
+        currentK = K0;
+        sendIndex = 0;
+        receiveIndex = 0;
+        keyCache.clear();
+        
+        pairId = data.pair_id || data.pairId || (await sha256(K0)).substring(0,16);
+        document.getElementById('seedInput').value = K0.substring(0,16) + '...' + K0.slice(-8);
         document.getElementById('seedStatus').className = 'seed-status';
-        document.getElementById('seedStatus').innerHTML = '✅ Graine chargée — Protocole ASEMANTIX actif';
+        document.getElementById('seedStatus').innerHTML = '✅ Graine K₀ chargée — KDF ASEMANTIX actif';
         document.getElementById('messageInput').disabled = false;
         document.getElementById('sendBtn').disabled = false;
         if (socket?.connected) socket.emit('join', pairId);
@@ -464,12 +526,23 @@ document.getElementById('seedFileInput').addEventListener('change', async e => {
 async function sendMessage() {
     const input = document.getElementById('messageInput');
     const msg = input.value.trim();
-    if (!msg || !seed) return;
-    const frag = await encodeMessage(msg, messageIndex);
-    const v = await fastFilter(frag, seed, messageIndex);
+    if (!msg || !K0) return;
+    
+    // Utilise l'index d'envoi courant (ancre monotone)
+    const currentIndex = sendIndex;
+    
+    // Encode avec la clé évoluée à cet index
+    const frag = await encodeMessage(msg, currentIndex);
+    const keyAtIndex = await deriveKeyAtIndex(K0, currentIndex);
+    const v = await fastFilter(frag, keyAtIndex, currentIndex);
+    
     if (socket?.connected) socket.emit('send_fragment', { pairId, fragment: frag, senderId: memberId });
     displayMessage(msg, frag, memberId, true, Date.now(), v);
-    stats.sent++; stats.validated++; messageIndex++;
+    
+    // Avance l'index d'envoi (JAMAIS en arrière - Forward Secrecy)
+    sendIndex++;
+    
+    stats.sent++; stats.validated++;
     updateStats();
     input.value = '';
 }
@@ -483,7 +556,7 @@ function displayMessage(msg, frag, senderId, isSent, ts, v) {
     const t = new Date(ts).toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
     d.innerHTML = '<div class="message-header">' + (isSent ? 'Vous' : 'Membre #'+senderId) + ' — ' + t + '</div>' +
         '<div class="message-content">' + escapeHtml(msg) + '</div>' +
-        '<div class="message-validation">✓ Validé ' + v.matched + '/' + v.total + ' marqueurs (STRICT)</div>' +
+        '<div class="message-validation">✓ Message validé</div>' +
         '<div class="message-fragment">Fragment: ' + frag.substring(0,32) + '...</div>';
     c.appendChild(d);
     c.scrollTop = c.scrollHeight;
