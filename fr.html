@@ -77,7 +77,8 @@
         .hero-title span { color: var(--gold); }
         .hero-philosophy { font-size: 1.6rem; color: var(--white); font-style: italic; margin-bottom: 0.5rem; font-weight: 300; }
         .hero-dawn { font-size: 1.3rem; color: var(--gold); margin-bottom: 2rem; letter-spacing: 0.1rem; }
-        .hero-logo-svg { margin: 2.5rem auto; }
+        .hero-logo-svg { margin: 2.5rem auto; animation: logoPulse 4s ease-in-out infinite; }
+        @keyframes logoPulse { 0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); } 50% { opacity: 1; filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7)); } }
         .hero-zero { font-size: 1.35rem; color: #d1d5db; margin-bottom: 1.5rem; letter-spacing: 0.05rem; }
         .hero-beyond { font-size: 1.4rem; color: var(--gold); margin-bottom: 2.5rem; }
         
