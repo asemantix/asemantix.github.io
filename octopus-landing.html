@@ -4,386 +4,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCTOPUS — Communication Invisible | ASEMANTIX</title>
-    <meta name="description" content="OCTOPUS - Le protocole de communication invisible. Du fond des océans jusqu'aux étoiles. Résistant aux ordinateurs quantiques.">
+    <title>OCTOPUS — Messagerie Invisible | AION ASEMANTIX™</title>
+    <meta name="description" content="OCTOPUS - Communiquez partout dans le monde, même sans Internet. Messagerie invisible, résistante aux ordinateurs quantiques, zéro métadonnée.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --purple: #8a2be2;
+            --purple-dark: #6a1bb2;
+            --purple-light: #a855f7;
+            --gold: #d4af37;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --green: #10b981;
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-800);
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); }
+        .nav-logo svg { width: 40px; height: 40px; }
+        .nav-logo span { font-size: 1.4rem; font-weight: 700; color: var(--purple-light); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--purple-light); }
+        .nav-cta { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 500; }
+        
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
-            color: #fff;
-            overflow-x: hidden;
-        }
-        
-        /* Particules argentées */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(192, 192, 192, 0.6);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { opacity: 0.3; transform: translateY(0); }
-            50% { opacity: 0.8; transform: translateY(-20px); }
-        }
-        
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 950px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            display: flex; align-items: center; justify-content: center;
             text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, var(--black) 70%);
         }
+        .hero-content { max-width: 900px; }
+        .hero-logo { width: 180px; height: 180px; margin: 0 auto 2rem; filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.6)); animation: breathe 4s ease-in-out infinite; }
+        @keyframes breathe { 0%, 100% { filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.6)); } 50% { filter: drop-shadow(0 0 50px rgba(138, 43, 226, 0.9)); } }
+        .hero-title { font-size: 4rem; font-weight: 700; background: linear-gradient(135deg, var(--purple-light), var(--white)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .hero-tagline { font-size: 1.8rem; color: var(--gold); font-style: italic; margin-bottom: 1.5rem; }
         
-        /* Logo animé avec pulsation */
-        .logo-container {
-            margin-bottom: 30px;
-        }
-        .octopus-logo {
-            width: 200px;
-            height: 200px;
-            filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.6));
-            animation: breathe 4s ease-in-out infinite;
-        }
-        @keyframes breathe {
-            0%, 100% { filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.6)); }
-            50% { filter: drop-shadow(0 0 50px rgba(138, 43, 226, 0.9)); }
-        }
-        
-        .title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: 0.5rem;
-            color: #8a2be2;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
-        }
-        
-        .tagline {
-            font-size: 1.3rem;
-            color: #a78bfa;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-        
-        .slogan {
-            font-size: 1rem;
-            color: #888;
-            margin-bottom: 50px;
-        }
-        
-        /* Section principale */
-        .hero-section {
-            background: rgba(0, 0, 0, 0.4);
+        .poetic-box {
+            background: rgba(138, 43, 226, 0.1);
             border: 1px solid rgba(138, 43, 226, 0.3);
             border-radius: 20px;
-            padding: 50px 40px;
-            margin-bottom: 40px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
         }
+        .poetic-text { font-size: 1.15rem; color: var(--white); line-height: 2; font-style: italic; }
+        .poetic-text strong { color: var(--purple-light); }
+        .poetic-highlight { color: var(--gold); font-weight: 600; }
         
-        .hero-text {
-            font-size: 1.15rem;
-            color: #ccc;
-            line-height: 1.9;
-            margin-bottom: 40px;
-        }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .btn-primary { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); color: white; padding: 1rem 2.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; border: none; cursor: pointer; display: inline-block; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4); }
+        .btn-secondary { background: transparent; color: var(--purple-light); padding: 1rem 2.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1.1rem; border: 2px solid var(--purple); display: inline-block; }
+        .btn-secondary:hover { background: var(--purple); color: white; }
         
-        .hero-highlight {
-            color: #a78bfa;
-            font-weight: 600;
-        }
+        /* Sections */
+        section { padding: 6rem 2rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag { display: inline-block; background: rgba(138, 43, 226, 0.2); border: 1px solid rgba(138, 43, 226, 0.4); color: var(--purple-light); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.85rem; letter-spacing: 0.1rem; margin-bottom: 1rem; }
+        .section-title { font-size: 2.5rem; color: var(--white); margin-bottom: 1rem; }
+        .section-subtitle { color: var(--gray-400); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
         
-        .launch-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 20px 60px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #fff;
-            background: linear-gradient(135deg, #8a2be2, #6a1bb2);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.4);
-        }
-        .launch-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(138, 43, 226, 0.6);
-        }
-        .launch-btn svg {
-            width: 28px;
-            height: 28px;
-        }
+        /* How it works */
+        .how-section { background: var(--gray-900); }
+        .how-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto; align-items: center; }
+        .person-card { background: rgba(0,0,0,0.4); border-radius: 20px; padding: 2rem; text-align: center; }
+        .person-avatar { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .person-card.alice .person-avatar { background: linear-gradient(135deg, #ec4899, #be185d); }
+        .person-card.bob .person-avatar { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .person-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .person-card.alice .person-name { color: #ec4899; }
+        .person-card.bob .person-name { color: #3b82f6; }
+        .person-message { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 1rem; margin-top: 1rem; font-size: 0.95rem; color: var(--gray-400); }
+        .seed-connector { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .seed-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--gold), #b8860b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+        .seed-label { color: var(--gold); font-weight: 600; font-size: 1.1rem; }
+        .seed-desc { color: var(--gray-500); font-size: 0.9rem; text-align: center; }
         
-        /* Section titre */
-        .section-heading {
-            font-size: 1.5rem;
-            color: #8a2be2;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
+        /* Features */
+        .features-section { background: var(--black); }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto; }
+        .feature-card { background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138, 43, 226, 0.2); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+        .feature-card:hover { border-color: var(--purple); transform: translateY(-5px); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .feature-title { font-size: 1.2rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
+        .feature-desc { color: var(--gray-400); font-size: 0.95rem; }
         
-        /* Fonctionnalités - GRILLE 2x2 FORCÉE */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-bottom: 50px;
-        }
+        /* Demo */
+        .demo-section { background: linear-gradient(180deg, var(--gray-900) 0%, var(--black) 100%); }
+        .demo-box { max-width: 600px; margin: 0 auto; background: rgba(0,0,0,0.5); border: 2px solid var(--purple); border-radius: 20px; padding: 2.5rem; text-align: center; }
+        .demo-badge { display: inline-block; background: linear-gradient(135deg, var(--green), #059669); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .demo-title { font-size: 1.8rem; margin-bottom: 1rem; }
+        .demo-desc { color: var(--gray-400); margin-bottom: 2rem; }
+        .demo-info { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--green); }
         
-        @media (max-width: 650px) {
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* Pricing */
+        .pricing-section { background: var(--black); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+        .pricing-card { background: rgba(0,0,0,0.4); border: 1px solid var(--gray-700); border-radius: 20px; padding: 2.5rem; text-align: center; transition: all 0.3s; position: relative; }
+        .pricing-card:hover { border-color: var(--purple); transform: translateY(-5px); }
+        .pricing-card.popular { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        .pricing-card.popular::before { content: '⭐ POPULAIRE'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--black); padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+        .pricing-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .pricing-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .pricing-users { color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .pricing-price { font-size: 3rem; font-weight: 700; color: var(--purple-light); margin-bottom: 0.5rem; }
+        .pricing-price span { font-size: 1rem; color: var(--gray-400); }
+        .pricing-period { color: var(--gray-500); font-size: 0.85rem; margin-bottom: 1.5rem; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; text-align: left; }
+        .pricing-features li { padding: 0.5rem 0; color: var(--gray-400); font-size: 0.9rem; }
+        .pricing-features li::before { content: '✓'; color: var(--green); margin-right: 0.5rem; font-weight: bold; }
+        .pricing-btn { width: 100%; padding: 1rem; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         
-        .feature {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 15px;
-            padding: 30px 25px;
-            transition: all 0.3s ease;
-        }
-        .feature:hover {
-            border-color: rgba(138, 43, 226, 0.5);
-            transform: translateY(-5px);
-        }
+        /* Signup */
+        .signup-section { background: var(--gray-900); }
+        .signup-box { max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.5); border: 1px solid var(--gray-700); border-radius: 20px; padding: 2.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: var(--gray-400); margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .form-group input, .form-group select { width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid var(--gray-700); border-radius: 10px; color: white; font-size: 1rem; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--purple); }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .checkbox-group input { width: auto; margin-top: 0.3rem; }
+        .checkbox-group label { color: var(--gray-400); font-size: 0.85rem; }
+        .checkbox-group a { color: var(--purple-light); }
+        .guarantee-box { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 1rem; margin: 1.5rem 0; text-align: center; }
+        .guarantee-box span { color: var(--green); font-weight: 600; }
         
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(138, 43, 226, 0.15);
-            border-radius: 50%;
-            border: 2px solid rgba(138, 43, 226, 0.3);
-        }
-        .feature-icon svg {
-            width: 35px;
-            height: 35px;
-            stroke: #a78bfa;
-            fill: none;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        
-        .feature-title {
-            font-size: 1.15rem;
-            color: #a78bfa;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        
-        .feature-text {
-            color: #888;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* Sections environnements */
-        .environments-section {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .environments-section .section-heading {
-            color: #3b82f6;
-        }
-        
-        .env-subtitle {
-            color: #93c5fd;
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
-        
-        /* Grille 6 colonnes (3x2) pour environnements */
-        .environments {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        
-        @media (max-width: 700px) {
-            .environments {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 450px) {
-            .environments {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .environment {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
-            padding: 25px 15px;
-            transition: all 0.3s ease;
-        }
-        .environment:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            background: rgba(59, 130, 246, 0.15);
-            transform: translateY(-3px);
-        }
-        
-        .environment-icon {
-            width: 55px;
-            height: 55px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(59, 130, 246, 0.15);
-            border-radius: 50%;
-        }
-        .environment-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: #60a5fa;
-            fill: none;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        
-        .environment-title {
-            font-size: 0.95rem;
-            color: #93c5fd;
-            font-weight: 500;
-        }
-        
-        /* Section sensibles - dorée */
-        .environments-section.gold {
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-        .environments-section.gold .section-heading {
-            color: #d4af37;
-        }
-        .environments-section.gold .env-subtitle {
-            color: #fcd34d;
-        }
-        .environments-section.gold .environment {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.2);
-        }
-        .environments-section.gold .environment:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-            background: rgba(212, 175, 55, 0.15);
-        }
-        .environments-section.gold .environment-icon {
-            background: rgba(212, 175, 55, 0.15);
-        }
-        .environments-section.gold .environment-icon svg {
-            stroke: #fbbf24;
-        }
-        .environments-section.gold .environment-title {
-            color: #fcd34d;
-        }
-        
-        /* Section brevet */
-        .patent-section {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 50px;
-        }
-        
-        .patent-text {
-            color: #d4af37;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .patent-text svg {
-            width: 22px;
-            height: 22px;
-            stroke: #d4af37;
-            fill: none;
-            stroke-width: 1.5;
-        }
+        /* FAQ */
+        .faq-section { background: var(--black); }
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item { background: rgba(0,0,0,0.3); border: 1px solid var(--gray-800); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; }
+        .faq-question { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+        .faq-question:hover { background: rgba(138, 43, 226, 0.1); }
+        .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--purple-light); }
+        .faq-item.open .faq-question::after { content: '−'; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s; padding: 0 1.5rem; color: var(--gray-400); }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 1.5rem 1.5rem; }
         
         /* Footer */
-        .footer {
-            padding: 30px;
-            border-top: 1px solid rgba(138, 43, 226, 0.2);
-            color: #666;
-            font-size: 0.85rem;
-        }
+        footer { background: var(--gray-900); padding: 4rem 2rem 2rem; border-top: 1px solid var(--gray-800); }
+        .footer-content { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+        .footer-brand h3 { color: var(--purple-light); font-size: 1.5rem; margin-bottom: 1rem; }
+        .footer-brand p { color: var(--gray-500); font-size: 0.9rem; line-height: 1.8; }
+        .footer-links h4 { color: var(--white); margin-bottom: 1rem; font-size: 1rem; }
+        .footer-links a { display: block; color: var(--gray-500); text-decoration: none; padding: 0.3rem 0; font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--purple-light); }
+        .footer-bottom { max-width: 1000px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid var(--gray-800); text-align: center; color: var(--gray-500); font-size: 0.85rem; }
         
-        .footer-links {
-            margin-top: 15px;
-        }
-        
-        .footer-links a {
-            color: #8a2be2;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover {
-            color: #a78bfa;
-        }
-        
-        /* Responsive */
-        @media (max-width: 600px) {
-            .title { font-size: 2.5rem; letter-spacing: 0.3rem; }
-            .tagline { font-size: 1.1rem; }
-            .hero-section { padding: 30px 20px; }
-            .launch-btn { padding: 18px 40px; font-size: 1.1rem; }
-            .environments-section { padding: 30px 20px; }
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .hero-title { font-size: 2.5rem; }
+            .how-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Particules argentées -->
-    <div class="particles" id="particles"></div>
-    
-    <div class="container">
-        <!-- Logo avec animation pulsation -->
-        <div class="logo-container">
-            <svg class="octopus-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <nav>
+        <a href="fr.html" class="nav-logo">
+            <svg viewBox="0 0 400 400"><defs><radialGradient id="bgNav" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#b366e8"/><stop offset="100%" stop-color="#4a0080"/></radialGradient></defs><ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bgNav)"/><ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/><ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/><ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/><ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/></svg>
+            <span>OCTOPUS</span>
+        </a>
+        <div class="nav-links">
+            <a href="#how">Comment ça marche</a>
+            <a href="#demo">Démo</a>
+            <a href="#pricing">Tarifs</a>
+            <a href="#faq">FAQ</a>
+            <a href="#signup" class="nav-cta">Souscrire</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <svg class="hero-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <radialGradient id="bg1" cx="50%" cy="30%" r="60%">
-                        <stop offset="0%" stop-color="#b366e8"/>
-                        <stop offset="100%" stop-color="#4a0080"/>
-                    </radialGradient>
-                    <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#9b4dca"/>
-                        <stop offset="50%" stop-color="#6a1bb2"/>
-                        <stop offset="100%" stop-color="#3d0066"/>
-                    </linearGradient>
-                    <filter id="gl1">
-                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
+                    <radialGradient id="bg1" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#b366e8"/><stop offset="100%" stop-color="#4a0080"/></radialGradient>
+                    <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b4dca"/><stop offset="50%" stop-color="#6a1bb2"/><stop offset="100%" stop-color="#3d0066"/></linearGradient>
+                    <filter id="gl1"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                 </defs>
                 <!-- Tentacules avec rayures -->
                 <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="url(#tg1)" stroke-width="22" stroke-linecap="round" filter="url(#gl1)"/>
@@ -392,283 +214,200 @@
                 <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
                 <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="url(#tg1)" stroke-width="18" stroke-linecap="round" filter="url(#gl1)"/>
                 <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
-                <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380 C310,400 260,380 240,340" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
-                <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380 C310,400 260,380 240,340" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
-                <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380 C90,400 140,380 160,340" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
-                <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380 C90,400 140,380 160,340" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
-                <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80 C390,120 360,150 320,160" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
-                <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90 C10,130 40,160 80,165" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
-                <path d="M220,210 C250,230 280,280 260,320 C240,360 200,370 170,350" fill="none" stroke="url(#tg1)" stroke-width="12" stroke-linecap="round" filter="url(#gl1)"/>
+                <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
+                <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
+                <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
+                <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
                 <!-- Tête -->
                 <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bg1)" filter="url(#gl1)"/>
                 <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bg1)"/>
                 <!-- Yeux -->
                 <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
                 <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="175" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
-                <ellipse cx="225" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
                 <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
                 <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
                 <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
                 <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
             </svg>
-        </div>
-        
-        <!-- Titre -->
-        <h1 class="title">OCTOPUS</h1>
-        <p class="tagline">Communication Invisible</p>
-        <p class="slogan">Du fond des océans jusqu'aux étoiles</p>
-        
-        <!-- Section principale -->
-        <div class="hero-section">
-            <p class="hero-text">
-                OCTOPUS est un protocole de communication révolutionnaire basé sur la technologie ASEMANTIX. 
-                Vos messages sont protégés par des marqueurs polymorphes invisibles, 
-                garantissant une sécurité absolue et une confidentialité totale.<br><br>
-                <span class="hero-highlight">Résistant aux ordinateurs quantiques.</span><br>
-                Pas besoin de tirer des câbles. Pas besoin de connexion Internet.<br>
-                <span class="hero-highlight">Communiquez partout dans le monde, même hors ligne.</span>
-            </p>
-            <a href="https://octopus-app-beryl.vercel.app" class="launch-btn">
-                <!-- Icône Play élégante -->
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
-                </svg>
-                Lancer OCTOPUS
-            </a>
-        </div>
-        
-        <!-- Caractéristiques - GRILLE 2x2 -->
-        <h2 class="section-heading">Caractéristiques</h2>
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">
-                    <!-- Cadenas sécurisé -->
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        <circle cx="12" cy="16" r="1.5"/>
-                        <line x1="12" y1="17.5" x2="12" y2="19"/>
-                    </svg>
-                </div>
-                <div class="feature-title">Sécurité Absolue</div>
-                <div class="feature-text">Marqueurs polymorphes uniques à chaque message. Chiffrement évolutif impossible à intercepter. Résistant aux attaques quantiques.</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">
-                    <!-- Œil barré -->
-                    <svg viewBox="0 0 24 24">
-                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
-                        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-                        <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
-                        <line x1="1" y1="1" x2="23" y2="23"/>
-                    </svg>
-                </div>
-                <div class="feature-title">Invisible</div>
-                <div class="feature-text">Communications indétectables. Les messages se fondent dans le bruit numérique ambiant. Zéro métadonnée, zéro trace.</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">
-                    <!-- Globe avec connexions -->
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"/>
-                        <ellipse cx="12" cy="12" rx="4" ry="10"/>
-                        <line x1="2" y1="12" x2="22" y2="12"/>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/>
-                        <path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/>
-                    </svg>
-                </div>
-                <div class="feature-title">Portée Globale</div>
-                <div class="feature-text">Fonctionne partout sur Terre et au-delà. Aucune frontière, aucune limite géographique. Sans câbles, sans infrastructure.</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">
-                    <!-- Bouclier avec check -->
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <path d="M9 12l2 2 4-4"/>
-                    </svg>
-                </div>
-                <div class="feature-title">Résilient</div>
-                <div class="feature-text">Mode opportuniste en environnement dégradé. Continue de fonctionner sans connexion Internet, sans infrastructure centralisée.</div>
-            </div>
-        </div>
-        
-        <!-- Section environnements contraints - BLEU -->
-        <div class="environments-section">
-            <h2 class="section-heading">Environnements Contraints</h2>
-            <p class="env-subtitle">Conçu pour les conditions les plus extrêmes</p>
             
-            <div class="environments">
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M3 11l2-2 4 4 4-4 4 4 4-4 2 2"/>
-                            <path d="M3 17l2-2 4 4 4-4 4 4 4-4 2 2"/>
-                            <circle cx="12" cy="6" r="3"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Océans</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Théâtres d'opérations</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                            <line x1="2" y1="2" x2="22" y2="22"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Zones isolées</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="4" y="4" width="16" height="16" rx="2"/>
-                            <line x1="9" y1="9" x2="15" y2="15"/>
-                            <line x1="15" y1="9" x2="9" y2="15"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Sans infrastructure</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            <path d="M9.5 9l5 6"/>
-                            <path d="M14.5 9l-5 6"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Anti-cyberattaque</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="4"/>
-                            <path d="M12 2v2"/>
-                            <path d="M12 20v2"/>
-                            <path d="M4.93 4.93l1.41 1.41"/>
-                            <path d="M17.66 17.66l1.41 1.41"/>
-                            <path d="M2 12h2"/>
-                            <path d="M20 12h2"/>
-                            <path d="M6.34 17.66l-1.41 1.41"/>
-                            <path d="M19.07 4.93l-1.41 1.41"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Spatial</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Section environnements sensibles - DORÉ -->
-        <div class="environments-section gold">
-            <h2 class="section-heading">Environnements Sensibles</h2>
-            <p class="env-subtitle">Sécurité maximale pour les secteurs critiques</p>
+            <h1 class="hero-title">OCTOPUS</h1>
+            <p class="hero-tagline">« Vous ne serez plus jamais sans connexion. »</p>
             
-            <div class="environments">
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M3 21h18"/>
-                            <path d="M5 21V7l7-4 7 4v14"/>
-                            <path d="M9 21v-6h6v6"/>
-                            <path d="M10 10h4"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Gouvernements</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            <path d="M12 8v4"/>
-                            <path d="M12 16h.01"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Défense</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Santé</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <line x1="12" y1="1" x2="12" y2="23"/>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Finance</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="10" width="18" height="11" rx="2"/>
-                            <path d="M7 10V7a5 5 0 0 1 10 0v3"/>
-                            <circle cx="12" cy="15" r="2"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Banques</div>
-                </div>
-                <div class="environment">
-                    <div class="environment-icon">
-                        <svg viewBox="0 0 24 24">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                        </svg>
-                    </div>
-                    <div class="environment-title">Énergie</div>
-                </div>
+            <div class="poetic-box">
+                <p class="poetic-text">
+                    <strong>Une graine partagée entre deux personnes vous relie au bout du monde</strong>, sans connexion, sans infrastructure. OCTOPUS se charge de livrer vos messages, <span class="poetic-highlight">discrètement</span>, sans que personne n'en prenne connaissance — où que vous soyez, <span class="poetic-highlight">même sur Mars</span>.
+                    <br><br>
+                    Le lien <strong>sans Internet</strong>, sans téléphonie, sans réseau, sans abonnement.
+                    <span class="poetic-highlight">Idéal quand plus rien ne marche.</span>
+                    Sur la plage, en sous-marin, dans l'espace, dans le désert.
+                    <br><br>
+                    <strong>Ne soyez jamais coupé des personnes que vous aimez.</strong>
+                </p>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#demo" class="btn-primary">🎮 Essayer la Démo</a>
+                <a href="#pricing" class="btn-secondary">💰 Voir les Tarifs</a>
             </div>
         </div>
-        
-        <!-- Section brevet -->
-        <div class="patent-section">
-            <p class="patent-text">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 6v6l4 2"/>
-                </svg>
-                Technologie ASEMANTIX — Protocole breveté
-            </p>
+    </section>
+
+    <section class="how-section" id="how">
+        <div class="section-header">
+            <div class="section-tag">COMMENT ÇA MARCHE</div>
+            <h2 class="section-title">Simple comme partager un secret</h2>
+            <p class="section-subtitle">Une graine unique relie votre groupe, partout sur Terre et au-delà</p>
         </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <p>OCTOPUS — Le protocole global, interplanétaire, invisible</p>
-            <div class="footer-links">
-                <a href="en.html">Accueil ASEMANTIX</a>
-                <a href="https://octopus-app-beryl.vercel.app">Lancer l'App</a>
+        <div class="how-grid">
+            <div class="person-card alice">
+                <div class="person-avatar">👩</div>
+                <div class="person-name">Alice</div>
+                <p style="color: var(--gray-500);">Paris, France</p>
+                <div class="person-message">"Bonjour depuis Paris ! 🗼"<br><small style="opacity:0.6;">→ Message transformé en fragment invisible</small></div>
             </div>
-            <p style="margin-top: 20px; font-size: 0.75rem; color: #555;">© 2025 AION — Tous droits réservés</p>
+            <div class="seed-connector">
+                <div class="seed-icon">🌱</div>
+                <div class="seed-label">Graine Partagée</div>
+                <div class="seed-desc">Fichier .octopus<br>Créé par AION</div>
+            </div>
+            <div class="person-card bob">
+                <div class="person-avatar">👨</div>
+                <div class="person-name">Bob</div>
+                <p style="color: var(--gray-500);">Tokyo, Japon</p>
+                <div class="person-message">"Reçu ! Tout va bien ici 🗾"<br><small style="opacity:0.6;">← Fragment décodé localement</small></div>
+            </div>
         </div>
-    </div>
-    
+        <p style="text-align:center;margin-top:3rem;color:var(--gray-400);max-width:600px;margin-left:auto;margin-right:auto;"><strong style="color:var(--purple-light);">Le serveur ne voit que du bruit.</strong> Il ne peut pas distinguer vos messages du hasard.</p>
+    </section>
+
+    <section class="features-section">
+        <div class="section-header">
+            <div class="section-tag">CARACTÉRISTIQUES</div>
+            <h2 class="section-title">Pourquoi OCTOPUS ?</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon">🛡️</div><div class="feature-title">Sécurité Absolue</div><div class="feature-desc">Résistant aux ordinateurs quantiques. Fragments indistinguables du bruit aléatoire.</div></div>
+            <div class="feature-card"><div class="feature-icon">👁️‍🗨️</div><div class="feature-title">Invisible</div><div class="feature-desc">Zéro métadonnée, zéro en-tête, zéro trace. Personne ne sait que vous communiquez.</div></div>
+            <div class="feature-card"><div class="feature-icon">🌍</div><div class="feature-title">Portée Globale</div><div class="feature-desc">Fonctionne sur n'importe quel canal : Internet, radio, satellite, acoustique, Terre-Mars.</div></div>
+            <div class="feature-card"><div class="feature-icon">💪</div><div class="feature-title">Résilient</div><div class="feature-desc">Pas de serveur central. L'app fonctionne hors-ligne, messages stockés localement.</div></div>
+        </div>
+    </section>
+
+    <section class="demo-section" id="demo">
+        <div class="section-header">
+            <div class="section-tag">ESSAYEZ GRATUITEMENT</div>
+            <h2 class="section-title">Mode Démonstration</h2>
+        </div>
+        <div class="demo-box">
+            <div class="demo-badge">✨ GRATUIT — SANS INSCRIPTION</div>
+            <h3 class="demo-title">Lancez la Démo</h3>
+            <p class="demo-desc">Une graine de test est pré-chargée. Ouvrez l'app dans deux onglets pour voir la magie opérer.</p>
+            <div class="demo-info">ℹ️ La démo utilise une graine publique. Pour des communications privées, souscrivez à une offre.</div>
+            <a href="octopus_v3_finale.html?demo=true" class="btn-primary">🚀 Lancer la Démo</a>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+        <div class="section-header">
+            <div class="section-tag">TARIFICATION</div>
+            <h2 class="section-title">Choisissez votre formule</h2>
+            <p class="section-subtitle">Paiement unique • Graine livrée sous 24h • Satisfait ou remboursé 30 jours</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-icon">💑</div>
+                <div class="pricing-name">Couple</div>
+                <div class="pricing-users">2 personnes</div>
+                <div class="pricing-price">200€ <span>TTC</span></div>
+                <div class="pricing-period">Paiement unique</div>
+                <ul class="pricing-features"><li>1 graine partagée</li><li>2 clients autorisés</li><li>Messages illimités</li><li>Support email</li></ul>
+                <a href="#signup" class="btn-primary pricing-btn">Choisir</a>
+            </div>
+            <div class="pricing-card popular">
+                <div class="pricing-icon">👨‍👩‍👧‍👦</div>
+                <div class="pricing-name">Famille</div>
+                <div class="pricing-users">Jusqu'à 5 personnes</div>
+                <div class="pricing-price">350€ <span>TTC</span></div>
+                <div class="pricing-period">Paiement unique</div>
+                <ul class="pricing-features"><li>1 graine partagée</li><li>5 clients autorisés</li><li>Messages illimités</li><li>Support prioritaire</li><li>Rotation d'époque incluse</li></ul>
+                <a href="#signup" class="btn-primary pricing-btn">Choisir</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-icon">👥</div>
+                <div class="pricing-name">Groupe</div>
+                <div class="pricing-users">Jusqu'à 10 personnes</div>
+                <div class="pricing-price">500€ <span>TTC</span></div>
+                <div class="pricing-period">Paiement unique</div>
+                <ul class="pricing-features"><li>1 graine partagée</li><li>10 clients autorisés</li><li>Messages illimités</li><li>Support prioritaire</li><li>Mode audit disponible</li></ul>
+                <a href="#signup" class="btn-primary pricing-btn">Choisir</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-icon">🏢</div>
+                <div class="pricing-name">Entreprise</div>
+                <div class="pricing-users">Sur mesure</div>
+                <div class="pricing-price">Sur devis</div>
+                <div class="pricing-period">Contactez-nous</div>
+                <ul class="pricing-features"><li>Clients illimités</li><li>Déploiement sur site</li><li>Intégration API</li><li>Support 24/7</li></ul>
+                <a href="mailto:contact@asemantix.tech" class="btn-secondary pricing-btn">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="signup-section" id="signup">
+        <div class="section-header">
+            <div class="section-tag">INSCRIPTION</div>
+            <h2 class="section-title">Obtenez votre graine</h2>
+            <p class="section-subtitle">Recevez votre fichier .octopus par email sous 24h</p>
+        </div>
+        <div class="signup-box">
+            <form id="signupForm">
+                <div class="form-group"><label>Email *</label><input type="email" name="email" required placeholder="votre@email.com"></div>
+                <div class="form-group"><label>Formule *</label><select name="plan" required><option value="">Choisir...</option><option value="couple">Couple — 200€</option><option value="famille">Famille — 350€</option><option value="groupe">Groupe — 500€</option><option value="entreprise">Entreprise — Sur devis</option></select></div>
+                <div class="form-group"><label>Emails des autres membres</label><input type="text" name="members" placeholder="alice@email.com, bob@email.com"></div>
+                <div class="checkbox-group"><input type="checkbox" id="cgv" required><label for="cgv">J'accepte les <a href="cgv.html">CGV</a> *</label></div>
+                <div class="guarantee-box"><span>✅ Satisfait ou remboursé 30 jours</span></div>
+                <button type="submit" class="btn-primary" style="width:100%;padding:1.2rem;">💳 Payer avec PayPal</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <div class="section-tag">FAQ</div>
+            <h2 class="section-title">Questions fréquentes</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item"><div class="faq-question">Et si l'application tombe en panne ?</div><div class="faq-answer">L'application fonctionne hors-ligne. Vos messages sont stockés localement. Rien n'est perdu.</div></div>
+            <div class="faq-item"><div class="faq-question">Et si ma graine est perdue ?</div><div class="faq-answer">Contactez-nous à support@asemantix.tech. Nous vous renverrons une nouvelle graine gratuitement.</div></div>
+            <div class="faq-item"><div class="faq-question">Et si mon téléphone est volé ?</div><div class="faq-answer">Sans votre code PIN, personne ne peut accéder à l'app. Contactez-nous pour révoquer et régénérer votre graine.</div></div>
+            <div class="faq-item"><div class="faq-question">Comment ajouter des membres ?</div><div class="faq-answer">Contactez-nous avec les emails. Nous générerons une nouvelle graine pour tout le groupe.</div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><h3>🐙 OCTOPUS</h3><p>Messagerie invisible par AION ASEMANTIX™<br>« Vous ne serez plus jamais sans connexion. »</p></div>
+            <div class="footer-links"><h4>Produit</h4><a href="#how">Comment ça marche</a><a href="#demo">Démo</a><a href="#pricing">Tarifs</a></div>
+            <div class="footer-links"><h4>Support</h4><a href="mailto:support@asemantix.tech">support@asemantix.tech</a><a href="cgv.html">CGV</a><a href="mentions-legales.html">Mentions légales</a></div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 AION ASEMANTIX™ — Tous droits réservés</p><p style="color:var(--gold);margin-top:0.5rem;">De la Terre à Mars — et au-delà.</p></div>
+    </footer>
+
     <script>
-        // Génération des particules argentées
-        const container = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 5 + 's';
-            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            container.appendChild(particle);
-        }
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+            });
+        });
     </script>
 </body>
 </html>
