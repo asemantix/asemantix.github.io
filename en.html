@@ -28,7 +28,8 @@
         .hero-title span { color: var(--gold); }
         .hero-philosophy { font-size: 1.6rem; color: var(--white); font-style: italic; margin-bottom: 0.5rem; font-weight: 300; }
         .hero-dawn { font-size: 1.3rem; color: var(--gold); margin-bottom: 2rem; letter-spacing: 0.1rem; }
-        .hero-logo-svg { margin: 2.5rem auto; }
+        .hero-logo-svg { margin: 2.5rem auto; animation: logoPulse 4s ease-in-out infinite; }
+        @keyframes logoPulse { 0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); } 50% { opacity: 1; filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7)); } }
         .hero-zero { font-size: 1.35rem; color: #d1d5db; margin-bottom: 1.5rem; }
         .hero-beyond { font-size: 1.4rem; color: var(--gold); margin-bottom: 2.5rem; }
         .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -282,7 +283,7 @@
         <h2 class="contact-title">"You'll never be without connection again."</h2>
         <p class="contact-subtitle">AION ASEMANTIX™</p>
         <p class="contact-philosophy">Discover the internet freed from its infrastructures.</p>
-        <a href="mailto:contact@asemantix.tech" class="contact-email">contact@asemantix.tech</a>
+        <a href="/cdn-cgi/l/email-protection#c7a4a8a9b3a6a4b387a6b4a2aaa6a9b3aebfe9b3a2a4af" class="contact-email"><span class="__cf_email__" data-cfemail="caa9a5a4beaba9be8aabb9afa7aba4bea3b2e4beafa9a2">[email&#160;protected]</span></a>
     </section>
 
     <footer>
@@ -292,7 +293,7 @@
 
     <div id="modal" class="modal"><div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><div id="modal-body"></div></div></div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const patentDetails = {
             asemantix: { title: "ASEMANTIX — Core Protocol", claims: 25, abstract: "Local-only validation of self-contained asemantic fragments with bounded window and monotonic anchor.", keyPoints: ["Fragments indistinguishable from random noise (NIST SP 800-22)", "Zero metadata transmitted", "Local validation via strict equality on [t, t+ν]", "Monotonic anchor prevents replay attacks", "Forward secrecy via KDF seed evolution"] },
             orchestrator: { title: "ORCHESTRATOR — Multi-path Transport", claims: 26, abstract: "Adaptive orchestration under joint latency and energy constraints.", keyPoints: ["Adaptive EVOL windows", "Thermodynamic time τ(t) integration", "Multi-path fragment dispersion", "Energy-aware routing", "Cryptographic audit trail"] },
@@ -310,8 +311,4 @@
             document.body.style.overflow = 'hidden';
         }
         function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
-        document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    </script>
-</body>
-</html>
+        document.g
