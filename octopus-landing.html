@@ -1,13 +1,21 @@
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OCTOPUS — Messagerie Invisible | AION ASEMANTIX™</title>
-    <meta name="description" content="OCTOPUS - Communiquez partout dans le monde, même sans Internet. Messagerie invisible, résistante aux ordinateurs quantiques, zéro métadonnée.">
+    <meta name="description" content="OCTOPUS - Communiquez partout dans le monde, même sans Internet. Messagerie invisible, résistante aux ordinateurs quantiques, zéro métadonnée. Brevet FR2600020.">
+    <meta name="keywords" content="OCTOPUS, AION, ASEMANTIX, messagerie invisible, chiffrement, post-quantique, zéro métadonnée, confidentialité">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="OCTOPUS — Messagerie Invisible">
+    <meta property="og:description" content="Communiquez partout dans le monde, même sans Internet. Zéro métadonnée. Résistant au quantique.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://octopus.asemantix.tech">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --black: #0a0a0a;
@@ -15,6 +23,7 @@
             --purple: #8a2be2;
             --purple-dark: #6a1bb2;
             --purple-light: #a855f7;
+            --purple-glow: rgba(138, 43, 226, 0.6);
             --gold: #d4af37;
             --gray-400: #9ca3af;
             --gray-500: #6b7280;
@@ -33,7 +42,7 @@
             line-height: 1.7;
         }
         
-        /* Navigation */
+        /* === NAVIGATION === */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: rgba(10, 10, 10, 0.95);
@@ -43,14 +52,15 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); }
-        .nav-logo svg { width: 40px; height: 40px; }
+        .nav-logo svg { width: 40px; height: 40px; filter: drop-shadow(0 0 10px var(--purple-glow)); }
         .nav-logo span { font-size: 1.4rem; font-weight: 700; color: var(--purple-light); }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
         .nav-links a:hover { color: var(--purple-light); }
-        .nav-cta { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 500; }
+        .nav-cta { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 5px 20px var(--purple-glow); }
         
-        /* Hero Section */
+        /* === HERO === */
         .hero {
             min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
@@ -59,41 +69,87 @@
             background: radial-gradient(ellipse at center, #1a1a2e 0%, var(--black) 70%);
         }
         .hero-content { max-width: 900px; }
-        .hero-logo { width: 180px; height: 180px; margin: 0 auto 2rem; filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.6)); animation: breathe 4s ease-in-out infinite; }
-        @keyframes breathe { 0%, 100% { filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.6)); } 50% { filter: drop-shadow(0 0 50px rgba(138, 43, 226, 0.9)); } }
-        .hero-title { font-size: 4rem; font-weight: 700; background: linear-gradient(135deg, var(--purple-light), var(--white)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
-        .hero-tagline { font-size: 1.8rem; color: var(--gold); font-style: italic; margin-bottom: 1.5rem; }
         
-        .poetic-box {
-            background: rgba(138, 43, 226, 0.1);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem auto;
-            max-width: 800px;
+        .hero-logo { 
+            width: 180px; height: 180px; 
+            margin: 0 auto 2rem; 
+            filter: drop-shadow(0 0 30px var(--purple-glow)); 
+            animation: breathe 4s ease-in-out infinite; 
         }
-        .poetic-text { font-size: 1.15rem; color: var(--white); line-height: 2; font-style: italic; }
-        .poetic-text strong { color: var(--purple-light); }
-        .poetic-highlight { color: var(--gold); font-weight: 600; }
+        @keyframes breathe { 
+            0%, 100% { filter: drop-shadow(0 0 30px var(--purple-glow)); } 
+            50% { filter: drop-shadow(0 0 50px rgba(138, 43, 226, 0.9)); } 
+        }
+        
+        .hero-title { 
+            font-size: 4rem; font-weight: 700; 
+            background: linear-gradient(135deg, var(--purple-light), var(--white)); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            margin-bottom: 1rem; 
+        }
+        .hero-tagline { font-size: 1.8rem; color: var(--gold); font-style: italic; margin-bottom: 1.5rem; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--gray-400); margin-bottom: 2rem; }
+        
+        .hero-badges {
+            display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;
+        }
+        .hero-badge {
+            background: rgba(138, 43, 226, 0.2);
+            border: 1px solid var(--purple);
+            color: var(--purple-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
         
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
-        .btn-primary { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); color: white; padding: 1rem 2.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; border: none; cursor: pointer; display: inline-block; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4); }
-        .btn-secondary { background: transparent; color: var(--purple-light); padding: 1rem 2.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1.1rem; border: 2px solid var(--purple); display: inline-block; }
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark)); 
+            color: white; padding: 1rem 2.5rem; border-radius: 10px; 
+            text-decoration: none; font-weight: 600; font-size: 1.1rem; 
+            transition: all 0.3s; border: none; cursor: pointer; display: inline-block; 
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--purple-glow); }
+        .btn-secondary { 
+            background: transparent; color: var(--purple-light); 
+            padding: 1rem 2.5rem; border-radius: 10px; text-decoration: none; 
+            font-weight: 600; font-size: 1.1rem; border: 2px solid var(--purple); 
+            display: inline-block; transition: all 0.3s;
+        }
         .btn-secondary:hover { background: var(--purple); color: white; }
         
-        /* Sections */
+        /* === SECTIONS === */
         section { padding: 6rem 2rem; }
         .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-tag { display: inline-block; background: rgba(138, 43, 226, 0.2); border: 1px solid rgba(138, 43, 226, 0.4); color: var(--purple-light); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.85rem; letter-spacing: 0.1rem; margin-bottom: 1rem; }
+        .section-tag { 
+            display: inline-block; 
+            background: rgba(138, 43, 226, 0.2); 
+            border: 1px solid rgba(138, 43, 226, 0.4); 
+            color: var(--purple-light); 
+            padding: 0.5rem 1.5rem; 
+            border-radius: 50px; 
+            font-size: 0.85rem; 
+            letter-spacing: 0.1rem; 
+            margin-bottom: 1rem; 
+        }
         .section-title { font-size: 2.5rem; color: var(--white); margin-bottom: 1rem; }
         .section-subtitle { color: var(--gray-400); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
         
-        /* How it works */
+        /* === HOW IT WORKS === */
         .how-section { background: var(--gray-900); }
-        .how-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto; align-items: center; }
+        .how-grid { 
+            display: grid; grid-template-columns: 1fr auto 1fr; 
+            gap: 2rem; max-width: 1000px; margin: 0 auto; align-items: center; 
+        }
+        @media (max-width: 800px) {
+            .how-grid { grid-template-columns: 1fr; }
+        }
         .person-card { background: rgba(0,0,0,0.4); border-radius: 20px; padding: 2rem; text-align: center; }
-        .person-avatar { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .person-avatar { 
+            width: 100px; height: 100px; border-radius: 50%; 
+            margin: 0 auto 1rem; display: flex; align-items: center; 
+            justify-content: center; font-size: 3rem; 
+        }
         .person-card.alice .person-avatar { background: linear-gradient(135deg, #ec4899, #be185d); }
         .person-card.bob .person-avatar { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
         .person-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
@@ -101,130 +157,246 @@
         .person-card.bob .person-name { color: #3b82f6; }
         .person-message { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 1rem; margin-top: 1rem; font-size: 0.95rem; color: var(--gray-400); }
         .seed-connector { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-        .seed-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--gold), #b8860b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
-        .seed-label { color: var(--gold); font-weight: 600; font-size: 1.1rem; }
+        .seed-icon { 
+            width: 80px; height: 80px; 
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark)); 
+            border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 2rem; 
+            box-shadow: 0 0 30px var(--purple-glow); 
+        }
+        .seed-label { color: var(--purple-light); font-weight: 600; font-size: 1.1rem; }
         .seed-desc { color: var(--gray-500); font-size: 0.9rem; text-align: center; }
         
-        /* Features */
+        /* === FEATURES === */
         .features-section { background: var(--black); }
         .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto; }
-        .feature-card { background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138, 43, 226, 0.2); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+        @media (max-width: 700px) {
+            .features-grid { grid-template-columns: 1fr; }
+        }
+        .feature-card { 
+            background: rgba(138, 43, 226, 0.1); 
+            border: 1px solid rgba(138, 43, 226, 0.2); 
+            border-radius: 16px; padding: 2rem; transition: all 0.3s; 
+        }
         .feature-card:hover { border-color: var(--purple); transform: translateY(-5px); }
         .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
         .feature-title { font-size: 1.2rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
         .feature-desc { color: var(--gray-400); font-size: 0.95rem; }
         
-        /* Demo */
+        /* === DEMO === */
         .demo-section { background: linear-gradient(180deg, var(--gray-900) 0%, var(--black) 100%); }
-        .demo-box { max-width: 600px; margin: 0 auto; background: rgba(0,0,0,0.5); border: 2px solid var(--purple); border-radius: 20px; padding: 2.5rem; text-align: center; }
-        .demo-badge { display: inline-block; background: linear-gradient(135deg, var(--green), #059669); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
-        .demo-title { font-size: 1.8rem; margin-bottom: 1rem; }
-        .demo-desc { color: var(--gray-400); margin-bottom: 2rem; }
-        .demo-info { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--green); }
+        .demo-box { 
+            max-width: 600px; margin: 0 auto; 
+            background: rgba(0,0,0,0.5); border: 2px solid var(--purple); 
+            border-radius: 20px; padding: 2.5rem; text-align: center; 
+        }
+        .demo-badge { 
+            display: inline-block; 
+            background: linear-gradient(135deg, var(--green), #059669); 
+            color: white; padding: 0.5rem 1.5rem; border-radius: 20px; 
+            font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; 
+        }
+        .demo-title { font-size: 1.8rem; margin-bottom: 1rem; color: var(--white); }
+        .demo-desc { color: var(--gray-400); margin-bottom: 1.5rem; }
+        .demo-info { 
+            background: rgba(138, 43, 226, 0.1); 
+            border-radius: 10px; padding: 1rem; 
+            font-size: 0.9rem; color: var(--purple-light); 
+            margin-bottom: 1.5rem; 
+        }
         
-        /* Pricing */
-        .pricing-section { background: var(--black); }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
-        .pricing-card { background: rgba(0,0,0,0.4); border: 1px solid var(--gray-700); border-radius: 20px; padding: 2.5rem; text-align: center; transition: all 0.3s; position: relative; }
+        /* === PRICING === */
+        .pricing-section { background: var(--gray-900); }
+        .pricing-grid { 
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            gap: 1.5rem; max-width: 1200px; margin: 0 auto; 
+        }
+        @media (max-width: 1000px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 350px; }
+        }
+        .pricing-card { 
+            background: rgba(0,0,0,0.4); border: 1px solid var(--gray-700); 
+            border-radius: 20px; padding: 2rem; text-align: center; 
+            transition: all 0.3s; position: relative;
+        }
         .pricing-card:hover { border-color: var(--purple); transform: translateY(-5px); }
-        .pricing-card.popular { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
-        .pricing-card.popular::before { content: '⭐ POPULAIRE'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--black); padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+        .pricing-card.popular { 
+            border-color: var(--purple); 
+            background: rgba(138, 43, 226, 0.1); 
+        }
+        .pricing-card.popular::before {
+            content: '⭐ POPULAIRE';
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--purple); color: white; padding: 0.3rem 1rem;
+            border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+        }
         .pricing-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .pricing-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .pricing-users { color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1.5rem; }
-        .pricing-price { font-size: 3rem; font-weight: 700; color: var(--purple-light); margin-bottom: 0.5rem; }
+        .pricing-name { font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
+        .pricing-users { color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1rem; }
+        .pricing-price { font-size: 2.5rem; font-weight: 700; color: var(--purple-light); }
         .pricing-price span { font-size: 1rem; color: var(--gray-400); }
         .pricing-period { color: var(--gray-500); font-size: 0.85rem; margin-bottom: 1.5rem; }
-        .pricing-features { list-style: none; margin-bottom: 2rem; text-align: left; }
-        .pricing-features li { padding: 0.5rem 0; color: var(--gray-400); font-size: 0.9rem; }
-        .pricing-features li::before { content: '✓'; color: var(--green); margin-right: 0.5rem; font-weight: bold; }
-        .pricing-btn { width: 100%; padding: 1rem; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 1.5rem; }
+        .pricing-features li { 
+            padding: 0.5rem 0; color: var(--gray-400); font-size: 0.9rem; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .pricing-features li::before { content: '✓ '; color: var(--green); }
+        .pricing-btn { width: 100%; padding: 0.9rem; border-radius: 10px; font-weight: 600; }
         
-        /* Signup */
-        .signup-section { background: var(--gray-900); }
-        .signup-box { max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.5); border: 1px solid var(--gray-700); border-radius: 20px; padding: 2.5rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; color: var(--gray-400); margin-bottom: 0.5rem; font-size: 0.9rem; }
-        .form-group input, .form-group select { width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid var(--gray-700); border-radius: 10px; color: white; font-size: 1rem; }
-        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--purple); }
-        .checkbox-group { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .checkbox-group input { width: auto; margin-top: 0.3rem; }
-        .checkbox-group label { color: var(--gray-400); font-size: 0.85rem; }
-        .checkbox-group a { color: var(--purple-light); }
-        .guarantee-box { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 1rem; margin: 1.5rem 0; text-align: center; }
-        .guarantee-box span { color: var(--green); font-weight: 600; }
+        /* === GUARANTEE === */
+        .guarantee-section {
+            background: var(--black);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .guarantee-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        .guarantee-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .guarantee-title { font-size: 1.5rem; color: var(--green); margin-bottom: 1rem; }
+        .guarantee-text { color: var(--gray-400); }
         
-        /* FAQ */
-        .faq-section { background: var(--black); }
+        /* === FAQ === */
+        .faq-section { background: var(--gray-900); }
         .faq-list { max-width: 700px; margin: 0 auto; }
-        .faq-item { background: rgba(0,0,0,0.3); border: 1px solid var(--gray-800); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; }
-        .faq-question { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+        .faq-item { 
+            background: rgba(0,0,0,0.3); border-radius: 12px; 
+            margin-bottom: 1rem; overflow: hidden;
+        }
+        .faq-question { 
+            padding: 1.5rem; cursor: pointer; 
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; color: var(--white);
+        }
         .faq-question:hover { background: rgba(138, 43, 226, 0.1); }
         .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--purple-light); }
         .faq-item.open .faq-question::after { content: '−'; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s; padding: 0 1.5rem; color: var(--gray-400); }
+        .faq-answer { 
+            padding: 0 1.5rem; max-height: 0; overflow: hidden; 
+            transition: all 0.3s; color: var(--gray-400);
+        }
         .faq-item.open .faq-answer { max-height: 200px; padding: 0 1.5rem 1.5rem; }
         
-        /* Footer */
-        footer { background: var(--gray-900); padding: 4rem 2rem 2rem; border-top: 1px solid var(--gray-800); }
-        .footer-content { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
-        .footer-brand h3 { color: var(--purple-light); font-size: 1.5rem; margin-bottom: 1rem; }
-        .footer-brand p { color: var(--gray-500); font-size: 0.9rem; line-height: 1.8; }
-        .footer-links h4 { color: var(--white); margin-bottom: 1rem; font-size: 1rem; }
-        .footer-links a { display: block; color: var(--gray-500); text-decoration: none; padding: 0.3rem 0; font-size: 0.9rem; }
+        /* === FOOTER === */
+        footer { 
+            padding: 3rem 2rem; background: var(--black); 
+            border-top: 1px solid var(--gray-800); 
+        }
+        .footer-content { 
+            max-width: 1200px; margin: 0 auto; 
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+        }
+        .footer-brand h3 { color: var(--purple-light); margin-bottom: 0.5rem; }
+        .footer-brand p { color: var(--gray-500); font-size: 0.9rem; }
+        .footer-links h4 { color: var(--white); margin-bottom: 1rem; font-size: 0.95rem; }
+        .footer-links a { display: block; color: var(--gray-400); text-decoration: none; margin-bottom: 0.5rem; font-size: 0.9rem; }
         .footer-links a:hover { color: var(--purple-light); }
-        .footer-bottom { max-width: 1000px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid var(--gray-800); text-align: center; color: var(--gray-500); font-size: 0.85rem; }
+        .footer-bottom { 
+            max-width: 1200px; margin: 2rem auto 0; padding-top: 2rem; 
+            border-top: 1px solid var(--gray-800); text-align: center;
+        }
+        .footer-bottom p { color: var(--gray-500); font-size: 0.85rem; }
+        .footer-patent { color: var(--gold); margin-top: 0.5rem; }
         
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 1rem; }
-            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
             .hero-title { font-size: 2.5rem; }
-            .how-grid { grid-template-columns: 1fr; }
-            .features-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-tagline { font-size: 1.3rem; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
+    <!-- === NAVIGATION === -->
     <nav>
-        <a href="fr.html" class="nav-logo">
-            <svg viewBox="0 0 400 400"><defs><radialGradient id="bgNav" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#b366e8"/><stop offset="100%" stop-color="#4a0080"/></radialGradient></defs><ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bgNav)"/><ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/><ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/><ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/><ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/></svg>
+        <a href="#" class="nav-logo">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="navBodyGrad" cx="50%" cy="30%" r="60%">
+                        <stop offset="0%" stop-color="#b366e8"/>
+                        <stop offset="100%" stop-color="#4a0080"/>
+                    </radialGradient>
+                    <linearGradient id="navTentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#9b4dca"/>
+                        <stop offset="50%" stop-color="#6a1bb2"/>
+                        <stop offset="100%" stop-color="#3d0066"/>
+                    </linearGradient>
+                </defs>
+                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380" fill="none" stroke="url(#navTentGrad)" stroke-width="22" stroke-linecap="round"/>
+                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20" fill="none" stroke="url(#navTentGrad)" stroke-width="20" stroke-linecap="round"/>
+                <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400" fill="none" stroke="url(#navTentGrad)" stroke-width="18" stroke-linecap="round"/>
+                <path d="M260,190 C310,170 360,200 380,250" fill="none" stroke="url(#navTentGrad)" stroke-width="16" stroke-linecap="round"/>
+                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#navBodyGrad)"/>
+                <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
+                <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
+            </svg>
             <span>OCTOPUS</span>
         </a>
         <div class="nav-links">
             <a href="#how">Comment ça marche</a>
+            <a href="#features">Avantages</a>
             <a href="#demo">Démo</a>
             <a href="#pricing">Tarifs</a>
             <a href="#faq">FAQ</a>
-            <a href="#signup" class="nav-cta">Souscrire</a>
+            <a href="#pricing" class="nav-cta">Acheter</a>
         </div>
     </nav>
 
+    <!-- === HERO === -->
     <section class="hero">
         <div class="hero-content">
+            <!-- Logo officiel OCTOPUS -->
             <svg class="hero-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <radialGradient id="bg1" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#b366e8"/><stop offset="100%" stop-color="#4a0080"/></radialGradient>
-                    <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b4dca"/><stop offset="50%" stop-color="#6a1bb2"/><stop offset="100%" stop-color="#3d0066"/></linearGradient>
-                    <filter id="gl1"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    <radialGradient id="bodyGradient" cx="50%" cy="30%" r="60%">
+                        <stop offset="0%" stop-color="#b366e8"/>
+                        <stop offset="100%" stop-color="#4a0080"/>
+                    </radialGradient>
+                    <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#9b4dca"/>
+                        <stop offset="50%" stop-color="#6a1bb2"/>
+                        <stop offset="100%" stop-color="#3d0066"/>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
                 </defs>
-                <!-- Tentacules avec rayures -->
-                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="url(#tg1)" stroke-width="22" stroke-linecap="round" filter="url(#gl1)"/>
+                <!-- Tentacles avec rayures -->
+                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="url(#tentGrad)" stroke-width="22" stroke-linecap="round" filter="url(#glow)"/>
                 <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="#2d0a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="2,15"/>
-                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="url(#tg1)" stroke-width="20" stroke-linecap="round" filter="url(#gl1)"/>
+                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="url(#tentGrad)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
                 <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
-                <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="url(#tg1)" stroke-width="18" stroke-linecap="round" filter="url(#gl1)"/>
+                <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="url(#tentGrad)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
                 <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
-                <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
-                <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
-                <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
-                <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
-                <!-- Tête -->
-                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bg1)" filter="url(#gl1)"/>
-                <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bg1)"/>
+                <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380 C310,400 260,380 240,340" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380 C90,400 140,380 160,340" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80 C390,120 360,150 320,160" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90 C10,130 40,160 80,165" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M220,210 C250,230 280,280 260,320 C240,360 200,370 170,350" fill="none" stroke="url(#tentGrad)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+                <!-- Corps -->
+                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGradient)" filter="url(#glow)"/>
+                <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGradient)"/>
                 <!-- Yeux -->
                 <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
                 <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                <ellipse cx="175" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
+                <ellipse cx="225" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
                 <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
                 <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
                 <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
@@ -233,170 +405,297 @@
             
             <h1 class="hero-title">OCTOPUS</h1>
             <p class="hero-tagline">« Vous ne serez plus jamais sans connexion. »</p>
+            <p class="hero-subtitle">La messagerie invisible qui fonctionne partout, même là où rien n'existe.</p>
             
-            <div class="poetic-box">
-                <p class="poetic-text">
-                    <strong>Une graine partagée entre deux personnes vous relie au bout du monde</strong>, sans connexion, sans infrastructure. OCTOPUS se charge de livrer vos messages, <span class="poetic-highlight">discrètement</span>, sans que personne n'en prenne connaissance — où que vous soyez, <span class="poetic-highlight">même sur Mars</span>.
-                    <br><br>
-                    Le lien <strong>sans Internet</strong>, sans téléphonie, sans réseau, sans abonnement.
-                    <span class="poetic-highlight">Idéal quand plus rien ne marche.</span>
-                    Sur la plage, en sous-marin, dans l'espace, dans le désert.
-                    <br><br>
-                    <strong>Ne soyez jamais coupé des personnes que vous aimez.</strong>
-                </p>
+            <div class="hero-badges">
+                <span class="hero-badge">🛡️ Zéro métadonnée</span>
+                <span class="hero-badge">⚛️ Post-quantique</span>
+                <span class="hero-badge">📜 Brevet FR2600020</span>
+                <span class="hero-badge">🇫🇷 Made in France</span>
             </div>
             
             <div class="hero-buttons">
-                <a href="#demo" class="btn-primary">🎮 Essayer la Démo</a>
-                <a href="#pricing" class="btn-secondary">💰 Voir les Tarifs</a>
+                <a href="#demo" class="btn-primary">🚀 Essayer la Démo</a>
+                <a href="#pricing" class="btn-secondary">💳 Acheter</a>
             </div>
         </div>
     </section>
 
+    <!-- === HOW IT WORKS === -->
     <section class="how-section" id="how">
         <div class="section-header">
             <div class="section-tag">COMMENT ÇA MARCHE</div>
-            <h2 class="section-title">Simple comme partager un secret</h2>
-            <p class="section-subtitle">Une graine unique relie votre groupe, partout sur Terre et au-delà</p>
+            <h2 class="section-title">Simple comme bonjour</h2>
+            <p class="section-subtitle">Une graine secrète partagée, c'est tout ce qu'il vous faut</p>
         </div>
+        
         <div class="how-grid">
             <div class="person-card alice">
                 <div class="person-avatar">👩</div>
-                <div class="person-name">Alice</div>
-                <p style="color: var(--gray-500);">Paris, France</p>
-                <div class="person-message">"Bonjour depuis Paris ! 🗼"<br><small style="opacity:0.6;">→ Message transformé en fragment invisible</small></div>
+                <h3 class="person-name">Alice</h3>
+                <p style="color: var(--gray-400);">Charge la graine</p>
+                <div class="person-message">« Rendez-vous à 15h »</div>
             </div>
+            
             <div class="seed-connector">
-                <div class="seed-icon">🌱</div>
-                <div class="seed-label">Graine Partagée</div>
-                <div class="seed-desc">Fichier .octopus<br>Créé par AION</div>
+                <div class="seed-icon">🔑</div>
+                <span class="seed-label">Graine secrète</span>
+                <p class="seed-desc">Un fichier .octopus<br>partagé une seule fois</p>
+                <div style="font-size: 2rem;">↔️</div>
             </div>
+            
             <div class="person-card bob">
                 <div class="person-avatar">👨</div>
-                <div class="person-name">Bob</div>
-                <p style="color: var(--gray-500);">Tokyo, Japon</p>
-                <div class="person-message">"Reçu ! Tout va bien ici 🗾"<br><small style="opacity:0.6;">← Fragment décodé localement</small></div>
+                <h3 class="person-name">Bob</h3>
+                <p style="color: var(--gray-400);">Charge la même graine</p>
+                <div class="person-message">« OK, j'y serai ! »</div>
             </div>
         </div>
-        <p style="text-align:center;margin-top:3rem;color:var(--gray-400);max-width:600px;margin-left:auto;margin-right:auto;"><strong style="color:var(--purple-light);">Le serveur ne voit que du bruit.</strong> Il ne peut pas distinguer vos messages du hasard.</p>
     </section>
 
-    <section class="features-section">
+    <!-- === FEATURES === -->
+    <section class="features-section" id="features">
         <div class="section-header">
-            <div class="section-tag">CARACTÉRISTIQUES</div>
-            <h2 class="section-title">Pourquoi OCTOPUS ?</h2>
+            <div class="section-tag">POURQUOI OCTOPUS</div>
+            <h2 class="section-title">Vos avantages</h2>
         </div>
+        
         <div class="features-grid">
-            <div class="feature-card"><div class="feature-icon">🛡️</div><div class="feature-title">Sécurité Absolue</div><div class="feature-desc">Résistant aux ordinateurs quantiques. Fragments indistinguables du bruit aléatoire.</div></div>
-            <div class="feature-card"><div class="feature-icon">👁️‍🗨️</div><div class="feature-title">Invisible</div><div class="feature-desc">Zéro métadonnée, zéro en-tête, zéro trace. Personne ne sait que vous communiquez.</div></div>
-            <div class="feature-card"><div class="feature-icon">🌍</div><div class="feature-title">Portée Globale</div><div class="feature-desc">Fonctionne sur n'importe quel canal : Internet, radio, satellite, acoustique, Terre-Mars.</div></div>
-            <div class="feature-card"><div class="feature-icon">💪</div><div class="feature-title">Résilient</div><div class="feature-desc">Pas de serveur central. L'app fonctionne hors-ligne, messages stockés localement.</div></div>
+            <div class="feature-card">
+                <div class="feature-icon">👻</div>
+                <h3 class="feature-title">100% Invisible</h3>
+                <p class="feature-desc">Vos messages sont indistinguables du bruit aléatoire. Personne ne sait que vous communiquez.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚛️</div>
+                <h3 class="feature-title">Post-Quantique</h3>
+                <p class="feature-desc">Résistant aux ordinateurs quantiques. Pas de clé RSA à casser, pas de vulnérabilité future.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚫</div>
+                <h3 class="feature-title">Zéro Métadonnée</h3>
+                <p class="feature-desc">Aucune trace de qui parle à qui, quand, combien de fois. Rien. Nada. Zéro.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Fonctionne Partout</h3>
+                <p class="feature-desc">Internet, radio, satellite, acoustique... même entre la Terre et Mars.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💪</div>
+                <h3 class="feature-title">Résilient</h3>
+                <p class="feature-desc">Pas de serveur central. L'app fonctionne hors-ligne, messages stockés localement.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Souverain</h3>
+                <p class="feature-desc">Technologie 100% française. Brevet INPI. Aucune dépendance étrangère.</p>
+            </div>
         </div>
     </section>
 
+    <!-- === DEMO === -->
     <section class="demo-section" id="demo">
         <div class="section-header">
             <div class="section-tag">ESSAYEZ GRATUITEMENT</div>
             <h2 class="section-title">Mode Démonstration</h2>
         </div>
+        
         <div class="demo-box">
             <div class="demo-badge">✨ GRATUIT — SANS INSCRIPTION</div>
-            <h3 class="demo-title">Lancez la Démo</h3>
+            <h3 class="demo-title">Testez maintenant !</h3>
             <p class="demo-desc">Une graine de test est pré-chargée. Ouvrez l'app dans deux onglets pour voir la magie opérer.</p>
-            <div class="demo-info">ℹ️ La démo utilise une graine publique. Pour des communications privées, souscrivez à une offre.</div>
-            <a href="https://octopus-app-beryl.vercel.app?demo=true" target="_blank" class="btn-primary">🚀 Lancer la Démo</a>
+            <div class="demo-info">
+                💡 <strong>Astuce :</strong> Ouvrez 2 onglets et envoyez-vous des messages !<br>
+                ⚠️ Mode démo : graine publique partagée par tous les testeurs.
+            </div>
+            <a href="https://octopus-app-beryl.vercel.app" target="_blank" class="btn-primary" style="width: 100%;">🚀 Lancer la Démo</a>
         </div>
     </section>
 
+    <!-- === PRICING === -->
     <section class="pricing-section" id="pricing">
         <div class="section-header">
             <div class="section-tag">TARIFICATION</div>
             <h2 class="section-title">Choisissez votre formule</h2>
-            <p class="section-subtitle">Paiement unique • Graine livrée sous 24h • Satisfait ou remboursé 30 jours</p>
+            <p class="section-subtitle">Paiement unique • Graine livrée par email sous 24h • Satisfait ou remboursé 30 jours</p>
         </div>
+        
         <div class="pricing-grid">
+            <!-- COUPLE -->
             <div class="pricing-card">
                 <div class="pricing-icon">💑</div>
-                <div class="pricing-name">Couple</div>
-                <div class="pricing-users">2 personnes</div>
+                <h3 class="pricing-name">Couple</h3>
+                <p class="pricing-users">2 personnes</p>
                 <div class="pricing-price">200€ <span>TTC</span></div>
-                <div class="pricing-period">Paiement unique</div>
-                <ul class="pricing-features"><li>1 graine partagée</li><li>2 clients autorisés</li><li>Messages illimités</li><li>Support email</li></ul>
-                <a href="#signup" class="btn-primary pricing-btn">Choisir</a>
+                <p class="pricing-period">Paiement unique</p>
+                <ul class="pricing-features">
+                    <li>1 graine partagée</li>
+                    <li>2 appareils autorisés</li>
+                    <li>Messages illimités</li>
+                    <li>Support email</li>
+                </ul>
+                <a href="https://VOTRE_STORE.lemonsqueezy.com/checkout/buy/PRODUIT_COUPLE" class="btn-primary pricing-btn">Choisir</a>
             </div>
+            
+            <!-- FAMILLE -->
             <div class="pricing-card popular">
                 <div class="pricing-icon">👨‍👩‍👧‍👦</div>
-                <div class="pricing-name">Famille</div>
-                <div class="pricing-users">Jusqu'à 5 personnes</div>
+                <h3 class="pricing-name">Famille</h3>
+                <p class="pricing-users">Jusqu'à 5 personnes</p>
                 <div class="pricing-price">350€ <span>TTC</span></div>
-                <div class="pricing-period">Paiement unique</div>
-                <ul class="pricing-features"><li>1 graine partagée</li><li>5 clients autorisés</li><li>Messages illimités</li><li>Support prioritaire</li><li>Rotation d'époque incluse</li></ul>
-                <a href="#signup" class="btn-primary pricing-btn">Choisir</a>
+                <p class="pricing-period">Paiement unique</p>
+                <ul class="pricing-features">
+                    <li>1 graine partagée</li>
+                    <li>5 appareils autorisés</li>
+                    <li>Messages illimités</li>
+                    <li>Support prioritaire</li>
+                    <li>Rotation d'époque incluse</li>
+                </ul>
+                <a href="https://VOTRE_STORE.lemonsqueezy.com/checkout/buy/PRODUIT_FAMILLE" class="btn-primary pricing-btn">Choisir</a>
             </div>
+            
+            <!-- GROUPE -->
             <div class="pricing-card">
                 <div class="pricing-icon">👥</div>
-                <div class="pricing-name">Groupe</div>
-                <div class="pricing-users">Jusqu'à 10 personnes</div>
+                <h3 class="pricing-name">Groupe</h3>
+                <p class="pricing-users">Jusqu'à 10 personnes</p>
                 <div class="pricing-price">500€ <span>TTC</span></div>
-                <div class="pricing-period">Paiement unique</div>
-                <ul class="pricing-features"><li>1 graine partagée</li><li>10 clients autorisés</li><li>Messages illimités</li><li>Support prioritaire</li><li>Mode audit disponible</li></ul>
-                <a href="#signup" class="btn-primary pricing-btn">Choisir</a>
+                <p class="pricing-period">Paiement unique</p>
+                <ul class="pricing-features">
+                    <li>1 graine partagée</li>
+                    <li>10 appareils autorisés</li>
+                    <li>Messages illimités</li>
+                    <li>Support prioritaire</li>
+                    <li>Mode audit disponible</li>
+                </ul>
+                <a href="https://VOTRE_STORE.lemonsqueezy.com/checkout/buy/PRODUIT_GROUPE" class="btn-primary pricing-btn">Choisir</a>
             </div>
+            
+            <!-- ENTREPRISE -->
             <div class="pricing-card">
                 <div class="pricing-icon">🏢</div>
-                <div class="pricing-name">Entreprise</div>
-                <div class="pricing-users">Sur mesure</div>
+                <h3 class="pricing-name">Entreprise</h3>
+                <p class="pricing-users">Sur mesure</p>
                 <div class="pricing-price">Sur devis</div>
-                <div class="pricing-period">Contactez-nous</div>
-                <ul class="pricing-features"><li>Clients illimités</li><li>Déploiement sur site</li><li>Intégration API</li><li>Support 24/7</li></ul>
-                <a href="/cdn-cgi/l/email-protection#2b4844455f4a485f6b4a584e464a455f4253055f4e4843" class="btn-secondary pricing-btn">Nous contacter</a>
+                <p class="pricing-period">Contactez-nous</p>
+                <ul class="pricing-features">
+                    <li>Appareils illimités</li>
+                    <li>Déploiement sur site</li>
+                    <li>Intégration API</li>
+                    <li>Support 24/7</li>
+                </ul>
+                <a href="mailto:contact@asemantix.tech" class="btn-secondary pricing-btn">Nous contacter</a>
             </div>
         </div>
     </section>
 
-    <section class="signup-section" id="signup">
-        <div class="section-header">
-            <div class="section-tag">INSCRIPTION</div>
-            <h2 class="section-title">Obtenez votre graine</h2>
-            <p class="section-subtitle">Recevez votre fichier .octopus par email sous 24h</p>
-        </div>
-        <div class="signup-box">
-            <form id="signupForm">
-                <div class="form-group"><label>Email *</label><input type="email" name="email" required placeholder="votre@email.com"></div>
-                <div class="form-group"><label>Formule *</label><select name="plan" required><option value="">Choisir...</option><option value="couple">Couple — 200€</option><option value="famille">Famille — 350€</option><option value="groupe">Groupe — 500€</option><option value="entreprise">Entreprise — Sur devis</option></select></div>
-                <div class="form-group"><label>Emails des autres membres</label><input type="text" name="members" placeholder="alice@email.com, bob@email.com"></div>
-                <div class="checkbox-group"><input type="checkbox" id="cgv" required><label for="cgv">J'accepte les <a href="cgv.html">CGV</a> *</label></div>
-                <div class="guarantee-box"><span>✅ Satisfait ou remboursé 30 jours</span></div>
-                <button type="submit" class="btn-primary" style="width:100%;padding:1.2rem;">💳 Payer avec PayPal</button>
-            </form>
+    <!-- === GUARANTEE === -->
+    <section class="guarantee-section">
+        <div class="guarantee-box">
+            <div class="guarantee-icon">✅</div>
+            <h3 class="guarantee-title">Satisfait ou Remboursé — 30 jours</h3>
+            <p class="guarantee-text">Si OCTOPUS ne vous convient pas, nous vous remboursons intégralement. Sans question. Sans justification. C'est notre engagement.</p>
         </div>
     </section>
 
+    <!-- === FAQ === -->
     <section class="faq-section" id="faq">
         <div class="section-header">
             <div class="section-tag">FAQ</div>
             <h2 class="section-title">Questions fréquentes</h2>
         </div>
+        
         <div class="faq-list">
-            <div class="faq-item"><div class="faq-question">Et si l'application tombe en panne ?</div><div class="faq-answer">L'application fonctionne hors-ligne. Vos messages sont stockés localement. Rien n'est perdu.</div></div>
-            <div class="faq-item"><div class="faq-question">Et si ma graine est perdue ?</div><div class="faq-answer">Contactez-nous à <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3c0c6c3c3dcc1c7f3d2c0d6ded2ddc7dacb9dc7d6d0db">[email&#160;protected]</a>. Nous vous renverrons une nouvelle graine gratuitement.</div></div>
-            <div class="faq-item"><div class="faq-question">Et si mon téléphone est volé ?</div><div class="faq-answer">Sans votre code PIN, personne ne peut accéder à l'app. Contactez-nous pour révoquer et régénérer votre graine.</div></div>
-            <div class="faq-item"><div class="faq-question">Comment ajouter des membres ?</div><div class="faq-answer">Contactez-nous avec les emails. Nous générerons une nouvelle graine pour tout le groupe.</div></div>
+            <div class="faq-item">
+                <div class="faq-question">Comment je reçois ma graine ?</div>
+                <div class="faq-answer">Après paiement, vous recevez un email avec votre fichier .octopus sous 24h (généralement quelques minutes). Chargez-le dans l'app et partagez-le avec vos contacts de confiance.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Et si ma graine est perdue ?</div>
+                <div class="faq-answer">Contactez-nous à contact@asemantix.tech. Nous régénérons une nouvelle graine gratuitement et désactivons l'ancienne.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Et si mon téléphone est volé ?</div>
+                <div class="faq-answer">Sans votre code PIN, personne ne peut accéder à l'app. Contactez-nous pour révoquer votre graine et en obtenir une nouvelle.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Comment ajouter des membres ?</div>
+                <div class="faq-answer">Partagez simplement le fichier .octopus avec les nouveaux membres. Attention : ne partagez qu'avec des personnes de confiance !</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">C'est vraiment impossible à intercepter ?</div>
+                <div class="faq-answer">Oui. Vos messages sont indistinguables du bruit aléatoire (tests NIST SP 800-22 passés). Même nous ne pouvons pas lire vos messages. Brevet FR2600020.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Ça fonctionne sans Internet ?</div>
+                <div class="faq-answer">L'app stocke les messages localement. Pour la synchronisation en temps réel, une connexion est nécessaire. Mais le protocole ASEMANTIX peut fonctionner sur n'importe quel canal (radio, satellite, etc.).</div>
+            </div>
         </div>
     </section>
 
+    <!-- === FOOTER === -->
     <footer>
         <div class="footer-content">
-            <div class="footer-brand"><h3>🐙 OCTOPUS</h3><p>Messagerie invisible par AION ASEMANTIX™<br>« Vous ne serez plus jamais sans connexion. »</p></div>
-            <div class="footer-links"><h4>Produit</h4><a href="#how">Comment ça marche</a><a href="#demo">Démo</a><a href="#pricing">Tarifs</a></div>
-            <div class="footer-links"><h4>Support</h4><a href="/cdn-cgi/l/email-protection#a8dbddd8d8c7dadce8c9dbcdc5c9c6dcc1d086dccdcbc0"><span class="__cf_email__" data-cfemail="20535550504f5254604153454d414e5449580e54454348">[email&#160;protected]</span></a><a href="cgv.html">CGV</a><a href="mentions-legales.html">Mentions légales</a></div>
+            <div class="footer-brand">
+                <h3>🐙 OCTOPUS</h3>
+                <p>Messagerie invisible<br>par AION ASEMANTIX™</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-style: italic;">« Vous ne serez plus jamais sans connexion. »</p>
+            </div>
+            <div class="footer-links">
+                <h4>Produit</h4>
+                <a href="#how">Comment ça marche</a>
+                <a href="#features">Avantages</a>
+                <a href="#demo">Démo gratuite</a>
+                <a href="#pricing">Tarifs</a>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <a href="mailto:contact@asemantix.tech">contact@asemantix.tech</a>
+                <a href="#faq">FAQ</a>
+                <a href="cgv.html">CGV</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+            </div>
+            <div class="footer-links">
+                <h4>Légal</h4>
+                <p style="color: var(--gray-500); font-size: 0.85rem;">Brevet INPI<br>FR2600020</p>
+                <p style="color: var(--gray-500); font-size: 0.85rem; margin-top: 0.5rem;">AION ASEMANTIX™<br>France</p>
+            </div>
         </div>
-        <div class="footer-bottom"><p>© 2025 AION ASEMANTIX™ — Tous droits réservés</p><p style="color:var(--gold);margin-top:0.5rem;">De la Terre à Mars — et au-delà.</p></div>
+        <div class="footer-bottom">
+            <p>© 2026 AION ASEMANTIX™ — Tous droits réservés</p>
+            <p class="footer-patent">De la Terre à Mars — et au-delà.</p>
+        </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
+    <!-- === SCRIPTS === -->
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
                 const wasOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item').forEach(i => i.c
+                
+                // Fermer tous les autres
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                
+                // Ouvrir celui-ci si il était fermé
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
