@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OCTOPUS — Communication Invisible | ASEMANTIX</title>
-    <meta name="description" content="OCTOPUS - Le protocole de communication invisible. Du fond des océans jusqu'aux étoiles.">
+    <meta name="description" content="OCTOPUS - Le protocole de communication invisible. Du fond des océans jusqu'aux étoiles. Résistant aux ordinateurs quantiques.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -43,13 +43,13 @@
         .container {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
         }
         
-        /* Logo animé */
+        /* Logo animé avec pulsation */
         .logo-container {
             margin-bottom: 30px;
         }
@@ -96,10 +96,15 @@
         }
         
         .hero-text {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #ccc;
-            line-height: 1.8;
+            line-height: 1.9;
             margin-bottom: 40px;
+        }
+        
+        .hero-highlight {
+            color: #a78bfa;
+            font-weight: 600;
         }
         
         .launch-btn {
@@ -135,12 +140,18 @@
             font-weight: 600;
         }
         
-        /* Fonctionnalités */
+        /* Fonctionnalités - GRILLE 2x2 FORCÉE */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 25px;
             margin-bottom: 50px;
+        }
+        
+        @media (max-width: 650px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
         
         .feature {
@@ -177,9 +188,9 @@
         }
         
         .feature-title {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #a78bfa;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 600;
         }
         
@@ -189,7 +200,7 @@
             line-height: 1.6;
         }
         
-        /* Section environnements */
+        /* Sections environnements */
         .environments-section {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(59, 130, 246, 0.3);
@@ -208,10 +219,23 @@
             font-size: 1rem;
         }
         
+        /* Grille 6 colonnes (3x2) pour environnements */
         .environments {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+        }
+        
+        @media (max-width: 700px) {
+            .environments {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 450px) {
+            .environments {
+                grid-template-columns: 1fr;
+            }
         }
         
         .environment {
@@ -248,9 +272,37 @@
         }
         
         .environment-title {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #93c5fd;
             font-weight: 500;
+        }
+        
+        /* Section sensibles - dorée */
+        .environments-section.gold {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .environments-section.gold .section-heading {
+            color: #d4af37;
+        }
+        .environments-section.gold .env-subtitle {
+            color: #fcd34d;
+        }
+        .environments-section.gold .environment {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .environments-section.gold .environment:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.15);
+        }
+        .environments-section.gold .environment-icon {
+            background: rgba(212, 175, 55, 0.15);
+        }
+        .environments-section.gold .environment-icon svg {
+            stroke: #fbbf24;
+        }
+        .environments-section.gold .environment-title {
+            color: #fcd34d;
         }
         
         /* Section brevet */
@@ -315,7 +367,7 @@
     <div class="particles" id="particles"></div>
     
     <div class="container">
-        <!-- Logo -->
+        <!-- Logo avec animation pulsation -->
         <div class="logo-container">
             <svg class="octopus-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -372,7 +424,10 @@
             <p class="hero-text">
                 OCTOPUS est un protocole de communication révolutionnaire basé sur la technologie ASEMANTIX. 
                 Vos messages sont protégés par des marqueurs polymorphes invisibles, 
-                garantissant une sécurité absolue et une confidentialité totale.
+                garantissant une sécurité absolue et une confidentialité totale.<br><br>
+                <span class="hero-highlight">Résistant aux ordinateurs quantiques.</span><br>
+                Pas besoin de tirer des câbles. Pas besoin de connexion Internet.<br>
+                <span class="hero-highlight">Communiquez partout dans le monde, même hors ligne.</span>
             </p>
             <a href="https://octopus-app-beryl.vercel.app" class="launch-btn">
                 <!-- Icône Play élégante -->
@@ -384,7 +439,7 @@
             </a>
         </div>
         
-        <!-- Fonctionnalités -->
+        <!-- Caractéristiques - GRILLE 2x2 -->
         <h2 class="section-heading">Caractéristiques</h2>
         <div class="features">
             <div class="feature">
@@ -398,7 +453,7 @@
                     </svg>
                 </div>
                 <div class="feature-title">Sécurité Absolue</div>
-                <div class="feature-text">Marqueurs polymorphes uniques à chaque message. Chiffrement évolutif impossible à intercepter.</div>
+                <div class="feature-text">Marqueurs polymorphes uniques à chaque message. Chiffrement évolutif impossible à intercepter. Résistant aux attaques quantiques.</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">
@@ -411,7 +466,7 @@
                     </svg>
                 </div>
                 <div class="feature-title">Invisible</div>
-                <div class="feature-text">Communications indétectables. Les messages se fondent dans le bruit numérique ambiant.</div>
+                <div class="feature-text">Communications indétectables. Les messages se fondent dans le bruit numérique ambiant. Zéro métadonnée, zéro trace.</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">
@@ -425,7 +480,7 @@
                     </svg>
                 </div>
                 <div class="feature-title">Portée Globale</div>
-                <div class="feature-text">Fonctionne partout sur Terre et au-delà. Aucune frontière, aucune limite géographique.</div>
+                <div class="feature-text">Fonctionne partout sur Terre et au-delà. Aucune frontière, aucune limite géographique. Sans câbles, sans infrastructure.</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">
@@ -436,11 +491,11 @@
                     </svg>
                 </div>
                 <div class="feature-title">Résilient</div>
-                <div class="feature-text">Mode opportuniste en environnement dégradé. Continue de fonctionner sans infrastructure centralisée.</div>
+                <div class="feature-text">Mode opportuniste en environnement dégradé. Continue de fonctionner sans connexion Internet, sans infrastructure centralisée.</div>
             </div>
         </div>
         
-        <!-- Section environnements contraints -->
+        <!-- Section environnements contraints - BLEU -->
         <div class="environments-section">
             <h2 class="section-heading">Environnements Contraints</h2>
             <p class="env-subtitle">Conçu pour les conditions les plus extrêmes</p>
@@ -448,7 +503,6 @@
             <div class="environments">
                 <div class="environment">
                     <div class="environment-icon">
-                        <!-- Sous-marin / Océan -->
                         <svg viewBox="0 0 24 24">
                             <path d="M3 11l2-2 4 4 4-4 4 4 4-4 2 2"/>
                             <path d="M3 17l2-2 4 4 4-4 4 4 4-4 2 2"/>
@@ -459,7 +513,6 @@
                 </div>
                 <div class="environment">
                     <div class="environment-icon">
-                        <!-- Champ de bataille -->
                         <svg viewBox="0 0 24 24">
                             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                             <path d="M2 17l10 5 10-5"/>
@@ -470,7 +523,6 @@
                 </div>
                 <div class="environment">
                     <div class="environment-icon">
-                        <!-- Zone isolée -->
                         <svg viewBox="0 0 24 24">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                             <circle cx="12" cy="10" r="3"/>
@@ -481,7 +533,6 @@
                 </div>
                 <div class="environment">
                     <div class="environment-icon">
-                        <!-- Sans infrastructure -->
                         <svg viewBox="0 0 24 24">
                             <rect x="4" y="4" width="16" height="16" rx="2"/>
                             <line x1="9" y1="9" x2="15" y2="15"/>
@@ -492,7 +543,6 @@
                 </div>
                 <div class="environment">
                     <div class="environment-icon">
-                        <!-- Anti-cyberattaque -->
                         <svg viewBox="0 0 24 24">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                             <path d="M9.5 9l5 6"/>
@@ -503,7 +553,6 @@
                 </div>
                 <div class="environment">
                     <div class="environment-icon">
-                        <!-- Spatial -->
                         <svg viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="4"/>
                             <path d="M12 2v2"/>
@@ -517,6 +566,71 @@
                         </svg>
                     </div>
                     <div class="environment-title">Spatial</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section environnements sensibles - DORÉ -->
+        <div class="environments-section gold">
+            <h2 class="section-heading">Environnements Sensibles</h2>
+            <p class="env-subtitle">Sécurité maximale pour les secteurs critiques</p>
+            
+            <div class="environments">
+                <div class="environment">
+                    <div class="environment-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l7-4 7 4v14"/>
+                            <path d="M9 21v-6h6v6"/>
+                            <path d="M10 10h4"/>
+                        </svg>
+                    </div>
+                    <div class="environment-title">Gouvernements</div>
+                </div>
+                <div class="environment">
+                    <div class="environment-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M12 8v4"/>
+                            <path d="M12 16h.01"/>
+                        </svg>
+                    </div>
+                    <div class="environment-title">Défense</div>
+                </div>
+                <div class="environment">
+                    <div class="environment-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <div class="environment-title">Santé</div>
+                </div>
+                <div class="environment">
+                    <div class="environment-icon">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <div class="environment-title">Finance</div>
+                </div>
+                <div class="environment">
+                    <div class="environment-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="10" width="18" height="11" rx="2"/>
+                            <path d="M7 10V7a5 5 0 0 1 10 0v3"/>
+                            <circle cx="12" cy="15" r="2"/>
+                        </svg>
+                    </div>
+                    <div class="environment-title">Banques</div>
+                </div>
+                <div class="environment">
+                    <div class="environment-icon">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <div class="environment-title">Énergie</div>
                 </div>
             </div>
         </div>
@@ -536,7 +650,7 @@
         <div class="footer">
             <p>OCTOPUS — Le protocole global, interplanétaire, invisible</p>
             <div class="footer-links">
-                <a href="index.html">Accueil ASEMANTIX</a>
+                <a href="en.html">Accueil ASEMANTIX</a>
                 <a href="https://octopus-app-beryl.vercel.app">Lancer l'App</a>
             </div>
             <p style="margin-top: 20px; font-size: 0.75rem; color: #555;">© 2025 AION — Tous droits réservés</p>
