@@ -12,7 +12,7 @@
     <meta property="og:title" content="AION ASEMANTIX™ | L'ère de la tranquillité a démarré">
     <meta property="og:description" content="Calcul quantique, menaces cyber, environnements contraints : l'ère de la protection native des données a commencé.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://asemantix.tech">
+    <meta property="og:url" content="https://asemantix.io">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -44,6 +44,7 @@
             font-size: 17px;
         }
         
+        /* === NAVIGATION === */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: rgba(10, 10, 10, 0.95);
@@ -147,19 +148,9 @@
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             flex-wrap: wrap;
         }
-        .hero-stat {
-            text-align: center;
-        }
-        .hero-stat-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-        .hero-stat-label {
-            font-size: 0.9rem;
-            color: var(--gray-400);
-            margin-top: 0.3rem;
-        }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-size: 2.5rem; font-weight: 700; color: var(--gold); }
+        .hero-stat-label { font-size: 0.9rem; color: var(--gray-400); margin-top: 0.3rem; }
         
         /* === SECTIONS === */
         .section-header { text-align: center; margin-bottom: 4rem; }
@@ -167,65 +158,92 @@
         .section-title { font-size: 2.8rem; color: var(--white); margin-bottom: 1rem; }
         .section-subtitle { color: var(--gray-400); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
         
-        /* === SOLUTIONS === */
-        .solutions-section {
+        /* === MESSAGERIES === */
+        .messageries-section {
             padding: 6rem 4rem;
             background: linear-gradient(180deg, var(--black) 0%, #0f0f1a 50%, var(--black) 100%);
         }
         
-        .solutions-grid {
+        .messageries-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.5rem;
-            max-width: 1400px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
-        @media (max-width: 1200px) {
-            .solutions-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .solutions-grid { grid-template-columns: 1fr; max-width: 400px; }
+        @media (max-width: 900px) {
+            .messageries-grid { grid-template-columns: 1fr; max-width: 400px; }
         }
         
-        .solution-card {
+        .messagerie-card {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
+            border-radius: 20px;
+            padding: 2.5rem;
             text-align: center;
             transition: all 0.3s ease;
-            position: relative;
         }
         
-        .solution-card:hover {
+        .messagerie-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
         }
         
-        .solution-card.octopus { border-color: rgba(138, 43, 226, 0.3); }
-        .solution-card.octopus:hover { border-color: var(--purple); }
-        .solution-card.sesame { border-color: rgba(16, 185, 129, 0.3); }
-        .solution-card.sesame:hover { border-color: var(--green); }
-        .solution-card.mailbox { border-color: rgba(59, 130, 246, 0.3); }
-        .solution-card.mailbox:hover { border-color: var(--blue); }
-        .solution-card.rpag { border-color: rgba(99, 102, 241, 0.3); }
-        .solution-card.rpag:hover { border-color: #6366f1; }
-        .solution-card.pip { border-color: rgba(8, 145, 178, 0.3); }
-        .solution-card.pip:hover { border-color: var(--teal); }
+        .messagerie-card.octopus { border-color: rgba(138, 43, 226, 0.3); }
+        .messagerie-card.octopus:hover { border-color: var(--purple); }
+        .messagerie-card.sesame { border-color: rgba(16, 185, 129, 0.3); }
+        .messagerie-card.sesame:hover { border-color: var(--green); }
+        .messagerie-card.mailbox { border-color: rgba(59, 130, 246, 0.3); }
+        .messagerie-card.mailbox:hover { border-color: var(--blue); }
         
-        .solution-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .messagerie-icon { width: 120px; height: 120px; margin: 0 auto 1.5rem; }
         
-        .solution-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: 0.05rem; }
-        .solution-card.octopus .solution-title { color: var(--purple-light); }
-        .solution-card.sesame .solution-title { color: var(--green); }
-        .solution-card.mailbox .solution-title { color: var(--blue); }
-        .solution-card.rpag .solution-title { color: #818cf8; }
-        .solution-card.pip .solution-title { color: var(--teal); }
+        .octopus-logo-card {
+            width: 120px; height: 120px;
+            filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
+            animation: breathe 4s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5)); }
+            50% { filter: drop-shadow(0 0 35px rgba(138, 43, 226, 0.8)); }
+        }
         
-        .solution-patent { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--gold); margin-bottom: 0.8rem; }
-        .solution-tagline { color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic; }
-        .solution-description { color: var(--gray-500); font-size: 0.85rem; line-height: 1.5; }
+        .placeholder-icon { width: 80px; height: 80px; margin: 20px auto; }
+        
+        .messagerie-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 0.1rem; }
+        .messagerie-card.octopus .messagerie-title { color: var(--purple-light); }
+        .messagerie-card.sesame .messagerie-title { color: var(--green); }
+        .messagerie-card.mailbox .messagerie-title { color: var(--blue); }
+        
+        .messagerie-patent { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--gold); margin-bottom: 0.5rem; }
+        .messagerie-tagline { color: var(--gray-400); font-size: 1rem; margin-bottom: 1rem; font-style: italic; }
+        .messagerie-description { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+        
+        .messagerie-btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .messagerie-card.octopus .messagerie-btn {
+            background: linear-gradient(135deg, #8a2be2, #6a1bb2);
+            color: #fff;
+        }
+        .messagerie-card.octopus .messagerie-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .messagerie-btn.disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--gray-500);
+            cursor: not-allowed;
+        }
         
         /* === BREVETS === */
         .patents-section { padding: 6rem 4rem; background: var(--gray-900); }
@@ -303,7 +321,7 @@
     <nav>
         <a href="#" class="nav-logo"><span class="aion">AION</span> ASEMANTIX<span class="tm">™</span></a>
         <div class="nav-links">
-            <a href="#solutions">Solutions</a>
+            <a href="#messageries">Messageries</a>
             <a href="#patents">Brevets</a>
             <a href="#use-cases">Applications</a>
             <a href="#contact">Contact</a>
@@ -341,7 +359,7 @@
             <p class="hero-promise">Zéro métadonnée. Zéro trace. Zéro frontière.</p>
             
             <div class="cta-buttons">
-                <a href="#solutions" class="btn-primary">Découvrir nos Solutions</a>
+                <a href="#messageries" class="btn-primary">Découvrir nos Solutions</a>
                 <a href="#contact" class="btn-secondary">Nous Contacter</a>
             </div>
             
@@ -366,58 +384,108 @@
         </div>
     </section>
 
-    <!-- === SOLUTIONS === -->
-    <section class="solutions-section" id="solutions">
+    <!-- === MESSAGERIES === -->
+    <section class="messageries-section" id="messageries">
         <div class="section-header">
-            <div class="section-tag">SOLUTIONS APPLICATIVES</div>
-            <h2 class="section-title">5 Brevets, 5 Réponses</h2>
-            <p class="section-subtitle">Chaque brevet applicatif est construit sur ASEMANTIX, le procédé fondateur</p>
+            <div class="section-tag">SOLUTIONS</div>
+            <h2 class="section-title">Communication Invisible</h2>
+            <p class="section-subtitle">Trois solutions basées sur le procédé ASEMANTIX pour communiquer en toute discrétion</p>
         </div>
         
-        <div class="solutions-grid">
+        <div class="messageries-grid">
             <!-- OCTOPUS -->
-            <div class="solution-card octopus">
-                <div class="solution-icon">🐙</div>
-                <h3 class="solution-title">OCTOPUS</h3>
-                <div class="solution-patent">FR2600020</div>
-                <p class="solution-tagline">Messagerie temps réel</p>
-                <p class="solution-description">Segmentation, ACK implicite, audit scellé. Communiquez en temps réel sans métadonnée.</p>
+            <div class="messagerie-card octopus">
+                <div class="messagerie-icon">
+                    <!-- Logo OCTOPUS officiel avec rayures -->
+                    <svg class="octopus-logo-card" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="bodyGrad" cx="50%" cy="30%" r="60%">
+                                <stop offset="0%" stop-color="#b366e8"/>
+                                <stop offset="100%" stop-color="#4a0080"/>
+                            </radialGradient>
+                            <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#9b4dca"/>
+                                <stop offset="50%" stop-color="#6a1bb2"/>
+                                <stop offset="100%" stop-color="#3d0066"/>
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Tentacules avec rayures -->
+                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350" fill="none" stroke="url(#tentGrad)" stroke-width="22" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350" fill="none" stroke="#2d0a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="2,15"/>
+                        <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100" fill="none" stroke="url(#tentGrad)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
+                        <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420" fill="none" stroke="url(#tentGrad)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
+                        <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M220,210 C250,230 280,280 260,320 C240,360 200,370 170,350" fill="none" stroke="url(#tentGrad)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+                        <!-- Corps -->
+                        <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad)" filter="url(#glow)"/>
+                        <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGrad)"/>
+                        <!-- Yeux -->
+                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
+                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
+                        <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                        <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                        <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
+                        <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
+                    </svg>
+                </div>
+                <h3 class="messagerie-title">OCTOPUS</h3>
+                <div class="messagerie-patent">FR2600020</div>
+                <p class="messagerie-tagline">La messagerie SANS Internet, SANS téléphonie</p>
+                <p class="messagerie-description">
+                    Communiquez là où rien n'existe. Pas de réseau ? Pas de problème. 
+                    Radio, satellite, acoustique — tout canal devient messagerie. Zéro métadonnée.
+                </p>
+                <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="octopus-landing.html" class="messagerie-btn">Découvrir</a>
+                    <a href="https://octopus-app-beryl.vercel.app" class="messagerie-btn" target="_blank" style="background: transparent; border: 2px solid #8a2be2;">🚀 Démo</a>
+                </div>
             </div>
             
-            <!-- SÉSAME -->
-            <div class="solution-card sesame">
-                <div class="solution-icon">🔐</div>
-                <h3 class="solution-title">SÉSAME</h3>
-                <div class="solution-patent">FR2600010</div>
-                <p class="solution-tagline">IoT & Commande</p>
-                <p class="solution-description">Contrôle de dispositifs sur canal hostile. 99% du bruit filtré sans crypto. Économie d'énergie.</p>
+            <!-- SESAME -->
+            <div class="messagerie-card sesame">
+                <div class="messagerie-icon">
+                    <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        <circle cx="12" cy="16" r="1"/>
+                    </svg>
+                </div>
+                <h3 class="messagerie-title">SÉSAME</h3>
+                <div class="messagerie-patent">FR2600010</div>
+                <p class="messagerie-tagline">Commande & contrôle IoT</p>
+                <p class="messagerie-description">
+                    Contrôlez vos dispositifs IoT, drones, SCADA avec des commandes invisibles. 
+                    99% du bruit filtré sans calcul cryptographique.
+                </p>
+                <span class="messagerie-btn disabled">Prochainement</span>
             </div>
             
             <!-- MAILBOX -->
-            <div class="solution-card mailbox">
-                <div class="solution-icon">📬</div>
-                <h3 class="solution-title">MAILBOX</h3>
-                <div class="solution-patent">FR2600019</div>
-                <p class="solution-tagline">Dead drop numérique</p>
-                <p class="solution-description">Boîte aux lettres aveugle résistante à la censure. Le serveur ne distingue rien.</p>
-            </div>
-            
-            <!-- RPAG -->
-            <div class="solution-card rpag">
-                <div class="solution-icon">🌍</div>
-                <h3 class="solution-title">RPAG</h3>
-                <div class="solution-patent">FR2600021</div>
-                <p class="solution-tagline">Mesh autonome</p>
-                <p class="solution-description">Réseau polymorphe sans infrastructure. Radio, optique, acoustique. Terre-Mars ready.</p>
-            </div>
-            
-            <!-- PIP -->
-            <div class="solution-card pip">
-                <div class="solution-icon">🛡️</div>
-                <h3 class="solution-title">PIP</h3>
-                <div class="solution-patent">FR2600070</div>
-                <p class="solution-tagline">Réseau IP invisible</p>
-                <p class="solution-description">Permutation IP polymorphe. Session non observable. Aucun handshake détectable.</p>
+            <div class="messagerie-card mailbox">
+                <div class="messagerie-icon">
+                    <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <h3 class="messagerie-title">MAILBOX</h3>
+                <div class="messagerie-patent">FR2600019</div>
+                <p class="messagerie-tagline">Boîte aux lettres asémantique</p>
+                <p class="messagerie-description">
+                    Dead drop numérique résistant à la censure. Le serveur ne distingue pas vos messages du bruit.
+                </p>
+                <span class="messagerie-btn disabled">Prochainement</span>
             </div>
         </div>
     </section>
@@ -426,7 +494,7 @@
     <section class="patents-section" id="patents">
         <div class="section-header">
             <div class="section-tag">PROPRIÉTÉ INTELLECTUELLE</div>
-            <h2 class="section-title">Portefeuille de 6 Brevets</h2>
+            <h2 class="section-title">6 Brevets Déposés</h2>
             <p class="section-subtitle">Protection complète déposée à l'INPI — France 2025-2026</p>
         </div>
         
@@ -437,11 +505,10 @@
                 <div class="patent-inpi">FR2516793 — 31 décembre 2025</div>
                 <h3 class="patent-title">ASEMANTIX</h3>
                 <p class="patent-tagline">Procédé de validation asémantique</p>
-                <p class="patent-description">Marqueur polymorphe, filtrage 99%, fragments indistinguables du bruit. La fondation de tout.</p>
+                <p class="patent-description">Marqueur polymorphe, filtrage 99%, fragments indistinguables du bruit.</p>
                 <div class="patent-targets">
                     <span class="target-tag">Fondation</span>
                     <span class="target-tag">Post-quantique</span>
-                    <span class="target-tag">Universel</span>
                 </div>
             </div>
             
@@ -450,12 +517,11 @@
                 <div class="patent-number">🐙 BREVET APPLICATIF</div>
                 <div class="patent-inpi">FR2600020 — Janvier 2026</div>
                 <h3 class="patent-title">OCTOPUS</h3>
-                <p class="patent-tagline">Messagerie sécurisée temps réel</p>
-                <p class="patent-description">Segmentation, ACK implicite, audit scellé optionnel. Multi-topologie.</p>
+                <p class="patent-tagline">Messagerie résiliente multi-canaux</p>
+                <p class="patent-description">Segmentation, ACK implicite, audit scellé optionnel.</p>
                 <div class="patent-targets">
                     <span class="target-tag">Entreprise</span>
                     <span class="target-tag">Défense</span>
-                    <span class="target-tag">Particuliers</span>
                 </div>
             </div>
             
@@ -465,11 +531,10 @@
                 <div class="patent-inpi">FR2600010 — Janvier 2026</div>
                 <h3 class="patent-title">SÉSAME</h3>
                 <p class="patent-tagline">Commande & contrôle IoT</p>
-                <p class="patent-description">Filtrage polymorphe économe. Hiérarchie de commandes. Anti-rejeu par ancre monotone.</p>
+                <p class="patent-description">Filtrage polymorphe économe en énergie.</p>
                 <div class="patent-targets">
                     <span class="target-tag">IoT</span>
                     <span class="target-tag">SCADA</span>
-                    <span class="target-tag">Drones</span>
                 </div>
             </div>
             
@@ -479,11 +544,10 @@
                 <div class="patent-inpi">FR2600019 — Janvier 2026</div>
                 <h3 class="patent-title">MAILBOX</h3>
                 <p class="patent-tagline">Boîte aux lettres asémantique</p>
-                <p class="patent-description">Stockage aveugle. Le serveur ne distingue pas vos messages du bruit. Dead drop numérique.</p>
+                <p class="patent-description">Stockage aveugle, dead drop numérique.</p>
                 <div class="patent-targets">
                     <span class="target-tag">Censure</span>
                     <span class="target-tag">Journalisme</span>
-                    <span class="target-tag">Lanceurs d'alerte</span>
                 </div>
             </div>
             
@@ -492,12 +556,11 @@
                 <div class="patent-number">🌍 BREVET APPLICATIF</div>
                 <div class="patent-inpi">FR2600021 — Janvier 2026</div>
                 <h3 class="patent-title">RPAG</h3>
-                <p class="patent-tagline">Réseau polymorphe autonome global</p>
-                <p class="patent-description">Mesh sans infrastructure. Multi-porteuse (radio, optique, acoustique). Latence extrême supportée.</p>
+                <p class="patent-tagline">Réseau polymorphe autonome</p>
+                <p class="patent-description">Mesh sans infrastructure, latence extrême.</p>
                 <div class="patent-targets">
                     <span class="target-tag">Spatial</span>
                     <span class="target-tag">Tactique</span>
-                    <span class="target-tag">Catastrophes</span>
                 </div>
             </div>
             
@@ -507,11 +570,10 @@
                 <div class="patent-inpi">FR2600070 — 4 janvier 2026</div>
                 <h3 class="patent-title">PIP</h3>
                 <p class="patent-tagline">Permutation IP polymorphe</p>
-                <p class="patent-description">Chaque paquet = identité différente. Session non observable. Pas de handshake.</p>
+                <p class="patent-description">Session non observable, pas de handshake.</p>
                 <div class="patent-targets">
                     <span class="target-tag">Entreprise</span>
                     <span class="target-tag">M&A</span>
-                    <span class="target-tag">Trading</span>
                 </div>
             </div>
         </div>
@@ -529,37 +591,37 @@
             <div class="use-case-card">
                 <div class="use-case-icon">🎖️</div>
                 <h3 class="use-case-title">Défense & Renseignement</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Communications tactiques, brouillage, interception</p>
+                <p class="use-case-challenge"><strong>Défi :</strong> Communications tactiques, brouillage</p>
                 <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG + SÉSAME</p>
             </div>
             <div class="use-case-card">
                 <div class="use-case-icon">🚀</div>
                 <h3 class="use-case-title">Spatial (Terre-Mars)</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Latence 4-24 min, sans GPS, sans NTP</p>
+                <p class="use-case-challenge"><strong>Défi :</strong> Latence 4-24 min, sans GPS</p>
                 <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG</p>
             </div>
             <div class="use-case-card">
                 <div class="use-case-icon">🏭</div>
                 <h3 class="use-case-title">Industrie & SCADA</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> IoT contraints, attaques ciblées, batterie</p>
+                <p class="use-case-challenge"><strong>Défi :</strong> IoT contraints, attaques ciblées</p>
                 <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + SÉSAME</p>
             </div>
             <div class="use-case-card">
                 <div class="use-case-icon">⚖️</div>
                 <h3 class="use-case-title">Avocats & M&A</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Négociations confidentielles, espionnage</p>
+                <p class="use-case-challenge"><strong>Défi :</strong> Négociations confidentielles</p>
                 <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + PIP + OCTOPUS</p>
             </div>
             <div class="use-case-card">
                 <div class="use-case-icon">📈</div>
                 <h3 class="use-case-title">Finance & Trading</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Front-running, interception d'ordres</p>
+                <p class="use-case-challenge"><strong>Défi :</strong> Front-running, interception</p>
                 <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + PIP</p>
             </div>
             <div class="use-case-card">
                 <div class="use-case-icon">📰</div>
-                <h3 class="use-case-title">Journalisme & Lanceurs d'alerte</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Protection des sources, censure</p>
+                <h3 class="use-case-title">Journalisme</h3>
+                <p class="use-case-challenge"><strong>Défi :</strong> Protection des sources</p>
                 <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + MAILBOX</p>
             </div>
         </div>
@@ -570,7 +632,7 @@
         <div class="section-tag">CONTACT</div>
         <h2 class="contact-title">L'ère de la <span>tranquillité</span> vous attend.</h2>
         <p class="contact-subtitle">AION ASEMANTIX™ — 6 brevets, 1 vision, 0 compromis.</p>
-        <a href="mailto:contact@asemantix.tech" class="contact-email">contact@asemantix.tech</a>
+        <a href="/cdn-cgi/l/email-protection#5c3f3332283d3f281c3d2f39313d322835247228393f34" class="contact-email"><span class="__cf_email__" data-cfemail="c1a2aeafb5a0a2b581a0b2a4aca0afb5a8b9efb5a4a2a9">[email&#160;protected]</span></a>
     </section>
 
     <!-- === FOOTER === -->
@@ -590,7 +652,7 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const patentDetails = {
             asemantix: {
                 title: "ASEMANTIX — Procédé Fondateur",
@@ -602,21 +664,20 @@
                     "Filtrage polymorphe : 99%+ rejetés sans calcul cryptographique",
                     "Zéro métadonnée transmise",
                     "Ancre monotone empêchant les attaques par rejeu",
-                    "Forward secrecy via évolution KDF de la graine",
-                    "Applicable à tout canal physique"
+                    "Forward secrecy via évolution KDF de la graine"
                 ]
             },
             octopus: {
-                title: "OCTOPUS — Messagerie Temps Réel",
+                title: "OCTOPUS — Messagerie Résiliente",
                 inpi: "FR2600020",
                 date: "Janvier 2026",
-                abstract: "Procédé de messagerie sécurisée sur canal hostile avec segmentation et acquittement implicite.",
+                abstract: "Procédé de messagerie résiliente sur canaux hétérogènes à fortes latences, opportuniste et tolérant aux pertes.",
                 keyPoints: [
-                    "Segmentation de messages de longueur arbitraire",
-                    "ACK implicite via avancement de l'ancre monotone",
-                    "Module d'audit scellé optionnel (mode COMPLIANT)",
-                    "Support point-à-point, groupe et broadcast",
-                    "Deux profils identiques sur le canal (WHISPER, COMPLIANT)"
+                    "Multi-canaux : radio, satellite, acoustique, IP",
+                    "Tolérant aux fortes latences (Terre-Mars ready)",
+                    "Segmentation et réassemblage automatique",
+                    "Mode opportuniste : exploite tout canal disponible",
+                    "Module d'audit scellé optionnel (mode COMPLIANT)"
                 ]
             },
             sesame: {
@@ -628,9 +689,7 @@
                     "Filtrage polymorphe : 99%+ rejetés sans calcul",
                     "Économie d'énergie critique pour IoT/capteurs",
                     "Hiérarchie de commandes (normal/privilégié/urgence)",
-                    "Anti-rejeu par ancre monotone",
-                    "Mode unidirectionnel ou bidirectionnel",
-                    "Support de groupes de dispositifs"
+                    "Anti-rejeu par ancre monotone"
                 ]
             },
             mailbox: {
@@ -641,9 +700,7 @@
                 keyPoints: [
                     "Stockage aveugle : le serveur ne distingue rien",
                     "Opérations simples : STORE, LIST, PURGE",
-                    "Filtrage polymorphe local par le destinataire",
                     "Résistant à la censure et aux dead drops",
-                    "Anonymat intra-groupe optionnel",
                     "Fonctionne sur réseaux intermittents"
                 ]
             },
@@ -653,11 +710,9 @@
                 date: "Janvier 2026",
                 abstract: "Procédé de communication polymorphique autonome sans infrastructure réseau.",
                 keyPoints: [
-                    "Multi-porteuse : radio, optique, acoustique, visuel",
+                    "Multi-porteuse : radio, optique, acoustique",
                     "Aucune horloge ni synchronisation nécessaire",
-                    "Zéro négociation ni signalisation",
                     "Supporte latences extrêmes (Terre-Mars)",
-                    "Chaque nœud calcule localement",
                     "Validation par recomputation stricte"
                 ]
             },
@@ -670,9 +725,7 @@
                     "Chaque paquet = tuple (IP, ports) différent",
                     "Session totalement non observable",
                     "Aucun handshake détectable",
-                    "Fenêtre glissante tolérante aux pertes",
-                    "Forward secrecy via ratchet cryptographique",
-                    "SDK Python fonctionnel disponible"
+                    "Forward secrecy via ratchet cryptographique"
                 ]
             }
         };
@@ -681,10 +734,10 @@
             const patent = patentDetails[patentId];
             document.getElementById('modal-body').innerHTML = `
                 <h2 style="color: var(--gold); margin-bottom: 0.5rem; font-size: 1.8rem;">${patent.title}</h2>
-                <p style="color: var(--gray-400); margin-bottom: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 1rem;">${patent.inpi} — ${patent.date}</p>
-                <p style="color: var(--gray-400); margin-bottom: 2rem; font-style: italic; font-size: 1.1rem;">${patent.abstract}</p>
-                <h3 style="color: var(--white); margin-bottom: 1rem; font-size: 1.2rem;">Points clés</h3>
-                <ul style="color: var(--gray-400); padding-left: 1.5rem; font-size: 1rem;">
+                <p style="color: var(--gray-400); margin-bottom: 1.5rem; font-family: 'JetBrains Mono', monospace;">${patent.inpi} — ${patent.date}</p>
+                <p style="color: var(--gray-400); margin-bottom: 2rem; font-style: italic;">${patent.abstract}</p>
+                <h3 style="color: var(--white); margin-bottom: 1rem;">Points clés</h3>
+                <ul style="color: var(--gray-400); padding-left: 1.5rem;">
                     ${patent.keyPoints.map(p => `<li style="margin-bottom: 0.5rem;">${p}</li>`).join('')}
                 </ul>
             `;
@@ -698,14 +751,4 @@
         }
         
         window.onclick = function(event) {
-            if (event.target === document.getElementById('modal')) {
-                closeModal();
-            }
-        }
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-    </script>
-</body>
-</html>
+  
