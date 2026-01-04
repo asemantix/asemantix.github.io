@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AION ASEMANTIX™ | L'invisible est ce qui constitue le visible</title>
-    <meta name="description" content="AION ASEMANTIX - L'invisible est ce qui constitue le visible. Zéro métadonnée. Zéro trace. Zéro frontière. Le premier protocole interplanétaire invisible.">
-    <meta name="keywords" content="AION, ASEMANTIX, protocole asémantique, communication invisible, interplanétaire, cryptographie, zéro métadonnée, brevets">
+    <title>AION ASEMANTIX™ | L'ère de la tranquillité a démarré</title>
+    <meta name="description" content="AION ASEMANTIX - L'ère de la protection native des données a commencé. Calcul quantique, menaces cyber, environnements contraints : 6 brevets pour une tranquillité totale.">
+    <meta name="keywords" content="AION, ASEMANTIX, protocole asémantique, communication invisible, post-quantique, cryptographie, zéro métadonnée, brevets, cybersécurité">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="AION ASEMANTIX™ | L'aube de la communication invisible">
-    <meta property="og:description" content="L'invisible est ce qui constitue le visible. Zéro métadonnée. Zéro trace. Zéro frontière.">
+    <meta property="og:title" content="AION ASEMANTIX™ | L'ère de la tranquillité a démarré">
+    <meta property="og:description" content="Calcul quantique, menaces cyber, environnements contraints : l'ère de la protection native des données a commencé.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://asemantix.tech">
     
@@ -29,6 +29,9 @@
             --gray-900: #111827;
             --purple: #8a2be2;
             --purple-light: #a855f7;
+            --teal: #0891b2;
+            --green: #10b981;
+            --blue: #3b82f6;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,7 +54,7 @@
         }
         
         .nav-logo { font-size: 1.6rem; font-weight: 700; color: var(--white); text-decoration: none; }
-        .nav-logo .aion { color: var(--gray-400); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.15rem; margin-right: 0.5rem; }
+        .nav-logo .aion { color: var(--gold); font-size: 1rem; font-weight: 600; letter-spacing: 0.15rem; margin-right: 0.5rem; }
         .nav-logo .tm { color: var(--gold); }
         
         .nav-links { display: flex; gap: 2.5rem; align-items: center; }
@@ -64,6 +67,7 @@
         }
         .lang-switch:hover { background: var(--gold); color: var(--black); }
         
+        /* === HERO === */
         .hero {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
             text-align: center; padding: 7rem 2rem 4rem;
@@ -71,16 +75,62 @@
         }
         
         .hero-content { max-width: 950px; }
-        .hero-dots { font-size: 2.5rem; color: var(--gold); letter-spacing: 1.5rem; margin-bottom: 1.5rem; }
-        .hero-aion { font-size: 1.2rem; font-weight: 400; color: var(--gray-400); letter-spacing: 0.5rem; margin-bottom: 0.3rem; }
-        .hero-title { font-size: 4.5rem; font-weight: 700; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.3rem; }
+        .hero-era-tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            letter-spacing: 0.1rem;
+            margin-bottom: 2rem;
+        }
+        .hero-aion { font-size: 1.2rem; font-weight: 600; color: var(--gold); letter-spacing: 0.5rem; margin-bottom: 0.5rem; }
+        .hero-title { font-size: 4.5rem; font-weight: 700; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.2rem; }
         .hero-title span { color: var(--gold); }
-        .hero-philosophy { font-size: 1.6rem; color: var(--white); font-style: italic; margin-bottom: 0.5rem; font-weight: 300; }
-        .hero-dawn { font-size: 1.3rem; color: var(--gold); margin-bottom: 2rem; letter-spacing: 0.1rem; }
-        .hero-logo-svg { margin: 2.5rem auto; animation: logoPulse 4s ease-in-out infinite; }
+        
+        .hero-tagline {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+        .hero-tagline strong { color: var(--gold); font-weight: 600; }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray-400);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+        
+        .hero-logo-svg { margin: 2rem auto; animation: logoPulse 4s ease-in-out infinite; }
         @keyframes logoPulse { 0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); } 50% { opacity: 1; filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7)); } }
-        .hero-zero { font-size: 1.35rem; color: #d1d5db; margin-bottom: 1.5rem; letter-spacing: 0.05rem; }
-        .hero-beyond { font-size: 1.4rem; color: var(--gold); margin-bottom: 2.5rem; }
+        
+        .hero-threats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .threat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-400);
+            font-size: 1.1rem;
+        }
+        .threat-item .icon { font-size: 1.5rem; }
+        .threat-item .check { color: var(--gold); font-weight: bold; }
+        
+        .hero-promise {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
         
         .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
         .btn-primary { background: var(--gold); color: var(--black); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; transition: all 0.3s; }
@@ -88,197 +138,152 @@
         .btn-secondary { background: transparent; color: var(--gold); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; border: 1px solid var(--gold); transition: all 0.3s; }
         .btn-secondary:hover { background: var(--gold); color: var(--black); }
         
-        .hero-footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
-        .hero-footer-main { color: var(--gold); font-size: 1.3rem; font-weight: 600; }
-        
-        .usp-box { background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; padding: 2.5rem; max-width: 750px; margin: 2rem auto; text-align: left; }
-        .usp-intro { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center; line-height: 1.7; }
-        .usp-intro strong { color: var(--white); }
-        .usp-title { color: var(--gold); margin-bottom: 1.2rem; font-size: 1.5rem; text-align: center; }
-        .usp-list { list-style: none; padding: 0; }
-        .usp-list li { padding: 0.6rem 0; color: var(--gray-400); font-size: 1.1rem; }
-        .usp-list li span { color: var(--gold); font-weight: bold; }
-        .usp-list li strong { color: var(--white); }
-        
-        /* === SECTION MESSAGERIES === */
-        .messageries-section {
-            padding: 6rem 4rem;
-            background: linear-gradient(180deg, var(--black) 0%, #0f0f1a 50%, var(--black) 100%);
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            margin-top: 0.3rem;
         }
         
+        /* === SECTIONS === */
         .section-header { text-align: center; margin-bottom: 4rem; }
         .section-tag { display: inline-block; background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--gold); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; letter-spacing: 0.15rem; margin-bottom: 1.5rem; }
         .section-title { font-size: 2.8rem; color: var(--white); margin-bottom: 1rem; }
         .section-subtitle { color: var(--gray-400); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
         
-        .messageries-grid {
+        /* === SOLUTIONS === */
+        .solutions-section {
+            padding: 6rem 4rem;
+            background: linear-gradient(180deg, var(--black) 0%, #0f0f1a 50%, var(--black) 100%);
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .solutions-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .solutions-grid { grid-template-columns: 1fr; max-width: 400px; }
+        }
+        
+        .solution-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
+        }
+        
+        .solution-card.octopus { border-color: rgba(138, 43, 226, 0.3); }
+        .solution-card.octopus:hover { border-color: var(--purple); }
+        .solution-card.sesame { border-color: rgba(16, 185, 129, 0.3); }
+        .solution-card.sesame:hover { border-color: var(--green); }
+        .solution-card.mailbox { border-color: rgba(59, 130, 246, 0.3); }
+        .solution-card.mailbox:hover { border-color: var(--blue); }
+        .solution-card.rpag { border-color: rgba(99, 102, 241, 0.3); }
+        .solution-card.rpag:hover { border-color: #6366f1; }
+        .solution-card.pip { border-color: rgba(8, 145, 178, 0.3); }
+        .solution-card.pip:hover { border-color: var(--teal); }
+        
+        .solution-icon { font-size: 3rem; margin-bottom: 1rem; }
+        
+        .solution-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: 0.05rem; }
+        .solution-card.octopus .solution-title { color: var(--purple-light); }
+        .solution-card.sesame .solution-title { color: var(--green); }
+        .solution-card.mailbox .solution-title { color: var(--blue); }
+        .solution-card.rpag .solution-title { color: #818cf8; }
+        .solution-card.pip .solution-title { color: var(--teal); }
+        
+        .solution-patent { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--gold); margin-bottom: 0.8rem; }
+        .solution-tagline { color: var(--gray-400); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic; }
+        .solution-description { color: var(--gray-500); font-size: 0.85rem; line-height: 1.5; }
+        
+        /* === BREVETS === */
+        .patents-section { padding: 6rem 4rem; background: var(--gray-900); }
+        
+        .patents-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
+            gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         @media (max-width: 900px) {
-            .messageries-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .patents-grid { grid-template-columns: 1fr; }
         }
         
-        .messagerie-card {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .messagerie-card:hover {
-            border-color: rgba(138, 43, 226, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
-        }
-        
-        .messagerie-card.placeholder {
-            opacity: 0.5;
-        }
-        .messagerie-card.placeholder:hover {
-            transform: none;
-            box-shadow: none;
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .messagerie-card.octopus { border-color: rgba(138, 43, 226, 0.3); }
-        .messagerie-card.sesame { border-color: rgba(16, 185, 129, 0.3); }
-        .messagerie-card.mailbox { border-color: rgba(59, 130, 246, 0.3); }
-        
-        .messagerie-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-        }
-        
-        /* Logo OCTOPUS avec animation */
-        .octopus-logo-card {
-            width: 120px;
-            height: 120px;
-            filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
-            animation: breathe 4s ease-in-out infinite;
-        }
-        @keyframes breathe {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5)); }
-            50% { filter: drop-shadow(0 0 35px rgba(138, 43, 226, 0.8)); }
-        }
-        
-        .placeholder-icon {
-            width: 80px;
-            height: 80px;
-            margin: 20px auto;
-            opacity: 0.4;
-        }
-        
-        .messagerie-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.1rem;
-        }
-        .messagerie-card.octopus .messagerie-title { color: var(--purple-light); }
-        .messagerie-card.sesame .messagerie-title { color: #10b981; }
-        .messagerie-card.mailbox .messagerie-title { color: #3b82f6; }
-        
-        .messagerie-tagline {
-            color: var(--gray-400);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-        
-        .messagerie-description {
-            color: var(--gray-500);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-        
-        .messagerie-btn {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
+        .patent-card {
+            background: var(--black);
+            border: 1px solid var(--gray-800);
+            border-radius: 12px;
+            padding: 2rem;
+            cursor: pointer;
             transition: all 0.3s;
         }
-        
-        .messagerie-card.octopus .messagerie-btn {
-            background: linear-gradient(135deg, #8a2be2, #6a1bb2);
-            color: #fff;
-        }
-        .messagerie-card.octopus .messagerie-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
-        }
-        
-        .messagerie-btn.disabled {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--gray-500);
-            cursor: not-allowed;
-        }
-        
-        .coming-soon-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--gray-500);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            letter-spacing: 0.05rem;
-        }
-        
-        /* TUTE Section */
-        .tute-section { padding: 6rem 4rem; background: var(--gray-900); }
-        .tute-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-        .tute-card { background: var(--black); border: 1px solid var(--gray-800); border-radius: 12px; padding: 2.2rem; text-align: center; transition: all 0.3s; }
-        .tute-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .tute-card h3 { font-size: 3rem; color: var(--gold); margin-bottom: 0.5rem; font-weight: 700; }
-        .tute-card p { color: var(--gray-400); font-size: 1rem; }
-        
-        .patents { padding: 6rem 4rem; background: var(--black); }
-        .patents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1400px; margin: 0 auto; }
-        .patent-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 8px; padding: 1.8rem; cursor: pointer; transition: all 0.3s; }
         .patent-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-        .patent-number { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .patent-title { color: var(--white); font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .patent-tagline { color: var(--gray-400); font-size: 1rem; margin-bottom: 1rem; }
-        .patent-claims { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem; font-weight: 600; }
-        .patent-description { color: var(--gray-400); font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+        .patent-card.foundation { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        
+        .patent-number { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .patent-inpi { color: var(--gray-500); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-bottom: 0.8rem; }
+        .patent-title { color: var(--white); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700; }
+        .patent-tagline { color: var(--gray-400); font-size: 1rem; margin-bottom: 1rem; font-style: italic; }
+        .patent-description { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
         .patent-targets { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .target-tag { background: var(--gray-800); color: var(--gray-400); padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.85rem; }
-        .patent-click-hint { color: var(--gold); font-size: 0.95rem; margin-top: 1rem; opacity: 0.7; }
+        .target-tag { background: var(--gray-800); color: var(--gray-400); padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.8rem; }
         
-        .use-cases { padding: 6rem 4rem; background: var(--gray-900); }
+        /* === USE CASES === */
+        .use-cases-section { padding: 6rem 4rem; background: var(--black); }
         .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1200px; margin: 0 auto; }
-        .use-case-card { background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 8px; padding: 2.2rem; transition: border-color 0.3s; }
+        .use-case-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; padding: 2rem; transition: border-color 0.3s; }
         .use-case-card:hover { border-color: var(--gold); }
-        .use-case-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .use-case-title { color: var(--gold); font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .use-case-challenge { color: var(--gray-400); font-size: 1.05rem; margin-bottom: 1rem; }
-        .use-case-solution { color: var(--purple-light); font-size: 1.05rem; }
+        .use-case-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .use-case-title { color: var(--gold); font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .use-case-challenge { color: var(--gray-400); font-size: 1rem; margin-bottom: 0.8rem; }
+        .use-case-solution { color: var(--purple-light); font-size: 0.95rem; }
         
-        .contact { padding: 6rem 4rem; background: var(--black); text-align: center; }
-        .contact-title { font-size: 2.2rem; margin-bottom: 1rem; font-style: italic; }
-        .contact-subtitle { color: var(--gray-400); margin-bottom: 0.5rem; font-size: 1.2rem; }
-        .contact-philosophy { color: var(--gold); font-style: italic; margin-bottom: 2rem; font-size: 1.2rem; }
-        .contact-email { color: var(--gold); font-size: 1.5rem; text-decoration: none; }
+        /* === CONTACT === */
+        .contact-section { padding: 6rem 4rem; background: var(--gray-900); text-align: center; }
+        .contact-title { font-size: 2.2rem; margin-bottom: 1rem; }
+        .contact-title span { color: var(--gold); }
+        .contact-subtitle { color: var(--gray-400); margin-bottom: 2rem; font-size: 1.1rem; }
+        .contact-email { color: var(--gold); font-size: 1.4rem; text-decoration: none; }
         .contact-email:hover { text-decoration: underline; }
         
-        footer { padding: 3rem 2rem; background: var(--gray-900); text-align: center; border-top: 1px solid var(--gray-800); }
+        /* === FOOTER === */
+        footer { padding: 3rem 2rem; background: var(--black); text-align: center; border-top: 1px solid var(--gray-800); }
         .footer-text { color: var(--gray-500); font-size: 0.95rem; }
         
+        /* === MODAL === */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; overflow-y: auto; }
         .modal-content { background: var(--gray-900); max-width: 700px; margin: 5vh auto; padding: 3rem; border-radius: 12px; border: 1px solid var(--gray-700); position: relative; }
         .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--gray-400); cursor: pointer; line-height: 1; }
@@ -288,10 +293,9 @@
             nav { padding: 1rem; flex-direction: column; gap: 1rem; }
             .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
             .hero-title { font-size: 2.8rem; }
+            .hero-tagline { font-size: 1.4rem; }
             .hero { padding: 8rem 1.5rem 3rem; }
             .section-title { font-size: 2rem; }
-            .messageries-section { padding: 4rem 1.5rem; }
-            .patents, .use-cases, .tute-section { padding: 4rem 1.5rem; }
         }
     </style>
 </head>
@@ -299,26 +303,27 @@
     <nav>
         <a href="#" class="nav-logo"><span class="aion">AION</span> ASEMANTIX<span class="tm">™</span></a>
         <div class="nav-links">
-            <a href="#messageries">Messageries</a>
-            <a href="#tute">Technologie</a>
+            <a href="#solutions">Solutions</a>
             <a href="#patents">Brevets</a>
             <a href="#use-cases">Applications</a>
-            <a href="https://github.com/asemantix/asemantic-protocol" target="_blank">GitHub</a>
             <a href="#contact">Contact</a>
             <a href="en.html" class="lang-switch">EN</a>
         </div>
     </nav>
 
+    <!-- === HERO === -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-dots">◉ ◉ ◉</div>
+            <div class="hero-era-tag">🛡️ L'ère de la protection native des données</div>
+            
             <p class="hero-aion">AION</p>
             <h1 class="hero-title">ASEMANTIX<span>™</span></h1>
-            <p class="hero-philosophy">« Vous ne serez plus jamais sans connexion. »</p>
-            <p class="hero-dawn">Découvrez l'internet libéré de ses infrastructures.</p>
+            
+            <p class="hero-tagline">L'ère de la <strong>tranquillité</strong> a démarré.</p>
+            <p class="hero-subtitle">Calcul quantique, menaces cyber, environnements contraints — nous avons la réponse.</p>
             
             <div class="hero-logo-svg">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="140" height="140">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="120" height="120">
                     <circle cx="100" cy="100" r="80" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
                     <circle cx="100" cy="100" r="50" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.8"/>
                     <circle cx="100" cy="100" r="20" fill="#d4af37" opacity="0.9"/>
@@ -326,303 +331,258 @@
                 </svg>
             </div>
             
-            <p class="hero-zero">Zéro métadonnée. Zéro trace. Zéro frontière.</p>
-            <p class="hero-beyond">De la Terre à Mars — et au-delà.</p>
-            
-            <div class="usp-box">
-                <p class="usp-intro">
-                    Une méthode de transmission de données : hors réseau, sans métadonnée, basée sur des fragments auto-porteurs.<br>
-                    <strong>La validation est locale : rien ne transite sur le canal.</strong>
-                </p>
-                <h3 class="usp-title">Trois avantages uniques</h3>
-                <ul class="usp-list">
-                    <li><span>✓</span> <strong>Invisible :</strong> Vos données sont indiscernables du bruit (NIST SP 800-22 : 100% pass)</li>
-                    <li><span>✓</span> <strong>Hors réseau :</strong> Fonctionne sans infrastructure, sur canaux hétérogènes (optique, radio, acoustique)</li>
-                    <li><span>✓</span> <strong>Validation locale :</strong> Aucune sémantique en transit — fragments auto-porteurs</li>
-                </ul>
-                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center;">
-                    <p style="color: var(--gray-400); font-size: 1rem; margin-bottom: 0.5rem;">Proof of Concept validé</p>
-                    <p style="color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 1.05rem;">>20 000 fragments/s | Latence <50µs | NIST SP 800-22 ✓</p>
-                </div>
-                <div style="margin: 1.5rem 0 0; text-align: center;">
-                    <a href="https://github.com/asemantix/asemantic-protocol" target="_blank" style="display: inline-block; background: var(--gold); color: var(--black); padding: 0.9rem 1.8rem; font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 1.05rem;">Essayer le Proof of Concept sur GitHub</a>
-                </div>
+            <div class="hero-threats">
+                <div class="threat-item"><span class="icon">⚛️</span> Calcul quantique <span class="check">✓</span></div>
+                <div class="threat-item"><span class="icon">👁️</span> Surveillance de masse <span class="check">✓</span></div>
+                <div class="threat-item"><span class="icon">🎯</span> Menaces cyber <span class="check">✓</span></div>
+                <div class="threat-item"><span class="icon">📡</span> Environnements contraints <span class="check">✓</span></div>
             </div>
             
+            <p class="hero-promise">Zéro métadonnée. Zéro trace. Zéro frontière.</p>
+            
             <div class="cta-buttons">
-                <a href="#messageries" class="btn-primary">Découvrir nos Messageries</a>
+                <a href="#solutions" class="btn-primary">Découvrir nos Solutions</a>
                 <a href="#contact" class="btn-secondary">Nous Contacter</a>
             </div>
             
-            <div class="hero-footer">
-                <p class="hero-footer-main">Le Premier Protocole Interplanétaire Invisible</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">6</div>
+                    <div class="hero-stat-label">Brevets INPI</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">100%</div>
+                    <div class="hero-stat-label">NIST SP 800-22</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">>20K</div>
+                    <div class="hero-stat-label">Fragments/sec</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">🇫🇷</div>
+                    <div class="hero-stat-label">Souveraineté</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- === SECTION MESSAGERIES === -->
-    <section class="messageries-section" id="messageries">
+    <!-- === SOLUTIONS === -->
+    <section class="solutions-section" id="solutions">
         <div class="section-header">
-            <div class="section-tag">MESSAGERIES</div>
-            <h2 class="section-title">Communication Invisible</h2>
-            <p class="section-subtitle">Trois solutions basées sur le protocole ASEMANTIX pour communiquer en toute discrétion</p>
+            <div class="section-tag">SOLUTIONS APPLICATIVES</div>
+            <h2 class="section-title">5 Brevets, 5 Réponses</h2>
+            <p class="section-subtitle">Chaque brevet applicatif est construit sur ASEMANTIX, le procédé fondateur</p>
         </div>
         
-        <div class="messageries-grid">
+        <div class="solutions-grid">
             <!-- OCTOPUS -->
-            <div class="messagerie-card octopus">
-                <div class="messagerie-icon">
-                    <svg class="octopus-logo-card" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <radialGradient id="bg1" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#b366e8"/><stop offset="100%" stop-color="#4a0080"/></radialGradient>
-                            <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b4dca"/><stop offset="50%" stop-color="#6a1bb2"/><stop offset="100%" stop-color="#3d0066"/></linearGradient>
-                            <filter id="gl1"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                        </defs>
-                        <!-- Tentacules avec rayures -->
-                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="url(#tg1)" stroke-width="22" stroke-linecap="round" filter="url(#gl1)"/>
-                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="#2d0a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="2,15"/>
-                        <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="url(#tg1)" stroke-width="20" stroke-linecap="round" filter="url(#gl1)"/>
-                        <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
-                        <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="url(#tg1)" stroke-width="18" stroke-linecap="round" filter="url(#gl1)"/>
-                        <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
-                        <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
-                        <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380" fill="none" stroke="url(#tg1)" stroke-width="16" stroke-linecap="round" filter="url(#gl1)"/>
-                        <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
-                        <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90" fill="none" stroke="url(#tg1)" stroke-width="14" stroke-linecap="round" filter="url(#gl1)"/>
-                        <!-- Tête -->
-                        <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bg1)" filter="url(#gl1)"/>
-                        <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bg1)"/>
-                        <!-- Yeux -->
-                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                        <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                        <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                        <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
-                        <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
-                    </svg>
-                </div>
-                <h3 class="messagerie-title">OCTOPUS</h3>
-                <p class="messagerie-tagline">Messagerie invisible</p>
-                <p class="messagerie-description">
-                    Communiquez partout dans le monde, même sans connexion Internet. 
-                    Résistant aux ordinateurs quantiques. Zéro métadonnée.
-                </p>
-                <a href="octopus-landing.html" class="messagerie-btn">Découvrir</a>
+            <div class="solution-card octopus">
+                <div class="solution-icon">🐙</div>
+                <h3 class="solution-title">OCTOPUS</h3>
+                <div class="solution-patent">FR2600020</div>
+                <p class="solution-tagline">Messagerie temps réel</p>
+                <p class="solution-description">Segmentation, ACK implicite, audit scellé. Communiquez en temps réel sans métadonnée.</p>
             </div>
             
-            <!-- SESAME -->
-            <div class="messagerie-card sesame">
-                <div class="messagerie-icon">
-                    <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" style="opacity:1;">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        <circle cx="12" cy="16" r="1"/>
-                    </svg>
-                </div>
-                <h3 class="messagerie-title">SÉSAME</h3>
-                <p class="messagerie-tagline">Commande & contrôle sur canal hostile</p>
-                <p class="messagerie-description">
-                    Contrôlez vos dispositifs IoT, drones, SCADA avec des commandes invisibles. 
-                    Filtrage polymorphe : 99% rejetés sans calcul. Économie d'énergie critique.
-                </p>
-                <span class="messagerie-btn disabled">Prochainement</span>
+            <!-- SÉSAME -->
+            <div class="solution-card sesame">
+                <div class="solution-icon">🔐</div>
+                <h3 class="solution-title">SÉSAME</h3>
+                <div class="solution-patent">FR2600010</div>
+                <p class="solution-tagline">IoT & Commande</p>
+                <p class="solution-description">Contrôle de dispositifs sur canal hostile. 99% du bruit filtré sans crypto. Économie d'énergie.</p>
             </div>
             
             <!-- MAILBOX -->
-            <div class="messagerie-card mailbox">
-                <div class="messagerie-icon">
-                    <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.5" style="opacity:1;">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                </div>
-                <h3 class="messagerie-title">MAILBOX</h3>
-                <p class="messagerie-tagline">Boîte aux lettres asémantique</p>
-                <p class="messagerie-description">
-                    Dead drop numérique résistant à la censure. Le serveur ne distingue pas vos messages du bruit.
-                    Idéal pour réseaux intermittents et haute latence.
-                </p>
-                <span class="messagerie-btn disabled">Prochainement</span>
+            <div class="solution-card mailbox">
+                <div class="solution-icon">📬</div>
+                <h3 class="solution-title">MAILBOX</h3>
+                <div class="solution-patent">FR2600019</div>
+                <p class="solution-tagline">Dead drop numérique</p>
+                <p class="solution-description">Boîte aux lettres aveugle résistante à la censure. Le serveur ne distingue rien.</p>
+            </div>
+            
+            <!-- RPAG -->
+            <div class="solution-card rpag">
+                <div class="solution-icon">🌍</div>
+                <h3 class="solution-title">RPAG</h3>
+                <div class="solution-patent">FR2600021</div>
+                <p class="solution-tagline">Mesh autonome</p>
+                <p class="solution-description">Réseau polymorphe sans infrastructure. Radio, optique, acoustique. Terre-Mars ready.</p>
+            </div>
+            
+            <!-- PIP -->
+            <div class="solution-card pip">
+                <div class="solution-icon">🛡️</div>
+                <h3 class="solution-title">PIP</h3>
+                <div class="solution-patent">FR2600070</div>
+                <p class="solution-tagline">Réseau IP invisible</p>
+                <p class="solution-description">Permutation IP polymorphe. Session non observable. Aucun handshake détectable.</p>
             </div>
         </div>
     </section>
 
-    <!-- TUTE Section -->
-    <section class="tute-section" id="tute">
-        <div class="section-header">
-            <div class="section-tag">TECHNOLOGIE SOUS EXCLUSIVITÉ</div>
-            <h2 class="section-title">Innovation Protégée</h2>
-        </div>
-        <div class="tute-grid">
-            <div class="tute-card">
-                <h3>8</h3>
-                <p>Brevets Déposés</p>
-            </div>
-            <div class="tute-card">
-                <h3>139</h3>
-                <p>Revendications Protégées</p>
-            </div>
-            <div class="tute-card">
-                <h3>100%</h3>
-                <p>NIST SP 800-22 Pass</p>
-            </div>
-            <div class="tute-card">
-                <h3>>20K</h3>
-                <p>Fragments / Seconde</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="patents" id="patents">
+    <!-- === BREVETS === -->
+    <section class="patents-section" id="patents">
         <div class="section-header">
             <div class="section-tag">PROPRIÉTÉ INTELLECTUELLE</div>
-            <h2 class="section-title">Portefeuille de Brevets</h2>
-            <p class="section-subtitle">Un écosystème complet protégeant chaque aspect de la communication interplanétaire invisible</p>
+            <h2 class="section-title">Portefeuille de 6 Brevets</h2>
+            <p class="section-subtitle">Protection complète déposée à l'INPI — France 2025-2026</p>
         </div>
         
         <div class="patents-grid">
-            <div class="patent-card" onclick="openModal('asemantix')">
-                <div class="patent-number">01</div>
+            <!-- ASEMANTIX - Fondation -->
+            <div class="patent-card foundation" onclick="openModal('asemantix')">
+                <div class="patent-number">🦎 BREVET FONDATEUR</div>
+                <div class="patent-inpi">FR2516793 — 31 décembre 2025</div>
                 <h3 class="patent-title">ASEMANTIX</h3>
-                <p class="patent-tagline">Protocole de base — Invisible par conception</p>
-                <div class="patent-claims">25 REVENDICATIONS</div>
-                <p class="patent-description">Transport asémantique par fragments auto-porteurs sur canaux bruts hétérogènes. Les fragments passent les tests NIST SP 800-22.</p>
-                <div class="patent-targets"><span class="target-tag">Défense</span><span class="target-tag">Spatial</span><span class="target-tag">Infra Critique</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
+                <p class="patent-tagline">Procédé de validation asémantique</p>
+                <p class="patent-description">Marqueur polymorphe, filtrage 99%, fragments indistinguables du bruit. La fondation de tout.</p>
+                <div class="patent-targets">
+                    <span class="target-tag">Fondation</span>
+                    <span class="target-tag">Post-quantique</span>
+                    <span class="target-tag">Universel</span>
+                </div>
             </div>
             
-            <div class="patent-card" onclick="openModal('orchestrator')">
-                <div class="patent-number">02</div>
-                <h3 class="patent-title">ORCHESTRATOR</h3>
-                <p class="patent-tagline">Transport multi-chemins adaptatif</p>
-                <div class="patent-claims">26 REVENDICATIONS</div>
-                <p class="patent-description">Orchestration adaptative du transport asémantique sur canaux bruts hétérogènes sous contraintes de latence et d'énergie.</p>
-                <div class="patent-targets"><span class="target-tag">Télécom</span><span class="target-tag">5G/6G</span><span class="target-tag">CDN</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
+            <!-- OCTOPUS -->
+            <div class="patent-card" onclick="openModal('octopus')">
+                <div class="patent-number">🐙 BREVET APPLICATIF</div>
+                <div class="patent-inpi">FR2600020 — Janvier 2026</div>
+                <h3 class="patent-title">OCTOPUS</h3>
+                <p class="patent-tagline">Messagerie sécurisée temps réel</p>
+                <p class="patent-description">Segmentation, ACK implicite, audit scellé optionnel. Multi-topologie.</p>
+                <div class="patent-targets">
+                    <span class="target-tag">Entreprise</span>
+                    <span class="target-tag">Défense</span>
+                    <span class="target-tag">Particuliers</span>
+                </div>
             </div>
             
-            <div class="patent-card" onclick="openModal('anchors')">
-                <div class="patent-number">03</div>
-                <h3 class="patent-title">ANCHORS</h3>
-                <p class="patent-tagline">Resynchronisation cryptographique</p>
-                <div class="patent-claims">14 REVENDICATIONS</div>
-                <p class="patent-description">Resynchronisation via ancres cryptographiques courtes après désynchronisation.</p>
-                <div class="patent-targets"><span class="target-tag">IoT</span><span class="target-tag">Satellite</span><span class="target-tag">Sous-marin</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
+            <!-- SÉSAME -->
+            <div class="patent-card" onclick="openModal('sesame')">
+                <div class="patent-number">🔐 BREVET APPLICATIF</div>
+                <div class="patent-inpi">FR2600010 — Janvier 2026</div>
+                <h3 class="patent-title">SÉSAME</h3>
+                <p class="patent-tagline">Commande & contrôle IoT</p>
+                <p class="patent-description">Filtrage polymorphe économe. Hiérarchie de commandes. Anti-rejeu par ancre monotone.</p>
+                <div class="patent-targets">
+                    <span class="target-tag">IoT</span>
+                    <span class="target-tag">SCADA</span>
+                    <span class="target-tag">Drones</span>
+                </div>
             </div>
             
-            <div class="patent-card" onclick="openModal('vch')">
-                <div class="patent-number">04</div>
-                <h3 class="patent-title">VCH</h3>
-                <p class="patent-tagline">Chaîne d'Historique Vérifiable</p>
-                <div class="patent-claims">13 REVENDICATIONS</div>
-                <p class="patent-description">Preuve cryptographique sans consensus distribué. Anti-répudiation sans blockchain.</p>
-                <div class="patent-targets"><span class="target-tag">Juridique</span><span class="target-tag">Audit</span><span class="target-tag">Conformité</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
+            <!-- MAILBOX -->
+            <div class="patent-card" onclick="openModal('mailbox')">
+                <div class="patent-number">📬 BREVET APPLICATIF</div>
+                <div class="patent-inpi">FR2600019 — Janvier 2026</div>
+                <h3 class="patent-title">MAILBOX</h3>
+                <p class="patent-tagline">Boîte aux lettres asémantique</p>
+                <p class="patent-description">Stockage aveugle. Le serveur ne distingue pas vos messages du bruit. Dead drop numérique.</p>
+                <div class="patent-targets">
+                    <span class="target-tag">Censure</span>
+                    <span class="target-tag">Journalisme</span>
+                    <span class="target-tag">Lanceurs d'alerte</span>
+                </div>
             </div>
             
+            <!-- RPAG -->
             <div class="patent-card" onclick="openModal('rpag')">
-                <div class="patent-number">05</div>
+                <div class="patent-number">🌍 BREVET APPLICATIF</div>
+                <div class="patent-inpi">FR2600021 — Janvier 2026</div>
                 <h3 class="patent-title">RPAG</h3>
-                <p class="patent-tagline">Maillage polymorphe</p>
-                <div class="patent-claims">14 REVENDICATIONS</div>
-                <p class="patent-description">Routage maillé polymorphe auto-organisé. Topologie dynamique, dispersion des fragments.</p>
-                <div class="patent-targets"><span class="target-tag">Militaire</span><span class="target-tag">Urgence</span><span class="target-tag">Mesh</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
+                <p class="patent-tagline">Réseau polymorphe autonome global</p>
+                <p class="patent-description">Mesh sans infrastructure. Multi-porteuse (radio, optique, acoustique). Latence extrême supportée.</p>
+                <div class="patent-targets">
+                    <span class="target-tag">Spatial</span>
+                    <span class="target-tag">Tactique</span>
+                    <span class="target-tag">Catastrophes</span>
+                </div>
             </div>
             
-            <div class="patent-card" onclick="openModal('blackbox')">
-                <div class="patent-number">06</div>
-                <h3 class="patent-title">BLACK BOX</h3>
-                <p class="patent-tagline">Conteneurs auto-exécutants</p>
-                <div class="patent-claims">8 REVENDICATIONS</div>
-                <p class="patent-description">Conteneurs de données avec politiques d'accès cryptographiques. Verrou temporel, géographique.</p>
-                <div class="patent-targets"><span class="target-tag">Entreprise</span><span class="target-tag">Héritage</span><span class="target-tag">Secrets</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('sentinel')">
-                <div class="patent-number">07</div>
-                <h3 class="patent-title">SENTINEL</h3>
-                <p class="patent-tagline">Détection d'intrusion</p>
-                <div class="patent-claims">17 REVENDICATIONS</div>
-                <p class="patent-description">Détection et neutralisation sur flux de fragments asémantiques.</p>
-                <div class="patent-targets"><span class="target-tag">Sécurité</span><span class="target-tag">SOC</span><span class="target-tag">SIEM</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
-            </div>
-            
-            <div class="patent-card" onclick="openModal('chronos')">
-                <div class="patent-number">08</div>
-                <h3 class="patent-title">CHRONOS</h3>
-                <p class="patent-tagline">Temps thermodynamique</p>
-                <div class="patent-claims">22 REVENDICATIONS</div>
-                <p class="patent-description">Synchronisation sans horloge via temps thermodynamique τ = E/P. Pas de GPS, pas de NTP.</p>
-                <div class="patent-targets"><span class="target-tag">Spatial</span><span class="target-tag">Quantique</span><span class="target-tag">Grands fonds</span></div>
-                <p class="patent-click-hint">Voir le résumé →</p>
+            <!-- PIP -->
+            <div class="patent-card" onclick="openModal('pip')">
+                <div class="patent-number">🛡️ BREVET APPLICATIF</div>
+                <div class="patent-inpi">FR2600070 — 4 janvier 2026</div>
+                <h3 class="patent-title">PIP</h3>
+                <p class="patent-tagline">Permutation IP polymorphe</p>
+                <p class="patent-description">Chaque paquet = identité différente. Session non observable. Pas de handshake.</p>
+                <div class="patent-targets">
+                    <span class="target-tag">Entreprise</span>
+                    <span class="target-tag">M&A</span>
+                    <span class="target-tag">Trading</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="use-cases" id="use-cases">
+    <!-- === USE CASES === -->
+    <section class="use-cases-section" id="use-cases">
         <div class="section-header">
             <div class="section-tag">APPLICATIONS</div>
             <h2 class="section-title">Là où ASEMANTIX fait la différence</h2>
-            <p class="section-subtitle">Environnements extrêmes où les protocoles traditionnels échouent</p>
+            <p class="section-subtitle">Environnements extrêmes où les solutions traditionnelles échouent</p>
         </div>
         
         <div class="use-cases-grid">
             <div class="use-case-card">
-                <div class="use-case-icon">🌍↔️🔴</div>
-                <h3 class="use-case-title">Espace (Terre-Mars)</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Latence 4-24 min, sans GPS</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + ORCHESTRATOR + CHRONOS</p>
+                <div class="use-case-icon">🎖️</div>
+                <h3 class="use-case-title">Défense & Renseignement</h3>
+                <p class="use-case-challenge"><strong>Défi :</strong> Communications tactiques, brouillage, interception</p>
+                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG + SÉSAME</p>
             </div>
             <div class="use-case-card">
-                <div class="use-case-icon">🌊</div>
-                <h3 class="use-case-title">Sous-marin</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Acoustique uniquement, pertes extrêmes</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + ANCHORS</p>
+                <div class="use-case-icon">🚀</div>
+                <h3 class="use-case-title">Spatial (Terre-Mars)</h3>
+                <p class="use-case-challenge"><strong>Défi :</strong> Latence 4-24 min, sans GPS, sans NTP</p>
+                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG</p>
             </div>
             <div class="use-case-card">
-                <div class="use-case-icon">⚔️</div>
-                <h3 class="use-case-title">Champ de bataille</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Brouillage, interception</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG + SENTINEL</p>
+                <div class="use-case-icon">🏭</div>
+                <h3 class="use-case-title">Industrie & SCADA</h3>
+                <p class="use-case-challenge"><strong>Défi :</strong> IoT contraints, attaques ciblées, batterie</p>
+                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + SÉSAME</p>
             </div>
             <div class="use-case-card">
-                <div class="use-case-icon">🛰️</div>
-                <h3 class="use-case-title">Satellite</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Interception orbitale</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + ORCHESTRATOR</p>
+                <div class="use-case-icon">⚖️</div>
+                <h3 class="use-case-title">Avocats & M&A</h3>
+                <p class="use-case-challenge"><strong>Défi :</strong> Négociations confidentielles, espionnage</p>
+                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + PIP + OCTOPUS</p>
             </div>
             <div class="use-case-card">
-                <div class="use-case-icon">🏦</div>
+                <div class="use-case-icon">📈</div>
                 <h3 class="use-case-title">Finance & Trading</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Front-running, interception</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + VCH + BLACK BOX</p>
+                <p class="use-case-challenge"><strong>Défi :</strong> Front-running, interception d'ordres</p>
+                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + PIP</p>
             </div>
             <div class="use-case-card">
-                <div class="use-case-icon">🏥</div>
-                <h3 class="use-case-title">Santé</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Confidentialité patient, RGPD</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + BLACK BOX + VCH</p>
+                <div class="use-case-icon">📰</div>
+                <h3 class="use-case-title">Journalisme & Lanceurs d'alerte</h3>
+                <p class="use-case-challenge"><strong>Défi :</strong> Protection des sources, censure</p>
+                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + MAILBOX</p>
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
+    <!-- === CONTACT === -->
+    <section class="contact-section" id="contact">
         <div class="section-tag">CONTACT</div>
-        <h2 class="contact-title">« Vous ne serez plus jamais sans connexion. »</h2>
-        <p class="contact-subtitle">AION ASEMANTIX™</p>
-        <p class="contact-philosophy">Découvrez l'internet libéré de ses infrastructures.</p>
-        <a href="/cdn-cgi/l/email-protection#64070b0a100507102405170109050a100d1c4a1001070c" class="contact-email"><span class="__cf_email__" data-cfemail="b3d0dcddc7d2d0c7f3d2c0d6ded2ddc7dacb9dc7d6d0db">[email&#160;protected]</span></a>
+        <h2 class="contact-title">L'ère de la <span>tranquillité</span> vous attend.</h2>
+        <p class="contact-subtitle">AION ASEMANTIX™ — 6 brevets, 1 vision, 0 compromis.</p>
+        <a href="mailto:contact@asemantix.tech" class="contact-email">contact@asemantix.tech</a>
     </section>
 
+    <!-- === FOOTER === -->
     <footer>
-        <p class="footer-text">© 2025 AION ASEMANTIX™ — Tous droits réservés.</p>
+        <p class="footer-text">© 2026 AION ASEMANTIX™ — Tous droits réservés.</p>
         <p class="footer-text" style="margin-top: 0.5rem; color: var(--gold);">De la Terre à Mars — et au-delà.</p>
+        <p class="footer-text" style="margin-top: 1rem; font-size: 0.85rem;">
+            Brevets INPI : FR2516793 • FR2600010 • FR2600019 • FR2600020 • FR2600021 • FR2600070
+        </p>
     </footer>
 
+    <!-- === MODAL === -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -630,28 +590,122 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         const patentDetails = {
-            asemantix: { title: "ASEMANTIX — Protocole de base", claims: 25, abstract: "Procédé de validation exclusivement locale de fragments asémantiques auto-porteurs, avec fenêtre bornée et ancre monotone.", keyPoints: ["Fragments indiscernables du bruit aléatoire (NIST SP 800-22)", "Zéro métadonnée transmise", "Validation locale par égalité stricte sur [t, t+ν]", "Ancre monotone empêchant les attaques par rejeu", "Forward secrecy via évolution KDF de la graine"] },
-            orchestrator: { title: "ORCHESTRATOR — Transport multi-chemins", claims: 26, abstract: "Orchestration adaptative du transport asémantique sous contraintes conjointes de latence et d'énergie.", keyPoints: ["Fenêtres EVOL adaptatives", "Intégration du temps thermodynamique τ(t)", "Dispersion multi-chemins des fragments", "Routage conscient de l'énergie", "Piste d'audit cryptographique"] },
-            anchors: { title: "ANCHORS — Resynchronisation", claims: 14, abstract: "Resynchronisation cryptographique après désynchronisation via ancres courtes.", keyPoints: ["Recherche par bisection logarithmique", "Préservation de la fenêtre monotone", "Forward secrecy maintenu", "Surcharge minimale", "Fonctionne sur canaux à pertes"] },
-            vch: { title: "VCH — Chaîne d'Historique Vérifiable", claims: 13, abstract: "Preuve cryptographique d'historique sans consensus distribué.", keyPoints: ["Construction de chaîne de hachage H_i", "Génération de preuves de Merkle", "Anti-répudiation sans blockchain", "Preuves d'audit compactes", "Horodatage de qualité juridique"] },
-            rpag: { title: "RPAG — Maillage polymorphe", claims: 14, abstract: "Routage maillé polymorphe auto-organisé pour transport asémantique.", keyPoints: ["Adaptation dynamique de la topologie", "Dispersion des fragments sur plusieurs chemins", "Obfuscation des routes", "Résilience à la compromission de nœuds", "Zéro coordination centrale"] },
-            blackbox: { title: "BLACK BOX — Conteneurs auto-exécutants", claims: 8, abstract: "Conteneurs de données avec politiques d'accès liées cryptographiquement.", keyPoints: ["Chiffrement à verrou temporel", "Conditions de verrou géographique", "Liaison biométrique", "Dead-man switch", "Héritage lié aux politiques"] },
-            sentinel: { title: "SENTINEL — Détection d'intrusion", claims: 17, abstract: "Détection et neutralisation d'intrusion sur flux de fragments asémantiques.", keyPoints: ["Détection d'anomalies sur les motifs de fragments", "Isolation automatique des nœuds compromis", "Déploiement de pièges cryptographiques", "Alertes silencieuses", "Préservation des preuves forensiques"] },
-            chronos: { title: "CHRONOS — Temps thermodynamique", claims: 22, abstract: "Synchronisation sans horloge via temps thermodynamique τ = E/P.", keyPoints: ["Aucune dépendance au GPS", "Aucune exigence NTP", "Synchronisation basée sur la physique", "Fonctionne dans l'espace profond", "Timing résistant au quantique"] }
+            asemantix: {
+                title: "ASEMANTIX — Procédé Fondateur",
+                inpi: "FR2516793",
+                date: "31 décembre 2025",
+                abstract: "Procédé de validation de portions utiles asémantiques sur canal hostile, avec marqueur polymorphe et filtrage rapide.",
+                keyPoints: [
+                    "Fragments indiscernables du bruit aléatoire (NIST SP 800-22)",
+                    "Filtrage polymorphe : 99%+ rejetés sans calcul cryptographique",
+                    "Zéro métadonnée transmise",
+                    "Ancre monotone empêchant les attaques par rejeu",
+                    "Forward secrecy via évolution KDF de la graine",
+                    "Applicable à tout canal physique"
+                ]
+            },
+            octopus: {
+                title: "OCTOPUS — Messagerie Temps Réel",
+                inpi: "FR2600020",
+                date: "Janvier 2026",
+                abstract: "Procédé de messagerie sécurisée sur canal hostile avec segmentation et acquittement implicite.",
+                keyPoints: [
+                    "Segmentation de messages de longueur arbitraire",
+                    "ACK implicite via avancement de l'ancre monotone",
+                    "Module d'audit scellé optionnel (mode COMPLIANT)",
+                    "Support point-à-point, groupe et broadcast",
+                    "Deux profils identiques sur le canal (WHISPER, COMPLIANT)"
+                ]
+            },
+            sesame: {
+                title: "SÉSAME — Commande & Contrôle IoT",
+                inpi: "FR2600010",
+                date: "Janvier 2026",
+                abstract: "Procédé de commande et contrôle de dispositifs sur canal hostile avec économie d'énergie.",
+                keyPoints: [
+                    "Filtrage polymorphe : 99%+ rejetés sans calcul",
+                    "Économie d'énergie critique pour IoT/capteurs",
+                    "Hiérarchie de commandes (normal/privilégié/urgence)",
+                    "Anti-rejeu par ancre monotone",
+                    "Mode unidirectionnel ou bidirectionnel",
+                    "Support de groupes de dispositifs"
+                ]
+            },
+            mailbox: {
+                title: "MAILBOX — Boîte aux Lettres Asémantique",
+                inpi: "FR2600019",
+                date: "Janvier 2026",
+                abstract: "Procédé de messagerie asynchrone par boîte aux lettres où le serveur est aveugle.",
+                keyPoints: [
+                    "Stockage aveugle : le serveur ne distingue rien",
+                    "Opérations simples : STORE, LIST, PURGE",
+                    "Filtrage polymorphe local par le destinataire",
+                    "Résistant à la censure et aux dead drops",
+                    "Anonymat intra-groupe optionnel",
+                    "Fonctionne sur réseaux intermittents"
+                ]
+            },
+            rpag: {
+                title: "RPAG — Réseau Polymorphe Autonome Global",
+                inpi: "FR2600021",
+                date: "Janvier 2026",
+                abstract: "Procédé de communication polymorphique autonome sans infrastructure réseau.",
+                keyPoints: [
+                    "Multi-porteuse : radio, optique, acoustique, visuel",
+                    "Aucune horloge ni synchronisation nécessaire",
+                    "Zéro négociation ni signalisation",
+                    "Supporte latences extrêmes (Terre-Mars)",
+                    "Chaque nœud calcule localement",
+                    "Validation par recomputation stricte"
+                ]
+            },
+            pip: {
+                title: "PIP — Permutation IP Polymorphe",
+                inpi: "FR2600070",
+                date: "4 janvier 2026",
+                abstract: "Procédé de communication réseau à session non observable par permutation d'identifiants.",
+                keyPoints: [
+                    "Chaque paquet = tuple (IP, ports) différent",
+                    "Session totalement non observable",
+                    "Aucun handshake détectable",
+                    "Fenêtre glissante tolérante aux pertes",
+                    "Forward secrecy via ratchet cryptographique",
+                    "SDK Python fonctionnel disponible"
+                ]
+            }
         };
         
         function openModal(patentId) {
             const patent = patentDetails[patentId];
             document.getElementById('modal-body').innerHTML = `
-                <h2 style="color: var(--gold); margin-bottom: 1rem; font-size: 1.8rem;">${patent.title}</h2>
-                <p style="color: var(--gold); margin-bottom: 1.5rem; font-size: 1.2rem;">${patent.claims} Revendications</p>
+                <h2 style="color: var(--gold); margin-bottom: 0.5rem; font-size: 1.8rem;">${patent.title}</h2>
+                <p style="color: var(--gray-400); margin-bottom: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 1rem;">${patent.inpi} — ${patent.date}</p>
                 <p style="color: var(--gray-400); margin-bottom: 2rem; font-style: italic; font-size: 1.1rem;">${patent.abstract}</p>
-                <h3 style="color: var(--white); margin-bottom: 1rem; font-size: 1.3rem;">Points clés</h3>
-                <ul style="color: var(--gray-400); padding-left: 1.5rem; font-size: 1.1rem;">
+                <h3 style="color: var(--white); margin-bottom: 1rem; font-size: 1.2rem;">Points clés</h3>
+                <ul style="color: var(--gray-400); padding-left: 1.5rem; font-size: 1rem;">
                     ${patent.keyPoints.map(p => `<li style="margin-bottom: 0.5rem;">${p}</li>`).join('')}
                 </ul>
             `;
             document.getElementById('modal').style.display = 'block';
-            document.body.style.overflow = 'hid
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('modal')) {
+                closeModal();
+            }
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
