@@ -12,11 +12,13 @@
             --void-light: #12121f;
             --purple: #8a2be2;
             --purple-light: #a855f7;
+            --purple-glow: rgba(138, 43, 226, 0.4);
             --gold: #c9a962;
             --white: #f0f0f5;
             --white-dim: #a0a0b0;
             --gray: #6a6a7a;
             --green: #10b981;
+            --red: #ef4444;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -46,12 +48,18 @@
             font-size: 1.3rem;
             font-weight: 600;
         }
-        .back-link {
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .nav-links a {
             color: var(--white-dim);
             text-decoration: none;
             font-size: 0.9rem;
+            transition: color 0.3s;
         }
-        .back-link:hover { color: var(--purple-light); }
+        .nav-links a:hover { color: var(--purple-light); }
         main {
             flex: 1;
             display: flex;
@@ -63,45 +71,70 @@
             background: var(--void-light);
             border: 1px solid rgba(138, 43, 226, 0.2);
             border-radius: 24px;
-            padding: 3rem;
-            max-width: 500px;
+            padding: 2.5rem;
+            max-width: 550px;
             width: 100%;
-            text-align: center;
         }
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            text-align: center;
             margin-bottom: 0.5rem;
         }
         .subtitle {
             color: var(--white-dim);
+            text-align: center;
             margin-bottom: 2rem;
         }
-        .plan-selected {
+        
+        /* Pricing Display */
+        .pricing-display {
             background: rgba(138, 43, 226, 0.1);
             border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 1.5rem;
             margin-bottom: 2rem;
+            text-align: center;
         }
-        .plan-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
+        .pricing-members {
+            font-size: 0.9rem;
             color: var(--purple-light);
             margin-bottom: 0.5rem;
         }
-        .plan-price {
-            font-size: 2rem;
-            font-weight: 600;
+        .pricing-price {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: var(--gold);
         }
-        .plan-price span {
+        .pricing-price .currency {
+            font-size: 1.5rem;
+        }
+        .pricing-price .ttc {
             font-size: 1rem;
             color: var(--gray);
+            font-weight: 400;
         }
+        .pricing-detail {
+            font-size: 0.85rem;
+            color: var(--white-dim);
+            margin-top: 0.5rem;
+        }
+        .pricing-savings {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+        }
+        .hidden { display: none; }
+        
+        /* Form */
         .form-group {
             margin-bottom: 1.5rem;
-            text-align: left;
         }
         .form-group label {
             display: block;
@@ -117,33 +150,82 @@
             border-radius: 10px;
             color: var(--white);
             font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            transition: border-color 0.3s;
         }
         .form-group input:focus {
             outline: none;
             border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
         }
+        .form-group input::placeholder {
+            color: var(--gray);
+        }
+        
+        /* Members List */
         .members-list {
             background: var(--void);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 1rem;
             margin-top: 0.5rem;
         }
         .member-input {
             display: flex;
             gap: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            align-items: center;
+        }
+        .member-input:last-of-type {
+            margin-bottom: 0;
+        }
+        .member-number {
+            width: 32px;
+            height: 32px;
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--purple-light);
+            flex-shrink: 0;
         }
         .member-input input {
             flex: 1;
+            padding: 0.75rem 1rem;
+            background: var(--void-light);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: 'Outfit', sans-serif;
         }
-        .member-input button {
-            background: rgba(239, 68, 68, 0.2);
+        .member-input input:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+        .member-remove {
+            width: 32px;
+            height: 32px;
+            background: rgba(239, 68, 68, 0.1);
             border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #ef4444;
-            padding: 0 1rem;
+            color: var(--red);
             border-radius: 8px;
             cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
         }
+        .member-remove:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+        .member-remove.invisible {
+            visibility: hidden;
+        }
+        
         .add-member {
             width: 100%;
             padding: 0.75rem;
@@ -153,11 +235,27 @@
             color: var(--purple-light);
             cursor: pointer;
             font-size: 0.9rem;
-            margin-top: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+            margin-top: 0.75rem;
+            transition: all 0.3s;
         }
         .add-member:hover {
             background: rgba(138, 43, 226, 0.2);
+            border-color: var(--purple);
         }
+        .add-member:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .members-hint {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.75rem;
+            text-align: center;
+        }
+        
+        /* Checkout Button */
         .btn-checkout {
             width: 100%;
             padding: 1rem 2rem;
@@ -167,14 +265,21 @@
             color: var(--white);
             font-size: 1.1rem;
             font-weight: 600;
+            font-family: 'Outfit', sans-serif;
             cursor: pointer;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             transition: all 0.3s ease;
         }
         .btn-checkout:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
         }
+        .btn-checkout:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
         .secure-note {
             display: flex;
             align-items: center;
@@ -184,6 +289,8 @@
             color: var(--gray);
             font-size: 0.85rem;
         }
+        
+        /* Footer */
         footer {
             padding: 2rem;
             text-align: center;
@@ -195,6 +302,16 @@
             color: var(--purple-light);
             text-decoration: none;
         }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .order-container {
+                padding: 1.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -202,7 +319,10 @@
         <a href="./index.html" class="nav-logo">
             <span>🐙 OCTOPUS</span>
         </a>
-        <a href="./index.html" class="back-link">← Retour</a>
+        <div class="nav-links">
+            <a href="./index.html">← Retour</a>
+            <a href="https://asemantix.tech">ASEMANTIX</a>
+        </div>
     </nav>
 
     <main>
@@ -210,31 +330,38 @@
             <h1>Créer un Cercle</h1>
             <p class="subtitle">Configurez votre cercle de confiance</p>
 
-            <div class="plan-selected" id="planDisplay">
-                <div class="plan-name" id="planName">Cercle 2</div>
-                <div class="plan-price" id="planPrice">200€ <span>TTC</span></div>
+            <div class="pricing-display">
+                <div class="pricing-members" id="pricingMembers">Cercle de 2 membres</div>
+                <div class="pricing-price"><span id="totalPrice">200</span><span class="currency">€</span> <span class="ttc">TTC</span></div>
+                <div class="pricing-detail" id="pricingDetail">100€ par membre • Paiement unique • À vie</div>
+                <div class="pricing-savings hidden" id="pricingSavings"></div>
             </div>
 
             <form id="orderForm">
                 <div class="form-group">
                     <label>Nom du cercle</label>
-                    <input type="text" id="circleName" placeholder="Ex: Famille Martin" required>
+                    <input type="text" id="circleName" placeholder="Ex: Famille Martin, Projet Alpha..." required>
                 </div>
 
                 <div class="form-group">
                     <label>Membres du cercle (emails)</label>
                     <div class="members-list" id="membersList">
-                        <div class="member-input">
-                            <input type="email" placeholder="membre1@email.com" required>
+                        <div class="member-input" data-index="1">
+                            <span class="member-number">#1</span>
+                            <input type="email" placeholder="votre-email@exemple.com" required>
+                            <button type="button" class="member-remove invisible">×</button>
                         </div>
-                        <div class="member-input">
-                            <input type="email" placeholder="membre2@email.com" required>
+                        <div class="member-input" data-index="2">
+                            <span class="member-number">#2</span>
+                            <input type="email" placeholder="membre2@exemple.com" required>
+                            <button type="button" class="member-remove invisible">×</button>
                         </div>
                     </div>
-                    <button type="button" class="add-member" onclick="addMember()">+ Ajouter un membre</button>
+                    <button type="button" class="add-member" id="addMemberBtn" onclick="addMember()">+ Ajouter un membre</button>
+                    <p class="members-hint">Minimum 2 membres • Maximum 20 membres</p>
                 </div>
 
-                <button type="submit" class="btn-checkout">
+                <button type="submit" class="btn-checkout" id="checkoutBtn">
                     Procéder au paiement →
                 </button>
             </form>
@@ -251,52 +378,131 @@
     </footer>
 
     <script>
-        // Récupérer le plan depuis l'URL
-        const params = new URLSearchParams(window.location.search);
-        const plan = params.get('plan') || 'cercle2';
-
-        const plans = {
-            'cercle2': { name: 'Cercle 2', price: '200€', members: 2 },
-            'cercle5': { name: 'Cercle 5', price: '350€', members: 5 },
-            'nouveau-bras': { name: 'Nouveau bras', price: '75€', members: 1 }
-        };
-
-        const selectedPlan = plans[plan] || plans['cercle2'];
-        document.getElementById('planName').textContent = selectedPlan.name;
-        document.getElementById('planPrice').innerHTML = selectedPlan.price + ' <span>TTC</span>';
-
-        // Ajuster le nombre de membres initial
-        const membersList = document.getElementById('membersList');
-        while (membersList.children.length < selectedPlan.members) {
-            addMember();
+        const MIN_MEMBERS = 2;
+        const MAX_MEMBERS = 20;
+        
+        let memberCount = 2;
+        
+        function updatePricing() {
+            const emails = document.querySelectorAll('#membersList .member-input');
+            memberCount = emails.length;
+            
+            // Calcul du prix (dégressif)
+            let totalPrice;
+            let pricePerMember;
+            let savings = 0;
+            
+            if (memberCount <= 2) {
+                totalPrice = 200;
+                pricePerMember = 100;
+            } else if (memberCount <= 5) {
+                pricePerMember = 70;
+                totalPrice = memberCount * pricePerMember;
+                savings = (memberCount * 100) - totalPrice;
+            } else {
+                pricePerMember = 60;
+                totalPrice = memberCount * pricePerMember;
+                savings = (memberCount * 100) - totalPrice;
+            }
+            
+            // Mise à jour UI
+            document.getElementById('pricingMembers').textContent = `Cercle de ${memberCount} membre${memberCount > 1 ? 's' : ''}`;
+            document.getElementById('totalPrice').textContent = totalPrice;
+            document.getElementById('pricingDetail').textContent = `${pricePerMember}€ par membre • Paiement unique • À vie`;
+            
+            // Afficher les économies si applicable
+            const savingsEl = document.getElementById('pricingSavings');
+            if (savings > 0) {
+                savingsEl.textContent = `🎉 Vous économisez ${savings}€ !`;
+                savingsEl.classList.remove('hidden');
+            } else {
+                savingsEl.classList.add('hidden');
+            }
+            
+            // Mettre à jour les numéros et boutons supprimer
+            emails.forEach((el, i) => {
+                el.querySelector('.member-number').textContent = `#${i + 1}`;
+                el.dataset.index = i + 1;
+                
+                const removeBtn = el.querySelector('.member-remove');
+                if (i < MIN_MEMBERS) {
+                    removeBtn.classList.add('invisible');
+                } else {
+                    removeBtn.classList.remove('invisible');
+                }
+            });
+            
+            // Désactiver le bouton ajouter si max atteint
+            document.getElementById('addMemberBtn').disabled = memberCount >= MAX_MEMBERS;
         }
-
+        
         function addMember() {
+            if (memberCount >= MAX_MEMBERS) return;
+            
             const membersList = document.getElementById('membersList');
+            const newIndex = memberCount + 1;
+            
             const div = document.createElement('div');
             div.className = 'member-input';
+            div.dataset.index = newIndex;
             div.innerHTML = `
-                <input type="email" placeholder="membre${membersList.children.length + 1}@email.com" required>
-                <button type="button" onclick="this.parentElement.remove()">×</button>
+                <span class="member-number">#${newIndex}</span>
+                <input type="email" placeholder="membre${newIndex}@exemple.com" required>
+                <button type="button" class="member-remove" onclick="removeMember(this)">×</button>
             `;
             membersList.appendChild(div);
+            
+            div.querySelector('input').focus();
+            updatePricing();
         }
-
+        
+        function removeMember(btn) {
+            if (memberCount <= MIN_MEMBERS) return;
+            btn.closest('.member-input').remove();
+            updatePricing();
+        }
+        
+        // Formulaire
         document.getElementById('orderForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const circleName = document.getElementById('circleName').value;
+            const circleName = document.getElementById('circleName').value.trim();
             const emails = Array.from(document.querySelectorAll('#membersList input'))
-                .map(input => input.value)
+                .map(input => input.value.trim())
                 .filter(email => email);
-
-            // TODO: Intégrer avec votre backend / LemonSqueezy
-            // Pour l'instant, redirection vers LemonSqueezy placeholder
-            alert(`Cercle "${circleName}" avec ${emails.length} membres.\n\nIntégration LemonSqueezy à configurer.`);
             
-            // Exemple de redirection vers LemonSqueezy:
-            // window.location.href = `https://votre-boutique.lemonsqueezy.com/checkout?plan=${plan}&circle=${encodeURIComponent(circleName)}&emails=${encodeURIComponent(emails.join(','))}`;
+            if (!circleName) {
+                alert('Veuillez entrer un nom pour votre cercle.');
+                return;
+            }
+            
+            if (emails.length < MIN_MEMBERS) {
+                alert(`Minimum ${MIN_MEMBERS} membres requis.`);
+                return;
+            }
+            
+            // Vérifier les doublons
+            const uniqueEmails = [...new Set(emails)];
+            if (uniqueEmails.length !== emails.length) {
+                alert('Attention : certains emails sont en double.');
+                return;
+            }
+            
+            // Calculer le prix final
+            let pricePerMember = emails.length <= 2 ? 100 : (emails.length <= 5 ? 70 : 60);
+            let totalPrice = emails.length <= 2 ? 200 : emails.length * pricePerMember;
+            
+            // TODO: Remplacer par l'intégration LemonSqueezy
+            alert(`Cercle "${circleName}" avec ${emails.length} membres.\nTotal: ${totalPrice}€\n\n⚠️ Intégration LemonSqueezy à configurer.`);
+            
+            /*
+            // Exemple d'intégration LemonSqueezy :
+            window.location.href = `https://votre-boutique.lemonsqueezy.com/checkout/buy/xxx?checkout[custom][circle_name]=${encodeURIComponent(circleName)}&checkout[custom][emails]=${encodeURIComponent(emails.join(','))}&checkout[custom][members]=${emails.length}`;
+            */
         });
+        
+        // Initialisation
+        updatePricing();
     </script>
 </body>
 </html>
