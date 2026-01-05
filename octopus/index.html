@@ -1,1 +1,1773 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octopus — Un cercle. Pas un réseau.</title>
+    <meta name="description" content="OCTOPUS - La messagerie des cercles. En transit : de l'encre. À l'écran : le message. Seuls les bras de ta pieuvre peuvent le révéler.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-void: #050208;
+            --abyss: #0a0515;
+            --ink-dark: #120a24;
+            --purple-deep: #4a0080;
+            --purple-glow: #9b4dca;
+            --purple-light: #b366e8;
+            --purple-accent: #bf5fff;
+            --text-primary: #e8e0f0;
+            --text-muted: #9a8fb0;
+            --text-dim: #6b5f80;
+            --gold: #d4af37;
+            --gold-light: #f0d878;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--deep-void);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ink background animation */
+        .ink-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .ink-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        .ink-blob:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .ink-blob:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #2d0a4e 0%, transparent 70%);
+            bottom: 10%;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .ink-blob:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
+            top: 50%;
+            right: 20%;
+            opacity: 0.15;
+            animation-delay: -14s;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -20px) scale(1.05); }
+            50% { transform: translate(-20px, 30px) scale(0.95); }
+            75% { transform: translate(20px, 20px) scale(1.02); }
+        }
+
+        /* Grain overlay */
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--deep-void), transparent);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo span {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-light);
+        }
+
+        .nav-links .student-link {
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-links .student-link:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--purple-glow);
+            color: var(--purple-light);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--purple-deep);
+            box-shadow: 0 0 30px rgba(155, 77, 202, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem 2rem;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 60px rgba(155, 77, 202, 0.4));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--purple-light);
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.7s forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple-glow) 100%);
+            border: none;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(155, 77, 202, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--text-dim);
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--purple-light);
+            color: var(--purple-light);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 1.2s forwards;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--purple-glow), transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Section styling */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 4rem;
+        }
+
+        .section-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--purple-glow);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* How it works */
+        .how-it-works {
+            background: linear-gradient(180deg, transparent 0%, var(--abyss) 50%, transparent 100%);
+        }
+
+        .how-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .flow-step {
+            position: relative;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(74, 0, 128, 0.1) 0%, rgba(10, 5, 21, 0.8) 100%);
+            border: 1px solid rgba(155, 77, 202, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .flow-step:hover {
+            border-color: var(--purple-glow);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(155, 77, 202, 0.15);
+        }
+
+        .flow-step::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            padding: 0.5rem 1rem;
+            background: var(--purple-deep);
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--purple-light);
+        }
+
+        .flow-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            color: var(--purple-light);
+        }
+
+        .flow-step h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .flow-step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Ink reveal animation section */
+        .ink-reveal {
+            text-align: center;
+            padding: 10rem 4rem;
+        }
+
+        .reveal-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .reveal-visual {
+            position: relative;
+            height: 300px;
+            margin: 4rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-transit {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .transit-box {
+            padding: 2rem 3rem;
+            background: rgba(74, 0, 128, 0.2);
+            border: 1px solid var(--purple-deep);
+            position: relative;
+        }
+
+        .transit-box.encrypted {
+            font-family: 'Courier New', monospace;
+            color: var(--purple-glow);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            animation: glitch 3s ease-in-out infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { opacity: 1; }
+            92% { opacity: 0.8; transform: translateX(-2px); }
+            94% { opacity: 0.9; transform: translateX(2px); }
+            96% { opacity: 0.7; transform: translateX(-1px); }
+        }
+
+        .transit-arrow {
+            color: var(--purple-glow);
+            font-size: 2rem;
+            animation: arrowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% { transform: translateX(0); opacity: 0.5; }
+            50% { transform: translateX(10px); opacity: 1; }
+        }
+
+        .transit-box.revealed {
+            background: linear-gradient(135deg, var(--purple-deep) 0%, var(--ink-dark) 100%);
+            border-color: var(--purple-light);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            box-shadow: 0 0 40px rgba(155, 77, 202, 0.3);
+        }
+
+        .transit-label {
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* Features */
+        .features {
+            background: var(--abyss);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--ink-dark) 0%, var(--deep-void) 100%);
+            border: 1px solid rgba(155, 77, 202, 0.1);
+            display: flex;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(155, 77, 202, 0.3);
+            background: linear-gradient(135deg, rgba(74, 0, 128, 0.15) 0%, var(--deep-void) 100%);
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(155, 77, 202, 0.1);
+            color: var(--purple-light);
+        }
+
+        .feature-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .feature-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 8rem 4rem;
+        }
+
+        .pricing-section .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, var(--ink-dark) 0%, var(--deep-void) 100%);
+            border: 1px solid rgba(155, 77, 202, 0.2);
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--purple-glow);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--purple-light);
+            box-shadow: 0 0 60px rgba(155, 77, 202, 0.2);
+        }
+
+        .pricing-card.popular::before {
+            content: 'POPULAIRE';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--purple-glow) 0%, var(--purple-light) 100%);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            padding: 0.4rem 1rem;
+        }
+
+        .pricing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .pricing-users {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--purple-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-dim);
+        }
+
+        .pricing-period {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.6rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(155, 77, 202, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--purple-light);
+            font-weight: bold;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            display: block;
+        }
+
+        /* Student banner */
+        .student-banner {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(74, 0, 128, 0.2) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 2rem 3rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .student-banner-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .student-banner-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .student-banner .btn-gold {
+            background: var(--gold);
+            color: var(--deep-void);
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .student-banner .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        /* Demo section */
+        .demo-section {
+            text-align: center;
+            padding: 6rem 4rem;
+            border-top: 1px solid rgba(155, 77, 202, 0.1);
+            border-bottom: 1px solid rgba(155, 77, 202, 0.1);
+        }
+
+        .demo-box {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(74, 0, 128, 0.15) 0%, var(--ink-dark) 100%);
+            border: 1px solid rgba(155, 77, 202, 0.3);
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-box h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .demo-box p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .demo-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 10rem 4rem;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
+            opacity: 0.3;
+            filter: blur(80px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 4rem;
+            border-top: 1px solid rgba(155, 77, 202, 0.1);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .footer-logo span {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-brand p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .footer-links-grid {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--purple-light);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(155, 77, 202, 0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copy {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--purple-light);
+        }
+
+        /* Student Page Styles */
+        .student-hero {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, var(--deep-void) 100%);
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .student-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #c9a227 100%);
+            color: var(--deep-void);
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .student-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .student-hero h1 .gold {
+            color: var(--gold);
+        }
+
+        .student-hero .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .student-pricing {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .student-price-item {
+            text-align: center;
+        }
+
+        .student-price-item .original {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+
+        .student-price-item .discounted {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .student-price-item .discounted span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .student-price-item .label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .student-verification {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
+        }
+
+        .verification-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, var(--ink-dark) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .verification-box h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .verification-box p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .email-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .email-input-group input {
+            flex: 1;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .email-input-group input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .email-input-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .email-input-group button {
+            padding: 1rem 1.5rem;
+            background: var(--gold);
+            border: none;
+            color: var(--deep-void);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-input-group button:hover {
+            background: var(--gold-light);
+        }
+
+        .verification-note {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .eligible-schools {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .eligible-schools p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .school-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .school-tag {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            color: var(--gold);
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            section {
+                padding: 6rem 2rem;
+            }
+
+            .flow-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .message-transit {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .transit-arrow {
+                transform: rotate(90deg);
+            }
+
+            @keyframes arrowPulse {
+                0%, 100% { transform: rotate(90deg) translateX(0); opacity: 0.5; }
+                50% { transform: rotate(90deg) translateX(10px); opacity: 1; }
+            }
+
+            .student-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links-grid {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-logo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .email-input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background effects -->
+    <div class="ink-bg">
+        <div class="ink-blob"></div>
+        <div class="ink-blob"></div>
+        <div class="ink-blob"></div>
+    </div>
+    <div class="grain"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo" onclick="showPage('main'); return false;">
+            <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="bodyGrad" cx="50%" cy="30%" r="60%">
+                        <stop offset="0%" stop-color="#b366e8"/>
+                        <stop offset="100%" stop-color="#4a0080"/>
+                    </radialGradient>
+                    <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#9b4dca"/>
+                        <stop offset="50%" stop-color="#6a1bb2"/>
+                        <stop offset="100%" stop-color="#3d0066"/>
+                    </linearGradient>
+                </defs>
+                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300" stroke="url(#tentGrad)" stroke-width="22" stroke-linecap="round" fill="none"/>
+                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20" stroke="url(#tentGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
+                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad)"/>
+                <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+            </svg>
+            <span>Octopus</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#how">Principe</a></li>
+            <li><a href="#features">Fonctionnalités</a></li>
+            <li><a href="#pricing">Tarifs</a></li>
+            <li><a href="#" class="student-link" onclick="showPage('student'); return false;">🎓 -50% Étudiants</a></li>
+        </ul>
+        <button class="nav-cta">Créer un cercle</button>
+    </nav>
+
+    <!-- MAIN PAGE -->
+    <div id="main-page" class="page active">
+        <!-- Hero -->
+        <section class="hero">
+            <svg class="hero-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="bodyGradient" cx="50%" cy="30%" r="60%">
+                        <stop offset="0%" style="stop-color:#b366e8"/>
+                        <stop offset="100%" style="stop-color:#4a0080"/>
+                    </radialGradient>
+                    <linearGradient id="tentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#9b4dca"/>
+                        <stop offset="50%" style="stop-color:#6a1bb2"/>
+                        <stop offset="100%" style="stop-color:#3d0066"/>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="url(#tentGradient)" stroke-width="22" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="#2d0a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="2,15"/>
+                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="url(#tentGradient)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
+                <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="url(#tentGradient)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380 C310,400 260,380 240,340" fill="none" stroke="url(#tentGradient)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380 C90,400 140,380 160,340" fill="none" stroke="url(#tentGradient)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80 C390,120 360,150 320,160" fill="none" stroke="url(#tentGradient)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90 C10,130 40,160 80,165" fill="none" stroke="url(#tentGradient)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M220,210 C250,230 280,280 260,320 C240,360 200,370 170,350" fill="none" stroke="url(#tentGradient)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGradient)" filter="url(#glow)"/>
+                <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGradient)"/>
+                <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                <ellipse cx="175" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
+                <ellipse cx="225" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
+                <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
+                <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
+            </svg>
+
+            <p class="hero-tagline">La messagerie des cercles</p>
+            <h1 class="hero-title">Un cercle.<br><span class="highlight">Pas un réseau.</span></h1>
+            <p class="hero-subtitle">En transit : de l'encre. À l'écran : le message.<br>Seuls les bras de ta pieuvre peuvent le révéler.</p>
+            
+            <div class="hero-cta">
+                <a href="./order.html" class="btn-primary">Créer un cercle</a>
+                <a href="#demo" class="btn-secondary">Voir la démo</a>
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Découvrir</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="how-it-works" id="how">
+            <div class="how-content">
+                <p class="section-label">Principe</p>
+                <h2 class="section-title">Comment fonctionne la pieuvre</h2>
+
+                <div class="flow-container">
+                    <div class="flow-step" data-step="01">
+                        <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4l3 3"/>
+                        </svg>
+                        <h3>Tu crées un cercle</h3>
+                        <p>Une pieuvre unique est générée et partagée uniquement entre les bras de ton cercle. Pas de serveur, pas de compte. Juste une pieuvre.</p>
+                    </div>
+
+                    <div class="flow-step" data-step="02">
+                        <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 3v18M3 12h18"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <h3>Tu ajoutes des bras</h3>
+                        <p>Chaque membre devient un bras de la pieuvre. Un bras en plus ? Nouvelle pieuvre envoyée à tout le cercle — tout le monde évolue ensemble.</p>
+                    </div>
+
+                    <div class="flow-step" data-step="03">
+                        <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 4h16v16H4z"/>
+                            <path d="M9 9h6v6H9z"/>
+                        </svg>
+                        <h3>La capsule se révèle</h3>
+                        <p>Ce qui circule ressemble à de l'encre — illisible. Seuls les bras de la même pieuvre peuvent lire les messages, localement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ink reveal visual -->
+        <section class="ink-reveal">
+            <div class="reveal-container">
+                <p class="section-label">Transit</p>
+                <h2 class="section-title">En transit : encre.<br>À l'écran : message.</h2>
+
+                <div class="reveal-visual">
+                    <div class="message-transit">
+                        <div class="transit-box encrypted">
+                            ▓░▒█▓░▒░█▓▒░<br>
+                            ░▒▓█░▓▒░█▒▓░<br>
+                            ▓▒░█▓░▒▓░█▒▓
+                            <span class="transit-label">Ce qui voyage</span>
+                        </div>
+                        <span class="transit-arrow">→</span>
+                        <div class="transit-box revealed">
+                            On se retrouve<br>
+                            à 18h au spot ?
+                            <span class="transit-label">Ce que ton cercle voit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">La messagerie qui n'a rien à lire sur le trajet. Ton message n'existe qu'au bon endroit : chez ton cercle.</p>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features" id="features">
+            <div class="how-content">
+                <p class="section-label">Fonctionnalités</p>
+                <h2 class="section-title">Conçu pour la discrétion</h2>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 12l3 3 5-5"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Cercle fermé</h3>
+                            <p>Tu ne parles qu'à ton cercle. Pas de cercle = pas de message. Aucun contact non désiré.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Encre en transit</h3>
+                            <p>Rien de lisible ne voyage. Ce qui circule entre deux appareils est asémantique — du bruit.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18"/>
+                                <path d="M9 21V9"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Révélation locale</h3>
+                            <p>La capsule se reconstruit uniquement chez le bon bras. Validation par recomputation locale.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12.55a11 11 0 0 1 14 0"/>
+                                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                                <line x1="12" y1="20" x2="12" y2="20"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Internet non obligatoire</h3>
+                            <p>QR, optique, radio, USB… tout devient canal. Octopus fonctionne même hors ligne.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Zéro métadonnées</h3>
+                            <p>Aucune trace de qui parle à qui, quand, ou combien. Les fragments sont polymorphes et anonymes.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Synchronisation auto</h3>
+                            <p>Un bras en plus ? Nouvelle pieuvre envoyée à tout le cercle. Tout le monde reste synchronisé.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo -->
+        <section class="demo-section" id="demo">
+            <p class="section-label">Essayer</p>
+            <h2 class="section-title">Mode Démonstration</h2>
+
+            <div class="demo-box">
+                <div class="demo-badge">✨ GRATUIT — SANS INSCRIPTION</div>
+                <h3>Testez maintenant</h3>
+                <p>Une pieuvre de test est pré-chargée. Ouvrez l'app dans deux onglets pour voir la magie opérer.</p>
+                <div class="demo-info">
+                    💡 <strong>Astuce :</strong> Ouvrez 2 onglets et envoyez-vous des messages !<br>
+                    ⚠️ Mode démo : pieuvre publique partagée par tous les testeurs.
+                </div>
+                <a href="./demo.html" class="btn-primary" style="width: 100%;">🚀 Lancer la Démo</a>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="pricing-section" id="pricing">
+            <div class="how-content" style="text-align: center;">
+                <p class="section-label">Tarifs</p>
+                <h2 class="section-title">Choisissez votre cercle</h2>
+                <p class="section-subtitle">Accès à vie • Vous payez uniquement les nouveaux bras • Pieuvre livrée par email • Satisfait ou remboursé 30 jours</p>
+
+                <div class="pricing-grid">
+                    <!-- Cercle Duo -->
+                    <div class="pricing-card">
+                        <div class="pricing-icon">🐙</div>
+                        <h3 class="pricing-name">Cercle Duo</h3>
+                        <p class="pricing-users">2 bras • à vie</p>
+                        <div class="pricing-price">200€ <span>TTC</span></div>
+                        <p class="pricing-period">Paiement unique</p>
+                        <ul class="pricing-features">
+                            <li>Pieuvre envoyée par email</li>
+                            <li>Messages illimités</li>
+                            <li>Zéro métadonnée</li>
+                            <li>Renouvellement gratuit (perte/vol)</li>
+                        </ul>
+                        <a href="./order.html?plan=cercle2" class="btn-primary pricing-btn">Choisir</a>
+                    </div>
+
+                    <!-- Cercle 5 -->
+                    <div class="pricing-card popular">
+                        <div class="pricing-icon">👨‍👩‍👧‍👦</div>
+                        <h3 class="pricing-name">Cercle 5</h3>
+                        <p class="pricing-users">5 bras • à vie</p>
+                        <div class="pricing-price">350€ <span>TTC</span></div>
+                        <p class="pricing-period">Pack avantage • 70€/bras</p>
+                        <ul class="pricing-features">
+                            <li>Pieuvre envoyée par email</li>
+                            <li>Messages illimités</li>
+                            <li>Ajout de bras possible</li>
+                            <li>Renouvellement gratuit (perte/vol)</li>
+                        </ul>
+                        <a href="./order.html?plan=cercle5" class="btn-primary pricing-btn">Choisir</a>
+                    </div>
+
+                    <!-- Nouvel entrant -->
+                    <div class="pricing-card">
+                        <div class="pricing-icon">➕</div>
+                        <h3 class="pricing-name">Nouveau bras</h3>
+                        <p class="pricing-users">+1 bras • à vie</p>
+                        <div class="pricing-price">75€ <span>TTC</span></div>
+                        <p class="pricing-period">Pour agrandir le cercle</p>
+                        <ul class="pricing-features">
+                            <li>Ajoute 1 bras au cercle</li>
+                            <li>Nouvelle pieuvre pour tous</li>
+                            <li>Les anciens bras ne repayent pas</li>
+                            <li>Support email</li>
+                        </ul>
+                        <a href="./order.html?plan=nouveau-bras" class="btn-primary pricing-btn">Ajouter</a>
+                    </div>
+                </div>
+
+                <!-- Student banner -->
+                <div class="student-banner">
+                    <div class="student-banner-content">
+                        <h3>🎓 Tu es étudiant ?</h3>
+                        <p>Bénéficie de <strong>-50%</strong> sur tous les cercles avec ton email universitaire.</p>
+                    </div>
+                    <a href="#" class="btn-gold" onclick="showPage('student'); return false;">Voir l'offre étudiants</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Prêt à créer<br>ton cercle ?</h2>
+                <p class="cta-subtitle">Rejoins un cercle de confiance. Internet non obligatoire. Discrétion obligatoire.</p>
+                <a href="./order.html" class="btn-primary">Créer un cercle</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- STUDENT PAGE -->
+    <div id="student-page" class="page">
+        <section class="student-hero">
+            <div class="student-badge">🎓 OFFRE ÉTUDIANTS • -50%</div>
+            <h1>Ton cercle,<br><span class="gold">moitié prix.</span></h1>
+            <p class="subtitle">Parce que la confidentialité n'a pas à attendre la fin des études. Vérifie ton statut avec ton email universitaire.</p>
+
+            <div class="student-pricing">
+                <div class="student-price-item">
+                    <div class="original">200€</div>
+                    <div class="discounted">100€ <span>TTC</span></div>
+                    <div class="label">Cercle Duo</div>
+                </div>
+                <div class="student-price-item">
+                    <div class="original">350€</div>
+                    <div class="discounted">175€ <span>TTC</span></div>
+                    <div class="label">Cercle 5</div>
+                </div>
+                <div class="student-price-item">
+                    <div class="original">75€</div>
+                    <div class="discounted">37€ <span>TTC</span></div>
+                    <div class="label">Nouveau bras</div>
+                </div>
+            </div>
+
+            <a href="#student-verify" class="btn-primary">Vérifier mon statut</a>
+        </section>
+
+        <section class="student-verification" id="student-verify">
+            <div class="verification-box">
+                <h3>Vérifie ton statut étudiant</h3>
+                <p>Entre ton adresse email universitaire. Nous t'enverrons un lien de vérification.</p>
+                
+                <div class="email-input-group">
+                    <input type="email" placeholder="prenom.nom@universite.fr" id="student-email">
+                    <button onclick="verifyStudent()">Vérifier</button>
+                </div>
+                
+                <p class="verification-note">Tu recevras un email de confirmation sous 2 minutes.</p>
+
+                <div class="eligible-schools">
+                    <p>Domaines éligibles :</p>
+                    <div class="school-tags">
+                        <span class="school-tag">.edu</span>
+                        <span class="school-tag">.ac.fr</span>
+                        <span class="school-tag">.univ-*.fr</span>
+                        <span class="school-tag">.ens.fr</span>
+                        <span class="school-tag">.insa-*.fr</span>
+                        <span class="school-tag">.polytechnique.edu</span>
+                        <span class="school-tag">.hec.edu</span>
+                        <span class="school-tag">.sciencespo.fr</span>
+                        <span class="school-tag">+ 500 écoles</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Features -->
+        <section class="features" style="padding-top: 4rem;">
+            <div class="how-content">
+                <p class="section-label" style="text-align: center;">Pourquoi Octopus pour les étudiants ?</p>
+                <h2 class="section-title" style="text-align: center;">Ton cercle, tes règles</h2>
+
+                <div class="features-grid" style="margin-top: 3rem;">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Colocs & promos</h3>
+                            <p>Créez un cercle avec vos colocs, votre groupe de projet ou votre promo. Messages privés garantis.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Révisions confidentielles</h3>
+                            <p>Partagez vos notes et fiches sans qu'elles se retrouvent sur les réseaux. Votre travail reste dans le cercle.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Discussions libres</h3>
+                            <p>Parlez de tout sans vous soucier de qui pourrait voir. Aucune métadonnée, aucun historique serveur.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Accès à vie</h3>
+                            <p>Tu paies une fois, tu gardes ton cercle pour toujours. Même après ton diplôme.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to main -->
+        <section style="text-align: center; padding: 4rem 2rem;">
+            <a href="#" onclick="showPage('main'); return false;" class="btn-secondary">← Retour à l'accueil</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="footerBodyGrad" cx="50%" cy="30%" r="60%">
+                                <stop offset="0%" stop-color="#b366e8"/>
+                                <stop offset="100%" stop-color="#4a0080"/>
+                            </radialGradient>
+                        </defs>
+                        <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#footerBodyGrad)"/>
+                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                        <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                        <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                    </svg>
+                    <span>Octopus</span>
+                </div>
+                <p>La messagerie des cercles. Un cercle. Pas un réseau. En transit : de l'encre. À l'écran : le message.</p>
+            </div>
+
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4>Produit</h4>
+                    <ul>
+                        <li><a href="#how">Comment ça marche</a></li>
+                        <li><a href="#features">Fonctionnalités</a></li>
+                        <li><a href="#pricing">Tarifs</a></li>
+                        <li><a href="#demo">Démo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="https://asemantix.tech" target="_blank">AION ASEMANTIX</a></li>
+                        <li><a href="#">Brevets</a></li>
+                        <li><a href="#">Presse</a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#5f3c30312b3e3c2b1f3e2c3a323e312b3627712b3a3c37">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#91e2e4e1e1fee3e5d1f0e2f4fcf0ffe5f8e9bfe5f4f2f9">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 AION ASEMANTIX™ — Tous droits réservés. Brevet FR2600020.</p>
+            <div class="footer-legal">
+                <a href="#">Mentions légales</a>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">CGV</a>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showPage(page) {
+            document.getElementById('main-page').classList.remove('active');
+            document.getElementById('student-page').classList.remove('active');
+            
+            if (page === 'student') {
+                document.getElementById('student-page').classList.add('active');
+            } else {
+                document.getElementById('main-page').classList.add('active');
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function verifyStudent() {
+            const email = document.getElementById('student-email').value;
+            if (!email) {
+                alert('Veuillez entrer votre email universitaire.');
+                return;
+            }
+            
+            // Check for valid student domain patterns
+            const studentDomains = ['.edu', '.ac.fr', '.univ-', '.ens.', '.insa-', '.polytechnique.', '.hec.', '.sciencespo.', '.epfl.', '.ethz.'];
+            const isStudent = studentDomains.some(domain => email.toLowerCase().includes(domain));
+            
+            if (isStudent) {
+                alert('✅ Email universitaire détecté !\n\nUn lien de vérification va être envoyé à ' + email + '\n\nVérifie ta boîte mail (et les spams) dans les prochaines minutes.');
+            } else {
+                alert('⚠️ Ce domaine ne semble pas être un domaine universita
