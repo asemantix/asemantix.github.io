@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Octopus — Un cercle. Pas un réseau.</title>
-    <meta name="description" content="OCTOPUS - La messagerie des cercles. En transit : de l'encre. À l'écran : le message. Seuls les bras de ta pieuvre peuvent le révéler.">
+    <meta name="description" content="OCTOPUS - La messagerie des cercles. Partagez la même pieuvre et ne vous quittez plus. Famille, amis, équipe — restez connectés avec ou sans internet.">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon.svg">
+    <link rel="apple-touch-icon" href="./favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -106,7 +109,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 99;
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
@@ -117,12 +120,17 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            z-index: 1000;
             padding: 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: linear-gradient(to bottom, var(--deep-void), transparent);
+            pointer-events: auto;
+        }
+        
+        nav * {
+            pointer-events: auto;
         }
 
         .nav-logo {
@@ -159,6 +167,7 @@
             font-weight: 400;
             letter-spacing: 0.05em;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -188,6 +197,9 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
         }
 
         .nav-cta:hover {
@@ -1237,8 +1249,9 @@
             <li><a href="#features">Fonctionnalités</a></li>
             <li><a href="#pricing">Tarifs</a></li>
             <li><a href="#" class="student-link" onclick="showPage('student'); return false;">🎓 -50% Étudiants</a></li>
+            <li><a href="https://asemantix.tech" class="asemantix-link">ASEMANTIX</a></li>
         </ul>
-        <button class="nav-cta">Créer un cercle</button>
+        <a href="./order.html" class="nav-cta">Créer un cercle</a>
     </nav>
 
     <!-- MAIN PAGE -->
@@ -1288,7 +1301,7 @@
 
             <p class="hero-tagline">La messagerie des cercles</p>
             <h1 class="hero-title">Un cercle.<br><span class="highlight">Pas un réseau.</span></h1>
-            <p class="hero-subtitle">En transit : de l'encre. À l'écran : le message.<br>Seuls les bras de ta pieuvre peuvent le révéler.</p>
+            <p class="hero-subtitle">Partagez la même pieuvre. Ne vous quittez plus.<br>Quelle que soit la distance — avec ou sans internet.</p>
             
             <div class="hero-cta">
                 <a href="./order.html" class="btn-primary">Créer un cercle</a>
@@ -1313,8 +1326,8 @@
                             <circle cx="12" cy="12" r="10"/>
                             <path d="M12 8v4l3 3"/>
                         </svg>
-                        <h3>Tu crées un cercle</h3>
-                        <p>Une pieuvre unique est générée et partagée uniquement entre les bras de ton cercle. Pas de serveur, pas de compte. Juste une pieuvre.</p>
+                        <h3>Tu crées ton cercle</h3>
+                        <p>Famille, amis proches, équipe... Une pieuvre unique est créée pour vous. Pas de compte, pas de mot de passe. Juste votre cercle de confiance.</p>
                     </div>
 
                     <div class="flow-step" data-step="02">
@@ -1322,8 +1335,8 @@
                             <path d="M12 3v18M3 12h18"/>
                             <circle cx="12" cy="12" r="3"/>
                         </svg>
-                        <h3>Tu ajoutes des bras</h3>
-                        <p>Chaque membre devient un bras de la pieuvre. Un bras en plus ? Nouvelle pieuvre envoyée à tout le cercle — tout le monde évolue ensemble.</p>
+                        <h3>Chacun reçoit sa pieuvre</h3>
+                        <p>Chaque membre devient un bras. Vous partagez la même pieuvre — le même secret. Un nouveau membre ? Tout le cercle évolue ensemble.</p>
                     </div>
 
                     <div class="flow-step" data-step="03">
@@ -1331,8 +1344,8 @@
                             <path d="M4 4h16v16H4z"/>
                             <path d="M9 9h6v6H9z"/>
                         </svg>
-                        <h3>La capsule se révèle</h3>
-                        <p>Ce qui circule ressemble à de l'encre — illisible. Seuls les bras de la même pieuvre peuvent lire les messages, localement.</p>
+                        <h3>Restez connectés, toujours</h3>
+                        <p>Internet, Bluetooth, QR code, clé USB... Peu importe le canal. Vos messages restent illisibles pour le reste du monde — sauf pour votre cercle.</p>
                     </div>
                 </div>
             </div>
@@ -1341,8 +1354,8 @@
         <!-- Ink reveal visual -->
         <section class="ink-reveal">
             <div class="reveal-container">
-                <p class="section-label">Transit</p>
-                <h2 class="section-title">En transit : encre.<br>À l'écran : message.</h2>
+                <p class="section-label">Comment ça marche</p>
+                <h2 class="section-title">Ce qui voyage reste privé.<br>Ce qui arrive est clair.</h2>
 
                 <div class="reveal-visual">
                     <div class="message-transit">
@@ -1350,18 +1363,18 @@
                             ▓░▒█▓░▒░█▓▒░<br>
                             ░▒▓█░▓▒░█▒▓░<br>
                             ▓▒░█▓░▒▓░█▒▓
-                            <span class="transit-label">Ce qui voyage</span>
+                            <span class="transit-label">Sur le réseau</span>
                         </div>
                         <span class="transit-arrow">→</span>
                         <div class="transit-box revealed">
                             On se retrouve<br>
                             à 18h au spot ?
-                            <span class="transit-label">Ce que ton cercle voit</span>
+                            <span class="transit-label">Chez ton cercle</span>
                         </div>
                     </div>
                 </div>
 
-                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">La messagerie qui n'a rien à lire sur le trajet. Ton message n'existe qu'au bon endroit : chez ton cercle.</p>
+                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">Vos messages ne sont lisibles que par votre cercle. Personne d'autre — ni nous, ni les réseaux, ni personne.</p>
             </div>
         </section>
 
@@ -1369,7 +1382,7 @@
         <section class="features" id="features">
             <div class="how-content">
                 <p class="section-label">Fonctionnalités</p>
-                <h2 class="section-title">Conçu pour la discrétion</h2>
+                <h2 class="section-title">Conçu pour rester connectés</h2>
 
                 <div class="features-grid">
                     <div class="feature-card">
@@ -1380,8 +1393,8 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Cercle fermé</h3>
-                            <p>Tu ne parles qu'à ton cercle. Pas de cercle = pas de message. Aucun contact non désiré.</p>
+                            <h3>Votre cercle, votre monde</h3>
+                            <p>Famille, amis, équipe... Vous ne parlez qu'à ceux qui comptent. Un espace privé, rien que pour vous.</p>
                         </div>
                     </div>
 
@@ -1394,8 +1407,8 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Encre en transit</h3>
-                            <p>Rien de lisible ne voyage. Ce qui circule entre deux appareils est asémantique — du bruit.</p>
+                            <h3>Multi-canal</h3>
+                            <p>Internet, Bluetooth, QR code, clé USB, radio... Quel que soit le chemin, vos messages passent.</p>
                         </div>
                     </div>
 
@@ -1408,8 +1421,8 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Révélation locale</h3>
-                            <p>La capsule se reconstruit uniquement chez le bon bras. Validation par recomputation locale.</p>
+                            <h3>Privé par nature</h3>
+                            <p>Pas de compte, pas de serveur qui stocke. Vos messages n'existent que chez vous et votre cercle.</p>
                         </div>
                     </div>
 
@@ -1423,8 +1436,8 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Internet non obligatoire</h3>
-                            <p>QR, optique, radio, USB… tout devient canal. Octopus fonctionne même hors ligne.</p>
+                            <h3>Fonctionne sans internet</h3>
+                            <p>En zone blanche, en voyage, en panne de réseau... Vos messages passent quand même. Par QR, Bluetooth ou USB.</p>
                         </div>
                     </div>
 
@@ -1435,8 +1448,8 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Zéro métadonnées</h3>
-                            <p>Aucune trace de qui parle à qui, quand, ou combien. Les fragments sont polymorphes et anonymes.</p>
+                            <h3>Vraiment privé</h3>
+                            <p>Personne ne sait qui parle à qui, ni quand. Pas de traces, pas d'historique côté serveur. Vos échanges restent les vôtres.</p>
                         </div>
                     </div>
 
@@ -1450,8 +1463,8 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Synchronisation auto</h3>
-                            <p>Un bras en plus ? Nouvelle pieuvre envoyée à tout le cercle. Tout le monde reste synchronisé.</p>
+                            <h3>Le cercle évolue ensemble</h3>
+                            <p>Un nouveau membre ? Tout le monde reçoit la mise à jour automatiquement. Votre cercle grandit naturellement.</p>
                         </div>
                     </div>
                 </div>
@@ -1504,8 +1517,8 @@
                         <div class="pricing-icon">👨‍👩‍👧‍👦</div>
                         <h3 class="pricing-name">Cercle 5</h3>
                         <p class="pricing-users">5 bras • à vie</p>
-                        <div class="pricing-price">350€ <span>TTC</span></div>
-                        <p class="pricing-period">Pack avantage • 70€/bras</p>
+                        <div class="pricing-price">425€ <span>TTC</span></div>
+                        <p class="pricing-period">Pack avantage • 85€/bras</p>
                         <ul class="pricing-features">
                             <li>Pieuvre envoyée par email</li>
                             <li>Messages illimités</li>
@@ -1547,7 +1560,7 @@
         <section class="cta-section">
             <div class="cta-content">
                 <h2 class="cta-title">Prêt à créer<br>ton cercle ?</h2>
-                <p class="cta-subtitle">Rejoins un cercle de confiance. Internet non obligatoire. Discrétion obligatoire.</p>
+                <p class="cta-subtitle">Famille, amis, équipe... Créez votre espace privé et restez connectés, toujours.</p>
                 <a href="./order.html" class="btn-primary">Créer un cercle</a>
             </div>
         </section>
