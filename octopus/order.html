@@ -1,1 +1,302 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Cercle | OCTOPUS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #0a0a12;
+            --void-light: #12121f;
+            --purple: #8a2be2;
+            --purple-light: #a855f7;
+            --gold: #c9a962;
+            --white: #f0f0f5;
+            --white-dim: #a0a0b0;
+            --gray: #6a6a7a;
+            --green: #10b981;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--void);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        nav {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--white);
+        }
+        .nav-logo span {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .back-link {
+            color: var(--white-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { color: var(--purple-light); }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .order-container {
+            background: var(--void-light);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: var(--white-dim);
+            margin-bottom: 2rem;
+        }
+        .plan-selected {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .plan-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--purple-light);
+            margin-bottom: 0.5rem;
+        }
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--white-dim);
+            font-size: 0.9rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--void);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 1rem;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--purple);
+        }
+        .members-list {
+            background: var(--void);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+        .member-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .member-input input {
+            flex: 1;
+        }
+        .member-input button {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 0 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .add-member {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px dashed rgba(138, 43, 226, 0.3);
+            border-radius: 8px;
+            color: var(--purple-light);
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .add-member:hover {
+            background: rgba(138, 43, 226, 0.2);
+        }
+        .btn-checkout {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--purple) 0%, #6b21a8 100%);
+            border: none;
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+        }
+        .secure-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        footer a {
+            color: var(--purple-light);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./index.html" class="nav-logo">
+            <span>🐙 OCTOPUS</span>
+        </a>
+        <a href="./index.html" class="back-link">← Retour</a>
+    </nav>
+
+    <main>
+        <div class="order-container">
+            <h1>Créer un Cercle</h1>
+            <p class="subtitle">Configurez votre cercle de confiance</p>
+
+            <div class="plan-selected" id="planDisplay">
+                <div class="plan-name" id="planName">Cercle 2</div>
+                <div class="plan-price" id="planPrice">200€ <span>TTC</span></div>
+            </div>
+
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Nom du cercle</label>
+                    <input type="text" id="circleName" placeholder="Ex: Famille Martin" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Membres du cercle (emails)</label>
+                    <div class="members-list" id="membersList">
+                        <div class="member-input">
+                            <input type="email" placeholder="membre1@email.com" required>
+                        </div>
+                        <div class="member-input">
+                            <input type="email" placeholder="membre2@email.com" required>
+                        </div>
+                    </div>
+                    <button type="button" class="add-member" onclick="addMember()">+ Ajouter un membre</button>
+                </div>
+
+                <button type="submit" class="btn-checkout">
+                    Procéder au paiement →
+                </button>
+            </form>
+
+            <div class="secure-note">
+                <span>🔒</span>
+                <span>Paiement sécurisé par LemonSqueezy</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>OCTOPUS par <a href="https://asemantix.tech">ASEMANTIX™</a></p>
+    </footer>
+
+    <script>
+        // Récupérer le plan depuis l'URL
+        const params = new URLSearchParams(window.location.search);
+        const plan = params.get('plan') || 'cercle2';
+
+        const plans = {
+            'cercle2': { name: 'Cercle 2', price: '200€', members: 2 },
+            'cercle5': { name: 'Cercle 5', price: '350€', members: 5 },
+            'nouveau-bras': { name: 'Nouveau bras', price: '75€', members: 1 }
+        };
+
+        const selectedPlan = plans[plan] || plans['cercle2'];
+        document.getElementById('planName').textContent = selectedPlan.name;
+        document.getElementById('planPrice').innerHTML = selectedPlan.price + ' <span>TTC</span>';
+
+        // Ajuster le nombre de membres initial
+        const membersList = document.getElementById('membersList');
+        while (membersList.children.length < selectedPlan.members) {
+            addMember();
+        }
+
+        function addMember() {
+            const membersList = document.getElementById('membersList');
+            const div = document.createElement('div');
+            div.className = 'member-input';
+            div.innerHTML = `
+                <input type="email" placeholder="membre${membersList.children.length + 1}@email.com" required>
+                <button type="button" onclick="this.parentElement.remove()">×</button>
+            `;
+            membersList.appendChild(div);
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const circleName = document.getElementById('circleName').value;
+            const emails = Array.from(document.querySelectorAll('#membersList input'))
+                .map(input => input.value)
+                .filter(email => email);
+
+            // TODO: Intégrer avec votre backend / LemonSqueezy
+            // Pour l'instant, redirection vers LemonSqueezy placeholder
+            alert(`Cercle "${circleName}" avec ${emails.length} membres.\n\nIntégration LemonSqueezy à configurer.`);
+            
+            // Exemple de redirection vers LemonSqueezy:
+            // window.location.href = `https://votre-boutique.lemonsqueezy.com/checkout?plan=${plan}&circle=${encodeURIComponent(circleName)}&emails=${encodeURIComponent(emails.join(','))}`;
+        });
+    </script>
+</body>
+</html>
