@@ -1,253 +1,691 @@
 
+  
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AION ASEMANTIX™ | L'ère de la tranquillité a démarré</title>
-    <meta name="description" content="AION ASEMANTIX - L'ère de la protection native des données a commencé. Calcul quantique, menaces cyber, environnements contraints : 6 brevets pour une tranquillité totale.">
-    <meta name="keywords" content="AION, ASEMANTIX, protocole asémantique, communication invisible, post-quantique, cryptographie, zéro métadonnée, brevets, cybersécurité">
+    <meta name="description" content="AION ASEMANTIX - L'ère de la protection native des données a commencé. 6 brevets fondateurs pour une sécurité post-quantique.">
     
     <!-- Open Graph -->
     <meta property="og:title" content="AION ASEMANTIX™ | L'ère de la tranquillité a démarré">
-    <meta property="og:description" content="Calcul quantique, menaces cyber, environnements contraints : l'ère de la protection native des données a commencé.">
+    <meta property="og:description" content="6 brevets fondateurs pour une sécurité post-quantique. Zéro métadonnée, multi-canal, de la Terre à Mars.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://asemantix.io">
+    <meta property="og:url" content="https://asemantix.tech">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --black: #0a0a0a;
-            --white: #ffffff;
-            --gold: #d4af37;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
+            --black: #08080a;
+            --black-light: #0d0d10;
+            --white: #f8f8f8;
+            --white-dim: #c8c8c8;
+            --gold: #c9a962;
+            --gold-light: #e0c88a;
+            --gold-dark: #8a7340;
+            --gray-100: #e8e8e8;
+            --gray-300: #a0a0a0;
+            --gray-500: #606060;
+            --gray-700: #2a2a2e;
+            --gray-800: #1a1a1e;
+            --gray-900: #101014;
             --purple: #8a2be2;
             --purple-light: #a855f7;
-            --teal: #0891b2;
-            --green: #10b981;
-            --blue: #3b82f6;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--black);
             color: var(--white);
-            line-height: 1.7;
-            font-size: 17px;
-        }
-        
-        /* === NAVIGATION === */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-800);
-            padding: 1.2rem 2.5rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        
-        .nav-logo { font-size: 1.6rem; font-weight: 700; color: var(--white); text-decoration: none; }
-        .nav-logo .aion { color: var(--gold); font-size: 1rem; font-weight: 600; letter-spacing: 0.15rem; margin-right: 0.5rem; }
-        .nav-logo .tm { color: var(--gold); }
-        
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 1rem; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
-        
-        .lang-switch {
-            background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; text-decoration: none;
-        }
-        .lang-switch:hover { background: var(--gold); color: var(--black); }
-        
-        /* === HERO === */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 7rem 2rem 4rem;
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, var(--black) 70%);
-        }
-        
-        .hero-content { max-width: 950px; }
-        .hero-era-tag {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            color: var(--gold);
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            letter-spacing: 0.1rem;
-            margin-bottom: 2rem;
-        }
-        .hero-aion { font-size: 1.2rem; font-weight: 600; color: var(--gold); letter-spacing: 0.5rem; margin-bottom: 0.5rem; }
-        .hero-title { font-size: 4.5rem; font-weight: 700; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.2rem; }
-        .hero-title span { color: var(--gold); }
-        
-        .hero-tagline {
-            font-size: 2rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
+            line-height: 1.8;
+            font-size: 16px;
             font-weight: 300;
         }
-        .hero-tagline strong { color: var(--gold); font-weight: 600; }
-        
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--gray-400);
-            margin-bottom: 2.5rem;
-            font-style: italic;
+
+        ::selection {
+            background: var(--gold);
+            color: var(--black);
         }
-        
-        .hero-logo-svg { margin: 2rem auto; animation: logoPulse 4s ease-in-out infinite; }
-        @keyframes logoPulse { 0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); } 50% { opacity: 1; filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7)); } }
-        
-        .hero-threats {
+
+        .serif {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            transform: translateY(0);
+            background: rgba(8, 8, 10, 0.98);
+            backdrop-filter: blur(20px);
         }
-        .threat-item {
+
+        nav.scrolled {
+            padding: 0.8rem 4rem;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.1);
+        }
+
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .nav-logo .aion {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+        }
+
+        .nav-logo .asemantix {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 0.15em;
+        }
+
+        .nav-links {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--gray-400);
-            font-size: 1.1rem;
+            gap: 2.5rem;
         }
-        .threat-item .icon { font-size: 1.5rem; }
-        .threat-item .check { color: var(--gold); font-weight: bold; }
-        
-        .hero-promise {
-            font-size: 1.5rem;
+
+        .nav-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.octopus-link {
+            color: var(--purple-light);
+        }
+
+        .nav-links a.octopus-link:hover {
+            color: #c084fc;
+        }
+
+        .nav-links a.octopus-link::after {
+            background: var(--purple-light);
+        }
+
+        .lang-switch {
             color: var(--gold);
-            margin-bottom: 2.5rem;
+            text-decoration: none;
+            font-size: 0.8rem;
             font-weight: 500;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            transition: all 0.3s ease;
         }
-        
-        .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
-        .btn-primary { background: var(--gold); color: var(--black); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; transition: all 0.3s; }
-        .btn-primary:hover { background: #e5c349; transform: translateY(-2px); }
-        .btn-secondary { background: transparent; color: var(--gold); padding: 1.1rem 2.2rem; text-decoration: none; font-weight: 600; font-size: 1.05rem; border-radius: 4px; border: 1px solid var(--gold); transition: all 0.3s; }
-        .btn-secondary:hover { background: var(--gold); color: var(--black); }
-        
+
+        .lang-switch:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .lang-switch::after {
+            display: none;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(201, 169, 98, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 169, 98, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        .hero-aion {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 400;
+            color: var(--white);
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .hero-title span {
+            font-size: 2rem;
+            vertical-align: super;
+            color: var(--gold);
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--white-dim);
+            margin-bottom: 1rem;
+        }
+
+        .hero-tagline em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--gray-300);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-symbol {
+            width: 80px;
+            height: 80px;
+            margin: 2rem auto 3rem;
+            position: relative;
+        }
+
+        .hero-symbol::before,
+        .hero-symbol::after {
+            content: '';
+            position: absolute;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            animation: symbolPulse 4s ease-in-out infinite;
+        }
+
+        .hero-symbol::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }
+
+        .hero-symbol::after {
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            opacity: 0.6;
+            animation-delay: 0.5s;
+        }
+
+        .hero-symbol-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        @keyframes symbolPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.6; }
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid rgba(201, 169, 98, 0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            background: rgba(201, 169, 98, 0.1);
+        }
+
         .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            gap: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
             flex-wrap: wrap;
         }
-        .hero-stat { text-align: center; }
-        .hero-stat-value { font-size: 2.5rem; font-weight: 700; color: var(--gold); }
-        .hero-stat-label { font-size: 0.9rem; color: var(--gray-400); margin-top: 0.3rem; }
-        
-        /* === SECTIONS === */
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-tag { display: inline-block; background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--gold); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; letter-spacing: 0.15rem; margin-bottom: 1.5rem; }
-        .section-title { font-size: 2.8rem; color: var(--white); margin-bottom: 1rem; }
-        .section-subtitle { color: var(--gray-400); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
-        
-        /* === MESSAGERIES === */
-        .messageries-section {
-            padding: 6rem 4rem;
-            background: linear-gradient(180deg, var(--black) 0%, #0f0f1a 50%, var(--black) 100%);
+
+        .hero-stat {
+            text-align: center;
         }
-        
-        .messageries-grid {
+
+        .hero-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-300);
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            padding: 8rem 4rem;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.25em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--gray-300);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* ==================== HOW IT WORKS ==================== */
+        .how-section {
+            background: var(--black);
+            position: relative;
+        }
+
+        .how-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(201, 169, 98, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .how-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .how-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .how-intro p {
+            font-size: 1.15rem;
+            color: var(--gray-300);
+            line-height: 1.9;
+        }
+
+        .how-intro p strong {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .how-step {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            position: relative;
+        }
+
+        .how-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .how-step-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--gold);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .how-step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .how-step-text {
+            font-size: 0.9rem;
+            color: var(--gray-300);
+            line-height: 1.7;
+        }
+
+        .how-result {
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(201, 169, 98, 0.02) 100%);
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .how-result-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .how-result-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .how-result-item {
+            text-align: center;
+        }
+
+        .how-result-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .how-result-label {
+            font-size: 0.85rem;
+            color: var(--white-dim);
+        }
+
+        /* ==================== APPLICATIONS ==================== */
+        .applications-section {
+            background: var(--black-light);
+        }
+
+        .applications-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
-        @media (max-width: 900px) {
-            .messageries-grid { grid-template-columns: 1fr; max-width: 400px; }
-        }
-        
-        .messagerie-card {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
+
+        .app-card {
+            background: var(--black);
+            border: 1px solid var(--gray-800);
+            padding: 3rem 2rem;
             text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .app-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .app-card:hover::before {
+            opacity: 1;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-card.octopus .app-icon svg {
+            filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.4));
+        }
+
+        .app-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-card.octopus .app-name { color: #a855f7; }
+        .app-card.sesame .app-name { color: #10b981; }
+        .app-card.mailbox .app-name { color: #3b82f6; }
+
+        .app-patent {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .app-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--white-dim);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .app-description {
+            font-size: 0.9rem;
+            color: var(--gray-300);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .app-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border-radius: 2px;
             transition: all 0.3s ease;
         }
-        
-        .messagerie-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
+
+        .app-card.octopus .app-btn {
+            background: linear-gradient(135deg, #8a2be2, #6b21a8);
+            color: white;
         }
-        
-        .messagerie-card.octopus { border-color: rgba(138, 43, 226, 0.3); }
-        .messagerie-card.octopus:hover { border-color: var(--purple); }
-        .messagerie-card.sesame { border-color: rgba(16, 185, 129, 0.3); }
-        .messagerie-card.sesame:hover { border-color: var(--green); }
-        .messagerie-card.mailbox { border-color: rgba(59, 130, 246, 0.3); }
-        .messagerie-card.mailbox:hover { border-color: var(--blue); }
-        
-        .messagerie-icon { width: 120px; height: 120px; margin: 0 auto 1.5rem; }
-        
-        .octopus-logo-card {
-            width: 120px; height: 120px;
-            filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
-            animation: breathe 4s ease-in-out infinite;
-        }
-        @keyframes breathe {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5)); }
-            50% { filter: drop-shadow(0 0 35px rgba(138, 43, 226, 0.8)); }
-        }
-        
-        .placeholder-icon { width: 80px; height: 80px; margin: 20px auto; }
-        
-        .messagerie-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 0.1rem; }
-        .messagerie-card.octopus .messagerie-title { color: var(--purple-light); }
-        .messagerie-card.sesame .messagerie-title { color: var(--green); }
-        .messagerie-card.mailbox .messagerie-title { color: var(--blue); }
-        
-        .messagerie-patent { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--gold); margin-bottom: 0.5rem; }
-        .messagerie-tagline { color: var(--gray-400); font-size: 1rem; margin-bottom: 1rem; font-style: italic; }
-        .messagerie-description { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
-        
-        .messagerie-btn {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .messagerie-card.octopus .messagerie-btn {
-            background: linear-gradient(135deg, #8a2be2, #6a1bb2);
-            color: #fff;
-        }
-        .messagerie-card.octopus .messagerie-btn:hover {
+
+        .app-card.octopus .app-btn:hover {
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
         }
-        
-        .messagerie-btn.disabled {
-            background: rgba(255, 255, 255, 0.1);
+
+        .app-btn.disabled {
+            background: var(--gray-800);
             color: var(--gray-500);
-            cursor: not-allowed;
+            cursor: default;
         }
-        
-        /* === BREVETS === */
-        .patents-section { padding: 6rem 4rem; background: var(--gray-900); }
-        
+
+        /* ==================== PATENTS ==================== */
+        .patents-section {
+            background: var(--black);
+        }
+
         .patents-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -255,407 +693,926 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
-        @media (max-width: 900px) {
-            .patents-grid { grid-template-columns: 1fr; }
-        }
-        
+
         .patent-card {
-            background: var(--black);
+            background: var(--gray-900);
             border: 1px solid var(--gray-800);
-            border-radius: 12px;
             padding: 2rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        .patent-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-        .patent-card.foundation { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
-        
-        .patent-number { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .patent-inpi { color: var(--gray-500); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-bottom: 0.8rem; }
-        .patent-title { color: var(--white); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700; }
-        .patent-tagline { color: var(--gray-400); font-size: 1rem; margin-bottom: 1rem; font-style: italic; }
-        .patent-description { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
-        .patent-targets { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .target-tag { background: var(--gray-800); color: var(--gray-400); padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.8rem; }
-        
-        /* === USE CASES === */
-        .use-cases-section { padding: 6rem 4rem; background: var(--black); }
-        .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1200px; margin: 0 auto; }
-        .use-case-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; padding: 2rem; transition: border-color 0.3s; }
-        .use-case-card:hover { border-color: var(--gold); }
-        .use-case-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .use-case-title { color: var(--gold); font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 600; }
-        .use-case-challenge { color: var(--gray-400); font-size: 1rem; margin-bottom: 0.8rem; }
-        .use-case-solution { color: var(--purple-light); font-size: 0.95rem; }
-        
-        /* === CONTACT === */
-        .contact-section { padding: 6rem 4rem; background: var(--gray-900); text-align: center; }
-        .contact-title { font-size: 2.2rem; margin-bottom: 1rem; }
-        .contact-title span { color: var(--gold); }
-        .contact-subtitle { color: var(--gray-400); margin-bottom: 2rem; font-size: 1.1rem; }
-        .contact-email { color: var(--gold); font-size: 1.4rem; text-decoration: none; }
-        .contact-email:hover { text-decoration: underline; }
-        
-        /* === FOOTER === */
-        footer { padding: 3rem 2rem; background: var(--black); text-align: center; border-top: 1px solid var(--gray-800); }
-        .footer-text { color: var(--gray-500); font-size: 0.95rem; }
-        
-        /* === MODAL === */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; overflow-y: auto; }
-        .modal-content { background: var(--gray-900); max-width: 700px; margin: 5vh auto; padding: 3rem; border-radius: 12px; border: 1px solid var(--gray-700); position: relative; }
-        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--gray-400); cursor: pointer; line-height: 1; }
-        .modal-close:hover { color: var(--white); }
-        
+
+        .patent-card:hover {
+            border-color: rgba(201, 169, 98, 0.4);
+        }
+
+        .patent-card.foundation {
+            border-color: rgba(201, 169, 98, 0.3);
+            background: linear-gradient(135deg, var(--gray-900) 0%, rgba(201, 169, 98, 0.05) 100%);
+        }
+
+        .patent-card.foundation::before {
+            content: 'FONDATEUR';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid rgba(201, 169, 98, 0.3);
+        }
+
+        .patent-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
+        }
+
+        .patent-inpi {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .patent-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .patent-tagline {
+            font-size: 0.9rem;
+            color: var(--white-dim);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .patent-description {
+            font-size: 0.85rem;
+            color: var(--gray-300);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .patent-targets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .target-tag {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            padding: 0.3rem 0.6rem;
+            background: var(--gray-800);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==================== USE CASES ==================== */
+        .use-cases-section {
+            background: var(--black-light);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .use-case-card {
+            background: var(--black);
+            border: 1px solid var(--gray-800);
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+        }
+
+        .use-case-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .use-case-text {
+            font-size: 0.85rem;
+            color: var(--gray-300);
+            line-height: 1.7;
+        }
+
+        .use-case-text strong {
+            color: var(--white-dim);
+        }
+
+        .use-case-solution {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gold);
+            margin-top: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* ==================== VISION ==================== */
+        .vision-section {
+            background: var(--black);
+            text-align: center;
+            padding: 10rem 4rem;
+            position: relative;
+        }
+
+        .vision-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(201, 169, 98, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vision-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .vision-quote em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .vision-attribution {
+            font-size: 0.85rem;
+            color: var(--gray-300);
+            letter-spacing: 0.1em;
+        }
+
+        /* ==================== CONTACT ==================== */
+        .contact-section {
+            background: var(--gray-900);
+            text-align: center;
+            padding: 6rem 4rem;
+        }
+
+        .contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-title em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .contact-subtitle {
+            font-size: 1rem;
+            color: var(--gray-300);
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            border-color: var(--gold);
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--black);
+            padding: 4rem;
+            border-top: 1px solid var(--gray-800);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .aion {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+        }
+
+        .footer-logo .asemantix {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col h4 {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-patents {
+            text-align: right;
+        }
+
+        .footer-patents-title {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-patents-list {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gray-300);
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            text-align: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 8, 10, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: var(--gray-900);
+            max-width: 650px;
+            margin: 10vh auto;
+            padding: 3rem;
+            border: 1px solid var(--gray-700);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: var(--white);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .applications-grid,
+            .patents-grid,
+            .use-cases-grid,
+            .how-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .how-result-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            nav { padding: 1rem; flex-direction: column; gap: 1rem; }
-            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-            .hero-title { font-size: 2.8rem; }
-            .hero-tagline { font-size: 1.4rem; }
-            .hero { padding: 8rem 1.5rem 3rem; }
-            .section-title { font-size: 2rem; }
+            nav {
+                padding: 1rem 2rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav.scrolled {
+                padding: 0.8rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .hero {
+                padding: 6rem 2rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.5rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .applications-grid,
+            .patents-grid,
+            .use-cases-grid,
+            .how-steps {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .how-result-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-patents {
+                text-align: center;
+            }
+
+            .footer-brand {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="#" class="nav-logo"><span class="aion">AION</span> ASEMANTIX<span class="tm">™</span></a>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav id="nav">
+        <a href="#" class="nav-logo">
+            <span class="aion">AION</span>
+            <span class="asemantix">ASEMANTIX™</span>
+        </a>
         <div class="nav-links">
-            <a href="#messageries">Messageries</a>
-            <a href="#patents">Brevets</a>
-            <a href="#use-cases">Applications</a>
+            <a href="#procede">Le procédé</a>
+            <a href="#applications">Applications</a>
+            <a href="#brevets">Brevets</a>
+            <a href="#secteurs">Secteurs</a>
+            <a href="/octopus/" class="octopus-link" target="_blank">🐙 Octopus</a>
             <a href="#contact">Contact</a>
             <a href="en.html" class="lang-switch">EN</a>
         </div>
     </nav>
 
-    <!-- === HERO === -->
+    <!-- ==================== HERO ==================== -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-era-tag">🛡️ L'ère de la protection native des données</div>
+            <span class="hero-badge">PROTECTION NATIVE DES DONNÉES</span>
             
             <p class="hero-aion">AION</p>
             <h1 class="hero-title">ASEMANTIX<span>™</span></h1>
             
-            <p class="hero-tagline">L'ère de la <strong>tranquillité</strong> a démarré.</p>
+            <div class="hero-symbol">
+                <div class="hero-symbol-core"></div>
+            </div>
+            
+            <p class="hero-tagline">L'ère de la <em>tranquillité</em> a démarré.</p>
             <p class="hero-subtitle">Calcul quantique, menaces cyber, environnements contraints — nous avons la réponse.</p>
             
-            <div class="hero-logo-svg">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="120" height="120">
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
-                    <circle cx="100" cy="100" r="50" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.8"/>
-                    <circle cx="100" cy="100" r="20" fill="#d4af37" opacity="0.9"/>
-                    <circle cx="100" cy="100" r="8" fill="#0a0a0a"/>
-                </svg>
-            </div>
-            
-            <div class="hero-threats">
-                <div class="threat-item"><span class="icon">⚛️</span> Calcul quantique <span class="check">✓</span></div>
-                <div class="threat-item"><span class="icon">👁️</span> Surveillance de masse <span class="check">✓</span></div>
-                <div class="threat-item"><span class="icon">🎯</span> Menaces cyber <span class="check">✓</span></div>
-                <div class="threat-item"><span class="icon">📡</span> Environnements contraints <span class="check">✓</span></div>
-            </div>
-            
-            <p class="hero-promise">Zéro métadonnée. Zéro trace. Zéro frontière.</p>
-            
-            <div class="cta-buttons">
-                <a href="#messageries" class="btn-primary">Découvrir nos Solutions</a>
-                <a href="#contact" class="btn-secondary">Nous Contacter</a>
+            <div class="hero-cta">
+                <a href="#procede" class="btn btn-primary">Comment ça marche</a>
+                <a href="#brevets" class="btn btn-outline">Portefeuille brevets</a>
             </div>
             
             <div class="hero-stats">
                 <div class="hero-stat">
                     <div class="hero-stat-value">6</div>
-                    <div class="hero-stat-label">Brevets INPI</div>
+                    <div class="hero-stat-label">BREVETS INPI</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">100%</div>
-                    <div class="hero-stat-label">NIST SP 800-22</div>
+                    <div class="hero-stat-value">0</div>
+                    <div class="hero-stat-label">MÉTADONNÉE</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">>20K</div>
-                    <div class="hero-stat-label">Fragments/sec</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value">🇫🇷</div>
-                    <div class="hero-stat-label">Souveraineté</div>
+                    <div class="hero-stat-value">∞</div>
+                    <div class="hero-stat-label">CANAUX SUPPORTÉS</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- === MESSAGERIES === -->
-    <section class="messageries-section" id="messageries">
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section class="how-section" id="procede">
         <div class="section-header">
-            <div class="section-tag">SOLUTIONS</div>
-            <h2 class="section-title">Communication Invisible</h2>
-            <p class="section-subtitle">Trois solutions basées sur le procédé ASEMANTIX pour communiquer en toute discrétion</p>
+            <span class="section-tag">LE PROCÉDÉ</span>
+            <h2 class="section-title">Comment accéder à la tranquillité ?</h2>
+            <p class="section-subtitle">ASEMANTIX est un procédé de communication où vos données deviennent invisibles — même pour celui qui les transporte.</p>
         </div>
         
-        <div class="messageries-grid">
-            <!-- OCTOPUS -->
-            <div class="messagerie-card octopus">
-                <div class="messagerie-icon">
-                    <!-- Logo OCTOPUS officiel avec rayures -->
-                    <svg class="octopus-logo-card" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <radialGradient id="bodyGrad" cx="50%" cy="30%" r="60%">
-                                <stop offset="0%" stop-color="#b366e8"/>
-                                <stop offset="100%" stop-color="#4a0080"/>
-                            </radialGradient>
-                            <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#9b4dca"/>
-                                <stop offset="50%" stop-color="#6a1bb2"/>
-                                <stop offset="100%" stop-color="#3d0066"/>
-                            </linearGradient>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                            </filter>
-                        </defs>
-                        <!-- Tentacules avec rayures -->
-                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350" fill="none" stroke="url(#tentGrad)" stroke-width="22" stroke-linecap="round" filter="url(#glow)"/>
-                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350" fill="none" stroke="#2d0a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="2,15"/>
-                        <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100" fill="none" stroke="url(#tentGrad)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
-                        <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
-                        <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420" fill="none" stroke="url(#tentGrad)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
-                        <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
-                        <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
-                        <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
-                        <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
-                        <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
-                        <path d="M220,210 C250,230 280,280 260,320 C240,360 200,370 170,350" fill="none" stroke="url(#tentGrad)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
-                        <!-- Corps -->
-                        <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad)" filter="url(#glow)"/>
-                        <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGrad)"/>
-                        <!-- Yeux -->
-                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
-                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
-                        <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                        <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                        <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
-                        <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
-                    </svg>
-                </div>
-                <h3 class="messagerie-title">OCTOPUS</h3>
-                <div class="messagerie-patent">FR2600020</div>
-                <p class="messagerie-tagline">La messagerie SANS Internet, SANS téléphonie</p>
-                <p class="messagerie-description">
-                    Communiquez là où rien n'existe. Pas de réseau ? Pas de problème. 
-                    Radio, satellite, acoustique — tout canal devient messagerie. Zéro métadonnée.
+        <div class="how-content">
+            <div class="how-intro">
+                <p>
+                    Les systèmes classiques chiffrent vos messages mais laissent des traces : <strong>qui parle à qui</strong>, <strong>quand</strong>, <strong>combien de données</strong>. Ces métadonnées suffisent à vous profiler, vous traquer, vous compromettre.
                 </p>
-                <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="octopus-landing.html" class="messagerie-btn">Découvrir</a>
-                    <a href="https://octopus-app-beryl.vercel.app" class="messagerie-btn" target="_blank" style="background: transparent; border: 2px solid #8a2be2;">🚀 Démo</a>
+                <p style="margin-top: 1rem;">
+                    ASEMANTIX élimine ce problème à la racine : vos transmissions sont <strong>indiscernables du bruit aléatoire</strong>. Aucun observateur — humain, machine ou quantique — ne peut les identifier.
+                </p>
+            </div>
+            
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="how-step-number">01</div>
+                    <h3 class="how-step-title">Fragmentation asémantique</h3>
+                    <p class="how-step-text">Votre message est découpé en fragments qui, individuellement, n'ont aucun sens et ressemblent à du bruit aléatoire pur.</p>
+                </div>
+                
+                <div class="how-step">
+                    <div class="how-step-number">02</div>
+                    <h3 class="how-step-title">Marquage polymorphe</h3>
+                    <p class="how-step-text">Un marqueur invisible et changeant permet au destinataire de reconnaître ses fragments parmi le flux de données aléatoires.</p>
+                </div>
+                
+                <div class="how-step">
+                    <div class="how-step-number">03</div>
+                    <h3 class="how-step-title">Filtrage ultra-rapide</h3>
+                    <p class="how-step-text">99%+ des données sont rejetées instantanément sans calcul cryptographique coûteux. Économie d'énergie et de temps.</p>
                 </div>
             </div>
             
-            <!-- SESAME -->
-            <div class="messagerie-card sesame">
-                <div class="messagerie-icon">
-                    <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        <circle cx="12" cy="16" r="1"/>
+            <div class="how-result">
+                <h3 class="how-result-title">Résultat : la tranquillité totale</h3>
+                <p style="color: var(--gray-300); font-size: 1rem; max-width: 600px; margin: 0 auto;">
+                    Personne ne sait que vous communiquez. Personne ne sait avec qui. Personne ne peut prouver que vos données existent.
+                </p>
+                <div class="how-result-grid">
+                    <div class="how-result-item">
+                        <div class="how-result-icon">🔒</div>
+                        <div class="how-result-label">Chiffrement post-quantique</div>
+                    </div>
+                    <div class="how-result-item">
+                        <div class="how-result-icon">👁️‍🗨️</div>
+                        <div class="how-result-label">Zéro métadonnée</div>
+                    </div>
+                    <div class="how-result-item">
+                        <div class="how-result-icon">📡</div>
+                        <div class="how-result-label">Tout canal : IP, radio, satellite...</div>
+                    </div>
+                    <div class="how-result-item">
+                        <div class="how-result-icon">⚡</div>
+                        <div class="how-result-label">Ultra basse consommation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== APPLICATIONS ==================== -->
+    <section class="applications-section" id="applications">
+        <div class="section-header">
+            <span class="section-tag">APPLICATIONS</span>
+            <h2 class="section-title">Trois messageries,<br>une même tranquillité</h2>
+            <p class="section-subtitle">Chaque application exploite le procédé ASEMANTIX pour des usages spécifiques.</p>
+        </div>
+        
+        <div class="applications-grid">
+            <!-- OCTOPUS -->
+            <div class="app-card octopus">
+                <div class="app-icon">
+                    <svg viewBox="0 0 400 400" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="octoBg" cx="50%" cy="30%" r="60%">
+                                <stop offset="0%" stop-color="#b366e8"/>
+                                <stop offset="100%" stop-color="#6b21a8"/>
+                            </radialGradient>
+                            <linearGradient id="octoTent" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#9b4dca"/>
+                                <stop offset="100%" stop-color="#6b21a8"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380" fill="none" stroke="url(#octoTent)" stroke-width="22" stroke-linecap="round"/>
+                        <path d="M250,200 C300,180 350,150 370,100" fill="none" stroke="url(#octoTent)" stroke-width="20" stroke-linecap="round"/>
+                        <path d="M180,220 C150,260 100,300 80,350" fill="none" stroke="url(#octoTent)" stroke-width="18" stroke-linecap="round"/>
+                        <path d="M260,190 C310,170 360,200 380,250" fill="none" stroke="url(#octoTent)" stroke-width="16" stroke-linecap="round"/>
+                        <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#octoBg)"/>
+                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="#1a0030"/>
+                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="#1a0030"/>
+                        <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                        <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
                     </svg>
                 </div>
-                <h3 class="messagerie-title">SÉSAME</h3>
-                <div class="messagerie-patent">FR2600010</div>
-                <p class="messagerie-tagline">Commande & contrôle IoT</p>
-                <p class="messagerie-description">
-                    Contrôlez vos dispositifs IoT, drones, SCADA avec des commandes invisibles. 
-                    99% du bruit filtré sans calcul cryptographique.
-                </p>
-                <span class="messagerie-btn disabled">Prochainement</span>
+                <h3 class="app-name">OCTOPUS</h3>
+                <p class="app-patent">FR2600020</p>
+                <p class="app-tagline">Un cercle. Pas un réseau.</p>
+                <p class="app-description">Messagerie résiliente pour cercles de confiance. Multi-canaux, tolérante aux latences extrêmes, fonctionne partout — même sans Internet.</p>
+                <a href="/octopus/" class="app-btn" target="_blank">Découvrir Octopus →</a>
+            </div>
+            
+            <!-- SÉSAME -->
+            <div class="app-card sesame">
+                <div class="app-icon">
+                    <svg viewBox="0 0 80 80" width="80" height="80">
+                        <rect x="20" y="30" width="40" height="35" rx="3" fill="none" stroke="#10b981" stroke-width="2"/>
+                        <circle cx="40" cy="25" r="12" fill="none" stroke="#10b981" stroke-width="2"/>
+                        <circle cx="40" cy="47" r="5" fill="#10b981"/>
+                    </svg>
+                </div>
+                <h3 class="app-name">SÉSAME</h3>
+                <p class="app-patent">FR2600010</p>
+                <p class="app-tagline">Ouvre-toi, mais seulement à moi.</p>
+                <p class="app-description">Commande & contrôle pour IoT et infrastructures critiques. Filtrage polymorphe, économie d'énergie maximale.</p>
+                <span class="app-btn disabled">Bientôt disponible</span>
             </div>
             
             <!-- MAILBOX -->
-            <div class="messagerie-card mailbox">
-                <div class="messagerie-icon">
-                    <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.5">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
+            <div class="app-card mailbox">
+                <div class="app-icon">
+                    <svg viewBox="0 0 80 80" width="80" height="80">
+                        <rect x="15" y="25" width="50" height="35" rx="3" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                        <path d="M15 28 L40 45 L65 28" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                        <circle cx="55" cy="20" r="8" fill="#3b82f6"/>
                     </svg>
                 </div>
-                <h3 class="messagerie-title">MAILBOX</h3>
-                <div class="messagerie-patent">FR2600019</div>
-                <p class="messagerie-tagline">Boîte aux lettres asémantique</p>
-                <p class="messagerie-description">
-                    Dead drop numérique résistant à la censure. Le serveur ne distingue pas vos messages du bruit.
-                </p>
-                <span class="messagerie-btn disabled">Prochainement</span>
+                <h3 class="app-name">MAILBOX</h3>
+                <p class="app-patent">FR2600019</p>
+                <p class="app-tagline">Le serveur est aveugle.</p>
+                <p class="app-description">Boîte aux lettres asynchrone où le serveur ne distingue rien. Résistant à la censure et aux dead drops.</p>
+                <span class="app-btn disabled">Bientôt disponible</span>
             </div>
         </div>
     </section>
 
-    <!-- === BREVETS === -->
-    <section class="patents-section" id="patents">
+    <!-- ==================== PATENTS ==================== -->
+    <section class="patents-section" id="brevets">
         <div class="section-header">
-            <div class="section-tag">PROPRIÉTÉ INTELLECTUELLE</div>
-            <h2 class="section-title">6 Brevets Déposés</h2>
-            <p class="section-subtitle">Protection complète déposée à l'INPI — France 2025-2026</p>
+            <span class="section-tag">PROPRIÉTÉ INTELLECTUELLE</span>
+            <h2 class="section-title">Six brevets,<br>une architecture complète</h2>
+            <p class="section-subtitle">Un portefeuille cohérent couvrant de la couche réseau à la messagerie applicative.</p>
         </div>
         
         <div class="patents-grid">
-            <!-- ASEMANTIX - Fondation -->
+            <!-- ASEMANTIX -->
             <div class="patent-card foundation" onclick="openModal('asemantix')">
-                <div class="patent-number">🦎 BREVET FONDATEUR</div>
-                <div class="patent-inpi">FR2516793 — 31 décembre 2025</div>
+                <p class="patent-number">BREVET 01</p>
+                <p class="patent-inpi">INPI FR2516793</p>
                 <h3 class="patent-title">ASEMANTIX</h3>
-                <p class="patent-tagline">Procédé de validation asémantique</p>
-                <p class="patent-description">Marqueur polymorphe, filtrage 99%, fragments indistinguables du bruit.</p>
+                <p class="patent-tagline">Le procédé fondateur</p>
+                <p class="patent-description">Validation de portions utiles asémantiques sur canal hostile avec marqueur polymorphe et filtrage rapide.</p>
                 <div class="patent-targets">
-                    <span class="target-tag">Fondation</span>
                     <span class="target-tag">Post-quantique</span>
+                    <span class="target-tag">Zéro métadonnée</span>
+                    <span class="target-tag">Multi-canal</span>
                 </div>
             </div>
             
             <!-- OCTOPUS -->
             <div class="patent-card" onclick="openModal('octopus')">
-                <div class="patent-number">🐙 BREVET APPLICATIF</div>
-                <div class="patent-inpi">FR2600020 — Janvier 2026</div>
+                <p class="patent-number">BREVET 02</p>
+                <p class="patent-inpi">INPI FR2600020</p>
                 <h3 class="patent-title">OCTOPUS</h3>
-                <p class="patent-tagline">Messagerie résiliente multi-canaux</p>
-                <p class="patent-description">Segmentation, ACK implicite, audit scellé optionnel.</p>
+                <p class="patent-tagline">Messagerie résiliente</p>
+                <p class="patent-description">Communication sur canaux hétérogènes à fortes latences, opportuniste et tolérante aux pertes.</p>
                 <div class="patent-targets">
-                    <span class="target-tag">Entreprise</span>
-                    <span class="target-tag">Défense</span>
+                    <span class="target-tag">Multi-canal</span>
+                    <span class="target-tag">Terre-Mars</span>
+                    <span class="target-tag">Cercles</span>
                 </div>
             </div>
             
             <!-- SÉSAME -->
             <div class="patent-card" onclick="openModal('sesame')">
-                <div class="patent-number">🔐 BREVET APPLICATIF</div>
-                <div class="patent-inpi">FR2600010 — Janvier 2026</div>
+                <p class="patent-number">BREVET 03</p>
+                <p class="patent-inpi">INPI FR2600010</p>
                 <h3 class="patent-title">SÉSAME</h3>
-                <p class="patent-tagline">Commande & contrôle IoT</p>
-                <p class="patent-description">Filtrage polymorphe économe en énergie.</p>
+                <p class="patent-tagline">Commande & Contrôle</p>
+                <p class="patent-description">Commande de dispositifs sur canal hostile avec économie d'énergie pour IoT et capteurs.</p>
                 <div class="patent-targets">
                     <span class="target-tag">IoT</span>
                     <span class="target-tag">SCADA</span>
+                    <span class="target-tag">Basse conso</span>
                 </div>
             </div>
             
             <!-- MAILBOX -->
             <div class="patent-card" onclick="openModal('mailbox')">
-                <div class="patent-number">📬 BREVET APPLICATIF</div>
-                <div class="patent-inpi">FR2600019 — Janvier 2026</div>
+                <p class="patent-number">BREVET 04</p>
+                <p class="patent-inpi">INPI FR2600019</p>
                 <h3 class="patent-title">MAILBOX</h3>
-                <p class="patent-tagline">Boîte aux lettres asémantique</p>
-                <p class="patent-description">Stockage aveugle, dead drop numérique.</p>
+                <p class="patent-tagline">Boîte aux lettres aveugle</p>
+                <p class="patent-description">Messagerie asynchrone où le serveur est aveugle. Opérations STORE, LIST, PURGE.</p>
                 <div class="patent-targets">
-                    <span class="target-tag">Censure</span>
-                    <span class="target-tag">Journalisme</span>
+                    <span class="target-tag">Dead drop</span>
+                    <span class="target-tag">Anti-censure</span>
+                    <span class="target-tag">Async</span>
                 </div>
             </div>
             
             <!-- RPAG -->
             <div class="patent-card" onclick="openModal('rpag')">
-                <div class="patent-number">🌍 BREVET APPLICATIF</div>
-                <div class="patent-inpi">FR2600021 — Janvier 2026</div>
+                <p class="patent-number">BREVET 05</p>
+                <p class="patent-inpi">INPI FR2600021</p>
                 <h3 class="patent-title">RPAG</h3>
-                <p class="patent-tagline">Réseau polymorphe autonome</p>
-                <p class="patent-description">Mesh sans infrastructure, latence extrême.</p>
+                <p class="patent-tagline">Réseau autonome global</p>
+                <p class="patent-description">Communication polymorphique autonome sans infrastructure réseau, multi-porteuse.</p>
                 <div class="patent-targets">
+                    <span class="target-tag">Sans infra</span>
+                    <span class="target-tag">Radio/optique</span>
                     <span class="target-tag">Spatial</span>
-                    <span class="target-tag">Tactique</span>
                 </div>
             </div>
             
             <!-- PIP -->
             <div class="patent-card" onclick="openModal('pip')">
-                <div class="patent-number">🛡️ BREVET APPLICATIF</div>
-                <div class="patent-inpi">FR2600070 — 4 janvier 2026</div>
+                <p class="patent-number">BREVET 06</p>
+                <p class="patent-inpi">INPI FR2600070</p>
                 <h3 class="patent-title">PIP</h3>
                 <p class="patent-tagline">Permutation IP polymorphe</p>
-                <p class="patent-description">Session non observable, pas de handshake.</p>
+                <p class="patent-description">Session non observable par permutation d'identifiants. Chaque paquet = tuple différent.</p>
                 <div class="patent-targets">
-                    <span class="target-tag">Entreprise</span>
-                    <span class="target-tag">M&A</span>
+                    <span class="target-tag">Anti-DPI</span>
+                    <span class="target-tag">No handshake</span>
+                    <span class="target-tag">IP layer</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- === USE CASES === -->
-    <section class="use-cases-section" id="use-cases">
+    <!-- ==================== USE CASES ==================== -->
+    <section class="use-cases-section" id="secteurs">
         <div class="section-header">
-            <div class="section-tag">APPLICATIONS</div>
-            <h2 class="section-title">Là où ASEMANTIX fait la différence</h2>
-            <p class="section-subtitle">Environnements extrêmes où les solutions traditionnelles échouent</p>
+            <span class="section-tag">SECTEURS</span>
+            <h2 class="section-title">Des environnements extrêmes<br>aux usages quotidiens</h2>
         </div>
         
         <div class="use-cases-grid">
             <div class="use-case-card">
-                <div class="use-case-icon">🎖️</div>
+                <div class="use-case-icon">🛡️</div>
                 <h3 class="use-case-title">Défense & Renseignement</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Communications tactiques, brouillage</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG + SÉSAME</p>
+                <p class="use-case-text"><strong>Défi :</strong> Communications tactiques, brouillage ennemi, interception.</p>
+                <p class="use-case-solution">→ ASEMANTIX + RPAG + SÉSAME</p>
             </div>
+            
             <div class="use-case-card">
                 <div class="use-case-icon">🚀</div>
-                <h3 class="use-case-title">Spatial (Terre-Mars)</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Latence 4-24 min, sans GPS</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + RPAG</p>
+                <h3 class="use-case-title">Spatial</h3>
+                <p class="use-case-text"><strong>Défi :</strong> Latence Terre-Mars 4-24 min, sans GPS, rayonnement.</p>
+                <p class="use-case-solution">→ ASEMANTIX + RPAG</p>
             </div>
+            
             <div class="use-case-card">
                 <div class="use-case-icon">🏭</div>
                 <h3 class="use-case-title">Industrie & SCADA</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> IoT contraints, attaques ciblées</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + SÉSAME</p>
+                <p class="use-case-text"><strong>Défi :</strong> IoT contraints, attaques ciblées, OT/IT convergence.</p>
+                <p class="use-case-solution">→ ASEMANTIX + SÉSAME</p>
             </div>
+            
             <div class="use-case-card">
                 <div class="use-case-icon">⚖️</div>
                 <h3 class="use-case-title">Avocats & M&A</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Négociations confidentielles</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + PIP + OCTOPUS</p>
+                <p class="use-case-text"><strong>Défi :</strong> Négociations sensibles, secret professionnel.</p>
+                <p class="use-case-solution">→ ASEMANTIX + OCTOPUS</p>
             </div>
+            
             <div class="use-case-card">
                 <div class="use-case-icon">📈</div>
                 <h3 class="use-case-title">Finance & Trading</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Front-running, interception</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + PIP</p>
+                <p class="use-case-text"><strong>Défi :</strong> Front-running, interception d'ordres, conformité.</p>
+                <p class="use-case-solution">→ ASEMANTIX + PIP</p>
             </div>
+            
             <div class="use-case-card">
                 <div class="use-case-icon">📰</div>
                 <h3 class="use-case-title">Journalisme</h3>
-                <p class="use-case-challenge"><strong>Défi :</strong> Protection des sources</p>
-                <p class="use-case-solution"><strong>Solution :</strong> ASEMANTIX + MAILBOX</p>
+                <p class="use-case-text"><strong>Défi :</strong> Protection des sources, communication anonyme.</p>
+                <p class="use-case-solution">→ ASEMANTIX + MAILBOX</p>
             </div>
         </div>
     </section>
 
-    <!-- === CONTACT === -->
-    <section class="contact-section" id="contact">
-        <div class="section-tag">CONTACT</div>
-        <h2 class="contact-title">L'ère de la <span>tranquillité</span> vous attend.</h2>
-        <p class="contact-subtitle">AION ASEMANTIX™ — 6 brevets, 1 vision, 0 compromis.</p>
-        <a href="/cdn-cgi/l/email-protection#5c3f3332283d3f281c3d2f39313d322835247228393f34" class="contact-email"><span class="__cf_email__" data-cfemail="c1a2aeafb5a0a2b581a0b2a4aca0afb5a8b9efb5a4a2a9">[email&#160;protected]</span></a>
+    <!-- ==================== VISION ==================== -->
+    <section class="vision-section">
+        <div class="vision-content">
+            <p class="vision-quote">
+                « De la Terre à Mars —<br>et <em>au-delà</em>. »
+            </p>
+            <p class="vision-attribution">— AION ASEMANTIX™</p>
+        </div>
     </section>
 
-    <!-- === FOOTER === -->
+    <!-- ==================== CONTACT ==================== -->
+    <section class="contact-section" id="contact">
+        <h2 class="contact-title">L'ère de la <em>tranquillité</em> vous attend.</h2>
+        <p class="contact-subtitle">6 brevets, 1 vision, 0 compromis.</p>
+        <a href="/cdn-cgi/l/email-protection#b2d1dddcc6d3d1c6f2d3c1d7dfd3dcc6dbca9cc6d7d1da" class="contact-email"><span class="__cf_email__" data-cfemail="cba8a4a5bfaaa8bf8baab8aea6aaa5bfa2b3e5bfaea8a3">[email&#160;protected]</span></a>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
     <footer>
-        <p class="footer-text">© 2026 AION ASEMANTIX™ — Tous droits réservés.</p>
-        <p class="footer-text" style="margin-top: 0.5rem; color: var(--gold);">De la Terre à Mars — et au-delà.</p>
-        <p class="footer-text" style="margin-top: 1rem; font-size: 0.85rem;">
-            Brevets INPI : FR2516793 • FR2600010 • FR2600019 • FR2600020 • FR2600021 • FR2600070
-        </p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="aion">AION</span>
+                    <span class="asemantix">ASEMANTIX™</span>
+                </div>
+                <p class="footer-tagline">L'ère de la tranquillité.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>NAVIGATION</h4>
+                    <a href="#procede">Le procédé</a>
+                    <a href="#applications">Applications</a>
+                    <a href="#brevets">Brevets</a>
+                    <a href="#secteurs">Secteurs</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>APPLICATIONS</h4>
+                    <a href="/octopus/" target="_blank">🐙 Octopus</a>
+                    <a href="#">🔐 Sésame (bientôt)</a>
+                    <a href="#">📬 Mailbox (bientôt)</a>
+                </div>
+            </div>
+            
+            <div class="footer-patents">
+                <p class="footer-patents-title">BREVETS INPI</p>
+                <p class="footer-patents-list">
+                    FR2516793 • FR2600010 • FR2600019<br>
+                    FR2600020 • FR2600021 • FR2600070
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2026 AION ASEMANTIX™ — Tous droits réservés.</p>
+        </div>
     </footer>
 
-    <!-- === MODAL === -->
+    <!-- ==================== MODAL ==================== -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <button class="modal-close" onclick="closeModal()">×</button>
             <div id="modal-body"></div>
         </div>
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Nav scroll effect - hide on scroll down, show on scroll up
+        const nav = document.getElementById('nav');
+        let lastScrollY = 0;
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    
+                    // Add background when scrolled
+                    if (currentScrollY > 50) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                    
+                    // Hide/show based on scroll direction
+                    if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                        // Scrolling down & past 200px - hide nav
+                        nav.classList.add('hidden');
+                    } else {
+                        // Scrolling up - show nav
+                        nav.classList.remove('hidden');
+                    }
+                    
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Patent details
         const patentDetails = {
             asemantix: {
-                title: "ASEMANTIX — Procédé Fondateur",
+                title: "ASEMANTIX",
+                subtitle: "Le procédé fondateur",
                 inpi: "FR2516793",
                 date: "31 décembre 2025",
                 abstract: "Procédé de validation de portions utiles asémantiques sur canal hostile, avec marqueur polymorphe et filtrage rapide.",
@@ -668,7 +1625,8 @@
                 ]
             },
             octopus: {
-                title: "OCTOPUS — Messagerie Résiliente",
+                title: "OCTOPUS",
+                subtitle: "Messagerie résiliente",
                 inpi: "FR2600020",
                 date: "Janvier 2026",
                 abstract: "Procédé de messagerie résiliente sur canaux hétérogènes à fortes latences, opportuniste et tolérant aux pertes.",
@@ -681,7 +1639,8 @@
                 ]
             },
             sesame: {
-                title: "SÉSAME — Commande & Contrôle IoT",
+                title: "SÉSAME",
+                subtitle: "Commande & Contrôle IoT",
                 inpi: "FR2600010",
                 date: "Janvier 2026",
                 abstract: "Procédé de commande et contrôle de dispositifs sur canal hostile avec économie d'énergie.",
@@ -693,7 +1652,8 @@
                 ]
             },
             mailbox: {
-                title: "MAILBOX — Boîte aux Lettres Asémantique",
+                title: "MAILBOX",
+                subtitle: "Boîte aux lettres aveugle",
                 inpi: "FR2600019",
                 date: "Janvier 2026",
                 abstract: "Procédé de messagerie asynchrone par boîte aux lettres où le serveur est aveugle.",
@@ -705,7 +1665,8 @@
                 ]
             },
             rpag: {
-                title: "RPAG — Réseau Polymorphe Autonome Global",
+                title: "RPAG",
+                subtitle: "Réseau Polymorphe Autonome Global",
                 inpi: "FR2600021",
                 date: "Janvier 2026",
                 abstract: "Procédé de communication polymorphique autonome sans infrastructure réseau.",
@@ -717,7 +1678,8 @@
                 ]
             },
             pip: {
-                title: "PIP — Permutation IP Polymorphe",
+                title: "PIP",
+                subtitle: "Permutation IP Polymorphe",
                 inpi: "FR2600070",
                 date: "4 janvier 2026",
                 abstract: "Procédé de communication réseau à session non observable par permutation d'identifiants.",
@@ -729,26 +1691,27 @@
                 ]
             }
         };
-        
+
         function openModal(patentId) {
             const patent = patentDetails[patentId];
             document.getElementById('modal-body').innerHTML = `
-                <h2 style="color: var(--gold); margin-bottom: 0.5rem; font-size: 1.8rem;">${patent.title}</h2>
-                <p style="color: var(--gray-400); margin-bottom: 1.5rem; font-family: 'JetBrains Mono', monospace;">${patent.inpi} — ${patent.date}</p>
-                <p style="color: var(--gray-400); margin-bottom: 2rem; font-style: italic;">${patent.abstract}</p>
-                <h3 style="color: var(--white); margin-bottom: 1rem;">Points clés</h3>
-                <ul style="color: var(--gray-400); padding-left: 1.5rem;">
-                    ${patent.keyPoints.map(p => `<li style="margin-bottom: 0.5rem;">${p}</li>`).join('')}
+                <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 0.5rem;">${patent.inpi} — ${patent.date}</p>
+                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--white); margin-bottom: 0.3rem;">${patent.title}</h2>
+                <p style="font-size: 1rem; color: var(--white-dim); font-style: italic; margin-bottom: 2rem;">${patent.subtitle}</p>
+                <p style="font-size: 0.95rem; color: var(--gray-300); margin-bottom: 2rem; line-height: 1.8;">${patent.abstract}</p>
+                <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 1rem;">POINTS CLÉS</p>
+                <ul style="color: var(--gray-300); font-size: 0.9rem; line-height: 2; padding-left: 1.2rem;">
+                    ${patent.keyPoints.map(p => `<li>${p}</li>`).join('')}
                 </ul>
             `;
             document.getElementById('modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-        
+
         window.onclick = function(event) {
-  
+            if (ev
