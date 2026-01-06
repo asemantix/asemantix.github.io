@@ -1,1 +1,1044 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASEMANTIX™ — 2026, l'Internet n'est plus obligatoire</title>
+    <meta name="description" content="ASEMANTIX - Communications résilientes, invisibles, résistantes au quantique. Octopus, Sésame, Mail Box, RPAG, PIP. Breveté. Souverain. Français.">
+    
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #050508;
+            --void: #0a0a12;
+            --purple: #8a2be2;
+            --purple-dark: #4a0080;
+            --purple-light: #a855f7;
+            --purple-glow: rgba(138, 43, 226, 0.5);
+            --gold: #d4af37;
+            --gold-dim: #a8893a;
+            --white: #f0f0f5;
+            --gray: #888898;
+            --gray-dark: #1a1a2e;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        /* === STARS BACKGROUND === */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(74, 0, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 18, 1) 0%, var(--black) 100%);
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        /* === NAVIGATION === */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(5,5,8,0.95) 0%, transparent 100%);
+        }
+        
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 0.15em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--white); }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            color: var(--white) !important;
+            font-weight: 500;
+        }
+        
+        .nav-cta:hover {
+            box-shadow: 0 0 30px var(--purple-glow);
+        }
+        
+        /* === HERO MANIFESTE === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-year {
+            font-family: 'Cinzel', serif;
+            font-size: 8rem;
+            font-weight: 700;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dim) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+        }
+        
+        .hero-philosophy {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+        
+        .hero-philosophy span {
+            color: var(--purple-light);
+        }
+        
+        .hero-fortress {
+            font-size: 1.2rem;
+            color: var(--gray);
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .hero-fortress strong {
+            color: var(--gold);
+        }
+        
+        .hero-statement {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .hero-statement em {
+            color: var(--purple-light);
+            font-style: normal;
+        }
+        
+        .hero-manifesto {
+            max-width: 800px;
+            font-size: 1.25rem;
+            color: var(--gray);
+            line-height: 2;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-manifesto strong {
+            color: var(--white);
+        }
+        
+        .hero-manifesto .highlight {
+            color: var(--gold);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 1.5rem;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        /* === SECTION COMMUNE === */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 2rem;
+        }
+        
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* === LA PIEUVRE === */
+        .pieuvre-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(138, 43, 226, 0.05) 50%, transparent 100%);
+        }
+        
+        .pieuvre-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 900px) {
+            .pieuvre-content { grid-template-columns: 1fr; }
+        }
+        
+        .pieuvre-text h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .pieuvre-text h2 span {
+            color: var(--purple-light);
+        }
+        
+        .pieuvre-text p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+        
+        .pieuvre-text strong {
+            color: var(--white);
+        }
+        
+        .pieuvre-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .pieuvre-visual svg {
+            width: 350px;
+            height: 350px;
+            filter: drop-shadow(0 0 50px var(--purple-glow));
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* === CANAUX === */
+        .canaux-section {
+            text-align: center;
+        }
+        
+        .canaux-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .canaux-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .canaux-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .canal-badge {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+        
+        .canal-badge:hover {
+            border-color: var(--purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
+        }
+        
+        .canal-badge .icon { font-size: 1.3rem; }
+        
+        .canaux-quote {
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* === MARS === */
+        .mars-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%);
+            text-align: center;
+        }
+        
+        .mars-number {
+            font-family: 'Cinzel', serif;
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+        
+        .mars-unit {
+            font-size: 2rem;
+            color: var(--gold-dim);
+            margin-bottom: 1rem;
+        }
+        
+        .mars-text {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .mars-text strong { color: var(--white); }
+        
+        .mars-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        
+        /* === PROTECTION === */
+        .protection-section {
+            text-align: center;
+        }
+        
+        .protection-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 3rem;
+        }
+        
+        .protection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 800px) {
+            .protection-grid { grid-template-columns: 1fr; }
+        }
+        
+        .protection-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+        
+        .protection-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-5px);
+        }
+        
+        .protection-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .protection-card h3 {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .protection-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* === GAMME === */
+        .gamme-section {
+            background: var(--void);
+        }
+        
+        .gamme-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .gamme-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+        }
+        
+        .gamme-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .gamme-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .gamme-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 900px) {
+            .gamme-grid { grid-template-columns: 1fr; }
+        }
+        
+        .gamme-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gamme-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--purple-light));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gamme-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-5px);
+        }
+        
+        .gamme-card:hover::before { opacity: 1; }
+        
+        .gamme-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .gamme-card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .gamme-card-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        
+        .gamme-card-tagline {
+            color: var(--purple-light);
+            font-size: 0.9rem;
+        }
+        
+        .gamme-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .gamme-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--purple-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.3s;
+        }
+        
+        .gamme-card-link:hover { gap: 1rem; }
+        
+        /* === CTA FINAL === */
+        .cta-section {
+            text-align: center;
+            padding: 10rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+        }
+        
+        .cta-philosophy {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--purple-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-statement {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-sub {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--purple-glow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--gold);
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        /* === FOOTER === */
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        @media (max-width: 800px) {
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (max-width: 500px) {
+            .footer-content { grid-template-columns: 1fr; }
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .footer-brand p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .footer-links a {
+            display: block;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover { color: var(--purple-light); }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-bottom p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .footer-patent {
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            .hero-philosophy { font-size: 1.4rem; }
+            .hero-year { font-size: 5rem; }
+            .hero-statement { font-size: 1.8rem; }
+            .hero-manifesto { font-size: 1.1rem; }
+            .hero-fortress { font-size: 1rem; }
+            .pieuvre-text h2 { font-size: 2rem; }
+            .mars-number { font-size: 4rem; }
+            .gamme-title { font-size: 2rem; }
+            .cta-statement { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars background -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-brand">ASEMANTIX</a>
+        <div class="nav-links">
+            <a href="#pieuvre">La Pieuvre</a>
+            <a href="#gamme">Nos Solutions</a>
+            <a href="../octopus/">OCTOPUS</a>
+            <a href="../sesame/">SÉSAME</a>
+            <a href="#contact">Contact</a>
+            <a href="../octopus/demo.html" class="nav-cta">Essayer</a>
+        </div>
+    </nav>
+    
+    <!-- HERO MANIFESTE -->
+    <section class="hero">
+        <p class="hero-philosophy">
+            « Ce que vous pensez vous appartient.<br>
+            <span>Et même si vous l'écrivez, il n'est plus public. »</span>
+        </p>
+        
+        <div class="hero-year">2026</div>
+        <h1 class="hero-statement">L'Internet <em>n'est plus obligatoire.</em></h1>
+        
+        <div class="hero-manifesto">
+            <p>
+                Des <strong>fonds sous-marins</strong> aux <strong>stations spatiales</strong>.<br>
+                Du <strong>désert du Sahara</strong> aux <strong>plaines de Mongolie</strong>.<br>
+                De votre salon à la <strong>surface de Mars</strong>.
+            </p>
+            <p>
+                Pas de câbles. Pas de fibres. Pas de téléphonie. Pas d'infrastructure.
+            </p>
+            <p class="highlight">
+                <strong>Juste une pieuvre.</strong>
+            </p>
+        </div>
+        
+        <p class="hero-fortress">
+            Nous avons créé une forteresse pour protéger<br>
+            <strong>vos pensées</strong>, <strong>votre vie privée</strong>, <strong>votre industrie</strong>.
+        </p>
+        
+        <div class="scroll-indicator">DÉCOUVRIR</div>
+    </section>
+    
+    <!-- LA PIEUVRE -->
+    <section class="pieuvre-section" id="pieuvre">
+        <div class="section-inner">
+            <div class="pieuvre-content">
+                <div class="pieuvre-text">
+                    <h2>La pieuvre, c'est <span>OCTOPUS</span></h2>
+                    <p>
+                        La pieuvre est une <strong>formule chiffrée</strong>. Un secret partagé entre vos appareils. 
+                        Une fois installée sur deux terminaux légitimes, elle permet un <strong>échange résilient 
+                        à fortes latences</strong>.
+                    </p>
+                    <p>
+                        Elle voyage par <strong>tous les chemins</strong> : lumière, ondes radio, QR code, USB, 
+                        satellite, TCP/IP, MQTT, WiFi, Bluetooth, signal acoustique...
+                    </p>
+                    <p>
+                        Elle est <strong>invisible en transit</strong>. Résistante aux cyber-attaques. 
+                        <strong>Immunisée contre les ordinateurs quantiques.</strong>
+                    </p>
+                </div>
+                <div class="pieuvre-visual">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="bodyGrad" cx="50%" cy="30%" r="60%">
+                                <stop offset="0%" style="stop-color:#b366e8"/>
+                                <stop offset="100%" style="stop-color:#4a0080"/>
+                            </radialGradient>
+                            <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#9b4dca"/>
+                                <stop offset="50%" style="stop-color:#6a1bb2"/>
+                                <stop offset="100%" style="stop-color:#3d0066"/>
+                            </linearGradient>
+                            <filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        </defs>
+                        <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300" fill="none" stroke="url(#tentGrad)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20" fill="none" stroke="url(#tentGrad)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M200,150 C200,100 240,60 280,40" fill="none" stroke="url(#tentGrad)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M180,150 C160,100 120,60 80,40" fill="none" stroke="url(#tentGrad)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+                        <path d="M220,210 C250,230 280,280 260,320" fill="none" stroke="url(#tentGrad)" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/>
+                        <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad)" filter="url(#glow)"/>
+                        <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGrad)"/>
+                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+                        <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                        <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+                        <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
+                        <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CANAUX -->
+    <section class="canaux-section">
+        <div class="section-inner">
+            <h2 class="canaux-title">Tous les chemins mènent au message</h2>
+            <p class="canaux-subtitle">
+                Notre technologie est <strong>agnostique au canal</strong>. Elle utilise n'importe quel 
+                support physique capable de transporter des bits.
+            </p>
+            
+            <div class="canaux-grid">
+                <div class="canal-badge"><span class="icon">🌐</span> TCP/IP</div>
+                <div class="canal-badge"><span class="icon">📡</span> HTTP/MQTT</div>
+                <div class="canal-badge"><span class="icon">📶</span> WiFi</div>
+                <div class="canal-badge"><span class="icon">📲</span> Bluetooth</div>
+                <div class="canal-badge"><span class="icon">📷</span> QR Code</div>
+                <div class="canal-badge"><span class="icon">✨</span> Optique</div>
+                <div class="canal-badge"><span class="icon">📻</span> Radio / LoRa</div>
+                <div class="canal-badge"><span class="icon">🔌</span> USB</div>
+                <div class="canal-badge"><span class="icon">🛰️</span> Satellite</div>
+                <div class="canal-badge"><span class="icon">🔊</span> Acoustique</div>
+            </div>
+            
+            <p class="canaux-quote">
+                « Ni câbles, ni fibres, ni téléphonie.<br>Seule, une pieuvre. »
+            </p>
+        </div>
+    </section>
+    
+    <!-- MARS -->
+    <section class="mars-section">
+        <div class="section-inner">
+            <div class="mars-number">4–24</div>
+            <div class="mars-unit">minutes</div>
+            <p class="mars-text">
+                C'est le temps qu'il faut pour atteindre <strong>Mars</strong>. Notre technologie 
+                est conçue pour les <strong>fortes latences</strong> et les <strong>pertes de paquets</strong>.
+            </p>
+            <p class="mars-tagline">Terre-Mars ready.</p>
+        </div>
+    </section>
+    
+    <!-- PROTECTION -->
+    <section class="protection-section">
+        <div class="section-inner">
+            <h2 class="protection-title">Protégez ce qui compte</h2>
+            
+            <div class="protection-grid">
+                <div class="protection-card">
+                    <div class="protection-icon">🏢</div>
+                    <h3>Espionnage industriel</h3>
+                    <p>Vos secrets commerciaux, brevets et négociations restent invisibles. Même interceptés, vos échanges sont indéchiffrables.</p>
+                </div>
+                <div class="protection-card">
+                    <div class="protection-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Vie privée familiale</h3>
+                    <p>Protégez vos conversations personnelles, photos et moments en famille. Un cercle fermé, rien que pour vous.</p>
+                </div>
+                <div class="protection-card">
+                    <div class="protection-icon">🛡️</div>
+                    <h3>Cyber-attaques</h3>
+                    <p>Résistant aux attaques actuelles et futures, y compris les ordinateurs quantiques. Breveté et vérifié.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GAMME -->
+    <section class="gamme-section" id="gamme">
+        <div class="section-inner">
+            <div class="gamme-header">
+                <p class="gamme-tag">NOS SOLUTIONS</p>
+                <h2 class="gamme-title">L'écosystème ASEMANTIX</h2>
+                <p class="gamme-subtitle">Des solutions brevetées pour chaque besoin de communication sécurisée</p>
+            </div>
+            
+            <div class="gamme-grid">
+                <!-- OCTOPUS -->
+                <div class="gamme-card">
+                    <div class="gamme-card-header">
+                        <div class="gamme-card-icon">🐙</div>
+                        <div>
+                            <h3 class="gamme-card-name">OCTOPUS</h3>
+                            <p class="gamme-card-tagline">Messagerie invisible</p>
+                        </div>
+                    </div>
+                    <p>
+                        Messagerie pour cercles de confiance. Jusqu'à 20 personnes. Zéro métadonnée. 
+                        Multi-canal. Parfait pour les familles et les équipes qui veulent communiquer 
+                        en toute confidentialité.
+                    </p>
+                    <a href="../octopus/" class="gamme-card-link">Découvrir OCTOPUS →</a>
+                </div>
+                
+                <!-- SÉSAME -->
+                <div class="gamme-card">
+                    <div class="gamme-card-header">
+                        <div class="gamme-card-icon">🔐</div>
+                        <div>
+                            <h3 class="gamme-card-name">SÉSAME</h3>
+                            <p class="gamme-card-tagline">Contrôle IoT souverain</p>
+                        </div>
+                    </div>
+                    <p>
+                        Contrôlez vos objets connectés sans passer par le cloud. Serrures, caméras, 
+                        domotique — tout reste sous votre contrôle exclusif. Aucun serveur tiers.
+                    </p>
+                    <a href="../sesame/" class="gamme-card-link">Découvrir SÉSAME →</a>
+                </div>
+                
+                <!-- MAIL BOX -->
+                <div class="gamme-card">
+                    <div class="gamme-card-header">
+                        <div class="gamme-card-icon">📬</div>
+                        <div>
+                            <h3 class="gamme-card-name">MAIL BOX</h3>
+                            <p class="gamme-card-tagline">Email post-quantique</p>
+                        </div>
+                    </div>
+                    <p>
+                        L'email réinventé. Résistant aux ordinateurs quantiques. Compatible avec 
+                        l'infrastructure existante mais protégé pour les décennies à venir.
+                    </p>
+                    <a href="#contact" class="gamme-card-link">En savoir plus →</a>
+                </div>
+                
+                <!-- RPAG -->
+                <div class="gamme-card">
+                    <div class="gamme-card-header">
+                        <div class="gamme-card-icon">🛰️</div>
+                        <div>
+                            <h3 class="gamme-card-name">RPAG</h3>
+                            <p class="gamme-card-tagline">Protocole résilient</p>
+                        </div>
+                    </div>
+                    <p>
+                        Protocole de communication pour environnements extrêmes. Fortes latences, 
+                        pertes de paquets, canaux intermittents. Spatial, maritime, zones isolées.
+                    </p>
+                    <a href="#contact" class="gamme-card-link">En savoir plus →</a>
+                </div>
+                
+                <!-- PIP -->
+                <div class="gamme-card" style="grid-column: span 2;">
+                    <div class="gamme-card-header">
+                        <div class="gamme-card-icon">💻</div>
+                        <div>
+                            <h3 class="gamme-card-name">PIP</h3>
+                            <p class="gamme-card-tagline">Protection contre l'espionnage</p>
+                        </div>
+                    </div>
+                    <p>
+                        Protégez vos ordinateurs et données sensibles contre l'espionnage industriel. 
+                        Le procédé PIP rend vos fichiers invisibles et inutilisables pour tout intrus, 
+                        qu'il soit humain ou logiciel. Idéal pour les entreprises, chercheurs et toute 
+                        personne manipulant des informations confidentielles.
+                    </p>
+                    <a href="#contact" class="gamme-card-link">Contactez-nous →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA FINAL -->
+    <section class="cta-section" id="contact">
+        <div class="section-inner">
+            <p class="cta-philosophy">« Vos pensées vous appartiennent. »</p>
+            <h2 class="cta-statement">En 2026, une page d'Internet se tourne.</h2>
+            <p class="cta-sub">Rejoignez les pionniers de la communication invisible.</p>
+            
+            <div class="cta-buttons">
+                <a href="../octopus/" class="btn-primary">Découvrir OCTOPUS</a>
+                <a href="/cdn-cgi/l/email-protection#02616d6c76636176426371676f636c766b7a2c7667616a" class="btn-secondary">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>ASEMANTIX™</h3>
+                <p>
+                    Communications résilientes, invisibles, résistantes au quantique.<br>
+                    Technologie 100% française brevetée.
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>SOLUTIONS</h4>
+                <a href="../octopus/">OCTOPUS</a>
+                <a href="../sesame/">SÉSAME</a>
+                <a href="#contact">MAIL BOX</a>
+                <a href="#contact">RPAG</a>
+                <a href="#contact">PIP</a>
+            </div>
+            <div class="footer-links">
+                <h4>ENTREPRISE</h4>
+                <a href="#pieuvre">Notre technologie</a>
+                <a href="./presse/">Presse</a>
+                <a href="/cdn-cgi/l/email-protection#8cefe3e2f8edeff8ccedffe9e1ede2f8e5f4a2f8e9efe4">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>LÉGAL</h4>
+                <a href="../mentions-legales.html">Mentions légales</a>
+                <a href="../confidentialite.html">Confidentialité</a>
+                <a href="../cgv.html">CGV</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ASEMANTIX SAS. Tous droits réservés.</p>
+            <p class="footer-patent">Brevets FR2600020 • Technologie souveraine française</p>
+        </div>
+    </footer>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (2 + Math.random() * 4) + 's';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            starsContainer.appendChild(star);
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('
