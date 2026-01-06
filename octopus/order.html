@@ -485,6 +485,14 @@
             updatePricing();
         }
         
+        // Liens de checkout LemonSqueezy
+        const CHECKOUT_URLS = {
+            2: 'https://getoctopus.lemonsqueezy.com/checkout/buy/b27c4d7e-0d1e-486b-b1ba-811949f44424',
+            3: 'https://getoctopus.lemonsqueezy.com/checkout/buy/d44abdb2-2c04-47ee-8ad7-1f72ee4d8d97',
+            4: 'https://getoctopus.lemonsqueezy.com/checkout/buy/342dc606-396a-4794-b9c3-9a0a7226a5f9',
+            5: 'https://getoctopus.lemonsqueezy.com/checkout/buy/3f1e62bc-3197-4da6-9a26-54813db8a53f'
+        };
+        
         // Formulaire
         document.getElementById('orderForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -511,10 +519,28 @@
                 return;
             }
             
-            const pricing = calculatePrice(emails.length);
+            const memberCount = emails.length;
             
-            // TODO: Intégrer LemonSqueezy
-            alert(`Cercle "${circleName}" avec ${emails.length} membres.\nTotal: ${pricing.total}€\n\n⚠️ Intégration LemonSqueezy à configurer.`);
+            // Pour 6+ membres, contacter le support pour l'instant
+            if (memberCount > 5) {
+                alert(`Pour les cercles de plus de 5 membres, veuillez nous contacter à asemantix@proton.me`);
+                return;
+            }
+            
+            // Récupérer l'URL de checkout
+            const checkoutUrl = CHECKOUT_URLS[memberCount];
+            if (!checkoutUrl) {
+                alert('Erreur: configuration manquante. Contactez asemantix@proton.me');
+                return;
+            }
+            
+            // Ajouter les métadonnées à l'URL
+            const url = new URL(checkoutUrl);
+            url.searchParams.set('checkout[custom][circle_name]', circleName);
+            url.searchParams.set('checkout[custom][emails]', emails.join(','));
+            
+            // Rediriger vers LemonSqueezy
+            window.location.href = url.toString();
         });
         
         // Init
