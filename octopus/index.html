@@ -4,1764 +4,1247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Octopus — Un cercle. Pas un réseau.</title>
-    <meta name="description" content="OCTOPUS - La messagerie des cercles. Partagez la même pieuvre et ne vous quittez plus. Famille, amis, équipe — restez connectés avec ou sans internet.">
+    <title>OCTOPUS™ — Messagerie Invisible | ASEMANTIX</title>
+    <meta name="description" content="OCTOPUS - Vos pensées vous appartiennent. Messagerie invisible pour cercles de confiance. Zéro métadonnée. Résistant au quantique. Multi-canal.">
+    
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon.svg">
-    <link rel="apple-touch-icon" href="./favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --deep-void: #050208;
-            --abyss: #0a0515;
-            --ink-dark: #120a24;
-            --purple-deep: #4a0080;
-            --purple-glow: #9b4dca;
-            --purple-light: #b366e8;
-            --purple-accent: #bf5fff;
-            --text-primary: #e8e0f0;
-            --text-muted: #9a8fb0;
-            --text-dim: #6b5f80;
+            --black: #050508;
+            --void: #0a0a12;
+            --purple: #8a2be2;
+            --purple-dark: #4a0080;
+            --purple-light: #a855f7;
+            --purple-glow: rgba(138, 43, 226, 0.5);
             --gold: #d4af37;
-            --gold-light: #f0d878;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--deep-void);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Ink background animation */
-        .ink-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .ink-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.4;
-            animation: drift 20s ease-in-out infinite;
-        }
-
-        .ink-blob:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
-            top: -200px;
-            right: -100px;
-            animation-delay: 0s;
-        }
-
-        .ink-blob:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #2d0a4e 0%, transparent 70%);
-            bottom: 10%;
-            left: -100px;
-            animation-delay: -7s;
-        }
-
-        .ink-blob:nth-child(3) {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
-            top: 50%;
-            right: 20%;
-            opacity: 0.15;
-            animation-delay: -14s;
-        }
-
-        @keyframes drift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -20px) scale(1.05); }
-            50% { transform: translate(-20px, 30px) scale(0.95); }
-            75% { transform: translate(20px, 20px) scale(1.02); }
-        }
-
-        /* Grain overlay */
-        .grain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 99;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 9999;
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(5, 2, 8, 0.98) 0%, rgba(5, 2, 8, 0.85) 60%, rgba(5, 2, 8, 0) 100%);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            --gold-dim: #a8893a;
+            --white: #f0f0f5;
+            --gray: #888898;
+            --gray-dark: #1a1a2e;
+            --green: #10b981;
         }
         
-        nav a, nav button {
-            cursor: pointer !important;
-            position: relative;
-            z-index: 9999;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
         }
-
-        .nav-logo {
+        
+        /* === STARS === */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 30% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(74, 0, 128, 0.08) 0%, transparent 50%);
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        /* === NAV === */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(5,5,8,0.98) 0%, transparent 100%);
+        }
+        
+        .nav-brand {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             text-decoration: none;
         }
-
-        .nav-logo svg {
-            width: 40px;
-            height: 40px;
+        
+        .nav-brand svg {
+            width: 45px; height: 45px;
+            filter: drop-shadow(0 0 15px var(--purple-glow));
         }
-
-        .nav-logo span {
+        
+        .nav-brand span {
             font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--purple-light);
             letter-spacing: 0.1em;
         }
-
+        
         .nav-links {
             display: flex;
-            gap: 2.5rem;
-            list-style: none;
+            gap: 2rem;
             align-items: center;
         }
-
+        
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--gray);
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
-            cursor: pointer;
+            transition: color 0.3s;
         }
-
-        .nav-links a:hover {
-            color: var(--purple-light);
-        }
-
-        .nav-links .student-link {
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .nav-links .student-link:hover {
-            color: var(--gold-light);
-        }
-
+        
+        .nav-links a:hover { color: var(--white); }
+        
         .nav-cta {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
             padding: 0.7rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--purple-glow);
-            color: var(--purple-light);
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.85rem;
+            border-radius: 8px;
+            color: var(--white) !important;
             font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border-radius: 4px;
-            display: inline-block;
         }
-
-        .nav-cta:hover {
-            background: var(--purple-deep);
-            box-shadow: 0 0 30px rgba(155, 77, 202, 0.3);
+        
+        .nav-cta:hover { box-shadow: 0 0 30px var(--purple-glow); }
+        
+        .nav-back {
+            color: var(--gold) !important;
+            font-size: 0.85rem;
         }
-
-        /* Hero */
+        
+        /* === HERO === */
         .hero {
-            position: relative;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 6rem 2rem;
-            z-index: 1;
-        }
-
-        .hero-logo {
-            width: 180px;
-            height: 180px;
-            margin-bottom: 2rem;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 60px rgba(155, 77, 202, 0.4));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .hero-tagline {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            color: var(--purple-light);
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.3s forwards;
-        }
-
-        .hero-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.5s forwards;
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple-accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
-            text-align: center;
-            max-width: 600px;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.7s forwards;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.9s forwards;
-        }
-
-        .btn-primary {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple-glow) 100%);
-            border: none;
-            color: white;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(155, 77, 202, 0.4);
-        }
-
-        .btn-secondary {
-            padding: 1rem 2.5rem;
-            background: transparent;
-            border: 1px solid var(--text-dim);
-            color: var(--text-muted);
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--purple-light);
-            color: var(--purple-light);
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 1.2s forwards;
-        }
-
-        .scroll-indicator span {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--purple-glow), transparent);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* Section styling */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 8rem 4rem;
-        }
-
-        .section-label {
-            font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            color: var(--purple-glow);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        /* How it works */
-        .how-it-works {
-            background: linear-gradient(180deg, transparent 0%, var(--abyss) 50%, transparent 100%);
-        }
-
-        .how-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .flow-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .flow-step {
-            position: relative;
-            padding: 2.5rem;
-            background: linear-gradient(135deg, rgba(74, 0, 128, 0.1) 0%, rgba(10, 5, 21, 0.8) 100%);
-            border: 1px solid rgba(155, 77, 202, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        .flow-step:hover {
-            border-color: var(--purple-glow);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(155, 77, 202, 0.15);
-        }
-
-        .flow-step::before {
-            content: attr(data-step);
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            padding: 0.5rem 1rem;
-            background: var(--purple-deep);
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            color: var(--purple-light);
-        }
-
-        .flow-icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 1.5rem;
-            color: var(--purple-light);
-        }
-
-        .flow-step h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .flow-step p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Ink reveal animation section */
-        .ink-reveal {
-            text-align: center;
-            padding: 10rem 4rem;
-        }
-
-        .reveal-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .reveal-visual {
-            position: relative;
-            height: 300px;
-            margin: 4rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .message-transit {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .transit-box {
-            padding: 2rem 3rem;
-            background: rgba(74, 0, 128, 0.2);
-            border: 1px solid var(--purple-deep);
-            position: relative;
-        }
-
-        .transit-box.encrypted {
-            font-family: 'Courier New', monospace;
-            color: var(--purple-glow);
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            animation: glitch 3s ease-in-out infinite;
-        }
-
-        @keyframes glitch {
-            0%, 90%, 100% { opacity: 1; }
-            92% { opacity: 0.8; transform: translateX(-2px); }
-            94% { opacity: 0.9; transform: translateX(2px); }
-            96% { opacity: 0.7; transform: translateX(-1px); }
-        }
-
-        .transit-arrow {
-            color: var(--purple-glow);
-            font-size: 2rem;
-            animation: arrowPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes arrowPulse {
-            0%, 100% { transform: translateX(0); opacity: 0.5; }
-            50% { transform: translateX(10px); opacity: 1; }
-        }
-
-        .transit-box.revealed {
-            background: linear-gradient(135deg, var(--purple-deep) 0%, var(--ink-dark) 100%);
-            border-color: var(--purple-light);
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            box-shadow: 0 0 40px rgba(155, 77, 202, 0.3);
-        }
-
-        .transit-label {
-            position: absolute;
-            bottom: -2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        /* Features */
-        .features {
-            background: var(--abyss);
-        }
-
-        .features-grid {
-            max-width: 1200px;
-            margin: 4rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .feature-card {
-            padding: 2.5rem;
-            background: linear-gradient(135deg, var(--ink-dark) 0%, var(--deep-void) 100%);
-            border: 1px solid rgba(155, 77, 202, 0.1);
-            display: flex;
-            gap: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(155, 77, 202, 0.3);
-            background: linear-gradient(135deg, rgba(74, 0, 128, 0.15) 0%, var(--deep-void) 100%);
-        }
-
-        .feature-icon {
-            flex-shrink: 0;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(155, 77, 202, 0.1);
-            color: var(--purple-light);
-        }
-
-        .feature-content h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .feature-content p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Pricing */
-        .pricing-section {
-            padding: 8rem 4rem;
-        }
-
-        .pricing-section .section-subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 4rem;
-            text-align: center;
-        }
-
-        .pricing-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: linear-gradient(135deg, var(--ink-dark) 0%, var(--deep-void) 100%);
-            border: 1px solid rgba(155, 77, 202, 0.2);
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            border-color: var(--purple-glow);
-            transform: translateY(-5px);
-        }
-
-        .pricing-card.popular {
-            border-color: var(--purple-light);
-            box-shadow: 0 0 60px rgba(155, 77, 202, 0.2);
-        }
-
-        .pricing-card.popular::before {
-            content: 'POPULAIRE';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--purple-glow) 0%, var(--purple-light) 100%);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            padding: 0.4rem 1rem;
-        }
-
-        .pricing-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .pricing-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .pricing-users {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--purple-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-dim);
-        }
-
-        .pricing-period {
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 0.6rem 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(155, 77, 202, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .pricing-features li::before {
-            content: '✓';
-            color: var(--purple-light);
-            font-weight: bold;
-        }
-
-        .pricing-btn {
-            width: 100%;
-            padding: 1rem;
-            text-align: center;
-            display: block;
-        }
-
-        /* Student banner */
-        .student-banner {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(74, 0, 128, 0.2) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 2rem 3rem;
-            margin-top: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .student-banner-content h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .student-banner-content p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .student-banner .btn-gold {
-            background: var(--gold);
-            color: var(--deep-void);
-            padding: 0.8rem 1.5rem;
-            font-weight: 600;
-            white-space: nowrap;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .student-banner .btn-gold:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-        }
-
-        /* Demo section */
-        .demo-section {
-            text-align: center;
-            padding: 6rem 4rem;
-            border-top: 1px solid rgba(155, 77, 202, 0.1);
-            border-bottom: 1px solid rgba(155, 77, 202, 0.1);
-        }
-
-        .demo-box {
-            max-width: 500px;
-            margin: 2rem auto 0;
-            padding: 2.5rem;
-            background: linear-gradient(135deg, rgba(74, 0, 128, 0.15) 0%, var(--ink-dark) 100%);
-            border: 1px solid rgba(155, 77, 202, 0.3);
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            color: #10b981;
-            padding: 0.4rem 1rem;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 1.5rem;
-        }
-
-        .demo-box h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .demo-box p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .demo-info {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            line-height: 1.8;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 10rem 4rem;
-            position: relative;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
-            opacity: 0.3;
-            filter: blur(80px);
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-subtitle {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            max-width: 500px;
-            margin: 0 auto 3rem;
-        }
-
-        /* Footer */
-        footer {
-            position: relative;
-            z-index: 1;
-            padding: 4rem;
-            border-top: 1px solid rgba(155, 77, 202, 0.1);
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-brand {
-            max-width: 300px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .footer-logo span {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-        }
-
-        .footer-brand p {
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-
-        .footer-links-grid {
-            display: flex;
-            gap: 4rem;
-        }
-
-        .footer-col h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            letter-spacing: 0.1em;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-col a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-col a:hover {
-            color: var(--purple-light);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(155, 77, 202, 0.1);
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-copy {
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-legal a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-legal a:hover {
-            color: var(--purple-light);
-        }
-
-        /* Student Page Styles */
-        .student-hero {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, var(--deep-void) 100%);
-            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
         }
-
-        .student-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--gold) 0%, #c9a227 100%);
-            color: var(--deep-void);
-            padding: 0.6rem 1.5rem;
-            font-size: 1rem;
+        
+        .hero-philosophy {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .hero-philosophy span { color: var(--purple-light); }
+        
+        .hero-logo {
+            width: 200px; height: 200px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 40px var(--purple-glow));
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
             font-weight: 700;
-            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--purple-light) 0%, var(--white) 50%, var(--purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: 0.15em;
+        }
+        
+        .hero-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
             margin-bottom: 2rem;
         }
-
-        .student-hero h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-        }
-
-        .student-hero h1 .gold {
-            color: var(--gold);
-        }
-
-        .student-hero .subtitle {
-            color: var(--text-muted);
+        
+        .hero-desc {
             font-size: 1.2rem;
+            color: var(--gray);
             max-width: 600px;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
-
-        .student-pricing {
+        
+        .hero-badges {
             display: flex;
-            gap: 3rem;
             justify-content: center;
+            gap: 1rem;
             flex-wrap: wrap;
             margin-bottom: 3rem;
         }
-
-        .student-price-item {
-            text-align: center;
-        }
-
-        .student-price-item .original {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            text-decoration: line-through;
-            margin-bottom: 0.25rem;
-        }
-
-        .student-price-item .discounted {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-
-        .student-price-item .discounted span {
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        .student-price-item .label {
-            color: var(--text-muted);
+        
+        .badge {
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
             font-size: 0.9rem;
-            margin-top: 0.25rem;
+            color: var(--purple-light);
         }
-
-        .student-verification {
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--purple-glow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--purple);
+        }
+        
+        /* === SECTIONS === */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+        }
+        
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
-            padding: 2rem 4rem;
         }
-
-        .verification-box {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, var(--ink-dark) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+        
+        /* === CONCEPT === */
+        .concept-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(138, 43, 226, 0.05) 50%, transparent 100%);
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 800px) {
+            .concept-grid { grid-template-columns: 1fr; }
+        }
+        
+        .concept-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 20px;
             padding: 2.5rem;
             text-align: center;
+            transition: all 0.3s;
         }
-
-        .verification-box h3 {
+        
+        .concept-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-5px);
+        }
+        
+        .concept-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .concept-card h3 {
             font-family: 'Cinzel', serif;
             font-size: 1.3rem;
-            color: var(--gold);
+            color: var(--white);
             margin-bottom: 1rem;
         }
-
-        .verification-box p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
+        
+        .concept-card p {
+            color: var(--gray);
             font-size: 0.95rem;
+            line-height: 1.7;
         }
-
-        .email-input-group {
+        
+        /* === HOW === */
+        .how-section { background: var(--void); }
+        
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 900px) {
+            .how-steps { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 500px) {
+            .how-steps { grid-template-columns: 1fr; }
+        }
+        
+        .how-step {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .how-step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .email-input-group input {
-            flex: 1;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--text-primary);
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
             font-size: 1rem;
-            font-family: 'Outfit', sans-serif;
         }
-
-        .email-input-group input::placeholder {
-            color: var(--text-dim);
+        
+        .how-step-icon {
+            font-size: 2.5rem;
+            margin: 1rem 0;
         }
-
-        .email-input-group input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .email-input-group button {
-            padding: 1rem 1.5rem;
-            background: var(--gold);
-            border: none;
-            color: var(--deep-void);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .email-input-group button:hover {
-            background: var(--gold-light);
-        }
-
-        .verification-note {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-        }
-
-        .eligible-schools {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .eligible-schools p {
-            font-size: 0.85rem;
-            color: var(--text-dim);
+        
+        .how-step h3 {
+            font-size: 1rem;
+            color: var(--white);
             margin-bottom: 0.5rem;
         }
-
-        .school-tags {
+        
+        .how-step p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        /* === CHANNELS === */
+        .channels-grid {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
             justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-
-        .school-tag {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 0.3rem 0.8rem;
-            font-size: 0.75rem;
+        
+        .channel-badge {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 0.8rem 1.3rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+        
+        .channel-badge:hover {
+            border-color: var(--purple);
+            transform: translateY(-3px);
+        }
+        
+        .channels-quote {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 1.2rem;
             color: var(--gold);
+            font-style: italic;
         }
-
-        /* Page visibility - REMOVED, all sections visible */
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            nav {
-                padding: 1.5rem 2rem;
-            }
-
-            section {
-                padding: 6rem 2rem;
-            }
-
-            .flow-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .message-transit {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .transit-arrow {
-                transform: rotate(90deg);
-            }
-
-            @keyframes arrowPulse {
-                0%, 100% { transform: rotate(90deg) translateX(0); opacity: 0.5; }
-                50% { transform: rotate(90deg) translateX(10px); opacity: 1; }
-            }
-
-            .student-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-top {
-                flex-direction: column;
-            }
-
-            .footer-links-grid {
-                flex-wrap: wrap;
-                gap: 2rem;
-            }
+        
+        /* === TECH === */
+        .tech-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%);
         }
-
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 700px) {
+            .tech-grid { grid-template-columns: 1fr; }
+        }
+        
+        .tech-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .tech-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .tech-card h3 span { font-size: 1.5rem; }
+        
+        .tech-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .tech-card strong { color: var(--white); }
+        
+        /* === DEMO === */
+        .demo-section { background: var(--void); }
+        
+        .demo-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--purple);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), #059669);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-box h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .demo-box p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-info {
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--purple-light);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        /* === PRICING === */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 1000px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 600px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+        
+        .pricing-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-5px);
+        }
+        
+        .pricing-card.popular {
+            border-color: var(--purple);
+            background: rgba(138, 43, 226, 0.15);
+        }
+        
+        .pricing-card.popular::before {
+            content: '⭐ POPULAIRE';
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--purple);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .pricing-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        
+        .pricing-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+        
+        .pricing-users {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--purple-light);
+        }
+        
+        .pricing-price span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .pricing-per {
+            color: var(--green);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.4rem 0;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--green);
+        }
+        
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .pricing-btn:hover {
+            box-shadow: 0 5px 20px var(--purple-glow);
+        }
+        
+        /* Addon */
+        .addon-section {
+            max-width: 500px;
+            margin: 3rem auto 0;
+        }
+        
+        .addon-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .addon-card .pricing-price { color: var(--gold); }
+        
+        .btn-gold {
+            display: block;
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--gold), #b8942f);
+            color: #000;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-gold:hover {
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* === GUARANTEE === */
+        .guarantee-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .guarantee-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .guarantee-box h3 {
+            color: var(--green);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .guarantee-box p {
+            color: var(--gray);
+        }
+        
+        /* === FAQ === */
+        .faq-section { background: var(--void); }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .faq-question:hover { background: rgba(138, 43, 226, 0.1); }
+        .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--purple-light); }
+        .faq-item.open .faq-question::after { content: '−'; }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: var(--gray);
+        }
+        
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        /* === CTA === */
+        .cta-section {
+            text-align: center;
+            padding: 8rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+        }
+        
+        .cta-philosophy {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--purple-light);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        /* === FOOTER === */
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 3rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--purple-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-brand p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            display: block;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a:hover { color: var(--purple-light); }
+        
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .footer-patent { color: var(--gold); margin-top: 0.5rem; }
+        
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-logo {
-                width: 140px;
-                height: 140px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .email-input-group {
-                flex-direction: column;
-            }
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            .hero-philosophy { font-size: 1.2rem; }
+            .hero-title { font-size: 3rem; }
+            .hero-tagline { font-size: 1.3rem; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Background effects -->
-    <div class="ink-bg">
-        <div class="ink-blob"></div>
-        <div class="ink-blob"></div>
-        <div class="ink-blob"></div>
-    </div>
-    <div class="grain"></div>
-
-    <!-- Navigation -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- NAV -->
     <nav>
-        <a href="#top" class="nav-logo">
-            <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a href="./" class="nav-brand">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <radialGradient id="bodyGrad" cx="50%" cy="30%" r="60%">
-                        <stop offset="0%" stop-color="#b366e8"/>
-                        <stop offset="100%" stop-color="#4a0080"/>
-                    </radialGradient>
-                    <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#9b4dca"/>
-                        <stop offset="50%" stop-color="#6a1bb2"/>
-                        <stop offset="100%" stop-color="#3d0066"/>
-                    </linearGradient>
-                </defs>
-                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300" stroke="url(#tentGrad)" stroke-width="22" stroke-linecap="round" fill="none"/>
-                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20" stroke="url(#tentGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
-                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad)"/>
-                <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-            </svg>
-            <span>Octopus</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#how">Principe</a></li>
-            <li><a href="#features">Fonctionnalités</a></li>
-            <li><a href="#pricing">Tarifs</a></li>
-            <li><a href="#students" class="student-link">🎓 -50% Étudiants</a></li>
-            <li><a href="https://asemantix.tech" class="asemantix-link">ASEMANTIX</a></li>
-        </ul>
-        <a href="./order.html" class="nav-cta">Créer un cercle</a>
-    </nav>
-
-    <!-- MAIN CONTENT -->
-    <div id="top">
-        <!-- Hero -->
-        <section class="hero">
-            <svg class="hero-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <radialGradient id="bodyGradient" cx="50%" cy="30%" r="60%">
                         <stop offset="0%" style="stop-color:#b366e8"/>
                         <stop offset="100%" style="stop-color:#4a0080"/>
                     </radialGradient>
-                    <linearGradient id="tentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:#9b4dca"/>
-                        <stop offset="50%" style="stop-color:#6a1bb2"/>
                         <stop offset="100%" style="stop-color:#3d0066"/>
                     </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
                 </defs>
-                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="url(#tentGradient)" stroke-width="22" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380 C180,370 220,340 250,300 C270,270 300,250 340,260 C380,270 395,310 380,350 C365,390 320,400 280,390" fill="none" stroke="#2d0a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="2,15"/>
-                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="url(#tentGradient)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20 C230,30 180,60 150,100 C120,140 80,130 50,100 C20,70 10,30 30,10" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
-                <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400 C220,380 280,400 340,420 C400,440 420,400 400,350" fill="none" stroke="url(#tentGradient)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M260,190 C310,170 360,200 380,250 C400,300 390,360 350,380 C310,400 260,380 240,340" fill="none" stroke="url(#tentGradient)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M140,190 C90,170 40,200 20,250 C0,300 10,360 50,380 C90,400 140,380 160,340" fill="none" stroke="url(#tentGradient)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M200,150 C200,100 240,60 280,40 C320,20 370,40 380,80 C390,120 360,150 320,160" fill="none" stroke="url(#tentGradient)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M180,150 C160,100 120,60 80,40 C40,20 10,50 10,90 C10,130 40,160 80,165" fill="none" stroke="url(#tentGradient)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M220,210 C250,230 280,280 260,320 C240,360 200,370 170,350" fill="none" stroke="url(#tentGradient)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
-                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGradient)" filter="url(#glow)"/>
-                <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGradient)"/>
-                <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="175" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
-                <ellipse cx="225" cy="175" rx="18" ry="22" fill="none" stroke="#8a2be2" stroke-width="2" opacity="0.5"/>
-                <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
-                <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
+                <path d="M150,200 C100,180 50,220 30,280" fill="none" stroke="url(#tentGrad)" stroke-width="18" stroke-linecap="round"/>
+                <path d="M250,200 C300,180 350,150 370,100" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round"/>
+                <path d="M180,220 C150,260 100,300 80,350" fill="none" stroke="url(#tentGrad)" stroke-width="14" stroke-linecap="round"/>
+                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad)"/>
+                <ellipse cx="175" cy="175" rx="15" ry="18" fill="#0a0015"/>
+                <ellipse cx="225" cy="175" rx="15" ry="18" fill="#0a0015"/>
+                <ellipse cx="178" cy="172" rx="6" ry="8" fill="#bf5fff"/>
+                <ellipse cx="228" cy="172" rx="6" ry="8" fill="#bf5fff"/>
             </svg>
-
-            <p class="hero-tagline">La messagerie des cercles</p>
-            <h1 class="hero-title">Un cercle.<br><span class="highlight">Pas un réseau.</span></h1>
-            <p class="hero-subtitle">Partagez la même pieuvre. Ne vous quittez plus.<br>Quelle que soit la distance — avec ou sans internet.</p>
+            <span>OCTOPUS</span>
+        </a>
+        <div class="nav-links">
+            <a href="../" class="nav-back">← ASEMANTIX</a>
+            <a href="#concept">Concept</a>
+            <a href="#tech">Technologie</a>
+            <a href="#pricing">Tarifs</a>
+            <a href="#faq">FAQ</a>
+            <a href="./demo.html" class="nav-cta">Essayer</a>
+        </div>
+    </nav>
+    
+    <!-- HERO -->
+    <section class="hero">
+        <p class="hero-philosophy">
+            « Ce que vous pensez vous appartient.<br>
+            <span>Et même si vous l'écrivez, il n'est plus public. »</span>
+        </p>
+        
+        <svg class="hero-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="bodyGrad2" cx="50%" cy="30%" r="60%">
+                    <stop offset="0%" style="stop-color:#b366e8"/>
+                    <stop offset="100%" style="stop-color:#4a0080"/>
+                </radialGradient>
+                <linearGradient id="tentGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#9b4dca"/>
+                    <stop offset="50%" style="stop-color:#6a1bb2"/>
+                    <stop offset="100%" style="stop-color:#3d0066"/>
+                </linearGradient>
+                <filter id="glow"><feGaussianBlur stdDeviation="3"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380" fill="none" stroke="url(#tentGrad2)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
+            <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20" fill="none" stroke="url(#tentGrad2)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+            <path d="M180,220 C150,260 100,300 80,350" fill="none" stroke="url(#tentGrad2)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+            <path d="M260,190 C310,170 360,200 380,250" fill="none" stroke="url(#tentGrad2)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+            <path d="M140,190 C90,170 40,200 20,250" fill="none" stroke="url(#tentGrad2)" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>
+            <path d="M220,210 C250,230 280,280 260,320" fill="none" stroke="url(#tentGrad2)" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/>
+            <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad2)" filter="url(#glow)"/>
+            <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGrad2)"/>
+            <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
+            <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
+            <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+            <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
+            <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
+            <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
+        </svg>
+        
+        <h1 class="hero-title">OCTOPUS</h1>
+        <p class="hero-tagline">Messagerie Invisible</p>
+        <p class="hero-desc">
+            Un cercle fermé. Jusqu'à 20 personnes de confiance.<br>
+            Vos messages traversent tous les canaux — invisibles, indéchiffrables, souverains.
+        </p>
+        
+        <div class="hero-badges">
+            <span class="badge">🔒 Zéro métadonnée</span>
+            <span class="badge">🛡️ Post-quantique</span>
+            <span class="badge">📡 Multi-canal</span>
+            <span class="badge">🇫🇷 Breveté INPI</span>
+        </div>
+        
+        <div class="hero-buttons">
+            <a href="#pricing" class="btn-primary">Commander mon cercle</a>
+            <a href="./demo.html" class="btn-secondary">Essayer la démo</a>
+        </div>
+    </section>
+    
+    <!-- CONCEPT -->
+    <section class="concept-section" id="concept">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">LE CONCEPT</p>
+                <h2 class="section-title">Un cercle. Pas un réseau.</h2>
+                <p class="section-subtitle">OCTOPUS ne transmet pas des messages — il transmet de l'encre. Seul votre cercle peut la révéler.</p>
+            </div>
             
-            <div class="hero-cta">
-                <a href="./order.html" class="btn-primary">Créer un cercle</a>
-                <a href="#demo" class="btn-secondary">Voir la démo</a>
-            </div>
-
-            <div class="scroll-indicator">
-                <span>Découvrir</span>
-                <div class="scroll-line"></div>
-            </div>
-        </section>
-
-        <!-- How it works -->
-        <section class="how-it-works" id="how">
-            <div class="how-content">
-                <p class="section-label">Principe</p>
-                <h2 class="section-title">Comment fonctionne la pieuvre</h2>
-
-                <div class="flow-container">
-                    <div class="flow-step" data-step="01">
-                        <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 8v4l3 3"/>
-                        </svg>
-                        <h3>Tu crées ton cercle</h3>
-                        <p>Famille, amis proches, équipe... Une pieuvre unique est créée pour vous. Pas de compte, pas de mot de passe. Juste votre cercle de confiance.</p>
-                    </div>
-
-                    <div class="flow-step" data-step="02">
-                        <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 3v18M3 12h18"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                        <h3>Chacun reçoit sa pieuvre</h3>
-                        <p>Chaque membre devient un bras. Vous partagez la même pieuvre — le même secret. Un nouveau membre ? Tout le cercle évolue ensemble.</p>
-                    </div>
-
-                    <div class="flow-step" data-step="03">
-                        <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M4 4h16v16H4z"/>
-                            <path d="M9 9h6v6H9z"/>
-                        </svg>
-                        <h3>Restez connectés, toujours</h3>
-                        <p>Internet, Bluetooth, QR code, clé USB... Peu importe le canal. Vos messages restent illisibles pour le reste du monde — sauf pour votre cercle.</p>
-                    </div>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">🐙</div>
+                    <h3>La Pieuvre</h3>
+                    <p>Un fichier unique, partagé par votre cercle. C'est votre sésame cryptographique — sans lui, vos messages restent du bruit.</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">👻</div>
+                    <h3>L'Invisibilité</h3>
+                    <p>En transit, vos messages ressemblent à du hasard. Pas de structure, pas de métadonnées. Même interceptés, ils sont vides de sens.</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🔮</div>
+                    <h3>La Révélation</h3>
+                    <p>Seuls les appareils de votre cercle, équipés de la pieuvre, peuvent transformer l'encre en message lisible.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Ink reveal visual -->
-        <section class="ink-reveal">
-            <div class="reveal-container">
-                <p class="section-label">Comment ça marche</p>
-                <h2 class="section-title">Ce qui voyage reste privé.<br>Ce qui arrive est clair.</h2>
-
-                <div class="reveal-visual">
-                    <div class="message-transit">
-                        <div class="transit-box encrypted">
-                            ▓░▒█▓░▒░█▓▒░<br>
-                            ░▒▓█░▓▒░█▒▓░<br>
-                            ▓▒░█▓░▒▓░█▒▓
-                            <span class="transit-label">Sur le réseau</span>
-                        </div>
-                        <span class="transit-arrow">→</span>
-                        <div class="transit-box revealed">
-                            On se retrouve<br>
-                            à 18h au spot ?
-                            <span class="transit-label">Chez ton cercle</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">Vos messages ne sont lisibles que par votre cercle. Personne d'autre — ni nous, ni les réseaux, ni personne.</p>
+        </div>
+    </section>
+    
+    <!-- HOW -->
+    <section class="how-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">COMMENT ÇA MARCHE</p>
+                <h2 class="section-title">4 étapes vers l'invisible</h2>
             </div>
-        </section>
-
-        <!-- Features -->
-        <section class="features" id="features">
-            <div class="how-content">
-                <p class="section-label">Fonctionnalités</p>
-                <h2 class="section-title">Conçu pour rester connectés</h2>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M8 12l3 3 5-5"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Votre cercle, votre monde</h3>
-                            <p>Famille, amis, équipe... Vous ne parlez qu'à ceux qui comptent. Un espace privé, rien que pour vous.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Multi-canal</h3>
-                            <p>Internet, Bluetooth, QR code, clé USB, radio... Quel que soit le chemin, vos messages passent.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                                <path d="M3 9h18"/>
-                                <path d="M9 21V9"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Privé par nature</h3>
-                            <p>Pas de compte, pas de serveur qui stocke. Vos messages n'existent que chez vous et votre cercle.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M5 12.55a11 11 0 0 1 14 0"/>
-                                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-                                <line x1="12" y1="20" x2="12" y2="20"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Fonctionne sans internet</h3>
-                            <p>En zone blanche, en voyage, en panne de réseau... Vos messages passent quand même. Par QR, Bluetooth ou USB.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Vraiment privé</h3>
-                            <p>Personne ne sait qui parle à qui, ni quand. Pas de traces, pas d'historique côté serveur. Vos échanges restent les vôtres.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Le cercle évolue ensemble</h3>
-                            <p>Un nouveau membre ? Tout le monde reçoit la mise à jour automatiquement. Votre cercle grandit naturellement.</p>
-                        </div>
-                    </div>
+            
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="how-step-number">1</div>
+                    <div class="how-step-icon">🛒</div>
+                    <h3>Commandez</h3>
+                    <p>Choisissez la taille de votre cercle</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">2</div>
+                    <div class="how-step-icon">📧</div>
+                    <h3>Recevez</h3>
+                    <p>Chaque membre reçoit sa pieuvre par email</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">3</div>
+                    <div class="how-step-icon">📱</div>
+                    <h3>Installez</h3>
+                    <p>Importez la pieuvre dans l'app</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">4</div>
+                    <div class="how-step-icon">💬</div>
+                    <h3>Communiquez</h3>
+                    <p>Échangez en toute confidentialité</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Demo -->
-        <section class="demo-section" id="demo">
-            <p class="section-label">Essayer</p>
-            <h2 class="section-title">Mode Démonstration</h2>
-
+        </div>
+    </section>
+    
+    <!-- CHANNELS -->
+    <section class="channels-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">MULTI-CANAL</p>
+                <h2 class="section-title">Tous les chemins mènent au message</h2>
+                <p class="section-subtitle">Internet ? Optionnel. OCTOPUS utilise n'importe quel canal disponible.</p>
+            </div>
+            
+            <div class="channels-grid">
+                <div class="channel-badge">🌐 Internet</div>
+                <div class="channel-badge">📶 WiFi</div>
+                <div class="channel-badge">📲 Bluetooth</div>
+                <div class="channel-badge">📷 QR Code</div>
+                <div class="channel-badge">✨ Optique</div>
+                <div class="channel-badge">📻 Radio</div>
+                <div class="channel-badge">🔌 USB</div>
+                <div class="channel-badge">🛰️ Satellite</div>
+            </div>
+            
+            <p class="channels-quote">
+                « Des fonds sous-marins à la surface de Mars.<br>Ni câbles, ni fibres. Juste une pieuvre. »
+            </p>
+        </div>
+    </section>
+    
+    <!-- TECH -->
+    <section class="tech-section" id="tech">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">TECHNOLOGIE</p>
+                <h2 class="section-title">Pourquoi c'est différent</h2>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3><span>🌊</span> Polymorphisme</h3>
+                    <p>Chaque message a une <strong>forme différente</strong>, même si le contenu est identique. "Bonjour" envoyé 100 fois = 100 capsules uniques. Impossible de détecter des patterns.</p>
+                </div>
+                <div class="tech-card">
+                    <h3><span>🎭</span> Asémantisme</h3>
+                    <p>Vos transmissions sont <strong>sans signification apparente</strong>. Pas de structure détectable. Un observateur ne peut même pas prouver qu'une communication a eu lieu.</p>
+                </div>
+                <div class="tech-card">
+                    <h3><span>🛡️</span> Post-quantique</h3>
+                    <p>Notre algorithme ne repose pas sur la factorisation. La pieuvre <strong>évolue continuellement</strong> — il n'y a pas de clé statique à casser par un ordinateur quantique.</p>
+                </div>
+                <div class="tech-card">
+                    <h3><span>🔇</span> Zéro métadonnée</h3>
+                    <p>Pas d'horodatage, pas d'expéditeur, pas de destinataire visible. Le serveur transporte de l'encre — <strong>il ne sait pas qui parle à qui</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- DEMO -->
+    <section class="demo-section" id="demo">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">ESSAYEZ</p>
+                <h2 class="section-title">Mode Démonstration</h2>
+            </div>
+            
             <div class="demo-box">
                 <div class="demo-badge">✨ GRATUIT — SANS INSCRIPTION</div>
-                <h3>Testez maintenant</h3>
-                <p>Une pieuvre de test est pré-chargée. Ouvrez l'app dans deux onglets pour voir la magie opérer.</p>
+                <h3>Testez OCTOPUS maintenant</h3>
+                <p>Choisissez un personnage et échangez en temps réel avec d'autres testeurs.</p>
                 <div class="demo-info">
-                    💡 <strong>Astuce :</strong> Ouvrez 2 onglets et envoyez-vous des messages !<br>
-                    ⚠️ Mode démo : pieuvre publique partagée par tous les testeurs.
+                    💡 <strong>Astuce :</strong> Ouvrez 2 navigateurs (Chrome + Firefox), choisissez des personnages différents, et voyez la synchronisation en direct !<br><br>
+                    ⚠️ Cercle de démo public — partagé par tous les testeurs.
                 </div>
                 <a href="./demo.html" class="btn-primary" style="width: 100%;">🚀 Lancer la Démo</a>
             </div>
-        </section>
-
-        <!-- Pricing -->
-        <section class="pricing-section" id="pricing">
-            <div class="how-content" style="text-align: center;">
-                <p class="section-label">Tarifs</p>
-                <h2 class="section-title">Choisissez votre cercle</h2>
-                <p class="section-subtitle">Accès à vie • Pieuvre livrée par email • Satisfait ou remboursé 30 jours</p>
-
-                <div class="pricing-grid">
-                    <!-- Cercle Pair -->
-                    <div class="pricing-card">
-                        <div class="pricing-icon">🤝</div>
-                        <h3 class="pricing-name">Cercle Pair</h3>
-                        <p class="pricing-users">2 places • à vie</p>
-                        <div class="pricing-price">200€ <span>TTC</span></div>
-                        <p class="pricing-period">Paiement unique</p>
-                        <ul class="pricing-features">
-                            <li>Pieuvre envoyée par email</li>
-                            <li>Messages illimités</li>
-                            <li>Zéro métadonnée</li>
-                            <li>Renouvellement gratuit (perte/vol)</li>
-                        </ul>
-                        <a href="./order.html?plan=cercle2" class="btn-primary pricing-btn">Choisir</a>
-                    </div>
-
-                    <!-- Cercle 5 -->
-                    <div class="pricing-card popular">
-                        <div class="pricing-icon">🏠</div>
-                        <h3 class="pricing-name">Cercle 5</h3>
-                        <p class="pricing-users">5 places • à vie</p>
-                        <div class="pricing-price">425€ <span>TTC</span></div>
-                        <p class="pricing-period">Pack avantage • 85€/place</p>
-                        <ul class="pricing-features">
-                            <li>Pieuvre envoyée par email</li>
-                            <li>Messages illimités</li>
-                            <li>Ajout de places possible</li>
-                            <li>Renouvellement gratuit (perte/vol)</li>
-                        </ul>
-                        <a href="./order.html?plan=cercle5" class="btn-primary pricing-btn">Choisir</a>
-                    </div>
-
-                    <!-- Nouvel entrant -->
-                    <div class="pricing-card">
-                        <div class="pricing-icon">🔑</div>
-                        <h3 class="pricing-name">Nouvelle place</h3>
-                        <p class="pricing-users">+1 place • à vie</p>
-                        <div class="pricing-price">75€ <span>TTC</span></div>
-                        <p class="pricing-period">Pour agrandir le cercle</p>
-                        <ul class="pricing-features">
-                            <li>Ajoute 1 place au cercle</li>
-                            <li>Nouvelle pieuvre pour tous</li>
-                            <li>Les membres existants ne repayent pas</li>
-                            <li>Support email</li>
-                        </ul>
-                        <a href="./order.html?plan=nouvelle-place" class="btn-primary pricing-btn">Ajouter</a>
-                    </div>
-                </div>
-
-                <!-- Student banner -->
-                <div class="student-banner">
-                    <div class="student-banner-content">
-                        <h3>🎓 Tu es étudiant ?</h3>
-                        <p>Bénéficie de <strong>-50%</strong> sur tous les cercles avec ton email universitaire.</p>
-                    </div>
-                    <a href="#students" class="btn-gold">Voir l'offre étudiants</a>
-                </div>
+        </div>
+    </section>
+    
+    <!-- PRICING -->
+    <section class="pricing-section" id="pricing">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">TARIFICATION</p>
+                <h2 class="section-title">Votre forteresse, à vie</h2>
+                <p class="section-subtitle">Paiement unique • Accès permanent • Pieuvre par email • Satisfait ou remboursé 30 jours</p>
             </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2 class="cta-title">Prêt à créer<br>ton cercle ?</h2>
-                <p class="cta-subtitle">Famille, amis, équipe... Créez votre espace privé et restez connectés, toujours.</p>
-                <a href="./order.html" class="btn-primary">Créer un cercle</a>
-            </div>
-        </section>
-
-        <!-- SECTION ÉTUDIANTS -->
-        <section class="student-hero" id="students">
-            <div class="student-badge">🎓 OFFRE ÉTUDIANTS • -50%</div>
-            <h1>Ton cercle,<br><span class="gold">moitié prix.</span></h1>
-            <p class="subtitle">Parce que la confidentialité n'a pas à attendre la fin des études. Vérifie ton statut avec ton email universitaire.</p>
-
-            <div class="student-pricing">
-                <div class="student-price-item">
-                    <div class="original">200€</div>
-                    <div class="discounted">100€ <span>TTC</span></div>
-                    <div class="label">Cercle Pair</div>
-                </div>
-                <div class="student-price-item">
-                    <div class="original">425€</div>
-                    <div class="discounted">213€ <span>TTC</span></div>
-                    <div class="label">Cercle 5</div>
-                </div>
-                <div class="student-price-item">
-                    <div class="original">75€</div>
-                    <div class="discounted">37€ <span>TTC</span></div>
-                    <div class="label">Nouvelle place</div>
-                </div>
-            </div>
-
-            <a href="#student-verify" class="btn-primary">Vérifier mon statut</a>
-        </section>
-
-        <section class="student-verification" id="student-verify">
-            <div class="verification-box">
-                <h3>Vérifie ton statut étudiant</h3>
-                <p>Entre ton adresse email universitaire. Nous t'enverrons un lien de vérification.</p>
-                
-                <div class="email-input-group">
-                    <input type="email" placeholder="prenom.nom@universite.fr" id="student-email">
-                    <button onclick="verifyStudent()">Vérifier</button>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-icon">💑</div>
+                    <h3 class="pricing-name">Cercle Pair</h3>
+                    <p class="pricing-users">2 places • à vie</p>
+                    <div class="pricing-price">200€ <span>TTC</span></div>
+                    <p class="pricing-per">100€ / place</p>
+                    <ul class="pricing-features">
+                        <li>Pieuvre unique partagée</li>
+                        <li>Messages illimités</li>
+                        <li>Tous les canaux</li>
+                        <li>Renouvellement gratuit</li>
+                    </ul>
+                    <a href="https://asemantix-octopus.lemonsqueezy.com/buy/c959e35f-0e85-4df1-a0f3-51082c42b24d" class="pricing-btn">Choisir</a>
                 </div>
                 
-                <p class="verification-note">Tu recevras un email de confirmation sous 2 minutes.</p>
-
-                <div class="eligible-schools">
-                    <p>Domaines éligibles :</p>
-                    <div class="school-tags">
-                        <span class="school-tag">.edu</span>
-                        <span class="school-tag">.ac.fr</span>
-                        <span class="school-tag">.univ-*.fr</span>
-                        <span class="school-tag">.ens.fr</span>
-                        <span class="school-tag">.insa-*.fr</span>
-                        <span class="school-tag">.polytechnique.edu</span>
-                        <span class="school-tag">.hec.edu</span>
-                        <span class="school-tag">.sciencespo.fr</span>
-                        <span class="school-tag">+ 500 écoles</span>
-                    </div>
+                <div class="pricing-card">
+                    <div class="pricing-icon">👨‍👩‍👧</div>
+                    <h3 class="pricing-name">Cercle 3</h3>
+                    <p class="pricing-users">3 places • à vie</p>
+                    <div class="pricing-price">275€ <span>TTC</span></div>
+                    <p class="pricing-per">~92€ / place</p>
+                    <ul class="pricing-features">
+                        <li>Pieuvre unique partagée</li>
+                        <li>Messages illimités</li>
+                        <li>Tous les canaux</li>
+                        <li>Renouvellement gratuit</li>
+                    </ul>
+                    <a href="https://asemantix-octopus.lemonsqueezy.com/buy/8c6416e3-3af4-4d81-88cb-5afe58dd9ff7" class="pricing-btn">Choisir</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="pricing-name">Cercle 4</h3>
+                    <p class="pricing-users">4 places • à vie</p>
+                    <div class="pricing-price">350€ <span>TTC</span></div>
+                    <p class="pricing-per">~88€ / place</p>
+                    <ul class="pricing-features">
+                        <li>Pieuvre unique partagée</li>
+                        <li>Messages illimités</li>
+                        <li>Tous les canaux</li>
+                        <li>Renouvellement gratuit</li>
+                    </ul>
+                    <a href="https://asemantix-octopus.lemonsqueezy.com/buy/0d390dd0-b6dc-45f9-8d3d-c1d6baeb53e6" class="pricing-btn">Choisir</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="pricing-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="pricing-name">Cercle 5</h3>
+                    <p class="pricing-users">5 places • à vie</p>
+                    <div class="pricing-price">425€ <span>TTC</span></div>
+                    <p class="pricing-per">85€ / place</p>
+                    <ul class="pricing-features">
+                        <li>Pieuvre unique partagée</li>
+                        <li>Messages illimités</li>
+                        <li>Tous les canaux</li>
+                        <li>Support prioritaire</li>
+                    </ul>
+                    <a href="https://asemantix-octopus.lemonsqueezy.com/buy/2c6e33f7-04d9-4e22-87ff-c16e1fa1cbf3" class="pricing-btn">Choisir</a>
                 </div>
             </div>
-        </section>
-
-        <!-- Student Features -->
-        <section class="features" style="padding-top: 4rem;">
-            <div class="how-content">
-                <p class="section-label" style="text-align: center;">Pourquoi Octopus pour les étudiants ?</p>
-                <h2 class="section-title" style="text-align: center;">Ton cercle, tes règles</h2>
-
-                <div class="features-grid" style="margin-top: 3rem;">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Colocs & promos</h3>
-                            <p>Créez un cercle avec vos colocs, votre groupe de projet ou votre promo. Messages privés garantis.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Révisions confidentielles</h3>
-                            <p>Partagez vos notes et fiches sans qu'elles se retrouvent sur les réseaux. Votre travail reste dans le cercle.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Discussions libres</h3>
-                            <p>Parlez de tout sans vous soucier de qui pourrait voir. Aucune métadonnée, aucun historique serveur.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12 6 12 12 16 14"/>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Accès à vie</h3>
-                            <p>Tu paies une fois, tu gardes ton cercle pour toujours. Même après ton diplôme.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Back to top -->
-        <section style="text-align: center; padding: 4rem 2rem;">
-            <a href="#top" class="btn-secondary">↑ Retour en haut</a>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-top">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <radialGradient id="footerBodyGrad" cx="50%" cy="30%" r="60%">
-                                <stop offset="0%" stop-color="#b366e8"/>
-                                <stop offset="100%" stop-color="#4a0080"/>
-                            </radialGradient>
-                        </defs>
-                        <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#footerBodyGrad)"/>
-                        <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                        <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                        <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                        <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                    </svg>
-                    <span>Octopus</span>
-                </div>
-                <p>La messagerie des cercles. Un cercle. Pas un réseau. En transit : de l'encre. À l'écran : le message.</p>
-            </div>
-
-            <div class="footer-links-grid">
-                <div class="footer-col">
-                    <h4>Produit</h4>
-                    <ul>
-                        <li><a href="#how">Comment ça marche</a></li>
-                        <li><a href="#features">Fonctionnalités</a></li>
-                        <li><a href="#pricing">Tarifs</a></li>
-                        <li><a href="#demo">Démo</a></li>
+            
+            <div class="addon-section">
+                <div class="addon-card">
+                    <div class="pricing-icon">➕</div>
+                    <h3 class="pricing-name">Nouvelle place</h3>
+                    <p class="pricing-users">+1 place dans un cercle existant</p>
+                    <div class="pricing-price">75€ <span>TTC</span></div>
+                    <ul class="pricing-features">
+                        <li>Ajoute 1 membre</li>
+                        <li>Nouvelle pieuvre pour tous</li>
+                        <li>Anciens ne repayent pas</li>
                     </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Entreprise</h4>
-                    <ul>
-                        <li><a href="https://asemantix.tech" target="_blank">AION ASEMANTIX</a></li>
-                        <li><a href="#">Brevets</a></li>
-                        <li><a href="#">Presse</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#5f3c30312b3e3c2b1f3e2c3a323e312b3627712b3a3c37">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#91e2e4e1e1fee3e5d1f0e2f4fcf0ffe5f8e9bfe5f4f2f9">Support</a></li>
-                    </ul>
+                    <a href="https://asemantix-octopus.lemonsqueezy.com/buy/e6b3b044-5f4b-4a5e-8c3d-47989a94c9f8" class="btn-gold">Ajouter</a>
                 </div>
             </div>
         </div>
-
-        <div class="footer-bottom">
-            <p class="footer-copy">© 2025 AION ASEMANTIX™ — Tous droits réservés. Brevet FR2600020.</p>
-            <div class="footer-legal">
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-                <a href="#">CGV</a>
+    </section>
+    
+    <!-- GUARANTEE -->
+    <section class="guarantee-section">
+        <div class="guarantee-box">
+            <h3>🛡️ Garantie 30 jours</h3>
+            <p>Testez sereinement. Pas convaincu ? Remboursement intégral, sans question.</p>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">FAQ</p>
+                <h2 class="section-title">Questions fréquentes</h2>
             </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Qu'est-ce qu'une "pieuvre" exactement ?</div>
+                    <div class="faq-answer">La pieuvre est un fichier .octopus unique généré pour votre cercle. Il contient les clés et paramètres de synchronisation. C'est votre sésame — sans lui, impossible de révéler les messages.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Pourquoi un cercle fermé ?</div>
+                    <div class="faq-answer">La force d'OCTOPUS vient de son architecture fermée. En limitant à un cercle défini, nous garantissons l'absence totale de métadonnées. Un réseau ouvert nécessite des serveurs qui voient qui parle à qui.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Comment fonctionne le canal QR Code ?</div>
+                    <div class="faq-answer">OCTOPUS encode vos messages chiffrés dans des QR codes. Affichez-les, imprimez-les, photographiez-les. L'autre membre scanne et le message se révèle. Parfait sans connectivité !</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Si je perds mon téléphone ?</div>
+                    <div class="faq-answer">Contactez-nous. Nous révoquerons l'ancienne pieuvre et en générerons une nouvelle pour tout le cercle. Gratuit et illimité. Les messages passés restent protégés.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">C'est résistant aux ordinateurs quantiques ?</div>
+                    <div class="faq-answer">Oui. Notre algorithme ne repose pas sur la factorisation (menacée par Shor). La pieuvre évolue continuellement — pas de clé statique à casser.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta-section">
+        <p class="cta-philosophy">« Vos pensées vous appartiennent. »</p>
+        <h2 class="cta-title">Créez votre forteresse invisible</h2>
+        <div class="cta-buttons">
+            <a href="#pricing" class="btn-primary">Commander mon cercle</a>
+            <a href="./demo.html" class="btn-secondary">Essayer d'abord</a>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>OCTOPUS™</h3>
+                <p>Messagerie invisible par ASEMANTIX</p>
+            </div>
+            <div class="footer-links">
+                <h4>Produit</h4>
+                <a href="#concept">Concept</a>
+                <a href="#tech">Technologie</a>
+                <a href="#pricing">Tarifs</a>
+                <a href="./demo.html">Démo</a>
+            </div>
+            <div class="footer-links">
+                <h4>ASEMANTIX</h4>
+                <a href="../">Accueil</a>
+                <a href="../sesame/">SÉSAME</a>
+                <a href="mailto:contact@asemantix.tech">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Légal</h4>
+                <a href="../mentions-legales.html">Mentions légales</a>
+                <a href="../confidentialite.html">Confidentialité</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ASEMANTIX SAS. Tous droits réservés.</p>
+            <p class="footer-patent">Brevet FR2600020 • Technologie souveraine française</p>
         </div>
     </footer>
-
+    
     <script>
-        function verifyStudent() {
-            const email = document.getElementById('student-email').value;
-            if (!email) {
-                alert('Veuillez entrer votre email universitaire.');
-                return;
-            }
-            
-            // Check for valid student domain patterns
-            const studentDomains = ['.edu', '.ac.fr', '.univ-', '.ens.', '.insa-', '.polytechnique.', '.hec.', '.sciencespo.', '.epfl.', '.ethz.'];
-            const isStudent = studentDomains.some(domain => email.toLowerCase().includes(domain));
-            
-            if (isStudent) {
-                alert('✅ Email universitaire détecté !\n\nUn lien de vérification va être envoyé à ' + email + '\n\nVérifie ta boîte mail (et les spams) dans les prochaines minutes.');
-            } else {
-                alert('⚠️ Ce domaine ne semble pas être un domaine universita
+        // Stars
+        const stars = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (2 + Math.random() * 4) + 's';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            stars.appendChild(star);
+        }
+        
+        // FAQ
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
