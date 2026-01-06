@@ -366,6 +366,70 @@
             margin-bottom: 1rem;
         }
 
+        /* Character selection grid */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+            max-width: 400px;
+        }
+        
+        .character-grid > :nth-child(4),
+        .character-grid > :nth-child(5) {
+            justify-self: center;
+        }
+        
+        @media (max-width: 400px) {
+            .character-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .character-grid > :nth-child(5) {
+                grid-column: span 2;
+                justify-self: center;
+                max-width: 50%;
+            }
+        }
+        
+        .character-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: var(--void-light);
+            border: 2px solid rgba(138, 43, 226, 0.2);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .character-btn:hover {
+            border-color: var(--purple);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+        }
+        
+        .character-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .character-avatar {
+            font-size: 2.5rem;
+        }
+        
+        .character-name {
+            font-weight: 500;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+        
+        .character-number {
+            font-size: 0.75rem;
+            color: var(--purple-light);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
         /* ==================== MAIN APP SCREEN ==================== */
         .main-screen { flex-direction: column; }
 
@@ -1459,7 +1523,7 @@
             
             <p class="welcome-note">
                 Vous n'avez pas encore de cercle ?<br>
-                <a href="https://asemantix.tech" target="_blank">Commander sur asemantix.tech →</a>
+                <a href="./order.html">Commander votre cercle →</a>
             </p>
         </div>
 
@@ -1493,54 +1557,40 @@
             
             <div class="demo-badge">MODE DÉMO</div>
             
-            <svg class="pin-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <radialGradient id="bodyGrad2" cx="50%" cy="30%" r="60%">
-                        <stop offset="0%" style="stop-color:#b366e8"/>
-                        <stop offset="100%" style="stop-color:#4a0080"/>
-                    </radialGradient>
-                    <linearGradient id="tentGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#9b4dca"/>
-                        <stop offset="50%" style="stop-color:#6a1bb2"/>
-                        <stop offset="100%" style="stop-color:#3d0066"/>
-                    </linearGradient>
-                    <filter id="glow2">
-                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                </defs>
-                <!-- 4 tentacules pour cercle démo à 4 membres -->
-                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380" fill="none" stroke="url(#tentGrad2)" stroke-width="22" stroke-linecap="round" filter="url(#glow2)"/>
-                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380" fill="none" stroke="#2d0a4e" stroke-width="8" stroke-linecap="round" stroke-dasharray="2,15"/>
-                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20" fill="none" stroke="url(#tentGrad2)" stroke-width="20" stroke-linecap="round" filter="url(#glow2)"/>
-                <path d="M250,200 C300,180 350,150 370,100 C385,50 350,10 290,20" fill="none" stroke="#2d0a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="2,12"/>
-                <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400" fill="none" stroke="url(#tentGrad2)" stroke-width="18" stroke-linecap="round" filter="url(#glow2)"/>
-                <path d="M180,220 C150,260 100,300 80,350 C60,400 100,420 160,400" fill="none" stroke="#2d0a4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="2,10"/>
-                <path d="M220,210 C250,230 280,280 260,320 C240,360 200,370 170,350" fill="none" stroke="url(#tentGrad2)" stroke-width="12" stroke-linecap="round" filter="url(#glow2)"/>
-                <!-- Corps -->
-                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad2)" filter="url(#glow2)"/>
-                <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGrad2)"/>
-                <!-- Yeux -->
-                <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
-                <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
-            </svg>
+            <h2 class="pin-title">Cercle Demo Public</h2>
+            <p class="pin-subtitle">Choisissez votre personnage pour explorer OCTOPUS</p>
             
-            <h2 class="pin-title">Cercle Démo</h2>
-            <p class="pin-subtitle">Entrez votre numéro de membre (1-4)</p>
-            
-            <div class="pin-input-container">
-                <input type="text" class="pin-digit" id="memberNumber" maxlength="1" inputmode="numeric" placeholder="#">
+            <div class="character-grid">
+                <button class="character-btn" onclick="enterDemoAs(1, 'Alice')">
+                    <span class="character-avatar">👩</span>
+                    <span class="character-name">Alice</span>
+                    <span class="character-number">#1</span>
+                </button>
+                <button class="character-btn" onclick="enterDemoAs(2, 'Bob')">
+                    <span class="character-avatar">👨</span>
+                    <span class="character-name">Bob</span>
+                    <span class="character-number">#2</span>
+                </button>
+                <button class="character-btn" onclick="enterDemoAs(3, 'Charlie')">
+                    <span class="character-avatar">🧔</span>
+                    <span class="character-name">Charlie</span>
+                    <span class="character-number">#3</span>
+                </button>
+                <button class="character-btn" onclick="enterDemoAs(4, 'David')">
+                    <span class="character-avatar">👴</span>
+                    <span class="character-name">David</span>
+                    <span class="character-number">#4</span>
+                </button>
+                <button class="character-btn" onclick="enterDemoAs(5, 'Eve')">
+                    <span class="character-avatar">👵</span>
+                    <span class="character-name">Eve</span>
+                    <span class="character-number">#5</span>
+                </button>
             </div>
             
-            <p class="pin-hint">Astuce : essayez #2 pour cette démo</p>
-            
-            <button class="btn btn-primary" onclick="enterDemo()">
-                Entrer dans le cercle
-            </button>
+            <p class="pin-hint">
+                💡 Ouvrez cette page dans plusieurs navigateurs et choisissez des personnages différents pour voir la messagerie en action !
+            </p>
         </div>
 
         <!-- ==================== MAIN APP SCREEN ==================== -->
@@ -1859,13 +1909,15 @@
     <script>
         // ==================== STATE ====================
         const state = {
-            myNumber: 2,
-            circle: { name: 'Cercle Démo', members: 4, domain: 'demo-circle-x7k2' },
+            myNumber: 1,
+            myName: 'Alice',
+            circle: { name: 'Cercle Demo Public', members: 5, domain: 'cercle-demo-public-pfbz', id: 'f42517e440048f5b' },
             members: [
                 { number: 1, name: 'Alice', online: true },
-                { number: 2, name: 'Moi', online: true },
-                { number: 3, name: 'Bob', online: true },
-                { number: 4, name: 'Charlie', online: false }
+                { number: 2, name: 'Bob', online: true },
+                { number: 3, name: 'Charlie', online: false },
+                { number: 4, name: 'David', online: false },
+                { number: 5, name: 'Eve', online: true }
             ],
             messages: [],
             selectedRecipient: 'all', // 'all' ou numéro du membre
@@ -1877,10 +1929,10 @@
 
         const demoMessages = [
             { id: 1, from: 1, text: "Salut le cercle ! Le nouveau protocole est déployé 🚀", time: "10:30", channel: "internet", to: "all", status: "read" },
-            { id: 2, from: 3, text: "Excellent ! J'ai testé la sync Bluetooth, ça marche parfaitement.", time: "10:32", channel: "bluetooth", to: "all", status: "read" },
-            { id: 3, from: 1, text: "On peut communiquer même en zone blanche totale.", time: "10:33", channel: "internet", to: "all", status: "read" },
-            { id: 4, from: 4, text: "J'ai reçu vos messages via le QR de Bob. Impressionnant ! 📱", time: "10:45", channel: "qr", to: "all", status: "read" },
-            { id: 5, from: 3, text: "Hey, tu as vu le doc que je t'ai envoyé ?", time: "11:02", channel: "internet", to: 2, private: true, status: "read" },
+            { id: 2, from: 2, text: "Excellent ! J'ai testé la sync Bluetooth, ça marche parfaitement.", time: "10:32", channel: "bluetooth", to: "all", status: "read" },
+            { id: 3, from: 3, text: "On peut communiquer même en zone blanche totale.", time: "10:33", channel: "internet", to: "all", status: "read" },
+            { id: 4, from: 5, text: "J'ai reçu vos messages via le QR de Bob. Impressionnant ! 📱", time: "10:45", channel: "qr", to: "all", status: "read" },
+            { id: 5, from: 4, text: "La pieuvre est vraiment révolutionnaire !", time: "11:02", channel: "internet", to: "all", status: "read" },
         ];
 
         // ==================== SCREENS ====================
@@ -1890,35 +1942,38 @@
         }
 
         // ==================== DEMO ====================
-        function enterDemo() {
-            const input = document.getElementById('memberNumber');
-            const num = parseInt(input.value);
-            
-            if (!num || num < 1 || num > 4) {
-                showToast('Veuillez entrer un numéro entre 1 et 4', 'error');
-                return;
-            }
-            
+        function enterDemoAs(num, name) {
             state.myNumber = num;
+            state.myName = name;
             state.messages = [...demoMessages]; // Copie des messages démo
             
-            // Update le nom du membre actuel
+            // Update le nom du membre actuel dans la liste
             state.members = state.members.map(m => 
-                m.number === num ? { ...m, name: 'Moi' } : m
+                m.number === num ? { ...m, name: 'Moi (' + name + ')', online: true } : m
             );
             
             // Update UI
             document.getElementById('myNumber').textContent = num;
             document.getElementById('settingsMyNumber').textContent = num;
+            document.getElementById('circleNameDisplay').textContent = state.circle.name;
+            document.getElementById('memberCount').textContent = state.circle.members;
             
             renderMembers();
             renderMessages();
             showScreen('mainScreen');
             
-            showToast(`Bienvenue dans le cercle, vous êtes #${num} !`, 'success');
+            showToast(`Bienvenue ${name} ! Vous êtes #${num}`, 'success');
             
             // Démarrer la simulation de messages entrants
             startDemoSimulation();
+        }
+        
+        // Ancienne fonction pour compatibilité
+        function enterDemo() {
+            const input = document.getElementById('memberNumber');
+            const num = parseInt(input?.value) || 1;
+            const names = ['Alice', 'Bob', 'Charlie', 'David', 'Eve'];
+            enterDemoAs(num, names[num - 1] || 'Membre');
         }
         
         function startDemoSimulation() {
