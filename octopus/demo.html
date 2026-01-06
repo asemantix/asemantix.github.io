@@ -1964,8 +1964,8 @@
             
             showToast(`Bienvenue ${name} ! Vous êtes #${num}`, 'success');
             
-            // Démarrer la simulation de messages entrants
-            startDemoSimulation();
+              // Tenter la connexion au relais pour synchronisation réelle
+connectToDemoRelay(num);
         }
         
         // Ancienne fonction pour compatibilité
@@ -1975,7 +1975,24 @@
             const names = ['Alice', 'Bob', 'Charlie', 'David', 'Eve'];
             enterDemoAs(num, names[num - 1] || 'Membre');
         }
+        async function connectToDemoRelay(memberNumber) {
+    try {
+        const response = await fetch(`${API_URL}/api/demo/token/${memberNumber}`);
+        const result = await response.json();
         
+        if (!result.success || !result.token) {
+            throw new Error(result.error || 'Échec authentification démo');
+        }
+        
+        state.token = result.token;
+        connectWebSocket();
+        await fetchMessages();
+        showToast('Connecté au relais !', 'success');
+    } catch (err) {
+        console.log('Mode démo local:', err.message);
+        startDemoSimulation();
+    }
+}
         function startDemoSimulation() {
             // Simuler un membre qui tape après 5 secondes
             setTimeout(() => {
