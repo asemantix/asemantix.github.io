@@ -1,1 +1,858 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SÉSAME™ — Contrôle IoT Souverain | ASEMANTIX</title>
+    <meta name="description" content="SÉSAME - Contrôlez vos objets connectés sans le cloud. Serrures, caméras, domotique. Aucun serveur tiers. Technologie française brevetée.">
+    
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #050508;
+            --void: #0a0a12;
+            --purple: #8a2be2;
+            --purple-dark: #4a0080;
+            --purple-light: #a855f7;
+            --purple-glow: rgba(138, 43, 226, 0.5);
+            --gold: #d4af37;
+            --gold-dim: #a8893a;
+            --teal: #14b8a6;
+            --teal-dark: #0d9488;
+            --teal-glow: rgba(20, 184, 166, 0.5);
+            --white: #f0f0f5;
+            --gray: #888898;
+            --gray-dark: #1a1a2e;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        /* === STARS === */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 30% 70%, rgba(20, 184, 166, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(13, 148, 136, 0.06) 0%, transparent 50%);
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        /* === NAV === */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(5,5,8,0.98) 0%, transparent 100%);
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .nav-brand-icon {
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .nav-brand span {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--teal);
+            letter-spacing: 0.1em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--white); }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            color: var(--white) !important;
+            font-weight: 500;
+        }
+        
+        .nav-cta:hover { box-shadow: 0 0 30px var(--teal-glow); }
+        
+        .nav-back { color: var(--gold) !important; font-size: 0.85rem; }
+        
+        /* === HERO === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-philosophy {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .hero-philosophy span { color: var(--teal); }
+        
+        .hero-icon {
+            width: 150px; height: 150px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 60px var(--teal-glow);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--white) 50%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: 0.15em;
+        }
+        
+        .hero-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+        
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .badge {
+            background: rgba(20, 184, 166, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.4);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--teal);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--teal-glow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--teal);
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover { background: var(--teal); }
+        
+        /* === SECTIONS === */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+        }
+        
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* === PROBLEM === */
+        .problem-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(239, 68, 68, 0.05) 50%, transparent 100%);
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 800px) {
+            .problem-grid { grid-template-columns: 1fr; }
+        }
+        
+        .problem-card {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.2rem;
+            color: #ef4444;
+            margin-bottom: 0.75rem;
+        }
+        
+        .problem-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* === SOLUTION === */
+        .solution-section { background: var(--void); }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 800px) {
+            .solution-grid { grid-template-columns: 1fr; }
+        }
+        
+        .solution-card {
+            background: rgba(20, 184, 166, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .solution-card:hover {
+            border-color: var(--teal);
+            transform: translateY(-5px);
+        }
+        
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-card h3 {
+            font-size: 1.2rem;
+            color: var(--teal);
+            margin-bottom: 0.75rem;
+        }
+        
+        .solution-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* === USE CASES === */
+        .usecases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 700px) {
+            .usecases-grid { grid-template-columns: 1fr; }
+        }
+        
+        .usecase-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .usecase-card:hover {
+            border-color: var(--teal);
+        }
+        
+        .usecase-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .usecase-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .usecase-card h3 {
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+        
+        .usecase-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .usecase-features {
+            list-style: none;
+        }
+        
+        .usecase-features li {
+            padding: 0.3rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .usecase-features li::before {
+            content: '✓ ';
+            color: var(--teal);
+        }
+        
+        /* === HOW === */
+        .how-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(20, 184, 166, 0.05) 50%, transparent 100%);
+        }
+        
+        .how-steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .how-step {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            width: 250px;
+            position: relative;
+        }
+        
+        .how-step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .how-step-icon {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+        }
+        
+        .how-step h3 {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .how-step p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* === CTA === */
+        .cta-section {
+            text-align: center;
+            padding: 8rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
+        }
+        
+        .cta-philosophy {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-sub {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        /* === FOOTER === */
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 3rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--teal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-brand p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            display: block;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a:hover { color: var(--teal); }
+        
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .footer-patent { color: var(--gold); margin-top: 0.5rem; }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            .hero-philosophy { font-size: 1.2rem; }
+            .hero-title { font-size: 3rem; }
+            .hero-tagline { font-size: 1.3rem; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <!-- NAV -->
+    <nav>
+        <a href="./" class="nav-brand">
+            <div class="nav-brand-icon">🔐</div>
+            <span>SÉSAME</span>
+        </a>
+        <div class="nav-links">
+            <a href="../" class="nav-back">← ASEMANTIX</a>
+            <a href="#problem">Le problème</a>
+            <a href="#solution">La solution</a>
+            <a href="#usecases">Usages</a>
+            <a href="#contact" class="nav-cta">Nous contacter</a>
+        </div>
+    </nav>
+    
+    <!-- HERO -->
+    <section class="hero">
+        <p class="hero-philosophy">
+            « Vos objets connectés <span>n'appartiennent qu'à vous.</span><br>
+            Pas au cloud. Pas aux serveurs. À vous. »
+        </p>
+        
+        <div class="hero-icon">🔐</div>
+        
+        <h1 class="hero-title">SÉSAME</h1>
+        <p class="hero-tagline">Contrôle IoT Souverain</p>
+        <p class="hero-desc">
+            Contrôlez vos serrures, caméras et objets connectés sans jamais passer par le cloud. 
+            Aucun serveur tiers. Contrôle local total. Technologie française brevetée.
+        </p>
+        
+        <div class="hero-badges">
+            <span class="badge">🏠 100% Local</span>
+            <span class="badge">☁️ Zéro Cloud</span>
+            <span class="badge">🔒 Chiffré</span>
+            <span class="badge">🇫🇷 Breveté INPI</span>
+        </div>
+        
+        <div class="hero-buttons">
+            <a href="#contact" class="btn-primary">Demander une démo</a>
+            <a href="../octopus/" class="btn-secondary">Voir OCTOPUS</a>
+        </div>
+    </section>
+    
+    <!-- PROBLEM -->
+    <section class="problem-section" id="problem">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">LE PROBLÈME</p>
+                <h2 class="section-title">Vos objets connectés vous espionnent</h2>
+                <p class="section-subtitle">Chaque serrure, caméra ou thermostat "intelligent" envoie vos données à des serveurs lointains.</p>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🌐</div>
+                    <h3>Dépendance au cloud</h3>
+                    <p>Serveur en panne ? Plus d'accès à votre maison. L'entreprise ferme ? Vos équipements deviennent inutilisables.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">👁️</div>
+                    <h3>Espionnage permanent</h3>
+                    <p>Vos habitudes, horaires, présence... tout est enregistré sur des serveurs étrangers, hors de votre contrôle.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🔓</div>
+                    <h3>Failles de sécurité</h3>
+                    <p>Piratage des serveurs = accès à votre domicile. Des millions de caméras et serrures ont déjà été compromises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SOLUTION -->
+    <section class="solution-section" id="solution">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">LA SOLUTION</p>
+                <h2 class="section-title">SÉSAME : le cloud, c'est vous</h2>
+                <p class="section-subtitle">Vos commandes restent entre vos appareils. Rien ne sort. Jamais.</p>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🏠</div>
+                    <h3>100% Local</h3>
+                    <p>Vos commandes circulent directement entre votre téléphone et vos objets. Aucun serveur intermédiaire.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🔐</div>
+                    <h3>Chiffrement fort</h3>
+                    <p>Même interceptée, une commande est indéchiffrable. Technologie asémantique brevetée.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">📴</div>
+                    <h3>Fonctionne hors-ligne</h3>
+                    <p>Pas d'Internet ? Pas de problème. Bluetooth, WiFi local, QR code... tout fonctionne.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- USE CASES -->
+    <section class="usecases-section" id="usecases">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">CAS D'USAGE</p>
+                <h2 class="section-title">Protégez ce qui compte</h2>
+            </div>
+            
+            <div class="usecases-grid">
+                <div class="usecase-card">
+                    <div class="usecase-header">
+                        <div class="usecase-icon">🚪</div>
+                        <h3>Serrures connectées</h3>
+                    </div>
+                    <p>Ouvrez votre porte sans que personne ne le sache. Pas de log sur un serveur distant.</p>
+                    <ul class="usecase-features">
+                        <li>Commande locale uniquement</li>
+                        <li>Codes temporaires chiffrés</li>
+                        <li>Historique privé sur votre appareil</li>
+                    </ul>
+                </div>
+                
+                <div class="usecase-card">
+                    <div class="usecase-header">
+                        <div class="usecase-icon">📹</div>
+                        <h3>Caméras de surveillance</h3>
+                    </div>
+                    <p>Vos images restent chez vous. Pas de serveur chinois ou américain.</p>
+                    <ul class="usecase-features">
+                        <li>Flux vidéo 100% local</li>
+                        <li>Accès distant via tunnel chiffré</li>
+                        <li>Aucun cloud tiers</li>
+                    </ul>
+                </div>
+                
+                <div class="usecase-card">
+                    <div class="usecase-header">
+                        <div class="usecase-icon">🏢</div>
+                        <h3>Bâtiments sensibles</h3>
+                    </div>
+                    <p>Ambassades, data centers, sites industriels... là où la souveraineté n'est pas négociable.</p>
+                    <ul class="usecase-features">
+                        <li>Contrôle d'accès souverain</li>
+                        <li>Audit interne uniquement</li>
+                        <li>Aucune fuite de données</li>
+                    </ul>
+                </div>
+                
+                <div class="usecase-card">
+                    <div class="usecase-header">
+                        <div class="usecase-icon">🏡</div>
+                        <h3>Domotique résidentielle</h3>
+                    </div>
+                    <p>Volets, chauffage, éclairage... contrôlez votre maison sans Big Tech.</p>
+                    <ul class="usecase-features">
+                        <li>Scénarios locaux</li>
+                        <li>Compatible avec l'existant</li>
+                        <li>Interface familiale simple</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- HOW -->
+    <section class="how-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">COMMENT ÇA MARCHE</p>
+                <h2 class="section-title">3 étapes vers la souveraineté</h2>
+            </div>
+            
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="how-step-number">1</div>
+                    <div class="how-step-icon">📦</div>
+                    <h3>Installation</h3>
+                    <p>Nous configurons SÉSAME sur vos équipements existants ou neufs.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">2</div>
+                    <div class="how-step-icon">🔑</div>
+                    <h3>Appairage</h3>
+                    <p>Vos appareils reçoivent leur "clé SÉSAME" — votre sésame privé.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">3</div>
+                    <div class="how-step-icon">✨</div>
+                    <h3>Contrôle</h3>
+                    <p>Commandez tout depuis l'app. Local. Chiffré. Souverain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <p class="cta-philosophy">« Vos objets vous obéissent. Pas au cloud. »</p>
+        <h2 class="cta-title">Reprenez le contrôle</h2>
+        <p class="cta-sub">Solution sur mesure pour particuliers, entreprises et bâtiments sensibles.</p>
+        
+        <div class="cta-buttons">
+            <a href="mailto:contact@asemantix.tech?subject=SÉSAME - Demande d'information" class="btn-primary">Demander une démo</a>
+            <a href="../" class="btn-secondary">Retour à ASEMANTIX</a>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>SÉSAME™</h3>
+                <p>Contrôle IoT souverain par ASEMANTIX</p>
+            </div>
+            <div class="footer-links">
+                <h4>Produit</h4>
+                <a href="#problem">Le problème</a>
+                <a href="#solution">La solution</a>
+                <a href="#usecases">Cas d'usage</a>
+            </div>
+            <div class="footer-links">
+                <h4>ASEMANTIX</h4>
+                <a href="../">Accueil</a>
+                <a href="../octopus/">OCTOPUS</a>
+                <a href="mailto:contact@asemantix.tech">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Légal</h4>
+                <a href="../mentions-legales.html">Mentions légales</a>
+                <a href="../confidentialite.html">Confidentialité</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ASEMANTIX SAS. Tous droits réservés.</p>
+            <p class="footer-patent">Brevet FR2600020 • Technologie souveraine française</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Stars
+        const stars = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (2 + Math.random() * 4) + 's';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            stars.appendChild(star);
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
