@@ -2420,14 +2420,19 @@ connectToDemoRelay(num);
             }
             
             // Simuler l'envoi au serveur (dans la vraie app, ce serait une requête API)
-            setTimeout(() => {
-                const msg = state.messages.find(m => m.id === newMessage.id);
-                if (msg) {
-                    msg.status = 'delivered';
-                    renderMessages();
-                }
-            }, 500);
+            // Envoyer au serveur si connecté
+if (state.token && ws && ws.readyState === WebSocket.OPEN) {
+    sendMessageToServer(newMessage);
+} else {
+    // Mode local - simuler
+    setTimeout(() => {
+        const msg = state.messages.find(m => m.id === newMessage.id);
+        if (msg) {
+            msg.status = 'delivered';
+            renderMessages();
         }
+    }, 500);
+}
         
         // Toast notifications
         function showToast(message, type = 'info') {
