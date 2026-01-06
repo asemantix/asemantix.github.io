@@ -2431,8 +2431,11 @@ if (state.token && ws && ws.readyState === WebSocket.OPEN) {
             msg.status = 'delivered';
             renderMessages();
         }
-    }, 500);
+   }, 500);
 }
+}
+        
+        // Toast notifications
         
         // Toast notifications
         function showToast(message, type = 'info') {
