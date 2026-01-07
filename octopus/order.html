@@ -21,6 +21,7 @@
             --gray-800: #1f2937;
             --gray-900: #111827;
             --green: #10b981;
+            --red: #ef4444;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,26 +79,54 @@
             font-size: 1.1rem;
         }
         
+        /* Steps */
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--gray-500);
+            transition: all 0.3s;
+        }
+        
+        .step.active {
+            color: var(--purple-light);
+        }
+        
+        .step.completed {
+            color: var(--green);
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-800);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .step.active .step-number {
+            background: var(--purple);
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: var(--green);
+            color: white;
+        }
+        
         /* Pricing Grid */
-        .pricing-intro {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            padding: 1.5rem;
-            background: rgba(138, 43, 226, 0.1);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 16px;
-        }
-        
-        .pricing-intro p {
-            color: var(--gray-400);
-            margin-bottom: 0.5rem;
-        }
-        
-        .pricing-intro strong {
-            color: var(--white);
-        }
-        
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -116,12 +145,13 @@
         
         .pricing-card {
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--gray-800);
+            border: 2px solid var(--gray-800);
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s;
             position: relative;
+            cursor: pointer;
         }
         
         .pricing-card:hover {
@@ -130,9 +160,10 @@
             box-shadow: 0 10px 40px rgba(138, 43, 226, 0.2);
         }
         
-        .pricing-card.popular {
-            border-color: var(--purple);
-            background: rgba(138, 43, 226, 0.15);
+        .pricing-card.selected {
+            border-color: var(--purple-light);
+            background: rgba(138, 43, 226, 0.2);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
         }
         
         .pricing-card.popular::before {
@@ -150,12 +181,12 @@
         }
         
         .pricing-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
         
         .pricing-name {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--white);
             margin-bottom: 0.3rem;
@@ -168,7 +199,7 @@
         }
         
         .pricing-price {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--purple-light);
             margin-bottom: 0.2rem;
@@ -181,41 +212,149 @@
         
         .pricing-per-place {
             color: var(--green);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
         }
         
-        .pricing-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 1.5rem;
+        .select-indicator {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--gray-500);
+            border-radius: 50%;
+            margin: 0 auto;
+            transition: all 0.3s;
         }
         
-        .pricing-features li {
-            padding: 0.5rem 0;
+        .pricing-card.selected .select-indicator {
+            border-color: var(--purple-light);
+            background: var(--purple-light);
+        }
+        
+        .pricing-card.selected .select-indicator::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            display: block;
+            text-align: center;
+            line-height: 20px;
+        }
+        
+        /* Form Section */
+        .form-section {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        .form-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--gray-800);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .form-subtitle {
             color: var(--gray-400);
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            margin-bottom: 2rem;
         }
         
-        .pricing-features li::before {
-            content: '✓ ';
-            color: var(--green);
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-400);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--gray-800);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+        }
+        
+        .form-input::placeholder {
+            color: var(--gray-500);
+        }
+        
+        .members-list {
+            margin-top: 1.5rem;
+        }
+        
+        .member-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+        
+        .member-number {
+            width: 36px;
+            height: 36px;
+            background: var(--purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .member-inputs {
+            flex: 1;
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        @media (max-width: 500px) {
+            .member-inputs {
+                flex-direction: column;
+            }
+        }
+        
+        .member-inputs .form-input {
+            flex: 1;
         }
         
         .btn-primary {
             display: block;
             width: 100%;
-            padding: 1rem;
+            padding: 1rem 2rem;
             background: linear-gradient(135deg, var(--purple), var(--purple-dark));
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            text-align: center;
         }
         
         .btn-primary:hover {
@@ -223,45 +362,84 @@
             box-shadow: 0 5px 20px var(--purple-glow);
         }
         
-        /* Nouvelle place section */
-        .addon-section {
-            max-width: 500px;
-            margin: 0 auto 3rem;
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
         
-        .addon-card {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid var(--gold);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .addon-card .pricing-icon { color: var(--gold); }
-        .addon-card .pricing-price { color: var(--gold); }
-        
-        .btn-gold {
+        .btn-secondary {
             display: block;
             width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--gold), #b8942f);
-            color: #000;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--gray-400);
             text-decoration: none;
             border-radius: 12px;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1rem;
             transition: all 0.3s;
+            border: 1px solid var(--gray-800);
+            cursor: pointer;
+            text-align: center;
+            margin-top: 1rem;
         }
         
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        .btn-secondary:hover {
+            border-color: var(--gray-500);
+            color: white;
+        }
+        
+        /* Summary */
+        .order-summary {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .summary-row:last-child {
+            border-bottom: none;
+            padding-top: 1rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .summary-row:last-child .summary-value {
+            color: var(--purple-light);
+        }
+        
+        .summary-label {
+            color: var(--gray-400);
+        }
+        
+        /* Error */
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--red);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: var(--red);
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
         }
         
         /* Guarantee */
         .guarantee {
             max-width: 600px;
-            margin: 0 auto 3rem;
+            margin: 3rem auto;
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid var(--green);
             border-radius: 16px;
@@ -302,39 +480,9 @@
             text-decoration: underline;
         }
         
-        /* Info boxes */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        @media (max-width: 700px) {
-            .info-grid { grid-template-columns: 1fr; }
-        }
-        
-        .info-box {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .info-box-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .info-box-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .info-box-desc {
-            color: var(--gray-400);
-            font-size: 0.85rem;
+        /* Hidden */
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
@@ -343,146 +491,118 @@
         <div class="header">
             <a href="./index.html" class="back-link">← Retour à l'accueil</a>
             
-            <svg class="logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <radialGradient id="bodyGrad" cx="50%" cy="30%" r="60%">
-                        <stop offset="0%" style="stop-color:#b366e8"/>
-                        <stop offset="100%" style="stop-color:#4a0080"/>
-                    </radialGradient>
-                    <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#9b4dca"/>
-                        <stop offset="100%" style="stop-color:#3d0066"/>
-                    </linearGradient>
-                </defs>
-                <path d="M150,200 C100,180 50,220 30,280 C10,340 50,390 120,380" fill="none" stroke="url(#tentGrad)" stroke-width="20" stroke-linecap="round"/>
-                <path d="M250,200 C300,180 350,150 370,100" fill="none" stroke="url(#tentGrad)" stroke-width="18" stroke-linecap="round"/>
-                <path d="M180,220 C150,260 100,300 80,350" fill="none" stroke="url(#tentGrad)" stroke-width="16" stroke-linecap="round"/>
-                <path d="M220,210 C250,230 280,280 260,320" fill="none" stroke="url(#tentGrad)" stroke-width="12" stroke-linecap="round"/>
-                <ellipse cx="200" cy="180" rx="70" ry="60" fill="url(#bodyGrad)"/>
-                <ellipse cx="200" cy="145" rx="45" ry="40" fill="url(#bodyGrad)"/>
-                <ellipse cx="175" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="225" cy="175" rx="18" ry="22" fill="#0a0015"/>
-                <ellipse cx="178" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                <ellipse cx="228" cy="172" rx="7" ry="9" fill="#bf5fff"/>
-                <circle cx="172" cy="168" r="4" fill="#fff" opacity="0.9"/>
-                <circle cx="222" cy="168" r="4" fill="#fff" opacity="0.9"/>
-            </svg>
+            <img src="./octopus-logo.png" alt="OCTOPUS" class="logo">
             
             <h1 class="title">Commander votre cercle</h1>
             <p class="subtitle">Paiement unique • Accès à vie • Pieuvre livrée par email</p>
         </div>
         
-        <div class="pricing-intro">
-            <p><strong>Comment ça marche ?</strong></p>
-            <p>1. Choisissez la taille de votre cercle</p>
-            <p>2. Renseignez les emails de tous les membres</p>
-            <p>3. Chaque membre reçoit sa pieuvre par email</p>
-            <p>4. Communiquez en toute confidentialité !</p>
-        </div>
-        
-        <div class="info-grid">
-            <div class="info-box">
-                <div class="info-box-icon">📧</div>
-                <div class="info-box-title">Livraison immédiate</div>
-                <div class="info-box-desc">Pieuvre envoyée par email dès validation du paiement</div>
+        <!-- Steps -->
+        <div class="steps">
+            <div class="step active" id="step1-indicator">
+                <div class="step-number">1</div>
+                <span>Choisir le cercle</span>
             </div>
-            <div class="info-box">
-                <div class="info-box-icon">♾️</div>
-                <div class="info-box-title">Accès à vie</div>
-                <div class="info-box-desc">Payez une fois, utilisez pour toujours</div>
+            <div class="step" id="step2-indicator">
+                <div class="step-number">2</div>
+                <span>Informations</span>
             </div>
-            <div class="info-box">
-                <div class="info-box-icon">🔄</div>
-                <div class="info-box-title">Renouvellement gratuit</div>
-                <div class="info-box-desc">En cas de perte ou vol, nous régénérons votre pieuvre</div>
+            <div class="step" id="step3-indicator">
+                <div class="step-number">3</div>
+                <span>Paiement</span>
             </div>
         </div>
         
-        <div class="pricing-grid">
-            <!-- Cercle 2 -->
-            <div class="pricing-card">
-                <div class="pricing-icon">💑</div>
-                <h3 class="pricing-name">Cercle Pair</h3>
-                <p class="pricing-users">2 places • à vie</p>
-                <div class="pricing-price">200€ <span>TTC</span></div>
-                <p class="pricing-per-place">100€ / place</p>
-                <ul class="pricing-features">
-                    <li>Pieuvre unique partagée</li>
-                    <li>Messages illimités</li>
-                    <li>Tous les canaux (Internet, Bluetooth, QR...)</li>
-                    <li>Renouvellement gratuit</li>
-                    <li>Support email</li>
-                </ul>
-                <a href="https://asemantix-octopus.lemonsqueezy.com/buy/c959e35f-0e85-4df1-a0f3-51082c42b24d" class="btn-primary">Commander →</a>
-            </div>
-            
-            <!-- Cercle 3 -->
-            <div class="pricing-card">
-                <div class="pricing-icon">👨‍👩‍👧</div>
-                <h3 class="pricing-name">Cercle 3</h3>
-                <p class="pricing-users">3 places • à vie</p>
-                <div class="pricing-price">275€ <span>TTC</span></div>
-                <p class="pricing-per-place">~92€ / place</p>
-                <ul class="pricing-features">
-                    <li>Pieuvre unique partagée</li>
-                    <li>Messages illimités</li>
-                    <li>Tous les canaux (Internet, Bluetooth, QR...)</li>
-                    <li>Renouvellement gratuit</li>
-                    <li>Support email</li>
-                </ul>
-                <a href="https://asemantix-octopus.lemonsqueezy.com/buy/8c6416e3-3af4-4d81-88cb-5afe58dd9ff7" class="btn-primary">Commander →</a>
-            </div>
-            
-            <!-- Cercle 4 -->
-            <div class="pricing-card">
-                <div class="pricing-icon">👨‍👩‍👧‍👦</div>
-                <h3 class="pricing-name">Cercle 4</h3>
-                <p class="pricing-users">4 places • à vie</p>
-                <div class="pricing-price">350€ <span>TTC</span></div>
-                <p class="pricing-per-place">~88€ / place</p>
-                <ul class="pricing-features">
-                    <li>Pieuvre unique partagée</li>
-                    <li>Messages illimités</li>
-                    <li>Tous les canaux (Internet, Bluetooth, QR...)</li>
-                    <li>Renouvellement gratuit</li>
-                    <li>Support email</li>
-                </ul>
-                <a href="https://asemantix-octopus.lemonsqueezy.com/buy/0d390dd0-b6dc-45f9-8d3d-c1d6baeb53e6" class="btn-primary">Commander →</a>
-            </div>
-            
-            <!-- Cercle 5 -->
-            <div class="pricing-card popular">
-                <div class="pricing-icon">👨‍👩‍👧‍👦</div>
-                <h3 class="pricing-name">Cercle 5</h3>
-                <p class="pricing-users">5 places • à vie</p>
-                <div class="pricing-price">425€ <span>TTC</span></div>
-                <p class="pricing-per-place">85€ / place</p>
-                <ul class="pricing-features">
-                    <li>Pieuvre unique partagée</li>
-                    <li>Messages illimités</li>
-                    <li>Tous les canaux (Internet, Bluetooth, QR...)</li>
-                    <li>Renouvellement gratuit</li>
-                    <li>Support prioritaire</li>
-                </ul>
-                <a href="https://asemantix-octopus.lemonsqueezy.com/buy/2c6e33f7-04d9-4e22-87ff-c16e1fa1cbf3" class="btn-primary">Commander →</a>
+        <!-- Step 1: Choose Plan -->
+        <div id="step1" class="step-content">
+            <div class="pricing-grid">
+                <!-- Cercle 2 -->
+                <div class="pricing-card" data-plan="2" data-price="200" data-variant="b27c4d7e-0d1e-486b-b1ba-811949f44424">
+                    <div class="pricing-icon">💑</div>
+                    <h3 class="pricing-name">Cercle Pair</h3>
+                    <p class="pricing-users">2 membres</p>
+                    <div class="pricing-price">200€ <span>TTC</span></div>
+                    <p class="pricing-per-place">100€ / place</p>
+                    <div class="select-indicator"></div>
+                </div>
+                
+                <!-- Cercle 3 -->
+                <div class="pricing-card" data-plan="3" data-price="300" data-variant="VARIANT_3_MEMBERS">
+                    <div class="pricing-icon">👨‍👩‍👧</div>
+                    <h3 class="pricing-name">Cercle 3</h3>
+                    <p class="pricing-users">3 membres</p>
+                    <div class="pricing-price">300€ <span>TTC</span></div>
+                    <p class="pricing-per-place">100€ / place</p>
+                    <div class="select-indicator"></div>
+                </div>
+                
+                <!-- Cercle 4 -->
+                <div class="pricing-card" data-plan="4" data-price="400" data-variant="VARIANT_4_MEMBERS">
+                    <div class="pricing-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="pricing-name">Cercle 4</h3>
+                    <p class="pricing-users">4 membres</p>
+                    <div class="pricing-price">400€ <span>TTC</span></div>
+                    <p class="pricing-per-place">100€ / place</p>
+                    <div class="select-indicator"></div>
+                </div>
+                
+                <!-- Cercle 5 -->
+                <div class="pricing-card popular" data-plan="5" data-price="425" data-variant="VARIANT_5_MEMBERS">
+                    <div class="pricing-icon">👪</div>
+                    <h3 class="pricing-name">Cercle 5</h3>
+                    <p class="pricing-users">5 membres</p>
+                    <div class="pricing-price">425€ <span>TTC</span></div>
+                    <p class="pricing-per-place">85€ / place</p>
+                    <div class="select-indicator"></div>
+                </div>
             </div>
         </div>
         
-        <!-- Nouvelle place -->
-        <div class="addon-section">
-            <div class="addon-card">
-                <div class="pricing-icon">➕</div>
-                <h3 class="pricing-name">Nouvelle place</h3>
-                <p class="pricing-users">Agrandir un cercle existant</p>
-                <div class="pricing-price">75€ <span>TTC</span></div>
-                <p class="pricing-per-place">+1 membre dans votre cercle</p>
-                <ul class="pricing-features">
-                    <li>Ajoute 1 place à votre cercle existant</li>
-                    <li>Nouvelle pieuvre générée pour tout le cercle</li>
-                    <li>Les anciens membres ne repayent pas</li>
-                    <li>Envoyée automatiquement à tous par email</li>
-                </ul>
-                <a href="https://asemantix-octopus.lemonsqueezy.com/buy/e6b3b044-5f4b-4a5e-8c3d-47989a94c9f8" class="btn-gold">Ajouter une place →</a>
+        <!-- Step 2: Form -->
+        <div id="step2" class="step-content form-section">
+            <div class="form-card">
+                <h2 class="form-title">Informations du cercle</h2>
+                <p class="form-subtitle">Donnez un nom à votre cercle et renseignez les emails de tous les membres</p>
+                
+                <div class="error-message" id="error-message"></div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nom du cercle *</label>
+                    <input type="text" class="form-input" id="circle-name" placeholder="Ex: Famille Dupont, Les Amis de Paris..." maxlength="50">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Membres du cercle *</label>
+                    <p style="color: var(--gray-500); font-size: 0.85rem; margin-bottom: 1rem;">
+                        Chaque membre recevra sa pieuvre personnelle par email.
+                    </p>
+                    <div class="members-list" id="members-list">
+                        <!-- Dynamic member inputs -->
+                    </div>
+                </div>
+                
+                <div class="order-summary" id="order-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Cercle</span>
+                        <span class="summary-value" id="summary-plan">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Membres</span>
+                        <span class="summary-value" id="summary-members">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value" id="summary-total">-</span>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" id="btn-checkout">
+                    Procéder au paiement →
+                </button>
+                
+                <button class="btn-secondary" id="btn-back">
+                    ← Modifier le cercle
+                </button>
             </div>
         </div>
         
@@ -505,5 +625,189 @@
             </p>
         </div>
     </div>
+    
+    <script>
+        // Configuration des produits LemonSqueezy
+        const PRODUCTS = {
+            2: { 
+                name: 'Cercle Pair', 
+                price: 200,
+                checkoutUrl: 'https://getoctopus.lemonsqueezy.com/buy/c959e35f-0e85-4df1-a0f3-51082c42b24d'
+            },
+            3: { 
+                name: 'Cercle 3', 
+                price: 300,
+                checkoutUrl: 'https://getoctopus.lemonsqueezy.com/buy/8c6416e3-3af4-4d81-88cb-5afe58dd9ff7'
+            },
+            4: { 
+                name: 'Cercle 4', 
+                price: 400,
+                checkoutUrl: 'https://getoctopus.lemonsqueezy.com/buy/0d390dd0-b6dc-45f9-8d3d-c1d6baeb53e6'
+            },
+            5: { 
+                name: 'Cercle 5', 
+                price: 425,
+                checkoutUrl: 'https://getoctopus.lemonsqueezy.com/buy/2c6e33f7-04d9-4e22-87ff-c16e1fa1cbf3'
+            }
+        };
+        
+        let selectedPlan = null;
+        
+        // Sélection du plan
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Désélectionner tous
+                document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('selected'));
+                // Sélectionner celui-ci
+                card.classList.add('selected');
+                selectedPlan = parseInt(card.dataset.plan);
+                
+                // Passer à l'étape 2
+                setTimeout(() => goToStep(2), 300);
+            });
+        });
+        
+        function goToStep(step) {
+            // Mettre à jour les indicateurs
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i + 1 < step) s.classList.add('completed');
+                if (i + 1 === step) s.classList.add('active');
+            });
+            
+            // Afficher la bonne section
+            document.getElementById('step1').classList.toggle('hidden', step !== 1);
+            document.getElementById('step2').classList.remove('hidden');
+            document.getElementById('step2').classList.toggle('active', step === 2);
+            
+            if (step === 2) {
+                renderMemberInputs();
+                updateSummary();
+            }
+        }
+        
+        function renderMemberInputs() {
+            const container = document.getElementById('members-list');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= selectedPlan; i++) {
+                const div = document.createElement('div');
+                div.className = 'member-input-group';
+                div.innerHTML = `
+                    <div class="member-number">${i}</div>
+                    <div class="member-inputs">
+                        <input type="text" class="form-input member-name" placeholder="Prénom" data-member="${i}" maxlength="30">
+                        <input type="email" class="form-input member-email" placeholder="Email" data-member="${i}">
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+        }
+        
+        function updateSummary() {
+            const product = PRODUCTS[selectedPlan];
+            document.getElementById('summary-plan').textContent = product.name;
+            document.getElementById('summary-members').textContent = `${selectedPlan} membres`;
+            document.getElementById('summary-total').textContent = `${product.price}€ TTC`;
+        }
+        
+        // Bouton retour
+        document.getElementById('btn-back').addEventListener('click', () => {
+            document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('selected'));
+            selectedPlan = null;
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step1').classList.remove('hidden');
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i === 0) s.classList.add('active');
+            });
+        });
+        
+        // Validation et checkout
+        document.getElementById('btn-checkout').addEventListener('click', () => {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.classList.remove('show');
+            
+            // Récupérer le nom du cercle
+            const circleName = document.getElementById('circle-name').value.trim();
+            if (!circleName) {
+                errorDiv.textContent = 'Veuillez entrer un nom pour votre cercle.';
+                errorDiv.classList.add('show');
+                return;
+            }
+            
+            // Récupérer les membres
+            const members = [];
+            const emailInputs = document.querySelectorAll('.member-email');
+            const nameInputs = document.querySelectorAll('.member-name');
+            
+            let hasError = false;
+            emailInputs.forEach((input, i) => {
+                const email = input.value.trim();
+                const name = nameInputs[i].value.trim() || `Membre ${i + 1}`;
+                
+                if (!email) {
+                    hasError = true;
+                    input.style.borderColor = 'var(--red)';
+                } else if (!isValidEmail(email)) {
+                    hasError = true;
+                    input.style.borderColor = 'var(--red)';
+                } else {
+                    input.style.borderColor = 'var(--gray-800)';
+                    members.push({ name, email });
+                }
+            });
+            
+            if (hasError) {
+                errorDiv.textContent = 'Veuillez renseigner un email valide pour chaque membre.';
+                errorDiv.classList.add('show');
+                return;
+            }
+            
+            // Vérifier les doublons
+            const emails = members.map(m => m.email.toLowerCase());
+            if (new Set(emails).size !== emails.length) {
+                errorDiv.textContent = 'Chaque membre doit avoir une adresse email différente.';
+                errorDiv.classList.add('show');
+                return;
+            }
+            
+            // Construire l'URL de checkout avec les custom_data
+            const product = PRODUCTS[selectedPlan];
+            let checkoutUrl = product.checkoutUrl;
+            
+            // Ajouter les paramètres custom
+            const params = new URLSearchParams();
+            params.append('checkout[custom][circle_name]', circleName);
+            
+            members.forEach((member, i) => {
+                params.append(`checkout[custom][member_${i}_name]`, member.name);
+                params.append(`checkout[custom][member_${i}_email]`, member.email);
+            });
+            params.append('checkout[custom][member_count]', members.length.toString());
+            
+            // Ajouter l'email du premier membre comme email par défaut
+            params.append('checkout[email]', members[0].email);
+            
+            // URL finale
+            const finalUrl = `${checkoutUrl}?${params.toString()}`;
+            
+            console.log('Checkout URL:', finalUrl);
+            
+            // Mettre à jour l'indicateur
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active');
+                if (i < 2) s.classList.add('completed');
+                if (i === 2) s.classList.add('active');
+            });
+            
+            // Rediriger vers LemonSqueezy
+            window.location.href = finalUrl;
+        });
+        
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+    </script>
 </body>
 </html>
